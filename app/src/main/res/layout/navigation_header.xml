@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:background="@color/main_color"
+    android:paddingLeft="32dp"
+    android:paddingStart="32dp">
+
+    <co.shoutnet.shoutcap.utility.RoundedImageView
+        android:id="@+id/img_drawer_photo_user"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/download" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_toEndOf="@id/img_drawer_photo_user"
+        android:layout_toRightOf="@id/img_drawer_photo_user"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/shout_id" />
+
+        <TextView
+            android:id="@+id/txt_drawer_shout_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="fluorescent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/img_drawer_photo_user"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/abc_btn_rating_star_on_mtrl_alpha" />
+
+            <TextView
+                android:id="@+id/txt_drawer_coin"
+                android:layout_width="48dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:text="10000"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/abc_btn_rating_star_on_mtrl_alpha" />
+
+            <TextView
+                android:id="@+id/txt_drawer_poin"
+                android:layout_width="48dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:text="100000"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>
