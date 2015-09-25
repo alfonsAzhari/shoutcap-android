@@ -34,11 +34,6 @@
         android:title="@string/drawer_item_rack" />
 
     <item
-        android:id="@+id/drawer_item_cart"
-        android:icon="@mipmap/ic_shopping_cart_white_24dp"
-        android:title="@string/drawer_item_cart" />
-
-    <item
         android:id="@+id/drawer_item_order"
         android:icon="@mipmap/ic_history_white_24dp"
         android:title="@string/drawer_item_order" />

@@ -40,7 +40,6 @@ public class FragmentInbox extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_inbox, container, false);
 
-        getActivity().setTitle("Inbox");
         initView(rootView);
 
         recyclerView.setHasFixedSize(true);

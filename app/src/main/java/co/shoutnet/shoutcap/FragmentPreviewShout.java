@@ -30,6 +30,8 @@ public class FragmentPreviewShout extends Fragment {
     private static String EDITTEXT_HEIGHT = "EDITTEXT_HEIGHT";
     private static String TEXT_WIDTH = "TEXT_WIDTH";
     private static String TEXT_HEIGHT = "TEXT_HEIGHT";
+    private static String IMAGEVIEW_WIDTH = "IMAGEVIEW_WIDTH";
+    private static String IMAGEVIEW_HEIGHT = "IMAGEVIEW_HEIGHT";
 
     private Context context;
 
@@ -39,7 +41,7 @@ public class FragmentPreviewShout extends Fragment {
 
     }
 
-    public static FragmentPreviewShout newInstance(int imageId, int fontColor, float fontSize, String[] text, String fontStyle, float editTextWidth, float editTextHeight, int[] textWidth, int[] textHeight) {
+    public static FragmentPreviewShout newInstance(int imageId, int imageViewWidth, int imageViewHeight, int fontColor, float fontSize, String[] text, String fontStyle, float editTextWidth, float editTextHeight, int[] textWidth, int[] textHeight) {
 
         Bundle args = new Bundle();
         args.putInt(IMAGE_ID, imageId);
@@ -51,6 +53,8 @@ public class FragmentPreviewShout extends Fragment {
         args.putFloat(EDITTEXT_HEIGHT, editTextHeight);
         args.putIntArray(TEXT_WIDTH, textWidth);
         args.putIntArray(TEXT_HEIGHT, textHeight);
+        args.putInt(IMAGEVIEW_WIDTH, imageViewWidth);
+        args.putInt(IMAGEVIEW_HEIGHT, imageViewHeight);
         FragmentPreviewShout fragment = new FragmentPreviewShout();
         fragment.setArguments(args);
 
@@ -74,6 +78,8 @@ public class FragmentPreviewShout extends Fragment {
         float edtHeight = bundle.getFloat(EDITTEXT_HEIGHT);
         int[] textWidth = bundle.getIntArray(TEXT_WIDTH);
         int[] textHeight = bundle.getIntArray(TEXT_HEIGHT);
+        int imageWidth = bundle.getInt(IMAGEVIEW_WIDTH);
+        int imageHeight = bundle.getInt(IMAGEVIEW_HEIGHT);
 
         Log.i("image_id", String.valueOf(imageId));
         Log.i("shout", shout[0]);
@@ -85,7 +91,7 @@ public class FragmentPreviewShout extends Fragment {
 
         initView(rootView);
 
-        imgPreview.setImageDrawable(writeOnDrawable(context, shout, size, imageId, color, font, edtWidth, edtHeight, textWidth, textHeight));
+        imgPreview.setImageDrawable(writeOnDrawable(context, shout, size, imageId, imageWidth, imageHeight, color, font, edtWidth, edtHeight, textWidth, textHeight));
         return rootView;
     }
 
@@ -93,7 +99,7 @@ public class FragmentPreviewShout extends Fragment {
         imgPreview = (ImageView) v.findViewById(R.id.img_preview_hat);
     }
 
-    private BitmapDrawable writeOnDrawable(Context context, String[] shout, float textSize, int imageId, int fontColor, String fontStyle, float editTextWidth, float editTextHeight, int[] textWidth, int[] textHeight) {
+    private BitmapDrawable writeOnDrawable(Context context, String[] shout, float textSize, int imageId, int imageViewWidth, int imageViewHeight, int fontColor, String fontStyle, float editTextWidth, float editTextHeight, int[] textWidth, int[] textHeight) {
 
         Bitmap bm = BitmapFactory.decodeResource(context.getResources(), imageId).copy(Bitmap.Config.ARGB_8888, true);
 
@@ -104,12 +110,14 @@ public class FragmentPreviewShout extends Fragment {
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(fontColor);
         paint.setTypeface(style);
-        paint.setTextSize((float) (textSize * 1.5));
+        paint.setTextSize(textSize);
 
         Canvas canvas = new Canvas(bm);
         float startY = ((bm.getHeight() - editTextHeight) / 2) + ((editTextHeight - textHeight[0]) / 2);
         for (int i = 0; i < shout.length; i++) {
-            float startX = ((bm.getWidth() - editTextWidth) / 2) + ((editTextWidth - textWidth[i]) / 2);
+            Log.i("Width", String.valueOf(imgPreview.getHeight()));
+            Log.i("Width", String.valueOf(editTextWidth));
+            float startX = ((imageViewWidth - editTextWidth) / 2) + ((editTextWidth - textWidth[i]) / 2);
 
             canvas.drawText(shout[i], startX, startY, paint);
             startY += textHeight[i] + textSize / 4;

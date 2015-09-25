@@ -33,8 +33,6 @@ public class FragmentNews extends android.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_news, container, false);
 
-        getActivity().setTitle("News");
-
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerview_news);
         recyclerView.setHasFixedSize(true);
 //

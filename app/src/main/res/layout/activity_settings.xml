@@ -10,11 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.v7.widget.Toolbar
+        <include
             android:id="@+id/toolbar_settings"
-            android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+            layout="@layout/toolbar" />
 
     </android.support.design.widget.AppBarLayout>
 

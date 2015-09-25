@@ -147,5 +147,6 @@
     <string name="title_activity_promo">PromoActivity</string>
     <string name="title_activity_get_started">GetStartedActivity</string>
     <string name="title_activity_settings_content">SettingsContentActivity</string>
+    <string name="title_activity_cart">CartActivity</string>
 
 </resources>

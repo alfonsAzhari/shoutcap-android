@@ -10,6 +10,8 @@ import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Layout;
+import android.text.Selection;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -24,6 +26,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import co.shoutnet.shoutcap.utility.AutoResizeEditText;
 
 /**
  * Created by Codelabs on 8/24/2015.
@@ -40,9 +44,11 @@ public class FragmentCreateShout extends Fragment {
     private String[] shout;
     private int[] shoutWidth;
     private int[] shoutHeight;
+    private int imgWidth;
+    private int imgHeight;
 
     private ImageView imgHat;
-    private EditText edtTextInput;
+    private AutoResizeEditText edtTextInput;
     private Button btnCreate;
     private Button back;
     private Button next;
@@ -60,10 +66,10 @@ public class FragmentCreateShout extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_create_shout, container, false);
 
+        getActivity().setTitle("Create Shout");
+
         initView(rootView);
         context = getActivity();
-
-        getActivity().setTitle("Create Shout");
 
         res = context.getResources();
 
@@ -91,8 +97,24 @@ public class FragmentCreateShout extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+                shout = edtTextInput.getText().toString().split("\n");
+                shoutWidth = new int[shout.length];
+                shoutHeight = new int[shout.length];
+
                 Rect bounds = new Rect();
-                shout = (edtTextInput.getText().toString() + " ").split("\n");
+                Paint textPaint = edtTextInput.getPaint();
+
+                for (int i = 0; i < shout.length; i++) {
+                    textPaint.getTextBounds(shout[i], 0, shout[i].length(), bounds);
+
+                    shoutWidth[i] = bounds.width();
+                    shoutHeight[i] = bounds.height();
+                }
+
+                imgWidth = imgHat.getWidth();
+                imgHeight = imgHat.getHeight();
+                /*Rect bounds = new Rect();
+
                 shoutWidth = new int[shout.length];
                 shoutHeight = new int[shout.length];
 
@@ -114,12 +136,15 @@ public class FragmentCreateShout extends Fragment {
                 Log.i("Text", String.valueOf(charSequence));
                 Log.i("editText Width", String.valueOf(edtTextInput.getWidth()));
                 Log.i("editText Height", String.valueOf(edtTextInput.getHeight()));
+                Log.i("Text Width before", String.valueOf(width));
+                Log.i("Text Height", String.valueOf(height));
 
-                /*Log.i("editText Width", String.valueOf(edtTextInput.getWidth()));
+
+                *//*Log.i("editText Width", String.valueOf(edtTextInput.getWidth()));
                 Log.i("editText Height", String.valueOf(edtTextInput.getHeight()));
                 Log.i("Text Size", String.valueOf(edtTextInput.getTextSize()));
                 Log.i("Text Height", String.valueOf(height));
-                Log.i("editText Line", String.valueOf(edtTextInput.getLineCount()));*/
+                Log.i("editText Line", String.valueOf(edtTextInput.getLineCount()));*//*
 
                 if ((width > edtTextInput.getWidth()) || (height > edtTextInput.getHeight())) {
                     do {
@@ -129,17 +154,17 @@ public class FragmentCreateShout extends Fragment {
                             edtTextInput.setTextSize(TypedValue.COMPLEX_UNIT_SP, getSpFromPixels(textSize));
                             break;
                         }
-                        Log.i("Text Width before", String.valueOf(width));
 
                         edtTextInput.setTextSize(TypedValue.COMPLEX_UNIT_SP, getSpFromPixels(textSize));
 
                         textPaint.getTextBounds(charSequence.toString(), 0, edtTextInput.length(), bounds);
                         width = bounds.width();
                         height = (bounds.height() + edtTextInput.getPaddingBottom() + 45) * shout.length;
-                        Log.i("Text Width after", String.valueOf(width));
                     }
                     while (width > edtTextInput.getWidth() || height > edtTextInput.getHeight());
                 }
+
+                Log.i("Text Width after", String.valueOf(width));*/
                 /*
                 if ((width < edtTextInput.getWidth()) || (height < edtTextInput.getHeight())) {
                     do {
@@ -178,7 +203,7 @@ public class FragmentCreateShout extends Fragment {
 
     private void initView(View v) {
         imgHat = (ImageView) v.findViewById(R.id.img_create_hat);
-        edtTextInput = (EditText) v.findViewById(R.id.edt_create_input);
+        edtTextInput = (AutoResizeEditText) v.findViewById(R.id.edt_create_input);
         btnCreate = (Button) v.findViewById(R.id.btn_create);
         back = (Button) v.findViewById(R.id.btn_create_back);
         next = (Button) v.findViewById(R.id.btn_create_next);
@@ -207,7 +232,7 @@ public class FragmentCreateShout extends Fragment {
             Toast.makeText(context, String.valueOf(edtTextInput.getTextSize()), Toast.LENGTH_SHORT).show();
 
             FragmentTransaction ft = getActivity().getFragmentManager().beginTransaction();
-            FragmentPreviewShout previewShout = FragmentPreviewShout.newInstance((int) imgHat.getTag(), colorId.getColor(colorPosition, 0), edtTextInput.getTextSize(), shout, fontCollection[spinFontStyle.getSelectedItemPosition()], edtTextInput.getWidth(), edtTextInput.getHeight(), shoutWidth, shoutHeight);
+            FragmentPreviewShout previewShout = FragmentPreviewShout.newInstance((int) imgHat.getTag(), imgWidth, imgHeight, colorId.getColor(colorPosition, 0), edtTextInput.getTextSize(), shout, fontCollection[spinFontStyle.getSelectedItemPosition()], edtTextInput.getWidth(), edtTextInput.getHeight(), shoutWidth, shoutHeight);
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
             ft.replace(R.id.frame_content_main, previewShout);
             ft.addToBackStack(null);
@@ -399,13 +424,24 @@ public class FragmentCreateShout extends Fragment {
                 return (float) pixels;
 
             case DisplayMetrics.DENSITY_HIGH:
-                return (float) (pixels / 1.5);
+                return (float) Math.floor(pixels / 1.5);
 
             case DisplayMetrics.DENSITY_XHIGH:
-                return (float) (pixels / 2);
+                return (float) Math.floor(pixels / 2);
 
             default:
                 return (float) pixels;
         }
+    }
+
+    private int getCurrentCursorLine(EditText editText) {
+        int selectionStart = Selection.getSelectionStart(editText.getText());
+        Layout layout = editText.getLayout();
+
+        if (!(selectionStart == -1)) {
+            return layout.getLineForOffset(selectionStart);
+        }
+
+        return -1;
     }
 }

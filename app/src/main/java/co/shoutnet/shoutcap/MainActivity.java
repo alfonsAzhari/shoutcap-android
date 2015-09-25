@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         setDefaultFragment();
 
         navigationView.setNavigationItemSelectedListener(navItemSelect);
+        navigationView.getMenu().getItem(0).setChecked(true);
     }
 
     private void initToolbar() {
@@ -111,9 +112,8 @@ public class MainActivity extends AppCompatActivity {
 
             return true;
         } else if (id == R.id.action_cart) {
-            FragmentCart fragmentCart = new FragmentCart();
-            FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentCart).commit();
+            Intent i = new Intent(MainActivity.this, CartActivity.class);
+            startActivity(i);
 
             return true;
         }
@@ -158,16 +158,22 @@ public class MainActivity extends AppCompatActivity {
 
             switch (menuItem.getItemId()) {
                 case R.id.drawer_item_news:
+                    getSupportActionBar().setTitle("News");
+
                     FragmentNews fragmentNews = new FragmentNews();
                     fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentNews).commit();
                     return true;
 
                 case R.id.drawer_item_promo:
+                    getSupportActionBar().setTitle("Promo");
+
                     FragmentPromo fragmentPromo = new FragmentPromo();
                     fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentPromo).commit();
                     return true;
 
                 case R.id.drawer_item_create:
+                    getSupportActionBar().setTitle("Create Shout");
+
                     fragmentCreateShout = new FragmentCreateShout();
                     fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentCreateShout).commit();
                     return true;
@@ -177,29 +183,36 @@ public class MainActivity extends AppCompatActivity {
                     txtProfileName.setVisibility(View.VISIBLE);
                     linProfile.setVisibility(View.VISIBLE);
 
+                    getSupportActionBar().setTitle("Profile");
+
                     fragmentRack = new FragmentRack();
                     fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentRack).commit();
                     return true;
 
                 case R.id.drawer_item_inbox:
+                    getSupportActionBar().setTitle("Inbox");
+
                     FragmentInbox fragmentInbox = new FragmentInbox();
                     fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentInbox).commit();
                     return true;
 
                 case R.id.drawer_item_rack:
+                    getSupportActionBar().setTitle("Rack");
+
                     fragmentRack = new FragmentRack();
                     fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentRack).commit();
                     return true;
 
-                case R.id.drawer_item_cart:
-                    FragmentCart fragmentCart = new FragmentCart();
-                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentCart).commit();
-                    return true;
-
                 case R.id.drawer_item_order:
+                    getSupportActionBar().setTitle("Order History");
+
+                    FragmentOrderHistory fragmentOrderHistory = FragmentOrderHistory.newInstance();
+                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentOrderHistory).commit();
                     return true;
 
                 case R.id.drawer_item_reward:
+                    getSupportActionBar().setTitle("Reward");
+
                     FragmentReward fragmentReward = FragmentReward.newInstance();
                     fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentReward).commit();
                     return true;
