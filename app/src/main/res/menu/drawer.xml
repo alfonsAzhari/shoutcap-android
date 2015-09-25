@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <item
+        android:id="@+id/drawer_item_create"
+        android:icon="@mipmap/ic_create_white_24dp"
+        android:title="@string/drawer_item_create" />
+
+    <item
+        android:id="@+id/drawer_item_news"
+        android:icon="@mipmap/ic_whatshot_white_24dp"
+        android:title="@string/drawer_item_news" />
+
+    <item
+        android:id="@+id/drawer_item_promo"
+        android:icon="@mipmap/ic_local_offer_white_24dp"
+        android:title="@string/drawer_item_promo" />
+
+    <item
+        android:id="@+id/drawer_item_profile"
+        android:icon="@mipmap/ic_person_white_24dp"
+        android:title="@string/drawer_item_profile" />
+
+    <item
+        android:id="@+id/drawer_item_inbox"
+        android:icon="@mipmap/ic_inbox_white_24dp"
+        android:title="@string/drawer_item_inbox" />
+
+    <item
+        android:id="@+id/drawer_item_rack"
+        android:icon="@mipmap/ic_collections_white_24dp"
+        android:title="@string/drawer_item_rack" />
+
+    <item
+        android:id="@+id/drawer_item_order"
+        android:icon="@mipmap/ic_history_white_24dp"
+        android:title="@string/drawer_item_order" />
+
+    <item
+        android:id="@+id/drawer_item_reward"
+        android:icon="@mipmap/ic_card_giftcard_white_24dp"
+        android:title="@string/drawer_item_reward" />
+
+</menu>
