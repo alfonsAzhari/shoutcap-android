@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="main_color">#ff5323</color>
-
     <color name="color_primary">#ff5323</color>
     <color name="color_primary_dark">#e6461a</color>
     <color name="color_accent">#11c1f3</color>
+
+    <color name="color_primary_text">#212121</color>
+    <color name="color_secondary_text">#727272</color>
+    <color name="color_divider">#b6b6b6</color>
 
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>

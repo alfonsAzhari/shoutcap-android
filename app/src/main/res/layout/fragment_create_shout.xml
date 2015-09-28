@@ -20,10 +20,11 @@
             android:layout_width="254.67dp"
             android:layout_height="108.67dp"
             android:layout_centerInParent="true"
+            android:background="@drawable/bg_edittext_create"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:gravity="center"
-            android:inputType="textMultiLine"
+            android:inputType="textMultiLine|textFilter"
             android:padding="0dp"
             android:textSize="101.33sp" />
 
