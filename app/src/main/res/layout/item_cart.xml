@@ -1,0 +1,104 @@
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="4dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginTop="8dp"
+    android:elevation="2dp"
+    card_view:cardCornerRadius="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <co.shoutnet.shoutcap.SquareImage
+                android:id="@+id/img_product_cart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:src="@drawable/bg1" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txt_product_cart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ShoutClothes"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/txt_price_cart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ShoutClothes"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:layout_width="30dp"
+                        android:layout_height="35dp"
+                        android:text="-"
+                        android:textColor="@color/black"
+                        android:textSize="10sp" />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:hint="1"
+                        android:maxLength="3"
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
+
+                    <Button
+                        android:layout_width="30dp"
+                        android:layout_height="35dp"
+                        android:text="+"
+                        android:textColor="@color/black"
+                        android:textSize="10sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_primary"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/txt_total_cart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="Rp. 300.300.00" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/txt_total_cart"
+                android:text="SubTotal" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
