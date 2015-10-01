@@ -149,4 +149,18 @@
     <string name="title_activity_settings_content">SettingsContentActivity</string>
     <string name="title_activity_cart">CartActivity</string>
 
+    <string-array name="provinsi">
+        <item>Banten</item>
+        <item>Jawa Barat</item>
+        <item>Jawa Tengah</item>
+        <item>Jawa Timur</item>
+    </string-array>
+    <string-array name="kota">
+        <item>Banten</item>
+        <item>Bandung</item>
+    </string-array>
+    <string-array name="kecamatan">
+        <item>Regol</item>
+        <item>Dayeuhkolot</item>
+    </string-array>
 </resources>

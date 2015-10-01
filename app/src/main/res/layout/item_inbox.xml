@@ -22,7 +22,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:textSize="20sp" />
+            android:textSize="17sp"
+            android:textColor="@android:color/primary_text_light"
+            android:text="title"/>
 
         <TextView
             android:id="@+id/txt_inbox_date"
@@ -30,13 +32,16 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:text="Sep 23"/>
 
     </RelativeLayout>
 
     <TextView
         android:id="@+id/txt_inbox_desc"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:text="text"/>
 
 </LinearLayout>

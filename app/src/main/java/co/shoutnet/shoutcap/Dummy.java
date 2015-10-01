@@ -7,6 +7,8 @@ import co.shoutnet.shoutcap.model.ModelAdapterNews;
 import co.shoutnet.shoutcap.model.ModelAdapterRack;
 import co.shoutnet.shoutcap.model.ModelAdapterReward;
 import co.shoutnet.shoutcap.model.ModelAdapterCart;
+import co.shoutnet.shoutcap.model.ModelInboxDetail;
+import co.shoutnet.shoutcap.model.ModelNewsDetail;
 
 /**
  * Created by Codelabs on 8/25/2015.
@@ -108,6 +110,32 @@ public class Dummy {
 
         modelCart=new ModelAdapterCart(R.drawable.bg4,"ShoutCap","Rp. 300.300.00","Rp. 300.300.00");
         list.add(modelCart);
+
+        return list;
+    }
+    public ArrayList<ModelNewsDetail> getNewsDetail() {
+        ArrayList<ModelNewsDetail> list = new ArrayList<>();
+        ModelNewsDetail modelNewsDetail;
+
+        modelNewsDetail = new ModelNewsDetail();
+        modelNewsDetail.setImage(R.drawable.bg1);
+        modelNewsDetail.setTitle("Title Title Title");
+        modelNewsDetail.setDate("23-9-2016");
+        modelNewsDetail.setInfo("ajkshefaohdfoaisdhfajsdhfkahsdfalsdjhfoaisufowiehflajhdfoqueh");
+        list.add(modelNewsDetail);
+
+        return list;
+    }
+
+    public ArrayList<ModelInboxDetail> getInboxDetail() {
+        ArrayList<ModelInboxDetail> list = new ArrayList<>();
+        ModelInboxDetail modelInboxDetail;
+
+        modelInboxDetail = new ModelInboxDetail();
+        modelInboxDetail.setTitle("Title Title Title");
+        modelInboxDetail.setDate("23-9-2016");
+        modelInboxDetail.setContent("ajkshefaohdfoaisdhfajsdhfkahsdfalsdjhfoaisufowiehflajhdfoqueh");
+        list.add(modelInboxDetail);
 
         return list;
     }

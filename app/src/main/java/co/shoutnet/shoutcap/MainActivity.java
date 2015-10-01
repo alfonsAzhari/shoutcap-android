@@ -1,15 +1,20 @@
 package co.shoutnet.shoutcap;
 
 import android.app.FragmentManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,8 +23,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
+
+import co.shoutnet.shoutcap.utility.ConfigGCM;
+
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final int PLAY_SERVICE_RESOLUTION_REQUEST=9000;
+    private BroadcastReceiver registrationBroadcastReceiver;
+    private static final String TAG="MainActivity";
 
     private Toolbar toolbar;
 
@@ -40,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         exitCounter = 1;
 
+        onNewIntent(getIntent());
+        initGcm();
         initToolbar();
         initView();
 
@@ -70,6 +86,45 @@ public class MainActivity extends AppCompatActivity {
         linProfile = (LinearLayout) findViewById(R.id.lin_profile);
         txtProfileCoin = (TextView) findViewById(R.id.txt_profile_coin);
         txtProfilePoint = (TextView) findViewById(R.id.txt_profile_point);
+    }
+    private void initGcm() {
+        registrationBroadcastReceiver=new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+//                registerProgressBar.setVisibility(ProgressBar.GONE);
+                SharedPreferences sharedPreferences= PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                boolean sentToken=sharedPreferences.getBoolean(ConfigGCM.SENT_TOKEN_TO_SERVER,false);
+
+                if (sentToken){
+//                    information.setText(getString(R.string.gcm_send_message));
+                    Toast.makeText(getApplicationContext(), "sukses", Toast.LENGTH_SHORT).show();
+                }else {
+//                    information.setText(getString(R.string.token_error_message));
+                    Toast.makeText(getApplicationContext(),"gagal",Toast.LENGTH_SHORT).show();
+                }
+            }
+        };
+
+        if (checkPlayService()){
+            Intent intent =new Intent(this,RegistrationService.class);
+            startService(intent);
+        }
+    }
+
+    private boolean checkPlayService() {
+        GoogleApiAvailability apiAvailability=GoogleApiAvailability.getInstance();
+        int resultCode=apiAvailability.isGooglePlayServicesAvailable(this);
+
+        if (resultCode!= ConnectionResult.SUCCESS){
+            if (apiAvailability.isUserResolvableError(resultCode)){
+                apiAvailability.getErrorDialog(this,resultCode,PLAY_SERVICE_RESOLUTION_REQUEST).show();
+            }else {
+                Log.i(TAG, "This device is not supported");
+                finish();
+            }
+            return false;
+        }
+        return true;
     }
 
     private void setUpNavDrawer() {
@@ -222,4 +277,23 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     };
+    @Override
+    protected void onNewIntent(Intent intent) {
+        FragmentManager fragmentManager=getFragmentManager();
+        Bundle bundle=intent.getExtras();
+        if (bundle!=null){
+            String point=bundle.getString("point");
+            if (point.equals("reward")){
+                FragmentReward fragmentReward=new FragmentReward();
+                fragmentManager.beginTransaction().replace(R.id.frame_content_main,fragmentReward).commit();
+            }else if (point.equals("promo")){
+                FragmentPromo fragmentPromo=new FragmentPromo();
+                fragmentManager.beginTransaction().replace(R.id.frame_content_main,fragmentPromo).commit();
+            }else{
+                Log.i("Point MainActivity","Unknown Point");
+            }
+        }else {
+            Log.i("Bundle MainActivity","empty");
+        }
+    }
 }
