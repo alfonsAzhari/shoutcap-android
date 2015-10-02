@@ -99,16 +99,19 @@ public class Dummy {
         ArrayList<ModelAdapterCart> list = new ArrayList<>();
         ModelAdapterCart modelCart;
 
-        modelCart=new ModelAdapterCart(R.drawable.bg1,"ShoutCap","Rp. 300.300.00","Rp. 300.300.00");
+        modelCart=new ModelAdapterCart(R.drawable.bg1,"ShoutCap",125000,125000);
         list.add(modelCart);
 
-        modelCart=new ModelAdapterCart(R.drawable.bg2,"ShoutCap","Rp. 300.300.00","Rp. 300.300.00");
+        modelCart=new ModelAdapterCart(R.drawable.bg1,"ShoutCap",125000,125000);
         list.add(modelCart);
 
-        modelCart=new ModelAdapterCart(R.drawable.bg3,"ShoutCap","Rp. 300.300.00","Rp. 300.300.00");
+        modelCart=new ModelAdapterCart(R.drawable.bg1,"ShoutCap",225000,225000);
         list.add(modelCart);
 
-        modelCart=new ModelAdapterCart(R.drawable.bg4,"ShoutCap","Rp. 300.300.00","Rp. 300.300.00");
+        modelCart=new ModelAdapterCart(R.drawable.bg1,"ShoutCap",125000,125000);
+        list.add(modelCart);
+
+        modelCart=new ModelAdapterCart(R.drawable.bg1,"ShoutCap",125000,125000);
         list.add(modelCart);
 
         return list;

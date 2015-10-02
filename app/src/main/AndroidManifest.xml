@@ -77,6 +77,8 @@
         <activity
             android:name=".CartActivity"
             android:label="@string/action_cart"></activity>
+        <activity android:name=".ActivityInboxDetail"
+                  android:parentActivityName=".MainActivity"/>
     </application>
 
 </manifest>

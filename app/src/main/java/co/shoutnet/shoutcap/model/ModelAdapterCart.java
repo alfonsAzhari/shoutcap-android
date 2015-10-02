@@ -6,10 +6,10 @@ package co.shoutnet.shoutcap.model;
 public class ModelAdapterCart {
     private int imgCart;
     private String txtProduct;
-    private String txtPrice;
-    private String txtSubTotal;
+    private int txtPrice;
+    private long txtSubTotal;
 
-    public ModelAdapterCart(int imgCart, String txtProduct, String txtPrice, String txtSubTotal){
+    public ModelAdapterCart(int imgCart, String txtProduct, int txtPrice, long txtSubTotal){
         this.imgCart=imgCart;
         this.txtProduct=txtProduct;
         this.txtPrice=txtPrice;
@@ -24,6 +24,14 @@ public class ModelAdapterCart {
         this.imgCart = imgCart;
     }
 
+    public int getTxtPrice() {
+        return txtPrice;
+    }
+
+    public void setTxtPrice(int txtPrice) {
+        this.txtPrice = txtPrice;
+    }
+
     public String getTxtProduct() {
         return txtProduct;
     }
@@ -32,19 +40,11 @@ public class ModelAdapterCart {
         this.txtProduct = txtProduct;
     }
 
-    public String getTxtPrice() {
-        return txtPrice;
-    }
-
-    public void setTxtPrice(String txtPrice) {
-        this.txtPrice = txtPrice;
-    }
-
-    public String getTxtSubTotal() {
+    public long getTxtSubTotal() {
         return txtSubTotal;
     }
 
-    public void setTxtSubTotal(String txtSubTotal) {
+    public void setTxtSubTotal(long txtSubTotal) {
         this.txtSubTotal = txtSubTotal;
     }
 }

@@ -6,8 +6,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import co.shoutnet.shoutcap.adapter.CartAdapter;
 import co.shoutnet.shoutcap.utility.ListCallback;
@@ -17,6 +19,9 @@ public class CartActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private RecyclerView recyclerView;
     private ItemTouchHelper itemTouchHelper;
+
+    private static Button btnTotal;
+    private static long total;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +50,17 @@ public class CartActivity extends AppCompatActivity {
 
     private void initView() {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_cart);
+        btnTotal=(Button)findViewById(R.id.btn_purchase_cart);
+    }
+
+    public static void setTotal(long mTotal){
+        btnTotal.setText(Long.toString(mTotal));
+        total=mTotal;
+        Log.i("total ", String.valueOf(total));
+    }
+
+    public static long getTotal(){
+        return total;
     }
 
     @Override

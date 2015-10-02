@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import co.shoutnet.shoutcap.CartActivity;
 import co.shoutnet.shoutcap.R;
 import co.shoutnet.shoutcap.model.ModelAdapterCart;
 import co.shoutnet.shoutcap.utility.ListCallback;
@@ -26,7 +27,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     List<ModelAdapterCart> carts;
     Context context;
     int count;
-    long price=3000000;
+    int price;
+    long subTotal;
+    long total;
 
     public CartAdapter(Context context, List<ModelAdapterCart> carts) {
         this.carts = carts;
@@ -42,20 +45,28 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
     @Override
     public void onBindViewHolder(final CartViewHolder holder, int position) {
+        price=carts.get(position).getTxtPrice();
+        Log.i("price "+position, String.valueOf(price));
+        subTotal=carts.get(position).getTxtSubTotal();
+        total=CartActivity.getTotal();
+        total+=subTotal;
+        CartActivity.setTotal(total);
         holder.imgCart.setImageResource(carts.get(position).getImgCart());
         holder.txtProduct.setText(carts.get(position).getTxtProduct());
-        holder.txtPrice.setText(carts.get(position).getTxtPrice());
-        holder.txtSubTotal.setText(carts.get(position).getTxtSubTotal());
+        holder.txtPrice.setText(Integer.toString(carts.get(position).getTxtPrice()));
+        holder.txtSubTotal.setText(Long.toString(carts.get(position).getTxtSubTotal()));
         holder.btnPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 count = Integer.parseInt(String.valueOf(holder.edtCount.getText()));
                 if (count < 999) {
                     count += 1;
+                    subTotal = price * count;
                     holder.edtCount.setText(Integer.toString(count));
-                    price*=count;
-                    Log.i("total", String.valueOf(price));
-                    holder.txtSubTotal.setText("Rp. "+Long.toString(price));
+                    holder.txtSubTotal.setText("Rp. " + Long.toString(subTotal));
+                    total=CartActivity.getTotal();
+                    total+=price;
+                    CartActivity.setTotal(total);
                 }
             }
         });
@@ -63,12 +74,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             @Override
             public void onClick(View v) {
                 count = Integer.parseInt(String.valueOf(holder.edtCount.getText()));
-                if (count >1) {
-                    holder.edtCount.setText(Integer.toString(count));
-                    price/=count;
+                if (count > 1) {
                     count -= 1;
-                    Log.i("total", String.valueOf(price));
-                    holder.txtSubTotal.setText("Rp. "+Long.toString(price));
+                    subTotal = price * count;
+                    holder.edtCount.setText(Integer.toString(count));
+                    holder.txtSubTotal.setText("Rp. " + Long.toString(subTotal));
+                    total=CartActivity.getTotal();
+                    total-=price;
+                    CartActivity.setTotal(total);
                 }
             }
         });
