@@ -1,5 +1,7 @@
 package co.shoutnet.shoutcap;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -41,6 +43,10 @@ public class CartActivity extends AppCompatActivity {
         ItemTouchHelper.Callback callback=new ListCallback(getApplicationContext(),adapter);
         itemTouchHelper=new ItemTouchHelper(callback);
         itemTouchHelper.attachToRecyclerView(recyclerView);
+
+//        SharedPreferences preferences=getApplicationContext().getSharedPreferences("cart",Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor=preferences.edit();
+//        editor.putStringSet()
     }
 
     private void initToolbar() {
