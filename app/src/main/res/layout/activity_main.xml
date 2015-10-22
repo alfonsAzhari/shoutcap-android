@@ -88,8 +88,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/navigation_header"
-        app:itemIconTint="#000000"
-        app:itemTextColor="#000000"
+        app:itemIconTint="@color/color_secondary_text"
+        app:itemTextColor="@color/color_primary_text"
         app:menu="@menu/drawer" />
 
 </android.support.v4.widget.DrawerLayout>

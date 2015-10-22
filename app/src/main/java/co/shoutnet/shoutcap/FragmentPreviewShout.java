@@ -111,6 +111,7 @@ public class FragmentPreviewShout extends Fragment {
         paint.setColor(fontColor);
         paint.setTypeface(style);
         paint.setTextSize(textSize);
+        paint.setTextAlign(Paint.Align.CENTER);
 
         Canvas canvas = new Canvas(bm);
         float startY = ((bm.getHeight() - editTextHeight) / 2) + ((editTextHeight - textHeight[0]) / 2);

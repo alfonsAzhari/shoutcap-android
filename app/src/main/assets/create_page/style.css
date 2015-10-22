@@ -1,0 +1,16 @@
+.canvas-text {
+  position: absolute;
+}
+
+.canvas-textarea {
+	width: 100px;
+	height: 100px;
+  border: 1px solid #fff;
+  resize: none;
+  position: absolute;
+  background: transparent;
+  text-align: center;
+  word-wrap: initial;
+  z-index: 9999;
+  font-family: shoutcap
+}
