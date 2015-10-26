@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="co.shoutnet.shoutcap">
+    package="co.shoutnet.shoutcap" >
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-<<<<<<< HEAD
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-=======
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
->>>>>>> master
 
-    <permission android:name="co.shoutnet.shoutcap.permission.C2D_MESSAGE"
-                android:protectionLevel="signature"/>
-    <uses-permission android:name="co.shoutnet.shoutcap.permission.C2D_MESSAGE"/>
+    <permission
+        android:name="co.shoutnet.shoutcap.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="co.shoutnet.shoutcap.permission.C2D_MESSAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait" />
@@ -34,17 +33,18 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".GetStartedActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <receiver
             android:name="com.google.android.gms.gcm.GcmReceiver"
             android:exported="true"
-            android:permission="com.google.android.c2dm.permission.SEND">
+            android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
@@ -55,34 +55,41 @@
 
         <service
             android:name=".MyGcmListenerService"
-            android:exported="false">
+            android:exported="false" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             </intent-filter>
         </service>
         <service
             android:name=".MyInstanceIDListenerService"
-            android:exported="false">
+            android:exported="false" >
             <intent-filter>
                 <action android:name="com.google.android.gms.iid.InstanceID" />
             </intent-filter>
         </service>
         <service
             android:name=".RegistrationService"
-            android:exported="false">
+            android:exported="false" >
             <intent-filter>
                 <action android:name="com.google.android.gms.iid.InstanceID" />
             </intent-filter>
         </service>
+
         <activity
             android:name=".SettingsContentActivity"
             android:parentActivityName=".SettingsActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".CartActivity"
-            android:label="@string/action_cart"></activity>
-        <activity android:name=".ActivityInboxDetail"
-                  android:parentActivityName=".MainActivity"/>
+            android:label="@string/action_cart" />
+        <activity
+            android:name=".ActivityInboxDetail"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".PreviewActivity"
+            android:label="@string/title_activity_preview"
+            android:theme="@style/AppTheme" >
+        </activity>
     </application>
 
 </manifest>

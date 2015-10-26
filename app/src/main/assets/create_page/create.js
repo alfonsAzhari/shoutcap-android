@@ -1,4 +1,5 @@
 function drawTextToImage() {
+	useCORS = true;
 	var text = document.getElementById('tx_shout');
 	var canvas = document.getElementById("myCanvas");
 	var image = document.getElementById("img_createshoutcap");
@@ -12,8 +13,8 @@ function drawTextToImage() {
 	canvas.height = image.height;
 
 	var context = canvas.getContext("2d");
-	context.font = fontSizeShout + "px Calibri";
-	context.drawImage(image, 0, 0, canvas.width, canvas.height);
+		context.font = fontSizeShout + "px Calibri";
+		context.drawImage(image, 0, 0, canvas.width, canvas.height);
 
 	console.log(canvas.width);
 	console.log(canvas.height);
@@ -36,7 +37,10 @@ function drawTextToImage() {
 		context.fillText(shout[1], (canvas.width - context.measureText(shout[1]).width) / 2, canvas.height / 2);
 		context.fillText(shout[2], (canvas.width - context.measureText(shout[2]).width) / 2, canvas.height / 2 + fontSizeShout);
 		break;
+
 	}
+		var dataImage = canvas.toDataURL('image/png');
+		Android.sendCapData(dataImage);
 }
 
 function resizetext(textarea,h){
