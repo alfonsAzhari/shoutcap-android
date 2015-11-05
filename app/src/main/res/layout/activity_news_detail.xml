@@ -1,13 +1,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <include
-        layout="@layout/toolbar"
-        android:id="@+id/toolbar"/>
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -21,30 +21,33 @@
             <ImageView
                 android:id="@+id/img_news_detail"
                 android:layout_width="match_parent"
-                android:scaleType="centerCrop"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"/>
+                android:layout_marginBottom="16dp"
+                android:scaleType="centerCrop" />
+
             <TextView
                 android:id="@+id/txt_title_news_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
+                android:paddingLeft="16dp"
                 android:paddingRight="16dp"
-                android:paddingLeft="16dp"/>
+                android:textSize="24sp" />
+
             <TextView
                 android:id="@+id/txt_date_news_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
-                android:paddingTop="4dp"/>
+                android:paddingTop="4dp"
+                android:textSize="14sp" />
+
             <TextView
                 android:id="@+id/txt_info_news_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:padding="16dp"/>
+                android:padding="16dp"
+                android:textSize="14sp" />
 
         </LinearLayout>
     </ScrollView>
