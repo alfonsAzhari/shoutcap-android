@@ -2,11 +2,11 @@ package co.shoutnet.shoutcap;
 
 import java.util.ArrayList;
 
+import co.shoutnet.shoutcap.model.ModelAdapterCart;
 import co.shoutnet.shoutcap.model.ModelAdapterInbox;
 import co.shoutnet.shoutcap.model.ModelAdapterNews;
 import co.shoutnet.shoutcap.model.ModelAdapterRack;
 import co.shoutnet.shoutcap.model.ModelAdapterReward;
-import co.shoutnet.shoutcap.model.ModelAdapterCart;
 import co.shoutnet.shoutcap.model.ModelInboxDetail;
 import co.shoutnet.shoutcap.model.ModelNewsDetail;
 
@@ -62,60 +62,63 @@ public class Dummy {
 
         return list;
     }
-    public static ArrayList<ModelAdapterRack> getDataRack() {
-        ArrayList<ModelAdapterRack> list = new ArrayList<>();
-        ModelAdapterRack modelAdapterRack;
 
-        modelAdapterRack=new ModelAdapterRack(R.drawable.bg1);
-        list.add(modelAdapterRack);
+//    public static ArrayList<ModelAdapterRack> getDataRack() {
+//        ArrayList<ModelAdapterRack> list = new ArrayList<>();
+//        ModelAdapterRack modelAdapterRack;
+//
+//        modelAdapterRack = new ModelAdapterRack(R.drawable.bg1);
+//        list.add(modelAdapterRack);
+//
+//        modelAdapterRack = new ModelAdapterRack(R.drawable.bg2);
+//        list.add(modelAdapterRack);
+//
+//        modelAdapterRack = new ModelAdapterRack(R.drawable.bg3);
+//        list.add(modelAdapterRack);
+//
+//        modelAdapterRack = new ModelAdapterRack(R.drawable.bg4);
+//        list.add(modelAdapterRack);
+//
+//        modelAdapterRack = new ModelAdapterRack(R.drawable.bg3);
+//        list.add(modelAdapterRack);
+//
+//        modelAdapterRack = new ModelAdapterRack(R.drawable.bg1);
+//        list.add(modelAdapterRack);
+//
+//        modelAdapterRack = new ModelAdapterRack(R.drawable.bg3);
+//        list.add(modelAdapterRack);
+//
+//        modelAdapterRack = new ModelAdapterRack(R.drawable.bg2);
+//        list.add(modelAdapterRack);
+//
+//        modelAdapterRack = new ModelAdapterRack(R.drawable.bg4);
+//        list.add(modelAdapterRack);
+//
+//        return list;
+//    }
 
-        modelAdapterRack=new ModelAdapterRack(R.drawable.bg2);
-        list.add(modelAdapterRack);
-
-        modelAdapterRack=new ModelAdapterRack(R.drawable.bg3);
-        list.add(modelAdapterRack);
-
-        modelAdapterRack=new ModelAdapterRack(R.drawable.bg4);
-        list.add(modelAdapterRack);
-
-        modelAdapterRack=new ModelAdapterRack(R.drawable.bg3);
-        list.add(modelAdapterRack);
-
-        modelAdapterRack=new ModelAdapterRack(R.drawable.bg1);
-        list.add(modelAdapterRack);
-
-        modelAdapterRack=new ModelAdapterRack(R.drawable.bg3);
-        list.add(modelAdapterRack);
-
-        modelAdapterRack=new ModelAdapterRack(R.drawable.bg2);
-        list.add(modelAdapterRack);
-
-        modelAdapterRack=new ModelAdapterRack(R.drawable.bg4);
-        list.add(modelAdapterRack);
-
-        return list;
-    }
     public static ArrayList<ModelAdapterCart> getDataCart() {
         ArrayList<ModelAdapterCart> list = new ArrayList<>();
         ModelAdapterCart modelCart;
 
-        modelCart=new ModelAdapterCart(R.drawable.bg1,"ShoutCap",125000,125000);
+        modelCart = new ModelAdapterCart(R.drawable.bg1, "ShoutCap", 125000, 125000);
         list.add(modelCart);
 
-        modelCart=new ModelAdapterCart(R.drawable.bg1,"ShoutCap",125000,125000);
+        modelCart = new ModelAdapterCart(R.drawable.bg1, "ShoutCap", 125000, 125000);
         list.add(modelCart);
 
-        modelCart=new ModelAdapterCart(R.drawable.bg1,"ShoutCap",225000,225000);
+        modelCart = new ModelAdapterCart(R.drawable.bg1, "ShoutCap", 225000, 225000);
         list.add(modelCart);
 
-        modelCart=new ModelAdapterCart(R.drawable.bg1,"ShoutCap",125000,125000);
+        modelCart = new ModelAdapterCart(R.drawable.bg1, "ShoutCap", 125000, 125000);
         list.add(modelCart);
 
-        modelCart=new ModelAdapterCart(R.drawable.bg1,"ShoutCap",125000,125000);
+        modelCart = new ModelAdapterCart(R.drawable.bg1, "ShoutCap", 125000, 125000);
         list.add(modelCart);
 
         return list;
     }
+
     public ArrayList<ModelNewsDetail> getNewsDetail() {
         ArrayList<ModelNewsDetail> list = new ArrayList<>();
         ModelNewsDetail modelNewsDetail;

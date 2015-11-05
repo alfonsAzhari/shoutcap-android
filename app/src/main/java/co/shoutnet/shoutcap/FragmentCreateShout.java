@@ -1,41 +1,25 @@
 package co.shoutnet.shoutcap;
 
 import android.app.Fragment;
-import android.app.FragmentTransaction;
+import android.app.FragmentManager;
 import android.content.Context;
-import android.content.Intent;
-import android.content.res.Resources;
-import android.content.res.TypedArray;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.Typeface;
-import android.net.http.SslError;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.Layout;
-import android.text.Selection;
-import android.text.TextWatcher;
-import android.util.Base64;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.util.TypedValue;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
-import android.webkit.SslErrorHandler;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Spinner;
-import android.widget.Toast;
 
-import co.shoutnet.shoutcap.utility.AutoResizeEditText;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.math.BigInteger;
+import java.security.SecureRandom;
+
+import co.shoutnet.shoutcap.model.CapsModel;
+import co.shoutnet.shoutcap.utility.DBCapsHelper;
 
 /**
  * Created by Codelabs on 8/24/2015.
@@ -44,6 +28,7 @@ public class FragmentCreateShout extends Fragment {
 
     private WebView webView;
     private Context context;
+    private CapsModel capsModel;
 
     public FragmentCreateShout() {
     }
@@ -57,38 +42,52 @@ public class FragmentCreateShout extends Fragment {
         initView(rootView);
         context = getActivity();
 
-        javacriptInterface javascript = new javacriptInterface(context);
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
         settings.setAllowFileAccessFromFileURLs(true);
-        webView.addJavascriptInterface(javascript, "Android");
+        webView.addJavascriptInterface(this, "Android");
         webView.loadUrl("file:///android_asset/create_page/index.html");
 
         return rootView;
+    }
+
+    @JavascriptInterface
+    public void capData(String data) {
+        capsModel = new CapsModel();
+        SecureRandom random=new SecureRandom();
+        try {
+            String name =new BigInteger(130,random).toString(32);
+
+            JSONObject object = new JSONObject(data);
+            JSONArray jsonArray = object.optJSONArray("cap");
+            JSONObject jsonObject = jsonArray.getJSONObject(0);
+
+            capsModel.setName(name);
+            capsModel.setText(jsonObject.optString("text"));
+            capsModel.setModel(Integer.parseInt(jsonObject.optString("model")));
+            capsModel.setType(Integer.parseInt(jsonObject.optString("type")));
+            capsModel.setSize(Integer.parseInt(jsonObject.optString("size")));
+            capsModel.setFont(jsonObject.optString("font"));
+            capsModel.setColor(jsonObject.optString("color"));
+            capsModel.setPrice(Integer.parseInt(jsonObject.optString("price")));
+            capsModel.setBaseImage(jsonObject.optString("image"));
+
+            DBCapsHelper dbCapsHelper = new DBCapsHelper(context);
+            dbCapsHelper.addCap(capsModel);
+
+            int id=dbCapsHelper.getLatestId();
+
+            Fragment fragment=FragmentPreviewShout.newInstance(id,capsModel.getBaseImage(),capsModel.getPrice(),capsModel.getName());
+            FragmentManager fragmentManager=getActivity().getFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.frame_content_main,fragment).commit();
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     private void initView(View v) {
         webView = (WebView) v.findViewById(R.id.web_create_shout);
     }
 
-    public class javacriptInterface{
-
-        private Context context;
-
-        public javacriptInterface(Context context) {
-            this.context = context;
-        }
-
-        @JavascriptInterface
-        public void sendCapData(String image){
-            Log.i("image ", image);
-
-            Intent intent=new Intent(context,PreviewActivity.class);
-            String[] base64Image=image.split(",");
-            Log.i("split",base64Image[1]);
-            byte[] newImage= Base64.decode(base64Image[1],Base64.DEFAULT);
-            intent.putExtra("image",newImage);
-            startActivity(intent);
-        }
-    }
 }

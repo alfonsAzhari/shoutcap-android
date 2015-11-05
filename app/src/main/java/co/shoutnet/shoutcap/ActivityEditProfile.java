@@ -22,9 +22,9 @@ import java.util.Locale;
 public class ActivityEditProfile extends AppCompatActivity {
 
     ArrayAdapter<CharSequence> adapter;
-    Spinner spinnerProvinsi,spinnerKota,spinnerKecamatan;
-    private String[] provinsi,kota,kecamatan;
+    Spinner spinnerProvinsi, spinnerKota, spinnerKecamatan;
     Toolbar toolbar;
+    private String[] provinsi, kota, kecamatan;
     private EditText dateEditText;
     private DatePickerDialog datePickerDialog;
     private SimpleDateFormat simpleDateFormat;
@@ -110,17 +110,17 @@ public class ActivityEditProfile extends AppCompatActivity {
     private void initView() {
         dateEditText = (EditText) findViewById(R.id.tanggal_lahir_edit);
         dateEditText.setInputType(InputType.TYPE_NULL);
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
-        spinnerProvinsi = (Spinner)findViewById(R.id.spinner_provinsi);
-        spinnerKota = (Spinner)findViewById(R.id.spinner_kota);
-        spinnerKecamatan = (Spinner)findViewById(R.id.spinner_kecamatan);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        spinnerProvinsi = (Spinner) findViewById(R.id.spinner_provinsi);
+        spinnerKota = (Spinner) findViewById(R.id.spinner_kota);
+        spinnerKecamatan = (Spinner) findViewById(R.id.spinner_kecamatan);
     }
 
     private void setDateTimeField() {
         dateEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
-                if(dateEditText.hasFocus()) {
+                if (dateEditText.hasFocus()) {
                     if (view == dateEditText) {
                         datePickerDialog.show();
                     }
@@ -136,7 +136,7 @@ public class ActivityEditProfile extends AppCompatActivity {
                 dateEditText.setText(simpleDateFormat.format(newDate.getTime()));
             }
 
-        },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
+        }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
 
     }
 }

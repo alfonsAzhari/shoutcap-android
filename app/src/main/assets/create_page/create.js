@@ -40,7 +40,27 @@ function drawTextToImage() {
 
 	}
 		var dataImage = canvas.toDataURL('image/png');
-		Android.sendCapData(dataImage);
+		sendCapData("wa",1,1,1,"wawa","wawd",1231,dataImage);
+}
+
+function sendCapData (text, model, type, size, font, color, price, dataImage){
+	var image = dataImage.split(",");
+	var capObj = "{\"cap\" :" +
+    				"[" +
+    					"{" +
+    						"\"text\" : \"" + text + "\"," +
+                            "\"model\" : \"" + model + "\"," +
+                            "\"type\" : \"" + type + "\"," +
+                            "\"size\" : \"" + size + "\"," +
+                            "\"font\" : \"" + font + "\"," +
+                            "\"color\" : \"" + color + "\"," +
+                            "\"price\" : \"" + price + "\"," +
+                            "\"image\" : \"" + image[1] + "\"" +
+                        "}" +
+                    "]" +
+                  "}";
+
+    Android.capData(capObj);
 }
 
 function resizetext(textarea,h){

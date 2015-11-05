@@ -4,47 +4,60 @@ package co.shoutnet.shoutcap.model;
  * Created by Codelabs on 9/14/2015.
  */
 public class ModelAdapterCart {
-    private int imgCart;
-    private String txtProduct;
-    private int txtPrice;
-    private long txtSubTotal;
+    private String image;
+    private String name; //text
+    private int price;
+    private long subTotal;
+    private int qty;
 
-    public ModelAdapterCart(int imgCart, String txtProduct, int txtPrice, long txtSubTotal){
-        this.imgCart=imgCart;
-        this.txtProduct=txtProduct;
-        this.txtPrice=txtPrice;
-        this.txtSubTotal=txtSubTotal;
+    public ModelAdapterCart() {
     }
 
-    public int getImgCart() {
-        return imgCart;
+    public ModelAdapterCart(String image, String name, int price, long subTotal, int qty) {
+        this.image = image;
+        this.name = name;
+        this.price = price;
+        this.subTotal = subTotal;
+        this.qty = qty;
     }
 
-    public void setImgCart(int imgCart) {
-        this.imgCart = imgCart;
+    public String getImage() {
+        return image;
     }
 
-    public int getTxtPrice() {
-        return txtPrice;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public void setTxtPrice(int txtPrice) {
-        this.txtPrice = txtPrice;
+    public String getName() {
+        return name;
     }
 
-    public String getTxtProduct() {
-        return txtProduct;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setTxtProduct(String txtProduct) {
-        this.txtProduct = txtProduct;
+    public int getPrice() {
+        return price;
     }
 
-    public long getTxtSubTotal() {
-        return txtSubTotal;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
-    public void setTxtSubTotal(long txtSubTotal) {
-        this.txtSubTotal = txtSubTotal;
+    public long getSubTotal() {
+        return subTotal;
+    }
+
+    public void setSubTotal(long subTotal) {
+        this.subTotal = subTotal;
+    }
+
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
     }
 }

@@ -1,7 +1,5 @@
 package co.shoutnet.shoutcap;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,14 +14,30 @@ import android.widget.Button;
 import co.shoutnet.shoutcap.adapter.CartAdapter;
 import co.shoutnet.shoutcap.utility.ListCallback;
 
+/**
+ public static void showPriceInUSD(double price, double rate) {
+ double priceInUSD = price * rate;
+ NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(Locale.US);
+ System.out.printf("Price in USD : %s %n", currencyFormat.format(priceInUSD));[,r3
+ */
+
 public class CartActivity extends AppCompatActivity {
 
+    private static Button btnTotal;
+    private static long total;
     private Toolbar toolbar;
     private RecyclerView recyclerView;
     private ItemTouchHelper itemTouchHelper;
 
-    private static Button btnTotal;
-    private static long total;
+    public static long getTotal() {
+        return total;
+    }
+
+    public static void setTotal(long mTotal) {
+        btnTotal.setText(Long.toString(mTotal));
+        total = mTotal;
+        Log.i("total ", String.valueOf(total));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +54,8 @@ public class CartActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-        ItemTouchHelper.Callback callback=new ListCallback(getApplicationContext(),adapter);
-        itemTouchHelper=new ItemTouchHelper(callback);
+        ItemTouchHelper.Callback callback = new ListCallback(getApplicationContext(), adapter);
+        itemTouchHelper = new ItemTouchHelper(callback);
         itemTouchHelper.attachToRecyclerView(recyclerView);
 
 //        SharedPreferences preferences=getApplicationContext().getSharedPreferences("cart",Context.MODE_PRIVATE);
@@ -56,17 +70,7 @@ public class CartActivity extends AppCompatActivity {
 
     private void initView() {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_cart);
-        btnTotal=(Button)findViewById(R.id.btn_purchase_cart);
-    }
-
-    public static void setTotal(long mTotal){
-        btnTotal.setText(Long.toString(mTotal));
-        total=mTotal;
-        Log.i("total ", String.valueOf(total));
-    }
-
-    public static long getTotal(){
-        return total;
+        btnTotal = (Button) findViewById(R.id.btn_purchase_cart);
     }
 
     @Override

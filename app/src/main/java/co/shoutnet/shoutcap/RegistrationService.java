@@ -26,9 +26,9 @@ import co.shoutnet.shoutcap.utility.ConfigGCM;
  */
 public class RegistrationService extends IntentService {
 
+    public static final MediaType MEDIA_TYPE_MARKDOWN = MediaType.parse("text/x-markdown; charset=utf-8");
     private static final String TAG = "RegisterService";
     private static final String[] TOPIC = {"global"};
-    public static final MediaType MEDIA_TYPE_MARKDOWN = MediaType.parse("text/x-markdown; charset=utf-8");
 
     public RegistrationService() {
         super(TAG);
@@ -40,7 +40,7 @@ public class RegistrationService extends IntentService {
 
         try {
             InstanceID instanceID = InstanceID.getInstance(this);
-            String token=instanceID.getToken(getString(R.string.gcm_defaultSenderId), GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
+            String token = instanceID.getToken(getString(R.string.gcm_defaultSenderId), GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
 //            String token = instanceID.getToken(ConfigGCM.GOOGLE_SENDER_ID, GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
 //            instanceID.deleteToken(getString(R.string.gcm_defaultSenderId), GoogleCloudMessaging.INSTANCE_ID_SCOPE);
 
@@ -77,9 +77,9 @@ public class RegistrationService extends IntentService {
                 .post(requestBody)
                 .build();
 
-        Response response=client.newCall(request).execute();
-        if (!response.isSuccessful()){
-            Log.i(TAG,response.body().toString());
+        Response response = client.newCall(request).execute();
+        if (!response.isSuccessful()) {
+            Log.i(TAG, response.body().toString());
         }
     }
 }

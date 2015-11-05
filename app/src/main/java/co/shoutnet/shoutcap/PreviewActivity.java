@@ -27,6 +27,8 @@ public class PreviewActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        getSupportActionBar().setTitle("Preview Cap");
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,11 +38,12 @@ public class PreviewActivity extends AppCompatActivity {
             }
         });
 
-        Bundle bundle=getIntent().getExtras();
-        byte[] image=bundle.getByteArray("image");
-        Bitmap bitmap= BitmapFactory.decodeByteArray(image, 0, image.length);
+        Bundle bundle = getIntent().getExtras();
+        byte[] image = bundle.getByteArray("image");
+        Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
 
-        ImageView imageView=(ImageView)findViewById(R.id.img_preview);
+
+        ImageView imageView = (ImageView) findViewById(R.id.img_preview);
 
         if (bitmap != null) {
             File file = new File(Environment.getExternalStorageDirectory() + "/shoutcap");

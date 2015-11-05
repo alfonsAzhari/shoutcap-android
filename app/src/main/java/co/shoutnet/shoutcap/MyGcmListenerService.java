@@ -38,26 +38,26 @@ public class MyGcmListenerService extends GcmListenerService {
 
     private void sendNotification(String message, boolean isTopic, String point) {
 
-        Intent intent=null;
-        String title=null;
+        Intent intent = null;
+        String title = null;
         PendingIntent pendingIntent;
         if (point.equals("inbox")) {
             intent = new Intent(this, ActivityInboxDetail.class);
             title = "ShoutCap - Inbox";
-        }else if (point.equals("reward")){
-            intent=new Intent(this, MainActivity.class);
-            intent.putExtra("point","reward");
+        } else if (point.equals("reward")) {
+            intent = new Intent(this, MainActivity.class);
+            intent.putExtra("point", "reward");
 //            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            title="ShoutCap - Reward";
-        }else if (point.equals("promo")){
-            intent=new Intent(this, MainActivity.class);
-            intent.putExtra("point","promo");
+            title = "ShoutCap - Reward";
+        } else if (point.equals("promo")) {
+            intent = new Intent(this, MainActivity.class);
+            intent.putExtra("point", "promo");
 //            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            title="ShoutCap - Promo";
-        }else{
+            title = "ShoutCap - Promo";
+        } else {
             intent = new Intent(this, ActivityInboxDetail.class);
         }
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         pendingIntent = PendingIntent.getActivity(this, 333, intent, PendingIntent.FLAG_ONE_SHOT);
 
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);

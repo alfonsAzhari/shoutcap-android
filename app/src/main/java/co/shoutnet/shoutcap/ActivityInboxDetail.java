@@ -13,9 +13,10 @@ import co.shoutnet.shoutcap.model.ModelInboxDetail;
  * Created by Adam MB on 9/10/2015.
  */
 public class ActivityInboxDetail extends AppCompatActivity {
-    TextView title,date,content;
+    TextView title, date, content;
     ArrayList<ModelInboxDetail> list;
     Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,11 +34,10 @@ public class ActivityInboxDetail extends AppCompatActivity {
     }
 
 
-
-    private void initView(){
-        title = (TextView)findViewById(R.id.txt_title_inbox_detail);
-        date = (TextView)findViewById(R.id.txt_date_inbox_detail);
-        content = (TextView)findViewById(R.id.txt_content_inbox_detail);
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
+    private void initView() {
+        title = (TextView) findViewById(R.id.txt_title_inbox_detail);
+        date = (TextView) findViewById(R.id.txt_date_inbox_detail);
+        content = (TextView) findViewById(R.id.txt_content_inbox_detail);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
     }
 }

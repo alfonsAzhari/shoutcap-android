@@ -1,11 +1,9 @@
 package co.shoutnet.shoutcap.utility;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.RectF;
 import android.graphics.Typeface;
-import android.os.Build;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -32,19 +30,6 @@ public class AutoResizeEditText extends EditText {
     private boolean _enableSizeCache = true;
     private boolean _initiallized = false;
     private TextPaint paint;
-
-    private interface SizeTester {
-        /**
-         * AutoResizeEditText
-         *
-         * @param suggestedSize  Size of text to be tested
-         * @param availableSpace available space in which text must fit
-         * @return an integer < 0 if after applying {@code suggestedSize} to
-         * text, it takes less space than {@code availableSpace}, > 0
-         * otherwise
-         */
-        public int onTestSize(int suggestedSize, RectF availableSpace);
-    }
 
     public AutoResizeEditText(final Context context) {
         this(context, null, 0);
@@ -121,15 +106,15 @@ public class AutoResizeEditText extends EditText {
     }
 
     @Override
+    public int getMaxLines() {
+        return _maxLines;
+    }
+
+    @Override
     public void setMaxLines(final int maxlines) {
         super.setMaxLines(maxlines);
         _maxLines = maxlines;
         reAdjust();
-    }
-
-    @Override
-    public int getMaxLines() {
-        return _maxLines;
     }
 
     @Override
@@ -274,5 +259,18 @@ public class AutoResizeEditText extends EditText {
         super.onSizeChanged(width, height, oldwidth, oldheight);
         if (width != oldwidth || height != oldheight)
             reAdjust();
+    }
+
+    private interface SizeTester {
+        /**
+         * AutoResizeEditText
+         *
+         * @param suggestedSize  Size of text to be tested
+         * @param availableSpace available space in which text must fit
+         * @return an integer < 0 if after applying {@code suggestedSize} to
+         * text, it takes less space than {@code availableSpace}, > 0
+         * otherwise
+         */
+        public int onTestSize(int suggestedSize, RectF availableSpace);
     }
 }

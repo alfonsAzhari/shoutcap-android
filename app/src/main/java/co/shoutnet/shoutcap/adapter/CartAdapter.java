@@ -45,46 +45,46 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
     @Override
     public void onBindViewHolder(final CartViewHolder holder, int position) {
-        price=carts.get(position).getTxtPrice();
-        Log.i("price "+position, String.valueOf(price));
-        subTotal=carts.get(position).getTxtSubTotal();
-        total=CartActivity.getTotal();
-        total+=subTotal;
-        CartActivity.setTotal(total);
-        holder.imgCart.setImageResource(carts.get(position).getImgCart());
-        holder.txtProduct.setText(carts.get(position).getTxtProduct());
-        holder.txtPrice.setText(Integer.toString(carts.get(position).getTxtPrice()));
-        holder.txtSubTotal.setText(Long.toString(carts.get(position).getTxtSubTotal()));
-        holder.btnPlus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                count = Integer.parseInt(String.valueOf(holder.edtCount.getText()));
-                if (count < 999) {
-                    count += 1;
-                    subTotal = price * count;
-                    holder.edtCount.setText(Integer.toString(count));
-                    holder.txtSubTotal.setText("Rp. " + Long.toString(subTotal));
-                    total=CartActivity.getTotal();
-                    total+=price;
-                    CartActivity.setTotal(total);
-                }
-            }
-        });
-        holder.btnMinus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                count = Integer.parseInt(String.valueOf(holder.edtCount.getText()));
-                if (count > 1) {
-                    count -= 1;
-                    subTotal = price * count;
-                    holder.edtCount.setText(Integer.toString(count));
-                    holder.txtSubTotal.setText("Rp. " + Long.toString(subTotal));
-                    total=CartActivity.getTotal();
-                    total-=price;
-                    CartActivity.setTotal(total);
-                }
-            }
-        });
+//        price = carts.get(position).getTxtPrice();
+//        Log.i("price " + position, String.valueOf(price));
+//        subTotal = carts.get(position).getTxtSubTotal();
+//        total = CartActivity.getTotal();
+//        total += subTotal;
+//        CartActivity.setTotal(total);
+//        holder.imgCart.setImageResource(carts.get(position).getImgCart());
+//        holder.txtProduct.setText(carts.get(position).getTxtProduct());
+//        holder.txtPrice.setText(Integer.toString(carts.get(position).getTxtPrice()));
+//        holder.txtSubTotal.setText(Long.toString(carts.get(position).getTxtSubTotal()));
+//        holder.btnPlus.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                count = Integer.parseInt(String.valueOf(holder.edtCount.getText()));
+//                if (count < 999) {
+//                    count += 1;
+//                    subTotal = price * count;
+//                    holder.edtCount.setText(Integer.toString(count));
+//                    holder.txtSubTotal.setText("Rp. " + Long.toString(subTotal));
+//                    total = CartActivity.getTotal();
+//                    total += price;
+//                    CartActivity.setTotal(total);
+//                }
+//            }
+//        });
+//        holder.btnMinus.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                count = Integer.parseInt(String.valueOf(holder.edtCount.getText()));
+//                if (count > 1) {
+//                    count -= 1;
+//                    subTotal = price * count;
+//                    holder.edtCount.setText(Integer.toString(count));
+//                    holder.txtSubTotal.setText("Rp. " + Long.toString(subTotal));
+//                    total = CartActivity.getTotal();
+//                    total -= price;
+//                    CartActivity.setTotal(total);
+//                }
+//            }
+//        });
     }
 
     @Override
@@ -109,7 +109,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         }).show();
     }
 
-    private void onRemoveList(int position){
+    private void onRemoveList(int position) {
         carts.remove(position);
         notifyItemRemoved(position);
     }
@@ -120,7 +120,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
     }
 
-    public static class CartViewHolder extends RecyclerView.ViewHolder implements ListCallback.ItemTouchHelperViewHolder{
+    public static class CartViewHolder extends RecyclerView.ViewHolder implements ListCallback.ItemTouchHelperViewHolder {
         ImageView imgCart;
         TextView txtProduct;
         TextView txtPrice;

@@ -1,20 +1,25 @@
 package co.shoutnet.shoutcap.model;
 
+import android.net.Uri;
+
 /**
  * Created by Codelabs on 9/14/2015.
  */
 public class ModelAdapterRack {
-    private int imgRack;
+    private Uri imgRack;
 
-    public int getImgRack() {
+    public ModelAdapterRack() {
+    }
+
+    public ModelAdapterRack(Uri imgRack) {
+        this.imgRack = imgRack;
+    }
+
+    public Uri getImgRack() {
         return imgRack;
     }
 
-    public ModelAdapterRack(int imgRack){
-        this.imgRack=imgRack;
-    }
-
-    public void setImgRack(int imgRack) {
+    public void setImgRack(Uri imgRack) {
         this.imgRack = imgRack;
     }
 }

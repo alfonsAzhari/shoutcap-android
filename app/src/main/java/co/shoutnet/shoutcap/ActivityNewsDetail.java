@@ -1,7 +1,7 @@
 package co.shoutnet.shoutcap;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,12 +36,12 @@ public class ActivityNewsDetail extends AppCompatActivity {
         getSupportActionBar().setTitle("News");
     }
 
-    private void initView(){
-        imageView = (ImageView)findViewById(R.id.img_news_detail);
-        textTitle = (TextView)findViewById(R.id.txt_title_news_detail);
-        textDate = (TextView)findViewById(R.id.txt_date_news_detail);
-        textInfo = (TextView)findViewById(R.id.txt_info_news_detail);
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
+    private void initView() {
+        imageView = (ImageView) findViewById(R.id.img_news_detail);
+        textTitle = (TextView) findViewById(R.id.txt_title_news_detail);
+        textDate = (TextView) findViewById(R.id.txt_date_news_detail);
+        textInfo = (TextView) findViewById(R.id.txt_info_news_detail);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
     }
 
     @Override
