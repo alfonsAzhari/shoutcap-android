@@ -1,0 +1,74 @@
+[
+   {
+      "id":"1",
+      "code":"#000000",
+      "name":"Black",
+      "price":"30000"
+   },
+   {
+      "id":"2",
+      "code":"#FF333F",
+      "name":"Red",
+      "price":"30000"
+   },
+   {
+      "id":"8",
+      "code":"#FFFFFF",
+      "name":"White",
+      "price":"30000"
+   },
+   {
+      "id":"9",
+      "code":"#04B404",
+      "name":"Neon Green",
+      "price":"40000"
+   },
+   {
+      "id":"10",
+      "code":"#FF0040",
+      "name":"Neon Pink",
+      "price":"40000"
+   },
+   {
+      "id":"11",
+      "code":"#C8FE2E",
+      "name":"Neon Yellow",
+      "price":"40000"
+   },
+   {
+      "id":"12",
+      "code":"#FF3300",
+      "name":"Neon Orange",
+      "price":"40000"
+   },
+   {
+      "id":"13",
+      "code":"#CCFF99",
+      "name":"Glow In The Dark",
+      "price":"55000"
+   },
+   {
+      "id":"14",
+      "code":"#CCCCCC",
+      "name":"Reflective",
+      "price":"55000"
+   },
+   {
+      "id":"15",
+      "code":"#000001",
+      "name":"Flock Black",
+      "price":"55000"
+   },
+   {
+      "id":"16",
+      "code":"#FF333E",
+      "name":"Flock Red",
+      "price":"55000"
+   },
+   {
+      "id":"17",
+      "code":"#FFFFFE",
+      "name":"Flock White",
+      "price":"55000"
+   }
+]

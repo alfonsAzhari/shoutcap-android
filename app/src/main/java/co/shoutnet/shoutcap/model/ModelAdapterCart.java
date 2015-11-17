@@ -4,6 +4,7 @@ package co.shoutnet.shoutcap.model;
  * Created by Codelabs on 9/14/2015.
  */
 public class ModelAdapterCart {
+
     private int imgCart;
     private String txtProduct;
     private String txtPrice;

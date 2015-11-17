@@ -41,14 +41,77 @@
         <item>Mixed</item>
     </string-array>
 
+    <string-array name="cap_img_baseball_list">
+        <item>baseball/img_cap_baseball_black_curved.jpg</item>
+        <item>baseball/img_cap_baseball_black_straight.jpg</item>
+        <item>baseball/img_cap_baseball_darkblue_curved.jpg</item>
+        <item>baseball/img_cap_baseball_darkblue_straight.jpg</item>
+        <item>baseball/img_cap_baseball_red_curved.jpg</item>
+        <item>baseball/img_cap_baseball_red_straight.jpg</item>
+    </string-array>
+
+    <string-array name="cap_img_trucker_classic_list">
+        <item>trucker_classic/img_cap_trucker_classic_black_curved.jpg</item>
+        <item>trucker_classic/img_cap_trucker_classic_black_straight.jpg</item>
+        <item>trucker_classic/img_cap_trucker_classic_blue_curved.jpg</item>
+        <item>trucker_classic/img_cap_trucker_classic_blue_straight.jpg</item>
+        <item>trucker_classic/img_cap_trucker_classic_darkblue_curved.jpg</item>
+        <item>trucker_classic/img_cap_trucker_classic_darkblue_straight.jpg</item>
+        <item>trucker_classic/img_cap_trucker_classic_green_curved.jpg</item>
+        <item>trucker_classic/img_cap_trucker_classic_green_straight.jpg</item>
+        <item>trucker_classic/img_cap_trucker_classic_orange_curved.jpg</item>
+        <item>trucker_classic/img_cap_trucker_classic_orange_straight.jpg</item>
+        <item>trucker_classic/img_cap_trucker_classic_purple_curved.jpg</item>
+        <item>trucker_classic/img_cap_trucker_classic_purple_straight.jpg</item>
+        <item>trucker_classic/img_cap_trucker_classic_red_curved.jpg</item>
+        <item>trucker_classic/img_cap_trucker_classic_red_straight.jpg</item>
+    </string-array>
+
+    <string-array name="cap_img_trucker_color_list">
+        <item>trucker_color/img_cap_trucker_color_black_curved.jpg</item>
+        <item>trucker_color/img_cap_trucker_color_black_straight.jpg</item>
+        <item>trucker_color/img_cap_trucker_color_blue_curved.jpg</item>
+        <item>trucker_color/img_cap_trucker_color_blue_straight.jpg</item>
+        <item>trucker_color/img_cap_trucker_color_darkblue_curved.jpg</item>
+        <item>trucker_color/img_cap_trucker_color_darkblue_straight.jpg</item>
+        <item>trucker_color/img_cap_trucker_color_green_curved.jpg</item>
+        <item>trucker_color/img_cap_trucker_color_green_straight.jpg</item>
+        <item>trucker_color/img_cap_trucker_color_orange_curved.jpg</item>
+        <item>trucker_color/img_cap_trucker_color_orange_straight.jpg</item>
+        <item>trucker_color/img_cap_trucker_color_purple_curved.jpg</item>
+        <item>trucker_color/img_cap_trucker_color_purple_straight.jpg</item>
+        <item>trucker_color/img_cap_trucker_color_red_curved.jpg</item>
+        <item>trucker_color/img_cap_trucker_color_red_straight.jpg</item>
+    </string-array>
+
+    <string-array name="cap_img_trucker_mixed_list">
+        <item>trucker_mixed/img_cap_trucker_mixed_blue_green_curved.jpg</item>
+        <item>trucker_mixed/img_cap_trucker_mixed_blue_green_straight.jpg</item>
+        <item>trucker_mixed/img_cap_trucker_mixed_blue_orange_curved.jpg</item>
+        <item>trucker_mixed/img_cap_trucker_mixed_blue_orange_straight.jpg</item>
+        <item>trucker_mixed/img_cap_trucker_mixed_blue_red_curved.jpg</item>
+        <item>trucker_mixed/img_cap_trucker_mixed_blue_red_straight.jpg</item>
+        <item>trucker_mixed/img_cap_trucker_mixed_green_blue_curved.jpg</item>
+        <item>trucker_mixed/img_cap_trucker_mixed_green_blue_straight.jpg</item>
+        <item>trucker_mixed/img_cap_trucker_mixed_green_orange_curved.jpg</item>
+        <item>trucker_mixed/img_cap_trucker_mixed_green_orange_straight.jpg</item>
+        <item>trucker_mixed/img_cap_trucker_mixed_orange_green_curved.jpg</item>
+        <item>trucker_mixed/img_cap_trucker_mixed_orange_green_straight.jpg</item>
+        <item>trucker_mixed/img_cap_trucker_mixed_red_blue_curved.jpg</item>
+        <item>trucker_mixed/img_cap_trucker_mixed_red_blue_straight.jpg</item>
+        <item>trucker_mixed/img_cap_trucker_mixed_red_green_curved.jpg</item>
+        <item>trucker_mixed/img_cap_trucker_mixed_red_green_straight.jpg</item>
+    </string-array>
+
     //array spinner list font create
     <string-array name="fonts_style_array">
         <item>Shoutcap</item>
-        <item>BANGERS</item>
-        <item>Fredoka One</item>
-        <item>Sansita One</item>
+        <item>Bangers</item>
         <item>Boogaloo</item>
         <item>Bubblegum Sans</item>
+        <item>Fredoka One</item>
+        <item>Graduate</item>
+        <item>Sansita One</item>
     </string-array>
 
     //array spinner list font create

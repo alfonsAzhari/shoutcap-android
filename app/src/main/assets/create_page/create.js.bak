@@ -244,11 +244,66 @@ var truckerColorJson = [
    }
 ];
 
+var fontList = [
+	"Shoutcap",
+	"Bangers",
+	"Boogaloo",
+	"Bubblegum Sans",
+	"Fredoka One",
+	"Graduate",
+	"Sansita One"
+]
+
 var truckerList = {
 	"1": "Classic",
 	"2": "Mixed",
 	"3": "Color"
 }
+
+$.each(truckerList, function(key, value) {
+	$('.typeCap').append(
+		$("<option></option>").attr("value", key).text(value)
+	);
+});
+
+$.each(fontList, function(key, value) {
+	$('.fontCap').append(
+		$("<option></option>").attr("value", key).text(value)
+	);
+});
+
+$("input:radio[name=cap]").click(function() {
+  var value = $(this).val();
+  kat = value;
+  switch(value) {
+  	case "trucker" :
+  		$('.typeCap').val('1');
+  		var trucker = parseInt($('.typeCap').val());
+  		$('.typeCap').prop("disabled", false);
+  		$('.colorFont').html('');
+  		$.each(truckerClassicJson, function(index, obj) {
+				populateListColor(index, obj);
+			});
+			$('.canvas-textarea').css('color', $(truckerClassicJson).get(0).name);
+  		if (trucker == 1) {
+  			$('#img_createshoutcap').attr("src", imgPath + "trucker_classic/img_cap_trucker_classic_black_curved.jpg");
+  		} else if (trucker == 2) {
+  			$('#img_createshoutcap').attr("src", imgPath + "trucker_mixed/img_cap_trucker_mixed_blue_green_curved.jpg");
+  		} else {
+  			$('#img_createshoutcap').attr("src", imgPath + "trucker_color/img_cap_trucker_color_black_curved.jpg");
+  		}
+  	break;
+
+  	case "baseball" :
+  		$('.typeCap').prop("disabled", true);
+  		$('#img_createshoutcap').attr("src", imgPath + "baseball/img_cap_baseball_black_curved.jpg");
+  		$('.colorFont').html('');
+  		$.each(baseballColorJson, function(index, obj) {
+				populateListColor(index, obj);
+			});
+  	break;
+  }
+});
 
 function populateListColor(index, object) {
 	$('.colorFont').append(
@@ -300,16 +355,76 @@ function drawTextToImage() {
 	}
 }
 
-function changeFont(font) {
-	$('#tx_shout').css('font-family', font);
+function changeFont(position) {
+	console.log(fontList[position]);
+	$('#tx_shout').css('font-family', fontList[position]);
 }
 
-function changeFontColor(color) {
-	$('#tx_shout').css('color', color);
+function changeCap() {
+	var trucker = parseInt($('.typeCap').val());
+
+	switch(trucker) {
+		case 1:
+			$('#img_createshoutcap').attr("src", imgPath + "trucker_classic/img_cap_trucker_classic_black_curved.jpg");
+			$('.colorFont').html('');
+			$.each(truckerClassicJson, function(index, obj) {
+				populateListColor(index, obj);
+			});
+		break;
+
+		case 2:
+			$('#img_createshoutcap').attr("src", imgPath + "trucker_mixed/img_cap_trucker_mixed_blue_green_curved.jpg");
+			$('.colorFont').html('');
+			$.each(truckerMixedJson, function(index, obj) {
+				populateListColor(index, obj);
+			});
+		break;
+
+		case 3:
+			$('#img_createshoutcap').attr("src", imgPath + "trucker_color/img_cap_trucker_color_black_curved.jpg");
+			$('.colorFont').html('');
+			$.each(truckerColorJson, function(index, obj) {
+				populateListColor(index, obj);
+			});
+		break;
+	}
 }
 
-function changeCap(imgSrc) {
-	$('#img_createshoutcap').attr("src", imgPath + imgSrc);
+function changeFontColor() {
+	//var color = parseInt($('.colorFont').val());
+	//var type = $(".typeCap").val();
+
+	console.log(color);
+	console.log(type);
+	console.log(kat);
+
+	if (kat == "baseball") {
+		$.each(baseballColorJson, function(index, obj) {
+			if (obj.id == color) {
+				$('.canvas-textarea').css('color', obj.code);
+			}
+		});
+	} else {
+		if (type == 1) {
+			$.each(truckerClassicJson, function(index, obj) {
+				if (obj.id == color) {
+					$('.canvas-textarea').css('color', obj.code);
+				}
+			});
+		} else if (type == 2) {
+			$.each(truckerMixedJson, function(index, obj) {
+				if (obj.id == color) {
+					$('.canvas-textarea').css('color', obj.code);
+				}
+			});
+		}	else if (type == 3) {
+			$.each(truckerColorJson, function(index, obj) {
+				if (obj.id == color) {
+					$('.canvas-textarea').css('color', obj.code);
+				}
+			});
+		}
+	}
 }
 
 function resizetext(textarea,h){

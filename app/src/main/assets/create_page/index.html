@@ -1,86 +1,30 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <meta charset="utf-8">
-  <meta content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width" name="viewport">
-  <title></title>
-  <link href="ionic.app.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="style_create.css">
+  <title>ShoutCap.net</title>
+  <meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+  <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
-
 <body>
+  <div id="div_wrapper">
+    <script type="text/javascript" src="jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="create.js"></script>
 
-  <div class="view-container scroll-content ionic-scroll">
-    <div class="scroll">
+    <div id="div_main">
       <div id="div_shoutcap">
         <div id="div_shoutcapimg">
-          <div class="canvas-text" id="div_shoutarea">
-            <textarea name="tx_shout" id="tx_shout" class="canvas-textarea" wrap="off"></textarea>
-          </div>
-          <img id="img_createshoutcap" src="trucker_classic_curved_red.jpg" width="100%">
+          <img id="img_createshoutcap" src="img_cap/trucker_classic/img_cap_trucker_classic_black_curved.jpg" width="100%" />
+        </div>
+    
+        <div id='div_shoutarea'>
+          <textarea wrap='off' name='tx_shout' id='tx_shout' onPaste='return false' style='transform:scale(1,1);-moz-transform:scale(1,1);-webkit-transform:scale(1,1);-o-transform:scale(1,1);-ms-transform:scale(1,1);border:0px solid #ccc;'></textarea>
+        </div>
+        <div id='div_shoutareacaption' style='border:1px solid #ccc;border-top:0px solid #ccc;'>
         </div>
       </div>
-      <div class="list">
-        <div class="row">
-          <div class="col">
-            <label class="item item-radio" style="padding: 13px 16px">
-              <input type="radio" name="group" checked>
-              <div class="item-content text-center">
-                Trucker
-              </div>
-            </label>
-          </div>
-          <div class="col">
-            <label class="item item-radio" style="padding: 13px 16px">
-              <input type="radio" name="group">
-              <div class="item-content text-center">
-                Baseball
-              </div>
-            </label>
-          </div>
-
-        </div>
-        <label class="item item-input item-select" id="tipeTopi">
-          <div class="input-label">
-            Tipe Topi
-          </div>
-          <select>
-            <option>Blue</option>
-            <option selected>Green</option>
-            <option>Red</option>
-          </select>
-        </label>
-        <label class="item item-input item-select">
-          <div class="input-label">
-            Jenis Font
-          </div>
-          <select>
-          </select>
-        </label>
-        <label class="item item-input item-select">
-          <div class="input-label">
-            Font Color
-          </div>
-          <select>
-          </select>
-        </label>
-      </div>
-      <div class="row">
-        <button class="button button-positive button-block button-outline" onclick="drawTextToImage()">Preview</button>
-      </div>
     </div>
-    <div id="div_shoutcap">
-      <div id="div_canvas">
-        <canvas id="myCanvas" width="100%"></canvas>
-      </div>
-    </div>
-    <span id="div_measure_text">alfons</span>
   </div>
-
-  <script src="jquery-1.8.3.js"></script>
-  <script src="create.js" type="text/javascript"></script>
 </body>
-
 </html>
