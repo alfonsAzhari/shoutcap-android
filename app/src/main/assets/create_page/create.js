@@ -1,3 +1,261 @@
+
+var kat = "trucker";
+var imgPath = "img_cap/";
+var baseballColorJson = [
+   {
+      "id":"1",
+      "code":"#000000",
+      "name":"Black",
+      "price":"30000"
+   },
+   {
+      "id":"2",
+      "code":"#FF333F",
+      "name":"Red",
+      "price":"30000"
+   },
+   {
+      "id":"8",
+      "code":"#FFFFFF",
+      "name":"White",
+      "price":"30000"
+   },
+   {
+      "id":"9",
+      "code":"#04B404",
+      "name":"Neon Green",
+      "price":"40000"
+   },
+   {
+      "id":"10",
+      "code":"#FF0040",
+      "name":"Neon Pink",
+      "price":"40000"
+   },
+   {
+      "id":"11",
+      "code":"#C8FE2E",
+      "name":"Neon Yellow",
+      "price":"40000"
+   },
+   {
+      "id":"12",
+      "code":"#FF3300",
+      "name":"Neon Orange",
+      "price":"40000"
+   },
+   {
+      "id":"13",
+      "code":"#CCFF99",
+      "name":"Glow In The Dark",
+      "price":"55000"
+   },
+   {
+      "id":"14",
+      "code":"#CCCCCC",
+      "name":"Reflective",
+      "price":"55000"
+   },
+   {
+      "id":"15",
+      "code":"#000001",
+      "name":"Flock Black",
+      "price":"55000"
+   },
+   {
+      "id":"16",
+      "code":"#FF333E",
+      "name":"Flock Red",
+      "price":"55000"
+   },
+   {
+      "id":"17",
+      "code":"#FFFFFE",
+      "name":"Flock White",
+      "price":"55000"
+   }
+];
+var truckerClassicJson = [
+   {
+      "id":"1",
+      "code":"#000000",
+      "name":"Black",
+      "price":"30000"
+   },
+   {
+      "id":"2",
+      "code":"#FF333F",
+      "name":"Red",
+      "price":"30000"
+   },
+   {
+      "id":"3",
+      "code":"#FF6608",
+      "name":"Orange",
+      "price":"30000"
+   },
+   {
+      "id":"4",
+      "code":"#0017E6",
+      "name":"Blue",
+      "price":"30000"
+   },
+   {
+      "id":"5",
+      "code":"#0B0B61",
+      "name":"Dark Blue",
+      "price":"30000"
+   },
+   {
+      "id":"6",
+      "code":"#088A08",
+      "name":"Green",
+      "price":"30000"
+   },
+   {
+      "id":"7",
+      "code":"#540183",
+      "name":"Violet",
+      "price":"30000"
+   }
+];
+var truckerMixedJson = [
+   {
+      "id":"1",
+      "code":"#000000",
+      "name":"Black",
+      "price":"30000"
+   },
+   {
+      "id":"2",
+      "code":"#FF333F",
+      "name":"Red",
+      "price":"30000"
+   },
+   {
+      "id":"3",
+      "code":"#FF6608",
+      "name":"Orange",
+      "price":"30000"
+   },
+   {
+      "id":"4",
+      "code":"#0017E6",
+      "name":"Blue",
+      "price":"30000"
+   },
+   {
+      "id":"5",
+      "code":"#0B0B61",
+      "name":"Dark Blue",
+      "price":"30000"
+   },
+   {
+      "id":"6",
+      "code":"#088A08",
+      "name":"Green",
+      "price":"30000"
+   }
+];
+var truckerColorJson = [
+   {
+      "id":"1",
+      "code":"#000000",
+      "name":"Black",
+      "price":"30000"
+   },
+   {
+      "id":"2",
+      "code":"#FF333F",
+      "name":"Red",
+      "price":"30000"
+   },
+   {
+      "id":"3",
+      "code":"#FF6608",
+      "name":"Orange",
+      "price":"30000"
+   },
+   {
+      "id":"4",
+      "code":"#0017E6",
+      "name":"Blue",
+      "price":"30000"
+   },
+   {
+      "id":"8",
+      "code":"#FFFFFF",
+      "name":"White",
+      "price":"30000"
+   },
+   {
+      "id":"9",
+      "code":"#04B404",
+      "name":"Neon Green",
+      "price":"40000"
+   },
+   {
+      "id":"10",
+      "code":"#FF0040",
+      "name":"Neon Pink",
+      "price":"40000"
+   },
+   {
+      "id":"11",
+      "code":"#C8FE2E",
+      "name":"Neon Yellow",
+      "price":"40000"
+   },
+   {
+      "id":"12",
+      "code":"#FF3300",
+      "name":"Neon Orange",
+      "price":"40000"
+   },
+   {
+      "id":"13",
+      "code":"#CCFF99",
+      "name":"Glow In The Dark",
+      "price":"55000"
+   },
+   {
+      "id":"14",
+      "code":"#CCCCCC",
+      "name":"Reflective",
+      "price":"55000"
+   },
+   {
+      "id":"15",
+      "code":"#000001",
+      "name":"Flock Black",
+      "price":"55000"
+   },
+   {
+      "id":"16",
+      "code":"#FF333E",
+      "name":"Flock Red",
+      "price":"55000"
+   },
+   {
+      "id":"17",
+      "code":"#FFFFFE",
+      "name":"Flock White",
+      "price":"55000"
+   }
+];
+
+var truckerList = {
+	"1": "Classic",
+	"2": "Mixed",
+	"3": "Color"
+}
+
+function populateListColor(index, object) {
+	$('.colorFont').append(
+		$("<option></option>").attr("value", object.id).text(object.name)
+	);
+}
+
 function drawTextToImage() {
 	useCORS = true;
 	var text = document.getElementById('tx_shout');
@@ -5,19 +263,24 @@ function drawTextToImage() {
 	var image = document.getElementById("img_createshoutcap");
 	var textShout = document.getElementById("div_measure_text");
 	var fontSizeShout = parseFloat($('#tx_shout').css('font-size'));
+	var fontName = $('.canvas-textarea').css('font-family');
+	var fontColor = $('.canvas-textarea').css('color');
 
-	console.log(image.width);
-	console.log(image.height);
+	//console.log(image.width);
+	//console.log(image.height);
 
 	canvas.width = image.width;
 	canvas.height = image.height;
 
 	var context = canvas.getContext("2d");
+	context.font = fontSizeShout + "px " + fontName;
+	context.fillStyle = fontColor;
+	context.drawImage(image, 0, 0, canvas.width, canvas.height);
 		context.font = fontSizeShout + "px Calibri";
 		context.drawImage(image, 0, 0, canvas.width, canvas.height);
 
-	console.log(canvas.width);
-	console.log(canvas.height);
+	//console.log(canvas.width);
+	//console.log(canvas.height);
 
 	var shout = text.value.split(/\r|\r\n|\n/);
 	switch(shout.length) {
@@ -39,6 +302,18 @@ function drawTextToImage() {
 		break;
 
 	}
+}
+
+function changeFont(font) {
+	$('#tx_shout').css('font-family', font);
+}
+
+function changeFontColor(color) {
+	$('#tx_shout').css('color', color);
+}
+
+function changeCap(imgSrc) {
+	$('#img_createshoutcap').attr("src", imgPath + imgSrc);
 		var dataImage = canvas.toDataURL('image/png');
 		sendCapData("wa",1,1,1,"wawa","wawd",1231,dataImage);
 }

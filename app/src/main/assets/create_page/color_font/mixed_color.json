@@ -1,0 +1,38 @@
+[
+   {
+      "id":"1",
+      "code":"#000000",
+      "name":"Black",
+      "price":"30000"
+   },
+   {
+      "id":"2",
+      "code":"#FF333F",
+      "name":"Red",
+      "price":"30000"
+   },
+   {
+      "id":"3",
+      "code":"#FF6608",
+      "name":"Orange",
+      "price":"30000"
+   },
+   {
+      "id":"4",
+      "code":"#0017E6",
+      "name":"Blue",
+      "price":"30000"
+   },
+   {
+      "id":"5",
+      "code":"#0B0B61",
+      "name":"Dark Blue",
+      "price":"30000"
+   },
+   {
+      "id":"6",
+      "code":"#088A08",
+      "name":"Green",
+      "price":"30000"
+   }
+]
