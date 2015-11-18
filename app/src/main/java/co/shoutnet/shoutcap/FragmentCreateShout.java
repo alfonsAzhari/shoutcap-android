@@ -10,8 +10,8 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebChromeClient;
 import android.webkit.JavascriptInterface;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.AdapterView;
@@ -22,26 +22,23 @@ import android.widget.Spinner;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-
-import co.shoutnet.shoutcap.model.ModelColor;
-import co.shoutnet.shoutcap.utility.Parser;
-import co.shoutnet.shoutcap.utility.WebAppInterface;
-
 import java.math.BigInteger;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 
 import co.shoutnet.shoutcap.model.CapsModel;
+import co.shoutnet.shoutcap.model.ModelColor;
 import co.shoutnet.shoutcap.utility.DBCapsHelper;
+import co.shoutnet.shoutcap.utility.Parser;
+import co.shoutnet.shoutcap.utility.WebAppInterface;
 
 /**
  * Created by Codelabs on 8/24/2015.
  */
 public class FragmentCreateShout extends Fragment {
-
-    private WebView webView;
     private Context context;
     private CapsModel capsModel;
 
@@ -59,6 +56,138 @@ public class FragmentCreateShout extends Fragment {
     private int capPrice = 0;
     private int sizePrice = 0;
     private int colorPrice = 0;
+    private View.OnClickListener clickCreate = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            webView.loadUrl("javascript:changeFont()");
+        }
+    };
+    private AdapterView.OnItemSelectedListener selectModel = new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            String file;
+            int capArrayName;
+            if (i == 1) {
+                spinCategory.setEnabled(false);
+
+                file = "baseball_color.json";
+                capArrayName = R.array.cap_img_baseball_list;
+                indexCap = 0;
+            } else {
+                spinCategory.setEnabled(true);
+                spinCategory.setSelection(0);
+
+                file = "classic_color.json";
+                capArrayName = R.array.cap_img_trucker_classic_list;
+                indexCap = 0;
+            }
+
+            try {
+                color = Parser.getColorFromJson(getFileFromAsset(file));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            imgCap = getResources().getStringArray(capArrayName);
+            webViewChangeCap(imgCap[0]);
+
+            String[] colorList = new String[color.size()];
+            int index = 0;
+            for (ModelColor code : color) {
+                colorList[index++] = code.getName();
+            }
+
+            ArrayAdapter<String> fontColorAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, colorList);
+            fontColorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+            spinFontColor.setAdapter(fontColorAdapter);
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> adapterView) {
+
+        }
+    };
+    private AdapterView.OnItemSelectedListener selectCat = new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            String file = "";
+            int capArrayName = 0;
+            String[] colorList;
+            ArrayAdapter<String> fontColorAdapter;
+            switch (i) {
+                case 0:
+                    file = "classic_color.json";
+                    capArrayName = R.array.cap_img_trucker_classic_list;
+                    indexCap = 0;
+                    break;
+
+                case 1:
+                    file = "color_color.json";
+                    capArrayName = R.array.cap_img_trucker_color_list;
+                    indexCap = 0;
+                    break;
+
+                case 2:
+                    file = "mixed_color.json";
+                    capArrayName = R.array.cap_img_trucker_mixed_list;
+                    indexCap = 0;
+                    break;
+            }
+
+            try {
+                color = Parser.getColorFromJson(getFileFromAsset(file));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            imgCap = getResources().getStringArray(capArrayName);
+            webViewChangeCap(imgCap[0]);
+
+            colorList = new String[color.size()];
+            int index = 0;
+
+            for (ModelColor code : color) {
+                colorList[index++] = code.getName();
+            }
+
+            fontColorAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, colorList);
+            fontColorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+            spinFontColor.setAdapter(fontColorAdapter);
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> adapterView) {
+
+        }
+    };
+    private AdapterView.OnItemSelectedListener selectFontStyle = new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            webView.loadUrl("javascript:changeFont('" + spinFontStyle.getSelectedItem() + "')");
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> adapterView) {
+
+        }
+    };
+    private AdapterView.OnItemSelectedListener selectFontColor = new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+            webView.loadUrl("javascript:changeFontColor('" + color.get(i).getCode() + "')");
+            //Log.i("code", color.get(i).getCode());
+
+//            colorPrice = Integer.getInteger(color.get(i).getPrice());
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> adapterView) {
+
+        }
+    };
 
     public FragmentCreateShout() {
     }
@@ -133,9 +262,9 @@ public class FragmentCreateShout extends Fragment {
     @JavascriptInterface
     public void capData(String data) {
         capsModel = new CapsModel();
-        SecureRandom random=new SecureRandom();
+        SecureRandom random = new SecureRandom();
         try {
-            String name =new BigInteger(130,random).toString(32);
+            String name = new BigInteger(130, random).toString(32);
 
             JSONObject object = new JSONObject(data);
             JSONArray jsonArray = object.optJSONArray("cap");
@@ -154,11 +283,11 @@ public class FragmentCreateShout extends Fragment {
             DBCapsHelper dbCapsHelper = new DBCapsHelper(context);
             dbCapsHelper.addCap(capsModel);
 
-            int id=dbCapsHelper.getLatestId();
+            int id = dbCapsHelper.getLatestId();
 
-            Fragment fragment=FragmentPreviewShout.newInstance(id,capsModel.getBaseImage(),capsModel.getPrice(),capsModel.getName());
-            FragmentManager fragmentManager=getActivity().getFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.frame_content_main,fragment).commit();
+            Fragment fragment = FragmentPreviewShout.newInstance(id, capsModel.getBaseImage(), capsModel.getPrice(), capsModel.getName());
+            FragmentManager fragmentManager = getActivity().getFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragment).commit();
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -173,143 +302,6 @@ public class FragmentCreateShout extends Fragment {
         spinFontStyle = (Spinner) v.findViewById(R.id.spin_create_font_style);
         spinFontColor = (Spinner) v.findViewById(R.id.spin_create_font_color);
     }
-
-    private View.OnClickListener clickCreate = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            webView.loadUrl("javascript:changeFont()");
-        }
-    };
-
-    private AdapterView.OnItemSelectedListener selectModel = new AdapterView.OnItemSelectedListener() {
-        @Override
-        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            String file;
-            int capArrayName;
-            if (i == 1) {
-                spinCategory.setEnabled(false);
-
-                file = "baseball_color.json";
-                capArrayName = R.array.cap_img_baseball_list;
-                indexCap = 0;
-            } else {
-                spinCategory.setEnabled(true);
-                spinCategory.setSelection(0);
-
-                file = "classic_color.json";
-                capArrayName = R.array.cap_img_trucker_classic_list;
-                indexCap = 0;
-            }
-
-            try {
-                color = Parser.getColorFromJson(getFileFromAsset(file));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            imgCap = getResources().getStringArray(capArrayName);
-            webViewChangeCap(imgCap[0]);
-
-            String[] colorList = new String[color.size()];
-            int index = 0;
-            for (ModelColor code : color) {
-                colorList[index++] = code.getName();
-            }
-
-            ArrayAdapter<String> fontColorAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, colorList);
-            fontColorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-            spinFontColor.setAdapter(fontColorAdapter);
-        }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> adapterView) {
-
-        }
-    };
-
-    private AdapterView.OnItemSelectedListener selectCat = new AdapterView.OnItemSelectedListener() {
-        @Override
-        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            String file = "";
-            int capArrayName = 0;
-            String[] colorList;
-            ArrayAdapter<String> fontColorAdapter;
-            switch (i) {
-                case 0:
-                    file = "classic_color.json";
-                    capArrayName = R.array.cap_img_trucker_classic_list;
-                    indexCap = 0;
-                    break;
-
-                case 1:
-                    file = "color_color.json";
-                    capArrayName = R.array.cap_img_trucker_color_list;
-                    indexCap = 0;
-                    break;
-
-                case 2:
-                    file = "mixed_color.json";
-                    capArrayName = R.array.cap_img_trucker_mixed_list;
-                    indexCap = 0;
-                    break;
-            }
-
-            try {
-                color = Parser.getColorFromJson(getFileFromAsset(file));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            imgCap = getResources().getStringArray(capArrayName);
-            webViewChangeCap(imgCap[0]);
-
-            colorList = new String[color.size()];
-            int index = 0;
-
-            for (ModelColor code : color) {
-                colorList[index++] = code.getName();
-            }
-
-            fontColorAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, colorList);
-            fontColorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-            spinFontColor.setAdapter(fontColorAdapter);
-        }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> adapterView) {
-
-        }
-    };
-
-    private AdapterView.OnItemSelectedListener selectFontStyle = new AdapterView.OnItemSelectedListener() {
-        @Override
-        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            webView.loadUrl("javascript:changeFont('" + spinFontStyle.getSelectedItem() + "')");
-        }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> adapterView) {
-
-        }
-    };
-
-    private AdapterView.OnItemSelectedListener selectFontColor = new AdapterView.OnItemSelectedListener() {
-        @Override
-        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-            webView.loadUrl("javascript:changeFontColor('" + color.get(i).getCode() + "')");
-            //Log.i("code", color.get(i).getCode());
-
-            colorPrice = Integer.getInteger(color.get(i).getPrice());
-        }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> adapterView) {
-
-        }
-    };
 
     private String getFileFromAsset(String fileName) throws IOException {
         InputStream stream = context.getAssets().open(fileName);
