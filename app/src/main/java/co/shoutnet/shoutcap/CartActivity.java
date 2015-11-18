@@ -11,15 +11,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
-import co.shoutnet.shoutcap.adapter.CartAdapter;
-import co.shoutnet.shoutcap.utility.ListCallback;
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
-/**
- public static void showPriceInUSD(double price, double rate) {
- double priceInUSD = price * rate;
- NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(Locale.US);
- System.out.printf("Price in USD : %s %n", currencyFormat.format(priceInUSD));[,r3
- */
+import co.shoutnet.shoutcap.adapter.CartAdapter;
+import co.shoutnet.shoutcap.model.ModelAdapterCart;
+import co.shoutnet.shoutcap.utility.DBCapsHelper;
+import co.shoutnet.shoutcap.utility.ListCallback;
+import co.shoutnet.shoutcap.utility.RecyclerSwipeTouchListener;
+
 
 public class CartActivity extends AppCompatActivity {
 
@@ -34,7 +36,7 @@ public class CartActivity extends AppCompatActivity {
     }
 
     public static void setTotal(long mTotal) {
-        btnTotal.setText(Long.toString(mTotal));
+        btnTotal.setText(getCurrency(mTotal));
         total = mTotal;
         Log.i("total ", String.valueOf(total));
     }
@@ -49,14 +51,42 @@ public class CartActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        CartAdapter adapter = new CartAdapter(this, Dummy.getDataCart());
+        List<ModelAdapterCart> modelAdapterCarts;
+        modelAdapterCarts=new DBCapsHelper(getApplicationContext()).getCartData();
+
+        for (int i=0;i<modelAdapterCarts.size();i++){
+            total+=modelAdapterCarts.get(i).getPrice();
+        }
+        setTotal(total);
+        getCurrency(total);
+
+        CartAdapter adapter = new CartAdapter(this,modelAdapterCarts);
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        ItemTouchHelper.Callback callback = new ListCallback(getApplicationContext(), adapter);
+//        itemTouchHelper = new ItemTouchHelper(callback);
+//        itemTouchHelper.attachToRecyclerView(recyclerView);
+
+        RecyclerSwipeTouchListener touchListener=new RecyclerSwipeTouchListener(getApplicationContext(), recyclerView, R.id.main_view, R.id.background_view, new RecyclerSwipeTouchListener.SwipeListener() {
+            @Override
+            public boolean canSwipe(int position) {
+                return true;
+            }
+
+            @Override
+            public void onDismiss(RecyclerView recyclerView, int[] reversePositions) {
+
+            }
+
+            @Override
+            protected Object clone() throws CloneNotSupportedException {
+                return super.clone();
+            }
+        });
+
+        recyclerView.addOnItemTouchListener(touchListener);
         recyclerView.setAdapter(adapter);
-        ItemTouchHelper.Callback callback = new ListCallback(getApplicationContext(), adapter);
-        itemTouchHelper = new ItemTouchHelper(callback);
-        itemTouchHelper.attachToRecyclerView(recyclerView);
 
 //        SharedPreferences preferences=getApplicationContext().getSharedPreferences("cart",Context.MODE_PRIVATE);
 //        SharedPreferences.Editor editor=preferences.edit();
@@ -95,5 +125,12 @@ public class CartActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public static String getCurrency(long value){
+        NumberFormat currency=NumberFormat.getCurrencyInstance(Locale.US);
+        String strCurrency=currency.format(value).replace("$","Rp. ");
+        Log.i("info currency",strCurrency);
+        return strCurrency;
     }
 }

@@ -97,27 +97,27 @@ public class Dummy {
 //        return list;
 //    }
 
-    public static ArrayList<ModelAdapterCart> getDataCart() {
-        ArrayList<ModelAdapterCart> list = new ArrayList<>();
-        ModelAdapterCart modelCart;
-
-        modelCart = new ModelAdapterCart(R.drawable.bg1, "ShoutCap", 125000, 125000);
-        list.add(modelCart);
-
-        modelCart = new ModelAdapterCart(R.drawable.bg1, "ShoutCap", 125000, 125000);
-        list.add(modelCart);
-
-        modelCart = new ModelAdapterCart(R.drawable.bg1, "ShoutCap", 225000, 225000);
-        list.add(modelCart);
-
-        modelCart = new ModelAdapterCart(R.drawable.bg1, "ShoutCap", 125000, 125000);
-        list.add(modelCart);
-
-        modelCart = new ModelAdapterCart(R.drawable.bg1, "ShoutCap", 125000, 125000);
-        list.add(modelCart);
-
-        return list;
-    }
+//    public static ArrayList<ModelAdapterCart> getDataCart() {
+//        ArrayList<ModelAdapterCart> list = new ArrayList<>();
+//        ModelAdapterCart modelCart;
+//
+//        modelCart = new ModelAdapterCart(R.drawable.bg1, "ShoutCap", 125000, 125000);
+//        list.add(modelCart);
+//
+//        modelCart = new ModelAdapterCart(R.drawable.bg1, "ShoutCap", 125000, 125000);
+//        list.add(modelCart);
+//
+//        modelCart = new ModelAdapterCart(R.drawable.bg1, "ShoutCap", 225000, 225000);
+//        list.add(modelCart);
+//
+//        modelCart = new ModelAdapterCart(R.drawable.bg1, "ShoutCap", 125000, 125000);
+//        list.add(modelCart);
+//
+//        modelCart = new ModelAdapterCart(R.drawable.bg1, "ShoutCap", 125000, 125000);
+//        list.add(modelCart);
+//
+//        return list;
+//    }
 
     public ArrayList<ModelNewsDetail> getNewsDetail() {
         ArrayList<ModelNewsDetail> list = new ArrayList<>();

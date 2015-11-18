@@ -13,6 +13,7 @@ import java.util.List;
 
 import co.shoutnet.shoutcap.adapter.RackAdapter;
 import co.shoutnet.shoutcap.model.CapsModel;
+import co.shoutnet.shoutcap.model.ModelAdapterCart;
 import co.shoutnet.shoutcap.model.ModelAdapterRack;
 
 /**
@@ -140,6 +141,30 @@ public class DBCapsHelper extends SQLiteOpenHelper {
                 rack.setImgRack(Uri.parse(cursor.getString(0)));
 
                 data.add(rack);
+            }while (cursor.moveToNext());
+        }
+        db.close();
+        return data;
+    }
+
+    public List<ModelAdapterCart> getCartData(){
+        List<ModelAdapterCart> data=new ArrayList<>();
+        ModelAdapterCart modelAdapterCart;
+        String query="SELECT baseImage, text, price FROM "+TB_NAME;
+
+        SQLiteDatabase db=getReadableDatabase();
+        Cursor cursor=db.rawQuery(query,null);
+
+        if (cursor.moveToFirst()){
+            do {
+                modelAdapterCart=new ModelAdapterCart();
+                modelAdapterCart.setImage(cursor.getString(0));
+                modelAdapterCart.setName(cursor.getString(1));
+                modelAdapterCart.setPrice(cursor.getInt(2));
+                modelAdapterCart.setSubTotal(cursor.getInt(2));
+                modelAdapterCart.setQty(1);
+
+                data.add(modelAdapterCart);
             }while (cursor.moveToNext());
         }
         db.close();

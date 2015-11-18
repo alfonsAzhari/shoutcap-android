@@ -1,117 +1,160 @@
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginBottom="4dp"
-    android:layout_marginLeft="4dp"
-    android:layout_marginRight="4dp"
-    android:layout_marginTop="4dp"
-    card_view:cardCornerRadius="4dp"
-    card_view:cardElevation="4dp"
-    card_view:cardPreventCornerOverlap="false">
+    android:layout_height="wrap_content"
+    android:background="@android:color/white">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/background_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_red_dark"
+            android:clickable="true"
             android:orientation="horizontal"
-            android:padding="8dp">
+            android:visibility="gone"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp">
 
-            <co.shoutnet.shoutcap.SquareImage
-                android:id="@+id/img_product_cart"
-                android:layout_width="match_parent"
+            <ImageView
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:src="@drawable/bg1" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/txt_product_cart"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="ShoutClothes"
-                    android:textColor="#302f2f"
-                    android:textSize="17sp" />
-
-                <TextView
-                    android:id="@+id/txt_price_cart"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginBottom="8dp"
-                    android:text="ShoutClothes"
-                    android:textSize="14sp" />
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp">
-
-                    <ImageView
-                        android:id="@+id/btn_plus_cart"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_alignParentLeft="true"
-                        android:background="@android:color/holo_green_dark"
-                        android:clickable="true"
-                        android:padding="16dp"
-                        android:src="@drawable/add" />
-
-                    <EditText
-                        android:id="@+id/edt_count_cart"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:gravity="center"
-                        android:inputType="number"
-                        android:maxLength="3"
-                        android:text="1"
-                        android:textColor="@color/black"
-                        android:textSize="23sp" />
-
-                    <ImageView
-                        android:id="@+id/btn_minus_cart"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_alignParentRight="true"
-                        android:background="@android:color/holo_red_dark"
-                        android:padding="16dp"
-                        android:src="@drawable/minus" />
-                </RelativeLayout>
-            </LinearLayout>
+                android:layout_gravity="center_vertical"
+                android:padding="14dp"
+                android:scaleX="1.4"
+                android:scaleY="1.4"
+                android:src="@android:drawable/ic_menu_delete" />
         </LinearLayout>
 
-        <RelativeLayout
+        <LinearLayout
+            android:id="@+id/main_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/background_footer_cart"
-            android:padding="16dp">
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/txt_total_cart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:text="Rp. 300.300.00" />
-
-            <TextView
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@id/txt_total_cart"
-                android:text="SubTotal" />
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginTop="4dp"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardElevation="4dp"
+                card_view:cardPreventCornerOverlap="false">
 
-        </RelativeLayout>
-    </LinearLayout>
 
-</android.support.v7.widget.CardView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+
+                        <co.shoutnet.shoutcap.SquareImage
+                            android:id="@+id/img_product_cart"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+                            android:src="@drawable/bg1" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/txt_product_cart"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="ShoutClothes"
+                                android:textColor="#302f2f"
+                                android:textSize="17sp" />
+
+                            <TextView
+                                android:id="@+id/txt_price_cart"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginBottom="8dp"
+                                android:text="ShoutClothes"
+                                android:textSize="14sp" />
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="16dp"
+                                android:paddingRight="16dp">
+
+                                <ImageView
+                                    android:id="@+id/btn_plus_cart"
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:layout_alignParentLeft="true"
+                                    android:background="@android:color/holo_green_dark"
+                                    android:clickable="true"
+                                    android:padding="16dp"
+                                    android:src="@drawable/add" />
+
+                                <EditText
+                                    android:id="@+id/edt_count_cart"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:gravity="center"
+                                    android:inputType="number"
+                                    android:maxLength="3"
+                                    android:text="1"
+                                    android:textColor="@color/black"
+                                    android:textSize="23sp" />
+
+                                <ImageView
+                                    android:id="@+id/btn_minus_cart"
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:layout_alignParentRight="true"
+                                    android:background="@android:color/holo_red_dark"
+                                    android:padding="16dp"
+                                    android:src="@drawable/minus" />
+                            </RelativeLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/background_footer_cart"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:id="@+id/txt_total_cart"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:text="Rp. 300.300.00" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toLeftOf="@id/txt_total_cart"
+                            android:text="SubTotal" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+    </FrameLayout>
+
+</RelativeLayout>
+
