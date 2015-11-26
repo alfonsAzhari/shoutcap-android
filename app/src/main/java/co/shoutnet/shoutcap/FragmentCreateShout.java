@@ -252,7 +252,7 @@ public class FragmentCreateShout extends Fragment {
             webView.loadUrl("javascript:changeFontColor('" + color.get(i).getCode() + "')");
             //Log.i("code", color.get(i).getCode());
 
-            colorPrice = Integer.getInteger(color.get(i).getPrice());
+            //colorPrice = Integer.getInteger(color.get(i).getPrice());
         }
 
         @Override

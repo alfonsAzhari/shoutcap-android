@@ -29,7 +29,7 @@ public class GetStartedActivity extends AppCompatActivity {
         btnGetStarted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(GetStartedActivity.this, MainActivity.class);
+                Intent i = new Intent(GetStartedActivity.this, SignActivity.class);
                 startActivity(i);
                 finish();
             }

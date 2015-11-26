@@ -11,6 +11,9 @@ public class SignActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign);
+
+        FragmentSignIn signIn = new FragmentSignIn();
+        getFragmentManager().beginTransaction().replace(R.id.frame_content_sign, signIn).commit();
     }
 
     @Override
