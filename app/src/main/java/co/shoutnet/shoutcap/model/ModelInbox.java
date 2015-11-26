@@ -1,12 +1,14 @@
 package co.shoutnet.shoutcap.model;
 
+import java.util.ArrayList;
+
 /**
- * Created by Adam MB on 9/10/2015.
+ * Created by CodeLabs on 26/11/2015.
  */
-public class ModelInboxDetail {
+public class ModelInbox {
 
     private String result;
-    private Item item;
+    private ArrayList<Item> item;
 
     public String getResult() {
         return result;
@@ -16,11 +18,11 @@ public class ModelInboxDetail {
         this.result = result;
     }
 
-    public Item getItem() {
+    public ArrayList<Item> getItem() {
         return item;
     }
 
-    public void setItem(Item item) {
+    public void setItem(ArrayList<Item> item) {
         this.item = item;
     }
 
