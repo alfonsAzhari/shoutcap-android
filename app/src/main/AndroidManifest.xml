@@ -88,9 +88,6 @@
             android:name=".ActivityHowToOrder"
             android:theme="@style/AppTheme"/>
         <activity
-            android:name=".ActivityInboxDetail"
-            android:theme="@style/AppTheme"/>
-        <activity
             android:name=".ActivityNewsDetail"
             android:theme="@style/AppTheme"/>
         <activity

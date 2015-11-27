@@ -8,7 +8,6 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -34,13 +33,6 @@ public class ActivityEditProfile extends AppCompatActivity{
     private Spinner spinnerKecamatan;
     private Toolbar toolbar;
     private EditText editTanggalLahir;
-public class ActivityEditProfile extends AppCompatActivity {
-
-    ArrayAdapter<CharSequence> adapter;
-    Spinner spinnerProvinsi, spinnerKota, spinnerKecamatan;
-    Toolbar toolbar;
-    private String[] provinsi, kota, kecamatan;
-    private EditText dateEditText;
     private DatePickerDialog datePickerDialog;
     private SimpleDateFormat simpleDateFormat;
 
@@ -48,9 +40,6 @@ public class ActivityEditProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
-
-        simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
-
         initView();
         setSpinner();
         setDateTimeField();
@@ -58,8 +47,6 @@ public class ActivityEditProfile extends AppCompatActivity {
     }
 
     private void initToolbar() {
-
-
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Edit Profile");
@@ -147,20 +134,6 @@ public class ActivityEditProfile extends AppCompatActivity {
             public void onFocusChange(View view, boolean b) {
                 if (editTanggalLahir.hasFocus()) {
                     if (view == editTanggalLahir) {
-        dateEditText = (EditText) findViewById(R.id.tanggal_lahir_edit);
-        dateEditText.setInputType(InputType.TYPE_NULL);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        spinnerProvinsi = (Spinner) findViewById(R.id.spinner_provinsi);
-        spinnerKota = (Spinner) findViewById(R.id.spinner_kota);
-        spinnerKecamatan = (Spinner) findViewById(R.id.spinner_kecamatan);
-    }
-
-    private void setDateTimeField() {
-        dateEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                if (dateEditText.hasFocus()) {
-                    if (view == dateEditText) {
                         datePickerDialog.show();
                     }
                 }
@@ -176,10 +149,6 @@ public class ActivityEditProfile extends AppCompatActivity {
             }
 
         },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
-                dateEditText.setText(simpleDateFormat.format(newDate.getTime()));
-            }
-
-        }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
 
     }
 }
