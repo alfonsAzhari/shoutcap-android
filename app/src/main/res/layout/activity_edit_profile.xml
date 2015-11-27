@@ -26,6 +26,7 @@
                     android:text="Nama" />
 
                 <EditText
+                    android:id="@+id/edit_nama_edit_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
@@ -43,7 +44,7 @@
                     android:text="Tanggal Lahir" />
 
                 <EditText
-                    android:id="@+id/tanggal_lahir_edit"
+                    android:id="@+id/edit_tanggal_lahir_edit_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
@@ -59,6 +60,7 @@
                     android:text="Jenis Kelamin" />
 
                 <RadioGroup
+                    android:id="@+id/radio_group_jenis_kelamin_edit_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
@@ -67,11 +69,13 @@
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/radio_laki_edit_profile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Laki-laki" />
 
                     <RadioButton
+                        android:id="@+id/radio_perempuan_edit_profile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Perempuan" />
@@ -86,6 +90,7 @@
                     android:text="Alamat" />
 
                 <EditText
+                    android:id="@+id/edit_alamat_edit_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
@@ -101,7 +106,7 @@
                     android:text="Provinsi" />
 
                 <Spinner
-                    android:id="@+id/spinner_provinsi"
+                    android:id="@+id/spinner_provinsi_edit_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
@@ -118,7 +123,7 @@
                     android:text="Kota" />
 
                 <Spinner
-                    android:id="@+id/spinner_kota"
+                    android:id="@+id/spinner_kota_edit_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
@@ -134,7 +139,7 @@
                     android:text="Kecamatan" />
 
                 <Spinner
-                    android:id="@+id/spinner_kecamatan"
+                    android:id="@+id/spinner_kecamatan_edit_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
@@ -150,6 +155,7 @@
                     android:text="Kode Pos" />
 
                 <EditText
+                    android:id="@+id/edit_kode_pos_edit_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
@@ -167,6 +173,7 @@
                     android:text="Nomor HP" />
 
                 <EditText
+                    android:id="@+id/edit_nomor_hp_edit_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
@@ -183,6 +190,7 @@
                     android:text="Email" />
 
                 <EditText
+                    android:id="@+id/edit_email_edit_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
@@ -205,6 +213,7 @@
                     android:text="\@" />
 
                 <EditText
+                    android:id="@+id/edit_twitter_edit_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -219,6 +228,7 @@
                     android:text="Status" />
 
                 <RadioGroup
+                    android:id="@+id/radio_group_status_edit_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
@@ -226,26 +236,31 @@
                     android:layout_weight="1">
 
                     <RadioButton
+                        android:id="@+id/radio_sekolah_edit_profile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Sekolah" />
 
                     <RadioButton
+                        android:id="@+id/radio_kuliah_edit_profile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Kuliah" />
 
                     <RadioButton
+                        android:id="@+id/radio_kerja_edit_profile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Kerja" />
 
                     <RadioButton
+                        android:id="@+id/radio_kuliah_kerja_edit_profile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Kuliah+Kerja" />
 
                     <RadioButton
+                        android:id="@+id/radio_other_edit_profile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Other" />
@@ -259,7 +274,7 @@
                     android:layout_height="wrap_content"
                     android:text="Minat" />
 
-                <LinearLayout
+                <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
@@ -267,76 +282,117 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Art" />
+                    <TableRow>
+                        <CheckBox
+                            android:id="@+id/checkbox_art_edit_profile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Art" />
 
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Book" />
+                        <CheckBox
+                            android:id="@+id/checkbox_music_edit_profile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Music" />
 
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Culinary" />
+                    </TableRow>
 
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Culture" />
+                    <TableRow>
 
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Fashion" />
+                        <CheckBox
+                            android:id="@+id/checkbox_book_edit_profile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Book" />
 
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Games" />
+                        <CheckBox
+                            android:id="@+id/checkbox_photography_edit_profile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Photography" />
 
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Movie" />
+                    </TableRow>
 
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Music" />
+                    <TableRow>
 
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Photography" />
+                        <CheckBox
+                            android:id="@+id/checkbox_culinary_edit_profile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Culinary" />
 
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Sport" />
+                        <CheckBox
+                            android:id="@+id/checkbox_sport_edit_profile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Sport" />
 
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Standup Comedy" />
+                    </TableRow>
 
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Technology" />
+                    <TableRow>
 
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Travel" />
+                        <CheckBox
+                            android:id="@+id/checkbox_culture_edit_profile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Culture" />
 
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Other" />
-                </LinearLayout>
+                        <CheckBox
+                            android:id="@+id/checkbox_standup_comedy_edit_profile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Standup Comedy" />
+
+                    </TableRow>
+
+                    <TableRow>
+
+                        <CheckBox
+                            android:id="@+id/checkbox_fashion_edit_profile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fashion" />
+
+                        <CheckBox
+                            android:id="@+id/checkbox_technology_edit_profile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Technology" />
+
+                    </TableRow>
+
+                    <TableRow>
+
+                        <CheckBox
+                            android:id="@+id/checkbox_games_edit_profile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Games" />
+
+                        <CheckBox
+                            android:id="@+id/checkbox_travel_edit_profile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Travel" />
+
+                    </TableRow>
+
+                    <TableRow>
+
+                        <CheckBox
+                            android:id="@+id/checkbox_movie_edit_profile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Movie" />
+
+                        <CheckBox
+                            android:id="@+id/checkbox_other_edit_profile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Other" />
+                    </TableRow>
+
+                </TableLayout>
             </TableRow>
         </TableLayout>
 
