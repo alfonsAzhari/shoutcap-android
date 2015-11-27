@@ -2,10 +2,8 @@ package co.shoutnet.shoutcap;
 
 import java.util.ArrayList;
 
-import co.shoutnet.shoutcap.model.ModelAdapterCart;
 import co.shoutnet.shoutcap.model.ModelAdapterInbox;
 import co.shoutnet.shoutcap.model.ModelAdapterNews;
-import co.shoutnet.shoutcap.model.ModelAdapterRack;
 import co.shoutnet.shoutcap.model.ModelAdapterReward;
 import co.shoutnet.shoutcap.model.ModelInboxDetail;
 import co.shoutnet.shoutcap.model.ModelNewsDetail;
@@ -138,9 +136,9 @@ public class Dummy {
         ModelInboxDetail modelInboxDetail;
 
         modelInboxDetail = new ModelInboxDetail();
-        modelInboxDetail.setTitle("Title Title Title");
-        modelInboxDetail.setDate("23-9-2016");
-        modelInboxDetail.setContent("ajkshefaohdfoaisdhfajsdhfkahsdfalsdjhfoaisufowiehflajhdfoqueh");
+        modelInboxDetail.getItem().setTitle("Title Title Title");
+        modelInboxDetail.getItem().setDate("23-9-2016");
+        modelInboxDetail.getItem().setMessage("ajkshefaohdfoaisdhfajsdhfkahsdfalsdjhfoaisufowiehflajhdfoqueh");
         list.add(modelInboxDetail);
 
         return list;

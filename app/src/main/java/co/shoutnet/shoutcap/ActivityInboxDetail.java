@@ -24,9 +24,9 @@ public class ActivityInboxDetail extends AppCompatActivity {
         initView();
         list = new Dummy().getInboxDetail();
 
-        title.setText(list.get(0).getTitle());
-        date.setText(list.get(0).getDate());
-        content.setText(list.get(0).getContent());
+        title.setText(list.get(0).getItem().getTitle());
+        date.setText(list.get(0).getItem().getDate());
+        content.setText(list.get(0).getItem().getMessage());
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
