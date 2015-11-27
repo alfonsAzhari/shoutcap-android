@@ -33,6 +33,7 @@ import java.util.Map;
 import co.shoutnet.shoutcap.model.ModelSignIn;
 import co.shoutnet.shoutcap.utility.ApiReferences;
 import co.shoutnet.shoutcap.utility.Parser;
+import co.shoutnet.shoutcap.utility.SessionManager;
 
 /**
  * Created by Codelabs on 9/2/2015.
@@ -48,6 +49,7 @@ public class FragmentSignIn extends Fragment {
     private ModelSignIn modelSignIn;
 
     SharedPreferences sharedPreferences;
+    SessionManager sessionManager;
 
     public FragmentSignIn() {
 
@@ -67,6 +69,8 @@ public class FragmentSignIn extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_sign_in, container, false);
 
         mContext = getActivity();
+
+        sessionManager = new SessionManager(mContext);
 
         initView(rootView);
 
@@ -110,15 +114,18 @@ public class FragmentSignIn extends Fragment {
                 }
 
                 if (modelSignIn.getResult().equals("success")) {
-                    editor.putString("shoutId", modelSignIn.getShoutId());
-                    editor.putString("sessionId", modelSignIn.getSessionId());
-                    editor.putString("urlAvatar", modelSignIn.getSessionId());
+
+                    sessionManager.createLoginSession(modelSignIn.getShoutId(), modelSignIn.getSessionId());
+
+                    /*editor.putString("shoutId", modelSignIn.getShoutId());
+                    editor.putString("sessionId", modelSignIn.getSessionId());*/
+                   /* editor.putString("urlAvatar", modelSignIn.getSessionId());
                     editor.putInt("point", Integer.parseInt(modelSignIn.getPoint()));
                     editor.putInt("coin", Integer.parseInt(modelSignIn.getCoin()));
                     editor.putInt("shoutCapQuota", Integer.parseInt(modelSignIn.getShoutcapQuota()));
                     editor.putInt("screamShirtQuota", Integer.parseInt(modelSignIn.getScreamShirtQuota()));
                     editor.putInt("picToCapQuota", Integer.parseInt(modelSignIn.getPictocapQuota()));
-                    editor.commit();
+                    editor.commit();*/
 
                     Intent i = new Intent(mContext, MainActivity.class);
                     startActivity(i);

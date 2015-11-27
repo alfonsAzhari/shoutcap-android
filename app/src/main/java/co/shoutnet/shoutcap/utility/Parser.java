@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import co.shoutnet.shoutcap.model.ModelColor;
+import co.shoutnet.shoutcap.model.ModelInbox;
 import co.shoutnet.shoutcap.model.ModelSignIn;
 
 /**
@@ -32,5 +33,11 @@ public class Parser {
         gson = new Gson();
 
         return gson.fromJson(json, ModelSignIn.class);
+    }
+
+    public static ModelInbox getInbox(String json) throws IOException {
+        gson = new Gson();
+
+        return gson.fromJson(json, ModelInbox.class);
     }
 }

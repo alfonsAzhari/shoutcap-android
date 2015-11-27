@@ -10,6 +10,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +18,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.HashMap;
+
+import co.shoutnet.shoutcap.utility.SessionManager;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -34,11 +39,24 @@ public class MainActivity extends AppCompatActivity {
 
     private int exitCounter;
 
+    SessionManager sessionManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         exitCounter = 1;
+
+        sessionManager = new SessionManager(getApplicationContext());
+
+        sessionManager.checkLogin();
+
+        HashMap<String, String> user = sessionManager.getUserDetails();
+
+        String shoutId = user.get(SessionManager.KEY_SHOUTID);
+        String sessionId = user.get(SessionManager.KEY_SESSIONID);
+
+        Log.i("shoutid + sessionid", shoutId + sessionId);
 
         initToolbar();
         initView();
