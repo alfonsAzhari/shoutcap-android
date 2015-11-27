@@ -18,7 +18,7 @@ import co.shoutnet.shoutcap.model.ModelAdapterInbox;
  */
 public class InboxAdapter extends RecyclerView.Adapter<InboxAdapter.InboxViewHolder> {
 
-    private List<ModelAdapterInbox> inbox;
+    private ArrayList<ModelAdapterInbox> inbox;
     private Context context;
 
     public InboxAdapter(Context context, ArrayList<ModelAdapterInbox> inbox) {
