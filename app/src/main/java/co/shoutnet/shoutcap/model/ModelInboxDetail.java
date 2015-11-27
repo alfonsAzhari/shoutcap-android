@@ -4,30 +4,63 @@ package co.shoutnet.shoutcap.model;
  * Created by Adam MB on 9/10/2015.
  */
 public class ModelInboxDetail {
-    String Title, Date, Content;
 
-    public String getTitle() {
-        return Title;
+    private String result;
+    private Item item;
+
+    public String getResult() {
+        return result;
     }
 
-    public void setTitle(String title) {
-        Title = title;
+    public void setResult(String result) {
+        this.result = result;
     }
 
-    public String getDate() {
-        return Date;
+    public Item getItem() {
+        return item;
     }
 
-    public void setDate(String date) {
-        Date = date;
+    public void setItem(Item item) {
+        this.item = item;
     }
 
-    public String getContent() {
-        return Content;
-    }
+    public class Item {
 
-    public void setContent(String content) {
-        Content = content;
-    }
+        private String id;
+        private String title;
+        private String message;
+        private String date;
 
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+        public void setMessage(String message) {
+            this.message = message;
+        }
+
+        public String getDate() {
+            return date;
+        }
+
+        public void setDate(String date) {
+            this.date = date;
+        }
+    }
 }

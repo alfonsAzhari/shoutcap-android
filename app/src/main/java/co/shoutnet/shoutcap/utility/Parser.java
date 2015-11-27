@@ -4,12 +4,14 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-import co.shoutnet.shoutcap.model.ModelCapModel;
 import co.shoutnet.shoutcap.model.ModelColor;
+import co.shoutnet.shoutcap.model.ModelInbox;
+import co.shoutnet.shoutcap.model.ModelSignIn;
 
 /**
  * Created by CodeLabs on 09/11/2015.
@@ -27,12 +29,15 @@ public class Parser {
         return gson.fromJson(json, listType);
     }
 
-    public static ArrayList<ModelCapModel> getModelFromJson(String json) throws FileNotFoundException {
+    public static ModelSignIn getReturnSignIn(String json) throws IOException {
         gson = new Gson();
 
-        Type listType = new TypeToken<List<ModelCapModel>>() {
-        }.getType();
+        return gson.fromJson(json, ModelSignIn.class);
+    }
 
-        return gson.fromJson(json, listType);
+    public static ModelInbox getInbox(String json) throws IOException {
+        gson = new Gson();
+
+        return gson.fromJson(json, ModelInbox.class);
     }
 }
