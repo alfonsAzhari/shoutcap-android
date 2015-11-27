@@ -17,6 +17,7 @@ import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 
 import org.json.JSONArray;
@@ -30,8 +31,9 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 
 import co.shoutnet.shoutcap.model.CapsModel;
+import co.shoutnet.shoutcap.model.ModelCapModel;
 import co.shoutnet.shoutcap.model.ModelColor;
-import co.shoutnet.shoutcap.utility.DBCapsHelper;
+import co.shoutnet.shoutcap.utility.CustomScrollView;
 import co.shoutnet.shoutcap.utility.Parser;
 import co.shoutnet.shoutcap.utility.WebAppInterface;
 
@@ -39,57 +41,74 @@ import co.shoutnet.shoutcap.utility.WebAppInterface;
  * Created by Codelabs on 8/24/2015.
  */
 public class FragmentCreateShout extends Fragment {
+    private static CapsModel capsModel = new CapsModel();
+    private static ArrayList<CapsModel> caps;
     private Context context;
-    private CapsModel capsModel;
-
     private WebView webView;
     private Button btnCreate;
     private Spinner spinModel;
     private Spinner spinCategory;
     private Spinner spinFontStyle;
     private Spinner spinFontColor;
+    private RadioButton rbAdult;
+    private RadioButton rbJunior;
 
+    //temp data
+    private CustomScrollView scrollView;
     private ArrayList<ModelColor> color = null;
+    private ArrayList<ModelCapModel> model = null;
     private String[] imgCap = null;
     private int indexCap;
-
     private int capPrice = 0;
     private int sizePrice = 0;
     private int colorPrice = 0;
     private View.OnClickListener clickCreate = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            webView.loadUrl("javascript:changeFont()");
+            webView.loadUrl("javascript:drawTextToImage()");
+//            webView.loadUrl("javascript:changeFont()");
         }
     };
     private AdapterView.OnItemSelectedListener selectModel = new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            String file;
+            String fileColor;
+            String fileModel;
             int capArrayName;
             if (i == 1) {
                 spinCategory.setEnabled(false);
 
-                file = "baseball_color.json";
+                fileColor = "baseball_color.json";
+                fileModel = "model_cap_baseball.json";
                 capArrayName = R.array.cap_img_baseball_list;
                 indexCap = 0;
             } else {
                 spinCategory.setEnabled(true);
                 spinCategory.setSelection(0);
 
-                file = "classic_color.json";
+                fileColor = "classic_color.json";
+                fileModel = "model_cap_trucker_classic.json";
                 capArrayName = R.array.cap_img_trucker_classic_list;
                 indexCap = 0;
             }
 
             try {
-                color = Parser.getColorFromJson(getFileFromAsset(file));
+                color = Parser.getColorFromJson(getFileFromAsset(fileColor));
+                model = Parser.getModelFromJson(getFileFromAsset(fileModel));
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
             imgCap = getResources().getStringArray(capArrayName);
+//            imgCap = model;
+//            Log.i("info", String.valueOf(imgCap[0]));
+//            Log.i("info", model.get(0).getImg_path());
             webViewChangeCap(imgCap[0]);
+//            webViewChangeCap(model.get(0).getImg_path());
+
+            capsModel.setModel(model.get(0).getId());
+//            Log.i("info id", String.valueOf(capsModel.getModel()));
+            capsModel.setColor(color.get(0).getId());
 
             String[] colorList = new String[color.size()];
             int index = 0;
@@ -112,24 +131,28 @@ public class FragmentCreateShout extends Fragment {
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
             String file = "";
+            String fileModel = null;
             int capArrayName = 0;
             String[] colorList;
             ArrayAdapter<String> fontColorAdapter;
             switch (i) {
                 case 0:
                     file = "classic_color.json";
+                    fileModel = "model_cap_trucker_classic.json";
                     capArrayName = R.array.cap_img_trucker_classic_list;
                     indexCap = 0;
                     break;
 
                 case 1:
                     file = "color_color.json";
+                    fileModel = "model_cap_trucker_color.json";
                     capArrayName = R.array.cap_img_trucker_color_list;
                     indexCap = 0;
                     break;
 
                 case 2:
                     file = "mixed_color.json";
+                    fileModel = "model_cap_trucker_mixed.json";
                     capArrayName = R.array.cap_img_trucker_mixed_list;
                     indexCap = 0;
                     break;
@@ -137,6 +160,7 @@ public class FragmentCreateShout extends Fragment {
 
             try {
                 color = Parser.getColorFromJson(getFileFromAsset(file));
+                model = Parser.getModelFromJson(getFileFromAsset(fileModel));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -166,6 +190,7 @@ public class FragmentCreateShout extends Fragment {
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
             webView.loadUrl("javascript:changeFont('" + spinFontStyle.getSelectedItem() + "')");
+            capsModel.setFont(spinFontStyle.getSelectedItem().toString());
         }
 
         @Override
@@ -178,7 +203,9 @@ public class FragmentCreateShout extends Fragment {
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
             webView.loadUrl("javascript:changeFontColor('" + color.get(i).getCode() + "')");
-            //Log.i("code", color.get(i).getCode());
+            Log.i("code", color.get(i).getCode());
+            capsModel.setColor(color.get(i).getId());
+//            Log.i("id color", String.valueOf(color.get(i).getId()));
 
 //            colorPrice = Integer.getInteger(color.get(i).getPrice());
         }
@@ -202,7 +229,7 @@ public class FragmentCreateShout extends Fragment {
         context = getActivity();
 
         WebSettings settings = webView.getSettings();
-        WebAppInterface webApp = new WebAppInterface(context);
+        final WebAppInterface webApp = new WebAppInterface(context);
         settings.setJavaScriptEnabled(true);
         webView.setWebChromeClient(new WebChromeClient());
         //webView.loadUrl("https://shoutcap.shoutnet.co/home");
@@ -210,7 +237,7 @@ public class FragmentCreateShout extends Fragment {
         webView.addJavascriptInterface(this, "Android");
         webView.loadUrl("file:///android_asset/create_page/index.html");
 
-        webView.addJavascriptInterface(webApp, "Android");
+//        webView.addJavascriptInterface(this, "Android");
 
         //Set Gesture WebView
         final GestureDetector gestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
@@ -224,12 +251,16 @@ public class FragmentCreateShout extends Fragment {
                             if (indexCap < imgCap.length) {
                                 indexCap++;
                                 webViewChangeCap(imgCap[indexCap]);
+//                                Log.i("image choose",model.get(indexCap).getImg_path());
+//                                scrollView.setScrollable(true);
                             }
                             return true;
                         } else if (e2.getX() - e1.getX() > 100) {
                             if (indexCap > 0) {
                                 indexCap--;
                                 webViewChangeCap(imgCap[indexCap]);
+//                                Log.i("image choose", model.get(indexCap).getImg_path());
+//                                scrollView.setScrollable(true);
                             }
                             return true;
                         }
@@ -238,30 +269,50 @@ public class FragmentCreateShout extends Fragment {
                     }
                     return false;
                 }
+
             }
         });
 
         webView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-
+                scrollView.setScrollable(false);
                 gestureDetector.onTouchEvent(motionEvent);
+                if (motionEvent.getAction() == MotionEvent.ACTION_CANCEL || motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                    scrollView.setScrollable(true);
+                }
                 return false;
             }
+
         });
+
+        if (capsModel.getSize() == null) {
+            capsModel.setSize("adult");
+        }
 
         btnCreate.setOnClickListener(clickCreate);
         spinModel.setOnItemSelectedListener(selectModel);
         spinCategory.setOnItemSelectedListener(selectCat);
         spinFontStyle.setOnItemSelectedListener(selectFontStyle);
         spinFontColor.setOnItemSelectedListener(selectFontColor);
+        rbAdult.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                capsModel.setSize("adult");
+            }
+        });
+        rbJunior.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                capsModel.setSize("junior");
+            }
+        });
 
         return rootView;
     }
 
     @JavascriptInterface
     public void capData(String data) {
-        capsModel = new CapsModel();
         SecureRandom random = new SecureRandom();
         try {
             String name = new BigInteger(130, random).toString(32);
@@ -272,20 +323,27 @@ public class FragmentCreateShout extends Fragment {
 
             capsModel.setName(name);
             capsModel.setText(jsonObject.optString("text"));
-            capsModel.setModel(Integer.parseInt(jsonObject.optString("model")));
-            capsModel.setType(Integer.parseInt(jsonObject.optString("type")));
-            capsModel.setSize(Integer.parseInt(jsonObject.optString("size")));
-            capsModel.setFont(jsonObject.optString("font"));
-            capsModel.setColor(jsonObject.optString("color"));
-            capsModel.setPrice(Integer.parseInt(jsonObject.optString("price")));
             capsModel.setBaseImage(jsonObject.optString("image"));
+            capsModel.setLine(jsonObject.optInt("line"));
+            capsModel.setFontsize(jsonObject.optInt("fontsize"));
 
-            DBCapsHelper dbCapsHelper = new DBCapsHelper(context);
-            dbCapsHelper.addCap(capsModel);
+            Log.i("name", capsModel.getName());
+            Log.i("id model", String.valueOf(capsModel.getModel()));
+            Log.i("size", capsModel.getSize());
+            Log.i("font", capsModel.getFont());
+            Log.i("font size", String.valueOf(capsModel.getFontsize()));
+            Log.i("text", capsModel.getText());
+            Log.i("line", String.valueOf(capsModel.getLine()));
+            Log.i("image", capsModel.getBaseImage());
 
-            int id = dbCapsHelper.getLatestId();
-
-            Fragment fragment = FragmentPreviewShout.newInstance(id, capsModel.getBaseImage(), capsModel.getPrice(), capsModel.getName());
+//            DBCapsHelper dbCapsHelper = new DBCapsHelper(context);
+//            dbCapsHelper.addCap(capsModel);
+//
+//            int id = dbCapsHelper.getLatestId();
+//
+            Fragment fragment = FragmentPreviewShout.newInstance(name, capsModel.getModel(),
+                    capsModel.getSize(), capsModel.getFont(), capsModel.getColor(), capsModel.getFontsize(),
+                    capsModel.getText(), capsModel.getLine(), capsModel.getBaseImage());
             FragmentManager fragmentManager = getActivity().getFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragment).commit();
 
@@ -301,6 +359,9 @@ public class FragmentCreateShout extends Fragment {
         spinCategory = (Spinner) v.findViewById(R.id.spin_create_cat);
         spinFontStyle = (Spinner) v.findViewById(R.id.spin_create_font_style);
         spinFontColor = (Spinner) v.findViewById(R.id.spin_create_font_color);
+        scrollView = (CustomScrollView) v.findViewById(R.id.scroll);
+        rbAdult = (RadioButton) v.findViewById(R.id.rb_adult_create);
+        rbJunior = (RadioButton) v.findViewById(R.id.rb_junior_create);
     }
 
     private String getFileFromAsset(String fileName) throws IOException {
@@ -316,5 +377,6 @@ public class FragmentCreateShout extends Fragment {
 
     private void webViewChangeCap(String img) {
         webView.loadUrl("javascript:changeCap('" + img + "')");
+
     }
 }

@@ -1,7 +1,6 @@
 package co.shoutnet.shoutcap;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -11,6 +10,7 @@ import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import java.io.File;
@@ -18,6 +18,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import co.shoutnet.shoutcap.model.CapsModel;
 import co.shoutnet.shoutcap.utility.DBCapsHelper;
 
 /**
@@ -25,26 +26,21 @@ import co.shoutnet.shoutcap.utility.DBCapsHelper;
  */
 public class FragmentPreviewShout extends Fragment {
 
-    private static String ID="ID";
-    private static String IMAGE = "IMAGE_BASE64";
-    private static String NAME = "NAME";
-    private static String PRICE = "PRICE";
+    private static CapsModel capsModel;
     private ImageView imgPreview;
     private DBCapsHelper dbCapsHelper;
+    private Button btnAddRack;
+    private Button btnAddCart;
+    private Uri uri;
 
     public FragmentPreviewShout() {
 
     }
 
-    public static FragmentPreviewShout newInstance(int id, String image, int price, String name) {
+    public static FragmentPreviewShout newInstance(String name, int idModel, String size, String font, int color, int fontSize, String text, int line, String image) {
 
-        Bundle args = new Bundle();
-        args.putInt(ID,id);
-        args.putString(IMAGE, image);
-        args.putInt(PRICE, price);
-        args.putString(NAME, name);
+        capsModel = new CapsModel(name, text, idModel, size, font, color, fontSize, line, 0, image, "rack");
         FragmentPreviewShout fragment = new FragmentPreviewShout();
-        fragment.setArguments(args);
 
         return fragment;
     }
@@ -56,19 +52,61 @@ public class FragmentPreviewShout extends Fragment {
         getActivity().setTitle("Preview ShoutCap");
         dbCapsHelper=new DBCapsHelper(getActivity());
 
-        Bundle bundle = getArguments();
+        byte[] decodeImage = Base64.decode(capsModel.getBaseImage(), Base64.DEFAULT);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(decodeImage, 0, decodeImage.length);
 
-        Uri uri = saveImageToStorage(bundle.getInt(ID),bundle.getString(IMAGE), bundle.getString(NAME));
         try {
-            imgPreview.setImageURI(uri);
+            imgPreview.setImageBitmap(bitmap);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        btnAddRack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addToRack();
+                btnAddRack.setEnabled(false);
+            }
+        });
+        btnAddCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addToCart();
+                btnAddCart.setEnabled(false);
+            }
+        });
+
         return rootView;
     }
 
-    private Uri saveImageToStorage(int id, String image, String name) {
+    private void addToCart() {
+        //check connection
+        //post data
+        //get price
+        //save price
+
+        if (uri == null) {
+            uri = saveImageToStorage(capsModel.getBaseImage(), capsModel.getName());
+        }
+        capsModel.setBaseImage(uri.toString());
+        capsModel.setStatus("cart");
+        capsModel.setPrice(10000);
+        dbCapsHelper.addCap(capsModel);
+    }
+
+    private void addToRack() {
+        //check connection
+        //post data
+        //get price
+        //save price
+        if (uri == null) {
+            uri = saveImageToStorage(capsModel.getBaseImage(), capsModel.getName());
+        }
+        capsModel.setBaseImage(uri.toString());
+        dbCapsHelper.addCap(capsModel);
+    }
+
+    private Uri saveImageToStorage(String image, String name) {
 
         String fileName = "/" + name + ".png";
         Uri uri = null;
@@ -92,12 +130,14 @@ public class FragmentPreviewShout extends Fragment {
                 e.printStackTrace();
             }
         }
-        dbCapsHelper.updateUri(id,uri.toString());
+//        dbCapsHelper.updateUri(id,uri.toString());
         return uri;
     }
 
     private void initView(View v) {
         imgPreview = (ImageView) v.findViewById(R.id.img_preview_hat);
+        btnAddCart = (Button) v.findViewById(R.id.btn_addcart_preview);
+        btnAddRack = (Button) v.findViewById(R.id.btn_addrack_preview);
     }
 
 }

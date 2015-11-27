@@ -1,5 +1,10 @@
 
 var kat = "trucker";
+var globalLine;
+var globalText;
+var globalSize;
+var globalFontColor;
+var globalFont;
 var imgPath = "img_cap/";
 var baseballColorJson = [
    {
@@ -263,24 +268,26 @@ function drawTextToImage() {
 	var image = document.getElementById("img_createshoutcap");
 	var textShout = document.getElementById("div_measure_text");
 	var fontSizeShout = parseFloat($('#tx_shout').css('font-size'));
-	var fontName = $('.canvas-textarea').css('font-family');
-	var fontColor = $('.canvas-textarea').css('color');
+//	var fontNameLocal = $('.canvas-textarea').css('font-family');
+	var fontNameLocal = globalFont;
+	var fontColorLocal = globalFontColor;
 
 	//console.log(image.width);
 	//console.log(image.height);
+
+	console.log(image.width);
+	console.log(image.height);
+
+    canvas.width=image.width;
+	console.log(canvas.width);
 
 	canvas.width = image.width;
 	canvas.height = image.height;
 
 	var context = canvas.getContext("2d");
-	context.font = fontSizeShout + "px " + fontName;
-	context.fillStyle = fontColor;
+	context.font = fontSizeShout + "px "+fontNameLocal;
+	context.fillStyle = fontColorLocal;
 	context.drawImage(image, 0, 0, canvas.width, canvas.height);
-		context.font = fontSizeShout + "px Calibri";
-		context.drawImage(image, 0, 0, canvas.width, canvas.height);
-
-	//console.log(canvas.width);
-	//console.log(canvas.height);
 
 	var shout = text.value.split(/\r|\r\n|\n/);
 	switch(shout.length) {
@@ -302,14 +309,27 @@ function drawTextToImage() {
 		break;
 
 	}
+
+	globalLine=shout.length;
+	console.log(globalLine);
+	globalSize=fontSizeShout;
+	console.log(globalSize);
+	globalText=text.value;
+	console.log(globalText);
+		var dataImage = canvas.toDataURL('image/png');
+		sendCapData(text.value,dataImage,fontSizeShout,shout.length);
 }
 
 function changeFont(font) {
 	$('#tx_shout').css('font-family', font);
+	console.log('acessed');
+	globalFont=font;
 }
 
 function changeFontColor(color) {
 	$('#tx_shout').css('color', color);
+	globalFontColor=color;
+
 }
 
 function changeCap(imgSrc) {
@@ -318,18 +338,16 @@ function changeCap(imgSrc) {
 		sendCapData("wa",1,1,1,"wawa","wawd",1231,dataImage);
 }
 
-function sendCapData (text, model, type, size, font, color, price, dataImage){
+
+function sendCapData (text, dataImage, fontSize, line){
+console.log("send");
 	var image = dataImage.split(",");
 	var capObj = "{\"cap\" :" +
     				"[" +
     					"{" +
     						"\"text\" : \"" + text + "\"," +
-                            "\"model\" : \"" + model + "\"," +
-                            "\"type\" : \"" + type + "\"," +
-                            "\"size\" : \"" + size + "\"," +
-                            "\"font\" : \"" + font + "\"," +
-                            "\"color\" : \"" + color + "\"," +
-                            "\"price\" : \"" + price + "\"," +
+    						"\"fontsize\" :\""+fontSize+"\","+
+    						"\"line\" :\""+line+"\","+
                             "\"image\" : \"" + image[1] + "\"" +
                         "}" +
                     "]" +

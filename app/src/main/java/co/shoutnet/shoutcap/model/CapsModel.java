@@ -8,26 +8,30 @@ public class CapsModel {
     private String name;
     private String text;
     private int model;
-    private int type;
-    private int size;
+    private String size;
     private String font;
-    private String color;
+    private int color;
+    private int fontsize;
+    private int line;
     private int price;
     private String baseImage;
+    private String status;
 
     public CapsModel() {
     }
 
-    public CapsModel(String name, String text, int model, int type, int size, String font, String color, int price, String baseImage) {
+    public CapsModel(String name, String text, int model, String size, String font, int color, int fontsize, int line, int price, String baseImage, String status) {
         this.name = name;
         this.text = text;
         this.model = model;
-        this.type = type;
         this.size = size;
         this.font = font;
         this.color = color;
+        this.fontsize = fontsize;
+        this.line = line;
         this.price = price;
         this.baseImage = baseImage;
+        this.status = status;
     }
 
     public String getId() {
@@ -62,19 +66,11 @@ public class CapsModel {
         this.model = model;
     }
 
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
-
-    public int getSize() {
+    public String getSize() {
         return size;
     }
 
-    public void setSize(int size) {
+    public void setSize(String size) {
         this.size = size;
     }
 
@@ -86,12 +82,28 @@ public class CapsModel {
         this.font = font;
     }
 
-    public String getColor() {
+    public int getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(int color) {
         this.color = color;
+    }
+
+    public int getFontsize() {
+        return fontsize;
+    }
+
+    public void setFontsize(int fontsize) {
+        this.fontsize = fontsize;
+    }
+
+    public int getLine() {
+        return line;
+    }
+
+    public void setLine(int line) {
+        this.line = line;
     }
 
     public int getPrice() {
@@ -108,5 +120,13 @@ public class CapsModel {
 
     public void setBaseImage(String baseImage) {
         this.baseImage = baseImage;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

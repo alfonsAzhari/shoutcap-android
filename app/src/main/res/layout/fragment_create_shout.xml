@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ScrollView
+    <co.shoutnet.shoutcap.utility.CustomScrollView
+        android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="10">
@@ -18,6 +19,42 @@
                 android:id="@+id/web_create_shout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="8dp">
+
+                    <RadioButton
+                        android:id="@+id/rb_adult_create"
+                        android:layout_width="wrap_content"
+                        android:layout_height="?attr/actionBarSize"
+                        android:layout_weight="1"
+                        android:background="@drawable/custom_button_radio"
+                        android:button="@null"
+                        android:checked="true"
+                        android:gravity="center"
+                        android:text="Adult"
+                        android:textColor="#e7e7e7" />
+
+                    <RadioButton
+                        android:id="@+id/rb_junior_create"
+                        android:layout_width="wrap_content"
+                        android:layout_height="?attr/actionBarSize"
+                        android:layout_weight="1"
+                        android:background="@drawable/custom_button_radio"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="Junior"
+                        android:textColor="#e7e7e7" />
+                </RadioGroup>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -107,15 +144,16 @@
                     android:spinnerMode="dialog" />
             </LinearLayout>
 
-        </LinearLayout>
-    </ScrollView>
+            <Button
+                android:id="@+id/btn_create"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:text="preview" />
 
-    <Button
-        android:id="@+id/btn_create"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_gravity="bottom"
-        android:layout_weight="1"
-        android:text="preview" />
+        </LinearLayout>
+    </co.shoutnet.shoutcap.utility.CustomScrollView>
+
 
 </LinearLayout>

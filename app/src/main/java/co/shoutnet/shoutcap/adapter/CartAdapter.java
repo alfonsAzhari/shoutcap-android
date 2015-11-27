@@ -1,11 +1,8 @@
 package co.shoutnet.shoutcap.adapter;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.net.Uri;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,23 +15,23 @@ import java.util.List;
 import co.shoutnet.shoutcap.CartActivity;
 import co.shoutnet.shoutcap.R;
 import co.shoutnet.shoutcap.model.ModelAdapterCart;
-import co.shoutnet.shoutcap.utility.ListCallback;
 
 /**
  * Created by Codelabs on 9/14/2015.
  */
-public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> implements ListCallback.ItemTouchHelperAdapter {
+public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
 
     List<ModelAdapterCart> carts;
     Context context;
     int count;
     long subTotal;
     long total;
+    private AdapterListener adapterListener;
 
-    public CartAdapter(Context context, List<ModelAdapterCart> carts) {
+    public CartAdapter(Context context, List<ModelAdapterCart> carts, AdapterListener adapterListener) {
         this.carts = carts;
         this.context = context;
-
+        this.adapterListener = adapterListener;
     }
 
     @Override
@@ -70,6 +67,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                     total = CartActivity.getTotal();
                     total += carts.get(position).getPrice();
                     CartActivity.setTotal(total);
+                    adapterListener.onClickButton(position, count);
                 }
             }
         });
@@ -97,35 +95,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         return carts.size();
     }
 
-    @Override
-    public void onItemDismiss(final int position) {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.create();
-        builder.setTitle("Confirmation Delete").setMessage("Are you sure to delete this item?").setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                onRemoveList(position);
-            }
-        }).setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        }).show();
+    public interface AdapterListener {
+        void onClickButton(int position, int qty);
     }
 
-    private void onRemoveList(int position) {
-        carts.remove(position);
-        notifyItemRemoved(position);
-    }
-
-    @Override
-    public void onPendingDismiss(final int position) {
-
-
-    }
-
-    public static class CartViewHolder extends RecyclerView.ViewHolder implements ListCallback.ItemTouchHelperViewHolder {
+    public static class CartViewHolder extends RecyclerView.ViewHolder {
         ImageView imgCart;
         TextView txtProduct;
         TextView txtPrice;
@@ -143,16 +117,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             txtPrice = (TextView) itemView.findViewById(R.id.txt_price_cart);
             txtSubTotal = (TextView) itemView.findViewById(R.id.txt_total_cart);
             edtQty = (EditText) itemView.findViewById(R.id.edt_count_cart);
-        }
-
-        @Override
-        public void onItemSelected() {
-
-        }
-
-        @Override
-        public void onItemClear() {
-
         }
     }
 }

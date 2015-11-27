@@ -4,6 +4,7 @@ package co.shoutnet.shoutcap.model;
  * Created by Codelabs on 9/14/2015.
  */
 public class ModelAdapterCart {
+    private int id;
     private String image;
     private String name; //text
     private int price;
@@ -13,12 +14,21 @@ public class ModelAdapterCart {
     public ModelAdapterCart() {
     }
 
-    public ModelAdapterCart(String image, String name, int price, long subTotal, int qty) {
+    public ModelAdapterCart(int id, String image, String name, int price, long subTotal, int qty) {
+        this.id = id;
         this.image = image;
         this.name = name;
         this.price = price;
         this.subTotal = subTotal;
         this.qty = qty;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getImage() {

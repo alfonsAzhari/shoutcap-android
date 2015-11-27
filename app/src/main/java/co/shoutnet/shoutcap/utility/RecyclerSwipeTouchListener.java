@@ -13,10 +13,8 @@ import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -115,7 +113,7 @@ public class RecyclerSwipeTouchListener implements RecyclerView.OnItemTouchListe
                 recyclerView.getLocationOnScreen(listCoordinate);
                 int x = (int) motionEvent.getRawX() - listCoordinate[0];
                 int y = (int) motionEvent.getRawY() - listCoordinate[1];
-                View child;
+                View child = null;
                 for (int i = 0; i < childCount; i++) {
                     child = recyclerView.getChildAt(i);
                     child.getHitRect(rect);
@@ -130,7 +128,6 @@ public class RecyclerSwipeTouchListener implements RecyclerView.OnItemTouchListe
                     childX = motionEvent.getRawX();
                     childY = motionEvent.getRawY();
                     childPosition = recyclerView.getChildLayoutPosition(childView);
-                    Log.i("postion", String.valueOf(childPosition));
                     velocityTracker = VelocityTracker.obtain();
                     velocityTracker.addMovement(motionEvent);
                     fgView = childView.findViewById(fgID);
@@ -253,7 +250,7 @@ public class RecyclerSwipeTouchListener implements RecyclerView.OnItemTouchListe
         return false;
     }
 
-    private void dismissView(final View dismissView, int position) {
+    private void dismissView(final View dismissView, final int position) {
         final View background=dismissView.findViewById(bgID);
         final ViewGroup.LayoutParams lp =dismissView.getLayoutParams();
         final int originalHeight=dismissView.getHeight();
@@ -266,6 +263,7 @@ public class RecyclerSwipeTouchListener implements RecyclerView.OnItemTouchListe
                 --dismissAnitmationRefCount;
                 if (dismissAnitmationRefCount > 0) return;
 
+
                 dismissAnitmationRefCount = 0;
 
 //                Collections.sort(pendingDismiss);
@@ -274,7 +272,6 @@ public class RecyclerSwipeTouchListener implements RecyclerView.OnItemTouchListe
                 for (int i = pendingDismiss.size() - 1; i >= 0; i--) {
                     dismissPosition[i] = pendingDismiss.get(i).position;
                 }
-
                 swipeListener.onDismiss(recyclerView, dismissPosition);
 
                 childPosition = RecyclerView.NO_POSITION;
@@ -314,6 +311,10 @@ public class RecyclerSwipeTouchListener implements RecyclerView.OnItemTouchListe
                     public void onAnimationEnd(Animator animation) {
                         if (deleteAble[0]) animator.start();
                     }
+
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+                    }
                 });
 
         background.setOnTouchListener(new View.OnTouchListener() {
@@ -336,6 +337,7 @@ public class RecyclerSwipeTouchListener implements RecyclerView.OnItemTouchListe
         boolean canSwipe(int position);
 
         void onDismiss(RecyclerView recyclerView, int[] reversePositions);
+
     }
 
     private class PendingDismissData implements Comparable<PendingDismissData> {

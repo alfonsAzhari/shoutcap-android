@@ -43,6 +43,11 @@ public class FragmentRack extends Fragment {
 
         DBCapsHelper dbCapsHelper = new DBCapsHelper(getActivity());
         List<ModelAdapterRack> racks = dbCapsHelper.getRackData();
+        if (racks.size() > 0) {
+            Log.i("rack", String.valueOf(racks.get(0).getImgRack()));
+        } else {
+            Log.i("rack", "null");
+        }
         layoutManager = new GridLayoutManager(getActivity().getApplicationContext(), 3);
         RackAdapter adapter = new RackAdapter(getActivity().getApplicationContext(), racks);
 
