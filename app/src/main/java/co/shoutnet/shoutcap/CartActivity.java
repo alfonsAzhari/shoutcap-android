@@ -60,12 +60,12 @@ public class CartActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        modelAdapterCarts=new DBCapsHelper(getApplicationContext()).getCartData();
+        modelAdapterCarts = new DBCapsHelper(getApplicationContext()).getCartData();
         total = 0;
         capName = new String[modelAdapterCarts.size()];
-        for (int i=0;i<modelAdapterCarts.size();i++){
+        for (int i = 0; i < modelAdapterCarts.size(); i++) {
             capName[i] = modelAdapterCarts.get(i).getName();
-            total+=modelAdapterCarts.get(i).getPrice();
+            total += modelAdapterCarts.get(i).getPrice();
         }
 //        List<String> strings=new ArrayList<>();
 //        String[] newString = strings.toArray(new String[strings.size()]);
@@ -83,7 +83,7 @@ public class CartActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        RecyclerSwipeTouchListener touchListener=new RecyclerSwipeTouchListener(getApplicationContext(), recyclerView, R.id.main_view, R.id.background_view, new RecyclerSwipeTouchListener.SwipeListener() {
+        RecyclerSwipeTouchListener touchListener = new RecyclerSwipeTouchListener(getApplicationContext(), recyclerView, R.id.main_view, R.id.background_view, new RecyclerSwipeTouchListener.SwipeListener() {
             @Override
             public boolean canSwipe(int position) {
                 return true;
@@ -131,16 +131,16 @@ public class CartActivity extends AppCompatActivity {
         DialogFragment dialogFragment = VoucherDialog.newInstance(capName, new VoucherDialog.DialogListener() {
             @Override
             public void resultItemOnly(String item) {
-                if (item!=null||item.equals("")){
-                    Log.i("item selected",item);
+                if (item != null) {
+                    Log.i("item selected", item);
                 }
             }
 
             @Override
             public void resultItemVoucher(String item, String voucherCode) {
-                if ((item!=null&&voucherCode!=null)||(item.equals("")&&voucherCode.equals(""))){
-                    Log.i("item selected",item);
-                    Log.i("voucher code",voucherCode);
+                if (item != null && voucherCode != null) {
+                    Log.i("item selected", item);
+                    Log.i("voucher code", voucherCode);
                 }
             }
         });

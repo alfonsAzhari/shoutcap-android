@@ -5,18 +5,12 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-
 import co.shoutnet.shoutcap.R;
-import co.shoutnet.shoutcap.model.Model;
 
 /**
  * Created by mikqi on 11/24/15.
@@ -55,12 +49,18 @@ public class VoucherDialog extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         EditText edtVoucher = (EditText) view.findViewById(R.id.edt_code_voucher);
-                        dialogListener.resultItemVoucher(itemSelected,edtVoucher.getText().toString());
+                        if (itemSelected == null || itemSelected.equals("")) {
+                            itemSelected = mcaps[0];
+                        }
+                        dialogListener.resultItemVoucher(itemSelected, edtVoucher.getText().toString());
                     }
                 })
                 .setNegativeButton("Skip", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        if (itemSelected == null || itemSelected.equals("")) {
+                            itemSelected = mcaps[0];
+                        }
                         dialogListener.resultItemOnly(itemSelected);
                     }
                 });
