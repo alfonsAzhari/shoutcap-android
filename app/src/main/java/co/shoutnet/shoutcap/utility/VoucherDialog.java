@@ -24,12 +24,12 @@ import co.shoutnet.shoutcap.model.Model;
 public class VoucherDialog extends DialogFragment {
 
     private static String[] mcaps;
-    private RecyclerView recyclerView;
-    private LinearLayoutManager layoutManager;
-    private ArrayList<Model> mModelVoucher;
+    private static DialogListener dialogListener;
+    private String itemSelected;
 
-    public static VoucherDialog newInstance(String[] caps) {
+    public static VoucherDialog newInstance(String[] caps,DialogListener listener) {
         mcaps = caps;
+        dialogListener=listener;
         VoucherDialog voucherDialog = new VoucherDialog();
         return voucherDialog;
     }
@@ -48,24 +48,28 @@ public class VoucherDialog extends DialogFragment {
                         ListView listView = ((AlertDialog) dialogInterface).getListView();
                         Object o = listView.getAdapter().getItem(listView.getCheckedItemPosition());
 
-                        Log.i("info", String.valueOf(o));
+                        itemSelected=o.toString();
                     }
                 })
                 .setPositiveButton("Continue", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-
-                        EditText editText = (EditText) view.findViewById(R.id.edt_code_voucher);
-                        Log.i("info kode", editText.getText().toString());
+                        EditText edtVoucher = (EditText) view.findViewById(R.id.edt_code_voucher);
+                        dialogListener.resultItemVoucher(itemSelected,edtVoucher.getText().toString());
                     }
                 })
                 .setNegativeButton("Skip", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-
+                        dialogListener.resultItemOnly(itemSelected);
                     }
                 });
 
         return builder.create();
+    }
+
+    public interface DialogListener{
+        void resultItemOnly(String item);
+        void resultItemVoucher(String item,String voucherCode);
     }
 }

@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -117,14 +118,33 @@ public class CartActivity extends AppCompatActivity {
         btnTotal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DialogFragment dialogFragment = VoucherDialog.newInstance(capName);
-                dialogFragment.show(getFragmentManager(), "dasda");
+                dialogResult();
             }
         });
 
 //        SharedPreferences preferences=getApplicationContext().getSharedPreferences("cart",Context.MODE_PRIVATE);
 //        SharedPreferences.Editor editor=preferences.edit();
 //        editor.putStringSet()
+    }
+
+    private void dialogResult() {
+        DialogFragment dialogFragment = VoucherDialog.newInstance(capName, new VoucherDialog.DialogListener() {
+            @Override
+            public void resultItemOnly(String item) {
+                if (item!=null||item.equals("")){
+                    Log.i("item selected",item);
+                }
+            }
+
+            @Override
+            public void resultItemVoucher(String item, String voucherCode) {
+                if ((item!=null&&voucherCode!=null)||(item.equals("")&&voucherCode.equals(""))){
+                    Log.i("item selected",item);
+                    Log.i("voucher code",voucherCode);
+                }
+            }
+        });
+        dialogFragment.show(getFragmentManager(), "Voucher");
     }
 
     private void initToolbar() {

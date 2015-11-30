@@ -178,6 +178,16 @@ public class DBCapsHelper extends SQLiteOpenHelper {
         return data;
     }
 
+    public void updateStatus(String status){
+        SQLiteDatabase db=getWritableDatabase();
+
+        ContentValues values=new ContentValues();
+        values.put(KEY_STATUS,status);
+
+        db.update(TB_NAME,values,"id = "+getLatestId(),null);
+        db.close();
+    }
+
     public void deleteCartData(int id) {
         SQLiteDatabase db = getWritableDatabase();
         db.delete(TB_NAME, "id = " + id, null);

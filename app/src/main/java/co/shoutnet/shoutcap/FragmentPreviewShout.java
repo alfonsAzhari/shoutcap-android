@@ -32,6 +32,7 @@ public class FragmentPreviewShout extends Fragment {
     private Button btnAddRack;
     private Button btnAddCart;
     private Uri uri;
+    private boolean both=false;
 
     public FragmentPreviewShout() {
 
@@ -85,13 +86,19 @@ public class FragmentPreviewShout extends Fragment {
         //get price
         //save price
 
-        if (uri == null) {
+        if (uri == null)
             uri = saveImageToStorage(capsModel.getBaseImage(), capsModel.getName());
-        }
+
         capsModel.setBaseImage(uri.toString());
-        capsModel.setStatus("cart");
         capsModel.setPrice(10000);
-        dbCapsHelper.addCap(capsModel);
+
+        if (!both){
+            both=true;
+            capsModel.setStatus("cart");
+            dbCapsHelper.addCap(capsModel);
+        }else {
+            dbCapsHelper.updateStatus("both");
+        }
     }
 
     private void addToRack() {
@@ -99,11 +106,19 @@ public class FragmentPreviewShout extends Fragment {
         //post data
         //get price
         //save price
-        if (uri == null) {
+        if (uri == null)
             uri = saveImageToStorage(capsModel.getBaseImage(), capsModel.getName());
-        }
+
         capsModel.setBaseImage(uri.toString());
-        dbCapsHelper.addCap(capsModel);
+        capsModel.setPrice(10000);
+
+        if (!both){
+            both=true;
+            capsModel.setStatus("rack");
+            dbCapsHelper.addCap(capsModel);
+        }else {
+            dbCapsHelper.updateStatus("both");
+        }
     }
 
     private Uri saveImageToStorage(String image, String name) {
