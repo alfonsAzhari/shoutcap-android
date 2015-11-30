@@ -1,7 +1,8 @@
 package co.shoutnet.shoutcap;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.FragmentManager;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -11,6 +12,10 @@ public class OrderConfirmation extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_confirmation);
+
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentDestination destination = FragmentDestination.newInstance("dasdas", "dasdasd");
+        fragmentManager.beginTransaction().add(R.id.frame_content_order, destination).commit();
     }
 
     @Override
