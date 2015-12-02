@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import co.shoutnet.shoutcap.R;
 
@@ -42,7 +43,7 @@ public class VoucherDialog extends DialogFragment {
                         ListView listView = ((AlertDialog) dialogInterface).getListView();
                         Object o = listView.getAdapter().getItem(listView.getCheckedItemPosition());
 
-                        itemSelected=o.toString();
+                        itemSelected = o.toString();
                     }
                 })
                 .setPositiveButton("Continue", new DialogInterface.OnClickListener() {
@@ -52,7 +53,11 @@ public class VoucherDialog extends DialogFragment {
                         if (itemSelected == null || itemSelected.equals("")) {
                             itemSelected = mcaps[0];
                         }
-                        dialogListener.resultItemVoucher(itemSelected, edtVoucher.getText().toString());
+                        if (edtVoucher.getText() == null) {
+                            Toast.makeText(getActivity(), "Insert Voucher Code or Skip", Toast.LENGTH_SHORT).show();
+                        } else {
+                            dialogListener.resultItemVoucher(itemSelected, edtVoucher.getText().toString());
+                        }
                     }
                 })
                 .setNegativeButton("Skip", new DialogInterface.OnClickListener() {
@@ -64,7 +69,6 @@ public class VoucherDialog extends DialogFragment {
                         dialogListener.resultItemOnly(itemSelected);
                     }
                 });
-
         return builder.create();
     }
 

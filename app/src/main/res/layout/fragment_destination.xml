@@ -46,7 +46,8 @@
                     android:id="@+id/edt_phone_destination"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Phone Number" />
+                    android:hint="Phone Number"
+                    android:inputType="phone" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -60,7 +61,8 @@
                     android:id="@+id/edt_email_destination"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="E-mail" />
+                    android:hint="E-mail"
+                    android:inputType="textEmailAddress" />
             </android.support.design.widget.TextInputLayout>
 
             <RadioGroup
@@ -80,7 +82,8 @@
                     android:button="@null"
                     android:checked="true"
                     android:gravity="center"
-                    android:text="Male" />
+                    android:text="Male"
+                    android:textColor="@android:color/white" />
 
                 <RadioButton
                     android:id="@+id/rb_female_destination"
@@ -90,7 +93,8 @@
                     android:background="@drawable/custom_button_radio"
                     android:button="@null"
                     android:gravity="center"
-                    android:text="Female" />
+                    android:text="Female"
+                    android:textColor="@android:color/white" />
             </RadioGroup>
 
             <TextView
@@ -106,47 +110,73 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingBottom="16dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
                 android:paddingTop="16dp">
 
                 <Button
+                    android:id="@+id/spn_province_destination"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="" />
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/abc_spinner_textfield_background_material"
+                    android:drawableRight="@drawable/abc_spinner_mtrl_am_alpha"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:text="Province"
+                    android:textAlignment="gravity"
+                    android:textAllCaps="false"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/spn_city_destination"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/abc_spinner_textfield_background_material"
+                    android:drawableRight="@drawable/abc_spinner_mtrl_am_alpha"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:text="City"
+                    android:textAlignment="gravity"
+                    android:textAllCaps="false"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/spn_district_destination"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/abc_spinner_textfield_background_material"
+                    android:drawableRight="@drawable/abc_spinner_mtrl_am_alpha"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:text="District"
+                    android:textAlignment="gravity"
+                    android:textAllCaps="false"
+                    android:textSize="16sp" />
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp">
+                    android:layout_height="wrap_content">
 
                     <EditText
+                        android:id="@+id/edt_address_destination"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Province" />
+                        android:hint="Address" />
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp">
+                    android:layout_height="wrap_content">
 
                     <EditText
+                        android:id="@+id/edt_zip_destination"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="City" />
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp">
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="District" />
+                        android:hint="Zip Code"
+                        android:inputType="number" />
                 </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>
@@ -154,7 +184,12 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Submit" />
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/custom_button"
+                android:text="Submit"
+                android:textColor="@android:color/white" />
 
         </LinearLayout>
     </ScrollView>
