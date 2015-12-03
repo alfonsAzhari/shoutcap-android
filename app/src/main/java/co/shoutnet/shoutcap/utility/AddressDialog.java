@@ -26,8 +26,8 @@ public class AddressDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setSingleChoiceItems(mName, 0, new DialogInterface.OnClickListener() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setSingleChoiceItems(mName, -1, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 ListView listView = ((AlertDialog) dialogInterface).getListView();
@@ -39,8 +39,9 @@ public class AddressDialog extends DialogFragment {
                     itemSelected = mName[0];
                 }
                 mListener.result(itemSelected);
+                dialogInterface.dismiss();
             }
-        });
+        }).setCancelable(false);
         return builder.create();
     }
 
