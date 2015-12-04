@@ -31,7 +31,7 @@ public class FragmentDestination extends Fragment {
     private EditText edtZipCode;
     private Button btnSubmit;
     private String result;
-    private boolean[] emptyField;
+//    private boolean[] emptyField;
 
     private String[] name = {"name1", "name2", "name3", "name4", "name5", "name6", "name7", "name8"};
 
@@ -47,9 +47,11 @@ public class FragmentDestination extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_destination, container, false);
 
-        if (destModel == null) {
+        if (destModel == null)
             destModel = new DestinationModel();
-        }
+
+//        if (emptyField==null)
+//            emptyField=new boolean[7];
 
         initView(view);
         initViewAction();
@@ -58,39 +60,40 @@ public class FragmentDestination extends Fragment {
     }
 
     private void initViewAction() {
-        edtName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus && (edtName.getText().equals("") || edtName.getText() == null)) {
-                    showToast("Name field is empty, insert name");
-                    emptyField[0] = true;
-                } else {
-                    emptyField[0] = false;
-                }
-            }
-        });
-        edtPhone.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus && (edtPhone.getText().equals("") || edtPhone.getText() == null)) {
-                    showToast("Phone field is empty, insert phone");
-                    emptyField[1] = true;
-                } else {
-                    emptyField[1] = false;
-                }
-            }
-        });
-        edtEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus && (edtEmail.getText().equals("") || edtEmail.getText() == null)) {
-                    showToast("Email field is empty, insert email");
-                    emptyField[2] = true;
-                } else {
-                    emptyField[2] = false;
-                }
-            }
-        });
+//        edtName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if (!hasFocus && (edtName.getText().equals("") || edtName.getText() == null)) {
+//                    showToast("Name field is empty, insert name");
+//                    emptyField[0] = true;
+//                    edtName.setfo
+//                } else {
+//                    emptyField[0] = false;
+//                }
+//            }
+//        });
+//        edtPhone.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if (!hasFocus && (edtPhone.getText().equals("") || edtPhone.getText() == null)) {
+//                    showToast("Phone field is empty, insert phone");
+//                    emptyField[1] = true;
+//                } else {
+//                    emptyField[1] = false;
+//                }
+//            }
+//        });
+//        edtEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if (!hasFocus && (edtEmail.getText().equals("") || edtEmail.getText() == null)) {
+//                    showToast("Email field is empty, insert email");
+//                    emptyField[2] = true;
+//                } else {
+//                    emptyField[2] = false;
+//                }
+//            }
+//        });
         destModel.setGender("laki-laki");
         rbMale.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,9 +108,9 @@ public class FragmentDestination extends Fragment {
             }
         });
 
-        emptyField[3] = true;
-        emptyField[4] = true;
-        emptyField[5] = true;
+//        emptyField[3] = true;
+//        emptyField[4] = true;
+//        emptyField[5] = true;
 
         spnProvince.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,42 +130,42 @@ public class FragmentDestination extends Fragment {
                 showDialog(name, "district");
             }
         });
-        edtAddress.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus && (edtAddress.getText().equals("") || edtAddress.getText() == null)) {
-                    showToast("Address field is empty, insert address");
-                    emptyField[6] = true;
-                } else {
-                    emptyField[6] = false;
-                }
-            }
-        });
-        edtZipCode.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus && (edtZipCode.getText().equals("") || edtZipCode.getText() == null)) {
-                    showToast("Zip code field is empty, insert zip code");
-                    emptyField[7] = true;
-                } else {
-                    emptyField[7] = false;
-                }
-            }
-        });
+//        edtAddress.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if (!hasFocus && (edtAddress.getText().equals("") || edtAddress.getText() == null)) {
+//                    showToast("Address field is empty, insert address");
+//                    emptyField[6] = true;
+//                } else {
+//                    emptyField[6] = false;
+//                }
+//            }
+//        });
+//        edtZipCode.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if (!hasFocus && (edtZipCode.getText().equals("") || edtZipCode.getText() == null)) {
+//                    showToast("Zip code field is empty, insert zip code");
+//                    emptyField[7] = true;
+//                } else {
+//                    emptyField[7] = false;
+//                }
+//            }
+//        });
 
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for (int i = 0; i < emptyField.length; i++) {
-                    if (emptyField[i]) {
-                        showToast("There is field empty");
-                        break;
-                    } else {
-                        getData();
-                    }
-                }
-            }
-        });
+//        btnSubmit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                for (int i = 0; i < emptyField.length; i++) {
+//                    if (emptyField[i]) {
+//                        showToast("There is field empty");
+//                        break;
+//                    } else {
+//                        getData();
+//                    }
+//                }
+//            }
+//        });
     }
 
     private void getData() {
@@ -178,17 +181,17 @@ public class FragmentDestination extends Fragment {
                     case "prov":
                         spnProvince.setText(value);
                         destModel.setProvince(value);
-                        emptyField[3] = false;
+//                        emptyField[3] = false;
                         break;
                     case "city":
                         spnCity.setText(value);
                         destModel.setCity(result);
-                        emptyField[4] = false;
+//                        emptyField[4] = false;
                         break;
                     case "district":
                         spnDistrict.setText(value);
                         destModel.setDistrict(result);
-                        emptyField[5] = false;
+//                        emptyField[5] = false;
                         break;
                 }
             }
