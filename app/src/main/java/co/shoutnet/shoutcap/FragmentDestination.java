@@ -3,13 +3,30 @@ package co.shoutnet.shoutcap;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import co.shoutnet.shoutcap.model.DestinationModel;
 import co.shoutnet.shoutcap.utility.AddressDialog;
@@ -24,14 +41,17 @@ public class FragmentDestination extends Fragment {
     private RadioButton rbMale;
     private RadioButton rbFemale;
     //address
-    private Button spnProvince;
+    private Spinner spnProvince;
     private Button spnCity;
     private Button spnDistrict;
     private EditText edtAddress;
     private EditText edtZipCode;
     private Button btnSubmit;
     private String result;
-//    private boolean[] emptyField;
+    private boolean[] emptyField;
+
+    private FetchData fetchData;
+    private ArrayAdapter<String> adapter;
 
     private String[] name = {"name1", "name2", "name3", "name4", "name5", "name6", "name7", "name8"};
 
@@ -47,53 +67,21 @@ public class FragmentDestination extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_destination, container, false);
 
-        if (destModel == null)
+        if (destModel == null) {
             destModel = new DestinationModel();
-
-//        if (emptyField==null)
-//            emptyField=new boolean[7];
+        }
 
         initView(view);
         initViewAction();
+
+        fetchData = new FetchData("prov", "prov", "https://api.shoutnet.co/shoutid/get_provinsi.php");
+        fetchData.getData();
 
         return view;
     }
 
     private void initViewAction() {
-//        edtName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//                if (!hasFocus && (edtName.getText().equals("") || edtName.getText() == null)) {
-//                    showToast("Name field is empty, insert name");
-//                    emptyField[0] = true;
-//                    edtName.setfo
-//                } else {
-//                    emptyField[0] = false;
-//                }
-//            }
-//        });
-//        edtPhone.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//                if (!hasFocus && (edtPhone.getText().equals("") || edtPhone.getText() == null)) {
-//                    showToast("Phone field is empty, insert phone");
-//                    emptyField[1] = true;
-//                } else {
-//                    emptyField[1] = false;
-//                }
-//            }
-//        });
-//        edtEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//                if (!hasFocus && (edtEmail.getText().equals("") || edtEmail.getText() == null)) {
-//                    showToast("Email field is empty, insert email");
-//                    emptyField[2] = true;
-//                } else {
-//                    emptyField[2] = false;
-//                }
-//            }
-//        });
+
         destModel.setGender("laki-laki");
         rbMale.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,14 +96,15 @@ public class FragmentDestination extends Fragment {
             }
         });
 
-//        emptyField[3] = true;
-//        emptyField[4] = true;
-//        emptyField[5] = true;
-
-        spnProvince.setOnClickListener(new View.OnClickListener() {
+        spnProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View view) {
-                showDialog(name, "prov");
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
         spnCity.setOnClickListener(new View.OnClickListener() {
@@ -130,42 +119,7 @@ public class FragmentDestination extends Fragment {
                 showDialog(name, "district");
             }
         });
-//        edtAddress.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//                if (!hasFocus && (edtAddress.getText().equals("") || edtAddress.getText() == null)) {
-//                    showToast("Address field is empty, insert address");
-//                    emptyField[6] = true;
-//                } else {
-//                    emptyField[6] = false;
-//                }
-//            }
-//        });
-//        edtZipCode.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//                if (!hasFocus && (edtZipCode.getText().equals("") || edtZipCode.getText() == null)) {
-//                    showToast("Zip code field is empty, insert zip code");
-//                    emptyField[7] = true;
-//                } else {
-//                    emptyField[7] = false;
-//                }
-//            }
-//        });
 
-//        btnSubmit.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                for (int i = 0; i < emptyField.length; i++) {
-//                    if (emptyField[i]) {
-//                        showToast("There is field empty");
-//                        break;
-//                    } else {
-//                        getData();
-//                    }
-//                }
-//            }
-//        });
     }
 
     private void getData() {
@@ -178,20 +132,20 @@ public class FragmentDestination extends Fragment {
             public void result(String value) {
                 result = value;
                 switch (init) {
-                    case "prov":
-                        spnProvince.setText(value);
-                        destModel.setProvince(value);
+//                    case "prov":
+//                        spnProvince.setText(value);
+//                        destModel.setProvince(value);
 //                        emptyField[3] = false;
-                        break;
+//                        break;
                     case "city":
                         spnCity.setText(value);
                         destModel.setCity(result);
-//                        emptyField[4] = false;
+                        emptyField[4] = false;
                         break;
                     case "district":
                         spnDistrict.setText(value);
                         destModel.setDistrict(result);
-//                        emptyField[5] = false;
+                        emptyField[5] = false;
                         break;
                 }
             }
@@ -209,14 +163,66 @@ public class FragmentDestination extends Fragment {
         rbFemale = (RadioButton) view.findViewById(R.id.rb_female_destination);
 
         //Address
-        spnProvince = (Button) view.findViewById(R.id.spn_province_destination);
+        spnProvince = (Spinner) view.findViewById(R.id.spn_province_destination);
         spnCity = (Button) view.findViewById(R.id.spn_city_destination);
         spnDistrict = (Button) view.findViewById(R.id.spn_district_destination);
         edtAddress = (EditText) view.findViewById(R.id.edt_address_destination);
         edtZipCode = (EditText) view.findViewById(R.id.edt_zip_destination);
+        adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, name);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnProvince.setAdapter(adapter);
     }
 
     private void showToast(String message) {
         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    private class FetchData {
+        private String param;
+        private String keyParam;
+        private String url;
+        private String requestResult = null;
+
+        public FetchData(String keyParam, String param, String url) {
+            this.keyParam = keyParam;
+            this.param = param;
+            this.url = url;
+        }
+
+        public String getData() {
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    requestResult = response;
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e("error", error.getMessage());
+                }
+            }) {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<>();
+                    params.put(keyParam, param);
+                    return params;
+                }
+
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("Content-Type", "application/x-www-form-urlencoded");
+                    return params;
+                }
+            };
+
+            RetryPolicy retryPolicy = new DefaultRetryPolicy(10000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+            stringRequest.setRetryPolicy(retryPolicy);
+            RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+            requestQueue.add(stringRequest);
+
+            return requestResult;
+        }
+
     }
 }

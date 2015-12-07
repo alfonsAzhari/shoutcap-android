@@ -80,7 +80,7 @@ public class FragmentCreateShout extends Fragment {
 
                 fileColor = "baseball_color.json";
                 fileModel = "model_cap_baseball.json";
-                capArrayName = R.array.cap_img_baseball_list;
+//                capArrayName = R.array.cap_img_baseball_list;
                 indexCap = 0;
             } else {
                 spinCategory.setEnabled(true);
@@ -88,7 +88,7 @@ public class FragmentCreateShout extends Fragment {
 
                 fileColor = "classic_color.json";
                 fileModel = "model_cap_trucker_classic.json";
-                capArrayName = R.array.cap_img_trucker_classic_list;
+//                capArrayName = R.array.cap_img_trucker_classic_list;
                 indexCap = 0;
             }
 
@@ -99,15 +99,15 @@ public class FragmentCreateShout extends Fragment {
                 e.printStackTrace();
             }
 
-            imgCap = getResources().getStringArray(capArrayName);
-//            imgCap = model;
-//            Log.i("info", String.valueOf(imgCap[0]));
-//            Log.i("info", model.get(0).getImg_path());
+            String[] nameCap = new String[model.size()];
+            int indexImage = 0;
+            for (ModelCapModel cap : model) {
+                nameCap[indexImage++] = cap.getImg_path();
+            }
+            imgCap = nameCap;
             webViewChangeCap(imgCap[0]);
-//            webViewChangeCap(model.get(0).getImg_path());
 
             capsModel.setModel(model.get(0).getId());
-//            Log.i("info id", String.valueOf(capsModel.getModel()));
             capsModel.setColor(color.get(0).getId());
 
             String[] colorList = new String[color.size()];
@@ -165,7 +165,12 @@ public class FragmentCreateShout extends Fragment {
                 e.printStackTrace();
             }
 
-            imgCap = getResources().getStringArray(capArrayName);
+            String[] nameCap = new String[model.size()];
+            int indexImage = 0;
+            for (ModelCapModel cap : model) {
+                nameCap[indexImage++] = cap.getImg_path();
+            }
+            imgCap = nameCap;
             webViewChangeCap(imgCap[0]);
 
             colorList = new String[color.size()];
@@ -251,6 +256,7 @@ public class FragmentCreateShout extends Fragment {
                             if (indexCap < imgCap.length) {
                                 indexCap++;
                                 webViewChangeCap(imgCap[indexCap]);
+                                webViewChangeCap(imgCap[indexCap]);
 //                                Log.i("image choose",model.get(indexCap).getImg_path());
 //                                scrollView.setScrollable(true);
                             }
@@ -332,6 +338,7 @@ public class FragmentCreateShout extends Fragment {
             Log.i("size", capsModel.getSize());
             Log.i("font", capsModel.getFont());
             Log.i("font size", String.valueOf(capsModel.getFontsize()));
+            Log.i("font color", String.valueOf(capsModel.getColor()));
             Log.i("text", capsModel.getText());
             Log.i("line", String.valueOf(capsModel.getLine()));
             Log.i("image", capsModel.getBaseImage());

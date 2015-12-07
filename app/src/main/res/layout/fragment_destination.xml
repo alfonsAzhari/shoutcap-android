@@ -114,19 +114,28 @@
                 android:paddingRight="16dp"
                 android:paddingTop="16dp">
 
-                <Button
+                <Spinner
                     android:id="@+id/spn_province_destination"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:background="@drawable/abc_spinner_textfield_background_material"
-                    android:drawableRight="@drawable/abc_spinner_mtrl_am_alpha"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="8dp"
-                    android:text="Province"
-                    android:textAlignment="gravity"
-                    android:textAllCaps="false"
-                    android:textSize="16sp" />
+                    android:entries="@array/cap_trucker_list"
+                    android:spinnerMode="dialog"/>
+
+                <!--<Button-->
+                <!--android:id="@+id/spn_province_destination"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="2dp"-->
+                <!--android:background="@drawable/abc_spinner_textfield_background_material"-->
+                <!--android:drawableRight="@drawable/abc_spinner_mtrl_am_alpha"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:paddingLeft="8dp"-->
+                <!--android:text="Province"-->
+                <!--android:textAlignment="gravity"-->
+                <!--android:textAllCaps="false"-->
+                <!--android:textSize="16sp" />-->
 
                 <Button
                     android:id="@+id/spn_city_destination"
