@@ -1,6 +1,5 @@
 package co.shoutnet.shoutcap;
 
-import android.app.DialogFragment;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,7 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -25,11 +23,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import co.shoutnet.shoutcap.model.DestinationModel;
-import co.shoutnet.shoutcap.utility.AddressDialog;
+import co.shoutnet.shoutcap.model.ModelProvince;
+import co.shoutnet.shoutcap.utility.Parser;
 
 public class FragmentDestination extends Fragment {
 
@@ -42,8 +42,8 @@ public class FragmentDestination extends Fragment {
     private RadioButton rbFemale;
     //address
     private Spinner spnProvince;
-    private Button spnCity;
-    private Button spnDistrict;
+    private Spinner spnCity;
+    private Spinner spnDistrict;
     private EditText edtAddress;
     private EditText edtZipCode;
     private Button btnSubmit;
@@ -74,9 +74,6 @@ public class FragmentDestination extends Fragment {
         initView(view);
         initViewAction();
 
-        fetchData = new FetchData("prov", "prov", "https://api.shoutnet.co/shoutid/get_provinsi.php");
-        fetchData.getData();
-
         return view;
     }
 
@@ -96,10 +93,14 @@ public class FragmentDestination extends Fragment {
             }
         });
 
+        getData("prov", "prov", "https://api.shoutnet.co/shoutid/get_provinsi.php", spnProvince);
+
         spnProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+                String selectedItem = spnProvince.getSelectedItem().toString();
+                String url = "https://api.shoutnet.co/shoutid/get_kota.php";
+                getData(selectedItem, "provinsi", url, spnCity);
             }
 
             @Override
@@ -107,51 +108,45 @@ public class FragmentDestination extends Fragment {
 
             }
         });
-        spnCity.setOnClickListener(new View.OnClickListener() {
+
+        spnCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View view) {
-                showDialog(name, "city");
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String selectedItem = spnCity.getSelectedItem().toString();
+                String url = "https://api.shoutnet.co/shoutid/get_kecamatan.php";
+                getData(selectedItem, "kota", url, spnDistrict);
             }
-        });
-        spnDistrict.setOnClickListener(new View.OnClickListener() {
+
             @Override
-            public void onClick(View view) {
-                showDialog(name, "district");
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
 
     }
 
-    private void getData() {
-
-    }
-
-    private void showDialog(String[] name, final String init) {
-        DialogFragment dialogFragment = AddressDialog.newInstance(name, new AddressDialog.AddrDialogListener() {
+    private void getData(String param, String key, String url, final Spinner spinner) {
+        fetchData = new FetchData(param, key, url, new RequestListener() {
             @Override
-            public void result(String value) {
-                result = value;
-                switch (init) {
-//                    case "prov":
-//                        spnProvince.setText(value);
-//                        destModel.setProvince(value);
-//                        emptyField[3] = false;
-//                        break;
-                    case "city":
-                        spnCity.setText(value);
-                        destModel.setCity(result);
-                        emptyField[4] = false;
-                        break;
-                    case "district":
-                        spnDistrict.setText(value);
-                        destModel.setDistrict(result);
-                        emptyField[5] = false;
-                        break;
+            public void OnDataLoaded(String result) {
+                ModelProvince dataAddrs = null;
+                try {
+                    dataAddrs = Parser.getDataAddrs(result);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                if (dataAddrs != null) {
+                    String[] data = dataAddrs.getItem();
+                    if (data != null) {
+                        adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, data);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//                    spnProvince.setAdapter(adapter);
+                        spinner.setAdapter(adapter);
+                        spinner.setEnabled(true);
+                    }
                 }
             }
         });
-        dialogFragment.setCancelable(false);
-        dialogFragment.show(getFragmentManager(), "Address");
     }
 
     private void initView(View view) {
@@ -164,17 +159,16 @@ public class FragmentDestination extends Fragment {
 
         //Address
         spnProvince = (Spinner) view.findViewById(R.id.spn_province_destination);
-        spnCity = (Button) view.findViewById(R.id.spn_city_destination);
-        spnDistrict = (Button) view.findViewById(R.id.spn_district_destination);
+        spnCity = (Spinner) view.findViewById(R.id.spn_city_destination);
+        spnDistrict = (Spinner) view.findViewById(R.id.spn_district_destination);
+        spnCity.setEnabled(false);
+        spnDistrict.setEnabled(false);
         edtAddress = (EditText) view.findViewById(R.id.edt_address_destination);
         edtZipCode = (EditText) view.findViewById(R.id.edt_zip_destination);
-        adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, name);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spnProvince.setAdapter(adapter);
     }
 
-    private void showToast(String message) {
-        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+    public interface RequestListener {
+        void OnDataLoaded(String result);
     }
 
     private class FetchData {
@@ -182,11 +176,14 @@ public class FragmentDestination extends Fragment {
         private String keyParam;
         private String url;
         private String requestResult = null;
+        private RequestListener listener;
 
-        public FetchData(String keyParam, String param, String url) {
-            this.keyParam = keyParam;
+        public FetchData(String param, String keyParam, String url, RequestListener listener) {
             this.param = param;
+            this.keyParam = keyParam;
             this.url = url;
+            this.listener = listener;
+            getData();
         }
 
         public String getData() {
@@ -194,6 +191,8 @@ public class FragmentDestination extends Fragment {
                 @Override
                 public void onResponse(String response) {
                     requestResult = response;
+                    Log.i("json", response);
+                    listener.OnDataLoaded(response);
                 }
             }, new Response.ErrorListener() {
                 @Override

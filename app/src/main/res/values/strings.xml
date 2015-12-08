@@ -6,6 +6,16 @@
 
     <string name="shout_id">ShoutID</string>
 
+    <string-array name="province">
+        <item>Province</item>
+    </string-array>
+    <string-array name="city">
+        <item>CITY</item>
+    </string-array>
+    <string-array name="district">
+        <item>District</item>
+    </string-array>
+
     //drawer item list
     <string name="drawer_item_news">News</string>
     <string name="drawer_item_promo">Promo</string>
