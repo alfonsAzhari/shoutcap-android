@@ -1,8 +1,10 @@
 package co.shoutnet.shoutcap.adapter;
 
 import android.content.Context;
-import android.net.Uri;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,13 +45,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
     @Override
     public void onBindViewHolder(final CartViewHolder holder, final int position) {
-//        price = carts.get(position).getPrice();
-//        Log.i("price " + position, String.valueOf(price));
-//        total = CartActivity.getTotal();
-//        total += subTotal;
-//        CartActivity.setTotal(total);
         subTotal = carts.get(position).getSubTotal();
-        holder.imgCart.setImageURI(Uri.parse(carts.get(position).getImage()));
+        byte[] decoded = Base64.decode(carts.get(position).getImage(), Base64.DEFAULT);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(decoded, 0, decoded.length);
+        holder.imgCart.setImageBitmap(bitmap);
         holder.txtProduct.setText(carts.get(position).getName());
         holder.txtPrice.setText(Integer.toString(carts.get(position).getPrice()));
         holder.txtSubTotal.setText(CartActivity.getCurrency(subTotal));

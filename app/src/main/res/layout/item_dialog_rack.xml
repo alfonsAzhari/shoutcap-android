@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_dialog_title">
+
+    <co.shoutnet.shoutcap.SquareImage
+        android:id="@+id/img_preview_rack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_dialog_title"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg4"/>
+
+    <Button
+        android:id="@+id/btn_addtocart_rack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/img_preview_rack"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/background_btn_rack"
+        android:text="Add to cart"/>
+
+
+</RelativeLayout>

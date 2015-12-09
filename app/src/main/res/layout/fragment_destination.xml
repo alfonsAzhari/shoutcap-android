@@ -140,47 +140,6 @@
                     android:background="@drawable/abc_spinner_textfield_background_material"
                     android:entries="@array/district"
                     android:spinnerMode="dialog" />
-                <!--<Button-->
-                <!--android:id="@+id/spn_province_destination"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginTop="2dp"-->
-                <!--android:background="@drawable/abc_spinner_textfield_background_material"-->
-                <!--android:drawableRight="@drawable/abc_spinner_mtrl_am_alpha"-->
-                <!--android:gravity="center_vertical"-->
-                <!--android:paddingLeft="8dp"-->
-                <!--android:text="Province"-->
-                <!--android:textAlignment="gravity"-->
-                <!--android:textAllCaps="false"-->
-                <!--android:textSize="16sp" />-->
-
-                <!--<Button-->
-                <!--android:id="@+id/spn_city_destination"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginBottom="10dp"-->
-                <!--android:layout_marginTop="10dp"-->
-                <!--android:background="@drawable/abc_spinner_textfield_background_material"-->
-                <!--android:drawableRight="@drawable/abc_spinner_mtrl_am_alpha"-->
-                <!--android:gravity="center_vertical"-->
-                <!--android:paddingLeft="8dp"-->
-                <!--android:text="City"-->
-                <!--android:textAlignment="gravity"-->
-                <!--android:textAllCaps="false"-->
-                <!--android:textSize="16sp" />-->
-
-                <!--<Button-->
-                <!--android:id="@+id/spn_district_destination"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:background="@drawable/abc_spinner_textfield_background_material"-->
-                <!--android:drawableRight="@drawable/abc_spinner_mtrl_am_alpha"-->
-                <!--android:gravity="center_vertical"-->
-                <!--android:paddingLeft="8dp"-->
-                <!--android:text="District"-->
-                <!--android:textAlignment="gravity"-->
-                <!--android:textAllCaps="false"-->
-                <!--android:textSize="16sp" />-->
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"

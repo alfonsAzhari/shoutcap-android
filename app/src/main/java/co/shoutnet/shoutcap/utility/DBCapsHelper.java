@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.net.Uri;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -69,6 +68,7 @@ public class DBCapsHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+        values.put(KEY_ID, capsModel.getId());
         values.put(KEY_TEXT, capsModel.getText());
         values.put(KEY_MODEL, capsModel.getModel());
         values.put(KEY_SIZE, capsModel.getSize());
@@ -133,10 +133,10 @@ public class DBCapsHelper extends SQLiteOpenHelper {
         return cursor.getInt(0);
     }
 
-    public List<ModelAdapterRack> getRackData() {
-        List<ModelAdapterRack> data = new ArrayList<>();
+    public ArrayList<ModelAdapterRack> getRackData() {
+        ArrayList<ModelAdapterRack> data = new ArrayList<>();
 
-        String query = "SELECT baseImage FROM " + TB_NAME + " WHERE status = 'rack' OR status = 'both'";
+        String query = "SELECT id,baseImage FROM " + TB_NAME + " WHERE status = 'rack' OR status = 'both'";
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
 
@@ -144,7 +144,8 @@ public class DBCapsHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 rack = new ModelAdapterRack();
-                rack.setImgRack(Uri.parse(cursor.getString(0)));
+                rack.setId(cursor.getString(0));
+                rack.setImgRack(cursor.getString(1));
 
                 data.add(rack);
             } while (cursor.moveToNext());
@@ -178,13 +179,13 @@ public class DBCapsHelper extends SQLiteOpenHelper {
         return data;
     }
 
-    public void updateStatus(String status){
+    public void updateStatus(String status, String id) {
         SQLiteDatabase db=getWritableDatabase();
 
         ContentValues values=new ContentValues();
         values.put(KEY_STATUS,status);
 
-        db.update(TB_NAME,values,"id = "+getLatestId(),null);
+        db.update(TB_NAME, values, "id = " + id, null);
         db.close();
     }
 
