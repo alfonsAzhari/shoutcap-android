@@ -12,7 +12,9 @@ import java.util.List;
 import co.shoutnet.shoutcap.model.ModelCapModel;
 import co.shoutnet.shoutcap.model.ModelCart;
 import co.shoutnet.shoutcap.model.ModelColor;
+import co.shoutnet.shoutcap.model.ModelOnlyResult;
 import co.shoutnet.shoutcap.model.ModelProvince;
+import co.shoutnet.shoutcap.model.ModelQty;
 import co.shoutnet.shoutcap.model.ModelRack;
 
 /**
@@ -53,5 +55,15 @@ public class Parser {
     public static ModelRack getRackResponse(String json) throws IOException {
         gson = new Gson();
         return gson.fromJson(json, ModelRack.class);
+    }
+
+    public static String getJsonCart(List<ModelQty> obj) throws IOException {
+        gson = new Gson();
+        return gson.toJson(obj);
+    }
+
+    public static ModelOnlyResult getResult(String json) throws IOException {
+        gson = new Gson();
+        return gson.fromJson(json, ModelOnlyResult.class);
     }
 }

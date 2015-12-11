@@ -33,6 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@id/btn_purchase_cart"
+            android:background="@android:color/white"
             android:padding="8dp" />
     </RelativeLayout>
 

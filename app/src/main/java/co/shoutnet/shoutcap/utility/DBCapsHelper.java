@@ -179,6 +179,23 @@ public class DBCapsHelper extends SQLiteOpenHelper {
         return data;
     }
 
+    public List<String> getCart() {
+        List<String> data = new ArrayList<>();
+        String query = "SELECT id FROM " + TB_NAME + " WHERE status = 'cart' OR status = 'both'";
+
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                data.add(cursor.getString(0));
+            } while (cursor.moveToNext());
+        }
+        db.close();
+        cursor.close();
+        return data;
+    }
+
     public void updateStatus(String status, String id) {
         SQLiteDatabase db=getWritableDatabase();
 
