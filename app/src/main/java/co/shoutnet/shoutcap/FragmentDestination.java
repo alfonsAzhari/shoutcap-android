@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -33,6 +34,7 @@ import java.util.Map;
 import co.shoutnet.shoutcap.model.DestinationModel;
 import co.shoutnet.shoutcap.model.ModelProvince;
 import co.shoutnet.shoutcap.utility.Parser;
+import co.shoutnet.shoutcap.utility.VolleyRequest;
 
 public class FragmentDestination extends Fragment {
 
@@ -62,26 +64,6 @@ public class FragmentDestination extends Fragment {
     private ArrayAdapter<String> adapter;
 
     private String[] name = {"name1", "name2", "name3", "name4", "name5", "name6", "name7", "name8"};
-    private TextWatcher watcher = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            if (s.equals("") || s == null || count < 1) {
-                lyName.setError("isi woi");
-            } else {
-                lyName.setErrorEnabled(false);
-            }
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-
-        }
-    };
 
     public static FragmentDestination newInstance(String param1, String param2) {
         FragmentDestination fragment = new FragmentDestination();
@@ -106,8 +88,9 @@ public class FragmentDestination extends Fragment {
     }
 
     private void initViewAction() {
-
-        edtName.addTextChangedListener(watcher);
+        edtName.addTextChangedListener(new Watcher(edtName));
+        edtPhone.addTextChangedListener(new Watcher(edtPhone));
+        edtEmail.addTextChangedListener(new Watcher(edtEmail));
         destModel.setGender("laki-laki");
         rbMale.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,7 +120,6 @@ public class FragmentDestination extends Fragment {
 
             }
         });
-
         spnCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -152,6 +134,154 @@ public class FragmentDestination extends Fragment {
             }
         });
 
+        edtAddress.addTextChangedListener(new Watcher(edtAddress));
+        edtZipCode.addTextChangedListener(new Watcher(edtZipCode));
+
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                edtValidate();
+            }
+        });
+    }
+
+    private boolean validateName() {
+        if (edtName.getText().toString().trim().isEmpty()) {
+            lyName.setError("Please insert consignee name");
+            return false;
+        } else {
+            lyName.setErrorEnabled(false);
+        }
+        return true;
+    }
+
+    private boolean validatePhone() {
+        if (edtPhone.getText().toString().trim().isEmpty()) {
+            lyPhone.setError("Please insert phone number");
+            return false;
+        } else {
+            lyPhone.setErrorEnabled(false);
+        }
+        return true;
+    }
+
+    private boolean validateEmail() {
+        if (edtEmail.getText().toString().trim().isEmpty()) {
+            lyEmail.setError("Please insert e-email");
+            return false;
+        } else {
+            lyEmail.setErrorEnabled(false);
+        }
+        return true;
+    }
+
+    private boolean validateAddress() {
+        if (edtAddress.getText().toString().trim().isEmpty()) {
+            lyAddrs.setError("Please insert destination address");
+            return false;
+        } else {
+            lyAddrs.setErrorEnabled(false);
+        }
+        return true;
+    }
+
+    private boolean validateZip() {
+        if (edtZipCode.getText().toString().trim().isEmpty()) {
+            lyZip.setError("Please insert zip code");
+            return false;
+        } else {
+            lyZip.setErrorEnabled(false);
+        }
+        return true;
+    }
+
+//    private boolean validateProvince(){
+//        if (spnProvince.getSelectedItem().toString().isEmpty()){
+//            lyZip.setError("Please insert zip code");
+//            return false;
+//        }else {
+//            lyZip.setErrorEnabled(false);
+//        }
+//        return true;
+//    }
+//    private boolean validateCity(){
+//        if (edtZipCode.getText().toString().trim().isEmpty()){
+//            lyZip.setError("Please insert zip code");
+//            return false;
+//        }else {
+//            lyZip.setErrorEnabled(false);
+//        }
+//        return true;
+//    }
+//    private boolean validateDistrict(){
+//        if (edtZipCode.getText().toString().trim().isEmpty()){
+//            lyZip.setError("Please insert zip code");
+//            return false;
+//        }else {
+//            lyZip.setErrorEnabled(false);
+//        }
+//        return true;
+//    }
+
+    private void edtValidate() {
+        if (!validateName()) {
+            Toast.makeText(getActivity(), "Name field is empty", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!validatePhone()) {
+            Toast.makeText(getActivity(), "Phone field is empty", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!validateEmail()) {
+            Toast.makeText(getActivity(), "E-Mail field is empty", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!validateAddress()) {
+            Toast.makeText(getActivity(), "Address field is empty", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!validateZip()) {
+            Toast.makeText(getActivity(), "Zip code field is empty", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //send data to server
+        Log.i("info", "redeh to upload data");
+
+        Map<String, String> params = mappingData();
+
+        String url = "https://api.shoutnet.co/shoutcap/order_tujuan.php";
+        new VolleyRequest().request(getActivity(), url, params, new VolleyRequest.RequestListener() {
+            @Override
+            public void OnSuccess(String response) {
+                Log.i("json", response);
+            }
+
+            @Override
+            public void OnFaliure() {
+
+            }
+        });
+    }
+
+    private Map<String, String> mappingData() {
+        Map<String, String> params = new HashMap<>();
+        params.put("shoutid", "devtest");
+        params.put("sessionid", "fab19834f4aac1c399b1273245d7b648");
+        params.put("nama", edtName.getText().toString().trim());
+        params.put("hp", edtPhone.getText().toString().trim());
+        params.put("email", edtEmail.getText().toString().trim());
+        params.put("alamat", edtAddress.getText().toString().trim());
+        params.put("kodepos", edtZipCode.getText().toString().trim());
+        params.put("gender", destModel.getGender());
+        params.put("provinsi", spnProvince.getSelectedItem().toString());
+        params.put("kota", spnCity.getSelectedItem().toString());
+        params.put("kecamatan", spnDistrict.getSelectedItem().toString());
+        return params;
     }
 
     private void getData(String param, String key, String url, final Spinner spinner) {
@@ -200,6 +330,7 @@ public class FragmentDestination extends Fragment {
         lyAddrs = (TextInputLayout) view.findViewById(R.id.ly_addrs_dest);
         lyZip = (TextInputLayout) view.findViewById(R.id.ly_zip_dest);
 
+        btnSubmit = (Button) view.findViewById(R.id.btn_submit_destination);
 //        ProgressBar progressBar=(ProgressBar)
     }
 
@@ -259,5 +390,44 @@ public class FragmentDestination extends Fragment {
             return requestResult;
         }
 
+    }
+
+    private class Watcher implements TextWatcher {
+        private View view;
+
+        public Watcher(View view) {
+            this.view = view;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            switch (view.getId()) {
+                case R.id.edt_name_destination:
+                    validateName();
+                    break;
+                case R.id.edt_phone_destination:
+                    validatePhone();
+                    break;
+                case R.id.edt_email_destination:
+                    validateEmail();
+                    break;
+                case R.id.edt_address_destination:
+                    validateAddress();
+                    break;
+                case R.id.edt_zip_destination:
+                    validateZip();
+                    break;
+            }
+        }
     }
 }

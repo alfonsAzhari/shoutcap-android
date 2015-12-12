@@ -177,6 +177,7 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/btn_submit_destination"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"

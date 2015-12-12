@@ -37,6 +37,7 @@ import java.util.Map;
 import co.shoutnet.shoutcap.adapter.CartAdapter;
 import co.shoutnet.shoutcap.model.ModelAdapterCart;
 import co.shoutnet.shoutcap.model.ModelQty;
+import co.shoutnet.shoutcap.model.ModelVoucher;
 import co.shoutnet.shoutcap.utility.DBCapsHelper;
 import co.shoutnet.shoutcap.utility.Parser;
 import co.shoutnet.shoutcap.utility.RecyclerSwipeTouchListener;
@@ -53,6 +54,9 @@ public class CartActivity extends AppCompatActivity {
     private ItemTouchHelper itemTouchHelper;
     private String[] capName;
     private List<ModelAdapterCart> modelAdapterCarts;
+    private String jsonQty;
+    private String jsonVoucher;
+    private List<String> data;
 
     public static long getTotal() {
         return total;
@@ -134,9 +138,13 @@ public class CartActivity extends AppCompatActivity {
                     }
                     adapter.notifyItemRemoved(position);
                     recyclerView.removeViewAt(position);
-                    new DeleteCap().deleteData("https://api.shoutnet.co/shoutcap/delete_cart.php", id, position, new CartListenter() {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("shoutid", "devtest");
+                    params.put("sessionid", "fab19834f4aac1c399b1273245d7b648");
+                    params.put("id_cart", id);
+                    new DeleteCap().deleteData("https://api.shoutnet.co/shoutcap/delete_cart.php", params, new CartListenter() {
                         @Override
-                        public void OnSuccess(String response, int pos) {
+                        public void OnSuccess(String response) {
 
                         }
 
@@ -164,7 +172,7 @@ public class CartActivity extends AppCompatActivity {
                 View child;
                 EditText editText;
                 ModelQty modelQty;
-                List<String> data = new DBCapsHelper(getApplicationContext()).getCart();
+                data = new DBCapsHelper(getApplicationContext()).getCart();
                 List<ModelQty> obj = Collections.synchronizedList(new ArrayList<ModelQty>());
                 for (int i = 0; i < size; i++) {
                     child = recyclerView.getChildAt(i);
@@ -180,6 +188,7 @@ public class CartActivity extends AppCompatActivity {
 //                EditText editText=(EditText)v.findViewById(R.id.edt_count_cart);
                 try {
                     Log.i("new json", Parser.getJsonCart(obj));
+                    jsonQty = Parser.getJsonCart(obj);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -194,37 +203,66 @@ public class CartActivity extends AppCompatActivity {
     private void dialogResult() {
         DialogFragment dialogFragment = VoucherDialog.newInstance(capName, new VoucherDialog.DialogListener() {
             @Override
-            public void resultItemOnly(String item) {
-                if (item != null) {
-                    Log.i("item selected", item);
-                    List<String> data = new DBCapsHelper(getApplicationContext()).getCart();
-                    List<ModelQty> obj = Collections.synchronizedList(new ArrayList<ModelQty>());
-                    ModelQty modelQty;
-                    for (int i = 0; i < data.size(); i++) {
-                        modelQty = new ModelQty();
-                        modelQty.setId(data.get(i));
-                        modelQty.setQty(i);
-                        obj.add(modelQty);
-                    }
-                    try {
-                        Log.i("String", Parser.getJsonCart(obj));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    Intent intent = new Intent(getApplicationContext(), OrderConfirmation.class);
-                    startActivity(intent);
-                }
+            public void skipVoucher() {
+                submitData();
+                Intent intent = new Intent(getApplicationContext(), OrderConfirmation.class);
+                startActivity(intent);
             }
 
             @Override
-            public void resultItemVoucher(String item, String voucherCode) {
-                if (item != null && voucherCode != null) {
-                    Log.i("item selected", item);
-                    Log.i("voucher code", voucherCode);
+            public void resultItemVoucher(int item, String voucherCode) {
+//                if (item != null && voucherCode != null) {
+                Log.i("item selected", String.valueOf(item));
+                Log.i("voucher code", voucherCode);
+                String id = data.get(item);
+                Log.i("id", id);
+                List<ModelVoucher> toJson = Collections.synchronizedList(new ArrayList<ModelVoucher>());
+
+                ModelVoucher modelVoucher = new ModelVoucher();
+                modelVoucher.setId(id);
+                modelVoucher.setVoucherCode(voucherCode.trim());
+
+                toJson.add(modelVoucher);
+
+                try {
+                    Log.i("json", Parser.getJsonVoucher(toJson));
+                    jsonVoucher = Parser.getJsonVoucher(toJson);
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
+
+                submitData();
+//                }
             }
         });
         dialogFragment.show(getFragmentManager(), "Voucher");
+    }
+
+    private void submitData() {
+        Map<String, String> params = new HashMap<>();
+        params.put("shoutid", "devtest");
+        params.put("sessionid", "fab19834f4aac1c399b1273245d7b648");
+        if (jsonQty != null) {
+            Log.i("jsonQty", "not null");
+            params.put("qty", jsonQty);
+        }
+        if (jsonVoucher != null) {
+            Log.i("jsonVoucher", "not null");
+            params.put("voucher", jsonVoucher);
+        }
+
+        String url = "https://api.shoutnet.co/shoutcap/update_qty_voucher_cart.php";
+        new DeleteCap().deleteData(url, params, new CartListenter() {
+            @Override
+            public void OnSuccess(String response) {
+
+            }
+
+            @Override
+            public void OnFaliure() {
+
+            }
+        });
     }
 
     private void initToolbar() {
@@ -262,18 +300,18 @@ public class CartActivity extends AppCompatActivity {
     }
 
     public interface CartListenter {
-        void OnSuccess(String response, int pos);
+        void OnSuccess(String response);
 
         void OnFaliure();
     }
 
     private class DeleteCap {
-        public void deleteData(String url, final String id, final int pos, final CartListenter listenter) {
+        public void deleteData(String url, final Map<String, String> param, final CartListenter listenter) {
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     Log.i("response", response);
-                    listenter.OnSuccess(response, pos);
+                    listenter.OnSuccess(response);
                 }
             }, new Response.ErrorListener() {
                 @Override
@@ -284,11 +322,8 @@ public class CartActivity extends AppCompatActivity {
             }) {
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
-                    Map<String, String> params = new HashMap<>();
-                    params.put("shoutid", "devtest");
-                    params.put("sessionid", "fab19834f4aac1c399b1273245d7b648");
-                    params.put("id_cart", id);
-                    return params;
+                    Log.i("param", param.get("shoutid"));
+                    return param;
                 }
 
 //                @Override

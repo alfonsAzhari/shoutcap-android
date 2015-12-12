@@ -16,6 +16,7 @@ import co.shoutnet.shoutcap.model.ModelOnlyResult;
 import co.shoutnet.shoutcap.model.ModelProvince;
 import co.shoutnet.shoutcap.model.ModelQty;
 import co.shoutnet.shoutcap.model.ModelRack;
+import co.shoutnet.shoutcap.model.ModelVoucher;
 
 /**
  * Created by CodeLabs on 09/11/2015.
@@ -65,5 +66,10 @@ public class Parser {
     public static ModelOnlyResult getResult(String json) throws IOException {
         gson = new Gson();
         return gson.fromJson(json, ModelOnlyResult.class);
+    }
+
+    public static String getJsonVoucher(List<ModelVoucher> obj) throws IOException {
+        gson = new Gson();
+        return gson.toJson(obj);
     }
 }

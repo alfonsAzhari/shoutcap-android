@@ -5,10 +5,10 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import co.shoutnet.shoutcap.R;
@@ -20,7 +20,7 @@ public class VoucherDialog extends DialogFragment {
 
     private static String[] mcaps;
     private static DialogListener dialogListener;
-    private String itemSelected;
+    private int itemSelected = 0;
 
     public static VoucherDialog newInstance(String[] caps,DialogListener listener) {
         mcaps = caps;
@@ -40,40 +40,43 @@ public class VoucherDialog extends DialogFragment {
                 .setSingleChoiceItems(mcaps, 0, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        ListView listView = ((AlertDialog) dialogInterface).getListView();
-                        Object o = listView.getAdapter().getItem(listView.getCheckedItemPosition());
-
-                        itemSelected = o.toString();
+//                        ListView listView = ((AlertDialog) dialogInterface).getListView();
+//                        Object o = listView.getAdapter().getItem(listView.getCheckedItemPosition());
+//
+//                        itemSelected = o.toString();
+//                        Log.i("sel", String.valueOf(i));
+                        itemSelected = i;
                     }
                 })
                 .setPositiveButton("Continue", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+//                        Log.i("i", String.valueOf(i));
                         EditText edtVoucher = (EditText) view.findViewById(R.id.edt_code_voucher);
-                        if (itemSelected == null || itemSelected.equals("")) {
-                            itemSelected = mcaps[0];
-                        }
-                        if (edtVoucher.getText() == null) {
+//                        if (itemSelected == null || itemSelected.equals("")) {
+//                            itemSelected = mcaps[0];
+//                        }
+                        if (edtVoucher.getText() == null || edtVoucher.getText().equals("")) {
                             Toast.makeText(getActivity(), "Insert Voucher Code or Skip", Toast.LENGTH_SHORT).show();
                         } else {
                             dialogListener.resultItemVoucher(itemSelected, edtVoucher.getText().toString());
                         }
+                        Log.i("sel", String.valueOf(itemSelected));
+
                     }
                 })
                 .setNegativeButton("Skip", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        if (itemSelected == null || itemSelected.equals("")) {
-                            itemSelected = mcaps[0];
-                        }
-                        dialogListener.resultItemOnly(itemSelected);
+                        dialogListener.skipVoucher();
                     }
                 });
         return builder.create();
     }
 
     public interface DialogListener{
-        void resultItemOnly(String item);
-        void resultItemVoucher(String item,String voucherCode);
+        void skipVoucher();
+
+        void resultItemVoucher(int item, String voucherCode);
     }
 }
