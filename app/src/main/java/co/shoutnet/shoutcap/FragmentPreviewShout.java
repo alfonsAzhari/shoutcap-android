@@ -224,8 +224,8 @@ public class FragmentPreviewShout extends Fragment {
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String, String> params = new HashMap<>();
-                    params.put("shoutid", "hanswdd");
-                    params.put("sessionid", "921782ced844a755128539a4c05e99cc");
+                    params.put("shoutid", "devtest");
+                    params.put("sessionid", "fab19834f4aac1c399b1273245d7b648");
                     params.put("from", "app");
                     params.put("id_model", String.valueOf(capsModel.getModel()));
                     params.put("size", capsModel.getSize());

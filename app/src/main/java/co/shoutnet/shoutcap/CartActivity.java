@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -35,7 +36,6 @@ import java.util.Map;
 
 import co.shoutnet.shoutcap.adapter.CartAdapter;
 import co.shoutnet.shoutcap.model.ModelAdapterCart;
-import co.shoutnet.shoutcap.model.ModelOnlyResult;
 import co.shoutnet.shoutcap.model.ModelQty;
 import co.shoutnet.shoutcap.utility.DBCapsHelper;
 import co.shoutnet.shoutcap.utility.Parser;
@@ -80,6 +80,9 @@ public class CartActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         modelAdapterCarts = new DBCapsHelper(getApplicationContext()).getCartData();
+        if (modelAdapterCarts.size() > 0) {
+            btnTotal.setEnabled(true);
+        }
         total = 0;
         capName = new String[modelAdapterCarts.size()];
         for (int i = 0; i < modelAdapterCarts.size(); i++) {
@@ -112,29 +115,29 @@ public class CartActivity extends AppCompatActivity {
             public void onDismiss(RecyclerView recyclerView, int[] reversePositions) {
                 for (int position : reversePositions) {
                     String id = String.valueOf(modelAdapterCarts.get(position).getId());
+                    new DBCapsHelper(getApplicationContext()).deleteCartData(modelAdapterCarts.get(position).getId());
+                    modelAdapterCarts.remove(position);
+                    total = 0;
+                    capName = new String[modelAdapterCarts.size()];
+                    Log.i("size", String.valueOf(modelAdapterCarts.size()));
+                    if (modelAdapterCarts.size() > 0) {
+                        for (int i = 0; i < modelAdapterCarts.size(); i++) {
+                            capName[i] = modelAdapterCarts.get(i).getName();
+                            total += modelAdapterCarts.get(i).getPrice() * modelAdapterCarts.get(i).getQty();
+                            setTotal(total);
+                        }
+                    } else {
+                        capName = null;
+                        total = 0;
+                        setTotal(total);
+                        btnTotal.setEnabled(false);
+                    }
+                    adapter.notifyItemRemoved(position);
+                    recyclerView.removeViewAt(position);
                     new DeleteCap().deleteData("https://api.shoutnet.co/shoutcap/delete_cart.php", id, position, new CartListenter() {
                         @Override
                         public void OnSuccess(String response, int pos) {
-                            ModelOnlyResult modelOnlyResult = new ModelOnlyResult();
-                            try {
-                                modelOnlyResult = Parser.getResult(response);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
 
-                            if (modelOnlyResult.getResult().equals("success") && modelOnlyResult != null) {
-                                new DBCapsHelper(getApplicationContext()).deleteCartData(modelAdapterCarts.get(pos).getId());
-                                Log.i("id remove", String.valueOf(modelAdapterCarts.get(pos).getId()));
-                                adapter.notifyItemRemoved(pos);
-                                modelAdapterCarts.remove(pos);
-                                total = 0;
-                                capName = new String[modelAdapterCarts.size()];
-                                for (int i = 0; i < modelAdapterCarts.size(); i++) {
-                                    capName[i] = modelAdapterCarts.get(i).getName();
-                                    total += modelAdapterCarts.get(i).getPrice() * modelAdapterCarts.get(i).getQty();
-                                    setTotal(total);
-                                }
-                            }
                         }
 
                         @Override
@@ -157,7 +160,29 @@ public class CartActivity extends AppCompatActivity {
         btnTotal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int size = recyclerView.getChildCount();
+                View child;
+                EditText editText;
+                ModelQty modelQty;
+                List<String> data = new DBCapsHelper(getApplicationContext()).getCart();
+                List<ModelQty> obj = Collections.synchronizedList(new ArrayList<ModelQty>());
+                for (int i = 0; i < size; i++) {
+                    child = recyclerView.getChildAt(i);
+                    editText = (EditText) child.findViewById(R.id.edt_count_cart);
+
+                    modelQty = new ModelQty();
+                    modelQty.setId(data.get(i));
+                    modelQty.setQty(Integer.parseInt(editText.getText().toString()));
+                    obj.add(modelQty);
+                }
                 dialogResult();
+//                View v=recyclerView.getChildAt(0);
+//                EditText editText=(EditText)v.findViewById(R.id.edt_count_cart);
+                try {
+                    Log.i("new json", Parser.getJsonCart(obj));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -260,8 +285,8 @@ public class CartActivity extends AppCompatActivity {
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String, String> params = new HashMap<>();
-                    params.put("shoutid", "hanswdd");
-                    params.put("sessionid", "921782ced844a755128539a4c05e99cc");
+                    params.put("shoutid", "devtest");
+                    params.put("sessionid", "fab19834f4aac1c399b1273245d7b648");
                     params.put("id_cart", id);
                     return params;
                 }

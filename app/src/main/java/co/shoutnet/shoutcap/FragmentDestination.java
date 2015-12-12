@@ -2,6 +2,9 @@ package co.shoutnet.shoutcap;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,6 +41,9 @@ public class FragmentDestination extends Fragment {
     private EditText edtName;
     private EditText edtPhone;
     private EditText edtEmail;
+    private TextInputLayout lyName;
+    private TextInputLayout lyPhone;
+    private TextInputLayout lyEmail;
     private RadioButton rbMale;
     private RadioButton rbFemale;
     //address
@@ -46,6 +52,8 @@ public class FragmentDestination extends Fragment {
     private Spinner spnDistrict;
     private EditText edtAddress;
     private EditText edtZipCode;
+    private TextInputLayout lyAddrs;
+    private TextInputLayout lyZip;
     private Button btnSubmit;
     private String result;
     private boolean[] emptyField;
@@ -54,6 +62,26 @@ public class FragmentDestination extends Fragment {
     private ArrayAdapter<String> adapter;
 
     private String[] name = {"name1", "name2", "name3", "name4", "name5", "name6", "name7", "name8"};
+    private TextWatcher watcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            if (s.equals("") || s == null || count < 1) {
+                lyName.setError("isi woi");
+            } else {
+                lyName.setErrorEnabled(false);
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
 
     public static FragmentDestination newInstance(String param1, String param2) {
         FragmentDestination fragment = new FragmentDestination();
@@ -79,6 +107,7 @@ public class FragmentDestination extends Fragment {
 
     private void initViewAction() {
 
+        edtName.addTextChangedListener(watcher);
         destModel.setGender("laki-laki");
         rbMale.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,6 +183,9 @@ public class FragmentDestination extends Fragment {
         edtName = (EditText) view.findViewById(R.id.edt_name_destination);
         edtPhone = (EditText) view.findViewById(R.id.edt_phone_destination);
         edtEmail = (EditText) view.findViewById(R.id.edt_email_destination);
+        lyName = (TextInputLayout) view.findViewById(R.id.ly_name_dest);
+        lyPhone = (TextInputLayout) view.findViewById(R.id.ly_phone_dest);
+        lyEmail = (TextInputLayout) view.findViewById(R.id.ly_email_dest);
         rbMale = (RadioButton) view.findViewById(R.id.rb_male_destination);
         rbFemale = (RadioButton) view.findViewById(R.id.rb_female_destination);
 
@@ -165,6 +197,10 @@ public class FragmentDestination extends Fragment {
         spnDistrict.setEnabled(false);
         edtAddress = (EditText) view.findViewById(R.id.edt_address_destination);
         edtZipCode = (EditText) view.findViewById(R.id.edt_zip_destination);
+        lyAddrs = (TextInputLayout) view.findViewById(R.id.ly_addrs_dest);
+        lyZip = (TextInputLayout) view.findViewById(R.id.ly_zip_dest);
+
+//        ProgressBar progressBar=(ProgressBar)
     }
 
     public interface RequestListener {
