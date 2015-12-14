@@ -16,6 +16,7 @@ import co.shoutnet.shoutcap.model.ModelOnlyResult;
 import co.shoutnet.shoutcap.model.ModelProvince;
 import co.shoutnet.shoutcap.model.ModelQty;
 import co.shoutnet.shoutcap.model.ModelRack;
+import co.shoutnet.shoutcap.model.ModelResponseCheckout;
 import co.shoutnet.shoutcap.model.ModelVoucher;
 
 /**
@@ -71,5 +72,10 @@ public class Parser {
     public static String getJsonVoucher(List<ModelVoucher> obj) throws IOException {
         gson = new Gson();
         return gson.toJson(obj);
+    }
+
+    public static ModelResponseCheckout getResultCheckout(String json) throws IOException {
+        gson = new Gson();
+        return gson.fromJson(json, ModelResponseCheckout.class);
     }
 }

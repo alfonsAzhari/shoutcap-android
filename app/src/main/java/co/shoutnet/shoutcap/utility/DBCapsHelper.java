@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import co.shoutnet.shoutcap.model.CapsModel;
+import co.shoutnet.shoutcap.model.ItemCartModel;
 import co.shoutnet.shoutcap.model.ModelAdapterCart;
 import co.shoutnet.shoutcap.model.ModelAdapterRack;
 
@@ -176,6 +177,31 @@ public class DBCapsHelper extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         db.close();
+        return data;
+    }
+
+    public ArrayList<ItemCartModel> getItemCart() {
+        ArrayList<ItemCartModel> data = new ArrayList<>();
+        ItemCartModel itemCartModel;
+        String query = "SELECT text, size, baseImage, price FROM " + TB_NAME + " WHERE status= 'cart' OR status= 'both'";
+
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                itemCartModel = new ItemCartModel();
+                itemCartModel.setName(cursor.getString(0));
+                itemCartModel.setSize(cursor.getString(1));
+                itemCartModel.setImage(cursor.getString(2));
+                itemCartModel.setPrice(cursor.getInt(3));
+
+                data.add(itemCartModel);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
         return data;
     }
 

@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -36,6 +37,7 @@ import java.util.Map;
 
 import co.shoutnet.shoutcap.adapter.CartAdapter;
 import co.shoutnet.shoutcap.model.ModelAdapterCart;
+import co.shoutnet.shoutcap.model.ModelOnlyResult;
 import co.shoutnet.shoutcap.model.ModelQty;
 import co.shoutnet.shoutcap.model.ModelVoucher;
 import co.shoutnet.shoutcap.utility.DBCapsHelper;
@@ -57,6 +59,7 @@ public class CartActivity extends AppCompatActivity {
     private String jsonQty;
     private String jsonVoucher;
     private List<String> data;
+    private int[] qtyItem;
 
     public static long getTotal() {
         return total;
@@ -182,6 +185,9 @@ public class CartActivity extends AppCompatActivity {
                     modelQty.setId(data.get(i));
                     modelQty.setQty(Integer.parseInt(editText.getText().toString()));
                     obj.add(modelQty);
+
+                    qtyItem = new int[size];
+                    qtyItem[i] = Integer.parseInt(editText.getText().toString());
                 }
                 dialogResult();
 //                View v=recyclerView.getChildAt(0);
@@ -205,8 +211,8 @@ public class CartActivity extends AppCompatActivity {
             @Override
             public void skipVoucher() {
                 submitData();
-                Intent intent = new Intent(getApplicationContext(), OrderConfirmation.class);
-                startActivity(intent);
+//                Intent intent = new Intent(getApplicationContext(), OrderConfirmation.class);
+//                startActivity(intent);
             }
 
             @Override
@@ -249,18 +255,31 @@ public class CartActivity extends AppCompatActivity {
         if (jsonVoucher != null) {
             Log.i("jsonVoucher", "not null");
             params.put("voucher", jsonVoucher);
+        } else {
+            params.put("voucher", "");
         }
 
         String url = "https://api.shoutnet.co/shoutcap/update_qty_voucher_cart.php";
         new DeleteCap().deleteData(url, params, new CartListenter() {
             @Override
             public void OnSuccess(String response) {
+                ModelOnlyResult result = new ModelOnlyResult();
+                try {
+                    result = Parser.getResult(response);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
+                if (result.getResult().equals("success")) {
+                    Intent intent = new Intent(getApplicationContext(), OrderConfirmation.class);
+                    intent.putExtra("qtyItems", qtyItem);
+                    startActivity(intent);
+                }
             }
 
             @Override
             public void OnFaliure() {
-
+                Toast.makeText(getApplicationContext(), "Upload data is failed", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -317,6 +336,7 @@ public class CartActivity extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Log.i("error", error.getMessage());
+                    listenter.OnFaliure();
 //                    capsResult.OnFailure(error.getMessage());
                 }
             }) {
