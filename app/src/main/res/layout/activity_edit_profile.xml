@@ -10,389 +10,363 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TableLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="16dp">
+            android:orientation="vertical">
 
-            <TableRow>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_primary_dark"
+                android:padding="12dp"
+                android:text="Biodata"
+                android:textColor="@android:color/white" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:text="Nama" />
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:paddingTop="8dp">
 
                 <EditText
                     android:id="@+id/edit_nama_edit_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_span="2"
-                    android:layout_weight="1"
-                    android:inputType="textPersonName" />
-            </TableRow>
+                    android:hint="Nama" />
+            </android.support.design.widget.TextInputLayout>
 
-            <TableRow>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:text="Tanggal Lahir" />
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp">
 
                 <EditText
                     android:id="@+id/edit_tanggal_lahir_edit_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_span="2"
-                    android:layout_weight="1" />
-            </TableRow>
+                    android:hint="Tanggal Lahir" />
+            </android.support.design.widget.TextInputLayout>
 
-            <TableRow>
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="8dp"
+                android:paddingLeft="28dp"
+                android:paddingRight="28dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Jenis Kelamin" />
-
-                <RadioGroup
-                    android:id="@+id/radio_group_jenis_kelamin_edit_profile"
+                <RadioButton
+                    android:id="@+id/radio_laki_edit_profile"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_span="2"
+                    android:layout_height="?attr/actionBarSize"
                     android:layout_weight="1"
-                    android:orientation="horizontal">
+                    android:background="@drawable/custom_button_radio"
+                    android:button="@null"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:text="Laki-laki"
+                    android:textColor="@android:color/white" />
 
-                    <RadioButton
-                        android:id="@+id/radio_laki_edit_profile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Laki-laki" />
-
-                    <RadioButton
-                        android:id="@+id/radio_perempuan_edit_profile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Perempuan" />
-                </RadioGroup>
-            </TableRow>
-
-            <TableRow>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Alamat" />
-
-                <EditText
-                    android:id="@+id/edit_alamat_edit_profile"
+                <RadioButton
+                    android:id="@+id/radio_perempuan_edit_profile"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_span="2"
-                    android:layout_weight="1" />
-            </TableRow>
-
-            <TableRow>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Provinsi" />
-
-                <Spinner
-                    android:id="@+id/spinner_provinsi_edit_profile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_span="2"
-                    android:layout_weight="1" />
-
-            </TableRow>
-
-            <TableRow>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Kota" />
-
-                <Spinner
-                    android:id="@+id/spinner_kota_edit_profile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_span="2"
-                    android:layout_weight="1" />
-            </TableRow>
-
-            <TableRow>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Kecamatan" />
-
-                <Spinner
-                    android:id="@+id/spinner_kecamatan_edit_profile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_span="2"
-                    android:layout_weight="1" />
-            </TableRow>
-
-            <TableRow>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Kode Pos" />
-
-                <EditText
-                    android:id="@+id/edit_kode_pos_edit_profile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_span="2"
+                    android:layout_height="?attr/actionBarSize"
                     android:layout_weight="1"
-                    android:inputType="number"
-                    android:maxLength="5" />
-            </TableRow>
+                    android:background="@drawable/custom_button_radio"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="Perempuan"
+                    android:textColor="@android:color/white" />
+            </RadioGroup>
 
-            <TableRow>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nomor HP" />
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp">
 
                 <EditText
                     android:id="@+id/edit_nomor_hp_edit_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_span="2"
-                    android:layout_weight="1"
-                    android:inputType="phone" />
-            </TableRow>
+                    android:hint="Nomor HP" />
+            </android.support.design.widget.TextInputLayout>
 
-            <TableRow>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Email" />
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp">
 
                 <EditText
                     android:id="@+id/edit_email_edit_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_span="2"
-                    android:layout_weight="1"
-                    android:inputType="textEmailAddress" />
-            </TableRow>
+                    android:hint="Email" />
+            </android.support.design.widget.TextInputLayout>
 
-            <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="8dp"
+                android:text="Status" />
 
-                <TextView
+            <RadioGroup
+                android:id="@+id/radio_group_status_edit_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp">
+
+                <RadioButton
+                    android:id="@+id/radio_sekolah_edit_profile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Twitter" />
+                    android:text="Sekolah" />
 
-                <TextView
+                <RadioButton
+                    android:id="@+id/radio_kuliah_edit_profile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:text="\@" />
+                    android:text="Kuliah" />
+
+                <RadioButton
+                    android:id="@+id/radio_kerja_edit_profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kerja" />
+
+                <RadioButton
+                    android:id="@+id/radio_kuliah_kerja_edit_profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kuliah+Kerja" />
+
+                <RadioButton
+                    android:id="@+id/radio_other_edit_profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Other" />
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="24dp"
+                android:text="Minat" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:orientation="vertical">
+
+                <TableRow>
+
+                    <CheckBox
+                        android:id="@+id/checkbox_art_edit_profile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Art" />
+
+                    <CheckBox
+                        android:id="@+id/checkbox_music_edit_profile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Music" />
+
+                </TableRow>
+
+                <TableRow>
+
+                    <CheckBox
+                        android:id="@+id/checkbox_book_edit_profile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Book" />
+
+                    <CheckBox
+                        android:id="@+id/checkbox_photography_edit_profile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Photography" />
+
+                </TableRow>
+
+                <TableRow>
+
+                    <CheckBox
+                        android:id="@+id/checkbox_culinary_edit_profile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Culinary" />
+
+                    <CheckBox
+                        android:id="@+id/checkbox_sport_edit_profile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sport" />
+
+                </TableRow>
+
+                <TableRow>
+
+                    <CheckBox
+                        android:id="@+id/checkbox_culture_edit_profile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Culture" />
+
+                    <CheckBox
+                        android:id="@+id/checkbox_standup_comedy_edit_profile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Standup Comedy" />
+
+                </TableRow>
+
+                <TableRow>
+
+                    <CheckBox
+                        android:id="@+id/checkbox_fashion_edit_profile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fashion" />
+
+                    <CheckBox
+                        android:id="@+id/checkbox_technology_edit_profile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Technology" />
+
+                </TableRow>
+
+                <TableRow>
+
+                    <CheckBox
+                        android:id="@+id/checkbox_games_edit_profile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Games" />
+
+                    <CheckBox
+                        android:id="@+id/checkbox_travel_edit_profile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Travel" />
+
+                </TableRow>
+
+                <TableRow>
+
+                    <CheckBox
+                        android:id="@+id/checkbox_movie_edit_profile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Movie" />
+
+                    <CheckBox
+                        android:id="@+id/checkbox_other_edit_profile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Other" />
+                </TableRow>
+
+            </TableLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_primary_dark"
+                android:padding="12dp"
+                android:text="Alamat"
+                android:layout_marginTop="24dp"
+                android:textColor="@android:color/white" />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:paddingTop="8dp">
+
+                <EditText
+                    android:id="@+id/edit_alamat_edit_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Alamat" />
+            </android.support.design.widget.TextInputLayout>
+
+            <Spinner
+                android:id="@+id/spinner_provinsi_edit_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp" />
+
+            <Spinner
+                android:id="@+id/spinner_kota_edit_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp" />
+
+            <Spinner
+                android:id="@+id/spinner_kecamatan_edit_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp" />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp">
+
+                <EditText
+                    android:id="@+id/edit_kode_pos_edit_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Kode POS" />
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_primary_dark"
+                android:padding="12dp"
+                android:layout_marginTop="24dp"
+                android:text="Jejaring Sosial"
+                android:textColor="@android:color/white" />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:paddingTop="8dp">
 
                 <EditText
                     android:id="@+id/edit_twitter_edit_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:singleLine="true" />
-            </TableRow>
+                    android:hint="Twitter" />
+            </android.support.design.widget.TextInputLayout>
 
-            <TableRow>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Status" />
-
-                <RadioGroup
-                    android:id="@+id/radio_group_status_edit_profile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_span="2"
-                    android:layout_weight="1">
-
-                    <RadioButton
-                        android:id="@+id/radio_sekolah_edit_profile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Sekolah" />
-
-                    <RadioButton
-                        android:id="@+id/radio_kuliah_edit_profile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Kuliah" />
-
-                    <RadioButton
-                        android:id="@+id/radio_kerja_edit_profile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Kerja" />
-
-                    <RadioButton
-                        android:id="@+id/radio_kuliah_kerja_edit_profile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Kuliah+Kerja" />
-
-                    <RadioButton
-                        android:id="@+id/radio_other_edit_profile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Other" />
-                </RadioGroup>
-            </TableRow>
-
-            <TableRow>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Minat" />
-
-                <TableLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_span="2"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TableRow>
-                        <CheckBox
-                            android:id="@+id/checkbox_art_edit_profile"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Art" />
-
-                        <CheckBox
-                            android:id="@+id/checkbox_music_edit_profile"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Music" />
-
-                    </TableRow>
-
-                    <TableRow>
-
-                        <CheckBox
-                            android:id="@+id/checkbox_book_edit_profile"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Book" />
-
-                        <CheckBox
-                            android:id="@+id/checkbox_photography_edit_profile"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Photography" />
-
-                    </TableRow>
-
-                    <TableRow>
-
-                        <CheckBox
-                            android:id="@+id/checkbox_culinary_edit_profile"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Culinary" />
-
-                        <CheckBox
-                            android:id="@+id/checkbox_sport_edit_profile"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Sport" />
-
-                    </TableRow>
-
-                    <TableRow>
-
-                        <CheckBox
-                            android:id="@+id/checkbox_culture_edit_profile"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Culture" />
-
-                        <CheckBox
-                            android:id="@+id/checkbox_standup_comedy_edit_profile"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Standup Comedy" />
-
-                    </TableRow>
-
-                    <TableRow>
-
-                        <CheckBox
-                            android:id="@+id/checkbox_fashion_edit_profile"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Fashion" />
-
-                        <CheckBox
-                            android:id="@+id/checkbox_technology_edit_profile"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Technology" />
-
-                    </TableRow>
-
-                    <TableRow>
-
-                        <CheckBox
-                            android:id="@+id/checkbox_games_edit_profile"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Games" />
-
-                        <CheckBox
-                            android:id="@+id/checkbox_travel_edit_profile"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Travel" />
-
-                    </TableRow>
-
-                    <TableRow>
-
-                        <CheckBox
-                            android:id="@+id/checkbox_movie_edit_profile"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Movie" />
-
-                        <CheckBox
-                            android:id="@+id/checkbox_other_edit_profile"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Other" />
-                    </TableRow>
-
-                </TableLayout>
-            </TableRow>
-        </TableLayout>
+            <Button
+                android:id="@+id/button_simpan_edit_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="simpan"/>
+        </LinearLayout>
 
     </ScrollView>
 </LinearLayout>

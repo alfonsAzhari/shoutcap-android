@@ -4,10 +4,13 @@ import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -36,6 +39,7 @@ public class ActivityEditProfile extends AppCompatActivity{
     private EditText editTanggalLahir;
     private DatePickerDialog datePickerDialog;
     private SimpleDateFormat simpleDateFormat;
+    private Button simpan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,24 @@ public class ActivityEditProfile extends AppCompatActivity{
         setSpinner();
         setDateTimeField();
         initToolbar();
+        setTwitter();
+    }
+
+    private void setTwitter() {
+        editTwitter.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (editTwitter.hasFocus()) {
+                    if (editTwitter.length() <= 1) {
+                        editTwitter.setText("@");
+                    }
+                } else {
+                    if (editTwitter.length() <= 1) {
+                        editTwitter.setText("");
+                    }
+                }
+            }
+        });
     }
 
     private void initToolbar() {
@@ -125,6 +147,7 @@ public class ActivityEditProfile extends AppCompatActivity{
         editNomorHP = (EditText)findViewById(R.id.edit_nomor_hp_edit_profile);
         editEmail = (EditText)findViewById(R.id.edit_email_edit_profile);
         editTwitter = (EditText)findViewById(R.id.edit_twitter_edit_profile);
+        simpan = (Button)findViewById(R.id.button_simpan_edit_profile);
     }
 
     private void setDateTimeField() {
