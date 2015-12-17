@@ -2,144 +2,256 @@
 <items version="2" >
 
     <item
-        jar="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\7.8.0\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="6e85edfc9b5346d216e50ccef1f8e825504144a3">
-        <dex dex="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-b396c9dc8e5f71f2e233cde34e90a16053c3b1e1.jar" />
-    </item>
-    <item
-        jar="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\7.8.0\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="c2ac04c5b232f6f0658ee4f1c13be09cd76406e2">
-        <dex dex="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-db159a86274555bf44ec0cd5e84e887a4dc71c46.jar" />
-    </item>
-    <item
-        jar="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\7.8.0\jars\classes.jar"
+        jar="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\7.8.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="130b32ed466fa0f63efd4c7d6250ccd2ed506790">
-        <dex dex="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-9b363038b1604d38742c89d23a85f2f862ce0636.jar" />
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-d42e5db71e1bc7debe1fda12339dd5aaedcbaf0b.jar" />
     </item>
     <item
-        jar="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\7.8.0\jars\classes.jar"
+        jar="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\7.8.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="2e24e5f1b11170163028277de63f709e42525db4">
-        <dex dex="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-0e3f8ed6053fca356a298bb0535834d47228362b.jar" />
+        sha1="c2ac04c5b232f6f0658ee4f1c13be09cd76406e2">
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-4b8276a8793426dd5fd8ae5dc68a774a5cfe82df.jar" />
     </item>
     <item
-        jar="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\7.8.0\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="2491ae1b2a848af1f4f0c795f3117c1bd6a1989f">
-        <dex dex="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-5dc816209bc510c8fcf4c168df9146556da854a7.jar" />
-    </item>
-    <item
-        jar="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\libs\internal_impl-22.2.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="0632f06970823b7e3436f649bfa65b47035c91d0">
-        <dex dex="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-5c727714e3452bda5fe23bea914ef00881402095.jar" />
-    </item>
-    <item
-        jar="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\7.8.0\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="77a9dcb5f8b1dba36aacaa9c150eb0942dbea158">
-        <dex dex="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-4546a8576bba4b511ec01d66ca8b559d551bc97b.jar" />
-    </item>
-    <item
-        jar="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\7.8.0\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="166e458ee3b5fb5fcff0f936df3f3a788e6c54f3">
-        <dex dex="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-ab1cc86678283ff33d8601b47d74e1f59934c58c.jar" />
-    </item>
-    <item
-        jar="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\7.8.0\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="0124ce31248c0e8acfa2b28283c6d1a4d76e73d2">
-        <dex dex="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-f8273ae4f872d197f83606211a686668e62b30ef.jar" />
-    </item>
-    <item
-        jar="C:\Users\Henra SN\.gradle\caches\modules-2\files-2.1\com.mcxiaoke.volley\library\1.0.19\a8f23f65fc1e522ee4a1a697ee569901a46741fa\library-1.0.19.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="a8f23f65fc1e522ee4a1a697ee569901a46741fa">
-        <dex dex="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\pre-dexed\debug\library-1.0.19-9374073475bd2b09e1a8f2449a944b0933c5e1f4.jar" />
-    </item>
-    <item
-        jar="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appstate\7.8.0\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="edea92852b40eee716e910af8dad9eeaa58fb0e1">
-        <dex dex="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-9bcff6c42e7dd9475b6fcebbdfe5294f889d2b25.jar" />
-    </item>
-    <item
-        jar="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\7.8.0\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="1ff30fa49c07a08c3035d7218a3efebf5680d522">
-        <dex dex="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-cecb018e5d3617efa50dd8451d40235634d6285a.jar" />
-    </item>
-    <item
-        jar="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\7.8.0\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="c5cafb324568d954780abb858c25db7ce675ab3c">
-        <dex dex="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-aa93d93d917b5a64c8ce0f0aeac16aae36e1d681.jar" />
-    </item>
-    <item
-        jar="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\7.8.0\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="98137c4d12c50923f5809852b1ef4d1c4e162081">
-        <dex dex="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-4a58acc4722d5eb17108306afb7b27607330bfaf.jar" />
-    </item>
-    <item
-        jar="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="dcf8c83c3dead00a6c4fe313e95f7aaca20dc641">
-        <dex dex="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-618867cff8e3bbec90ce516268cad46db894f39a.jar" />
-    </item>
-    <item
-        jar="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\7.8.0\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="b99f0b78bbcb76b915bc6529a83b65d4d46990dd">
-        <dex dex="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-07cd668a1e359e4c24b7346be5c5525290ee0fbc.jar" />
-    </item>
-    <item
-        jar="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\7.8.0\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="d11330ea68c0d964d30d5caed1f27e6b1488b189">
-        <dex dex="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-86f75d7736f6f5bc55ea73d755d2eb791581104d.jar" />
-    </item>
-    <item
-        jar="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\7.8.0\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="42a1ee578b62fd1bd28b3307a679dc9ba0791587">
-        <dex dex="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-326f92b4ffe66339f65a0bcc9f452ab346498e71.jar" />
-    </item>
-    <item
-        jar="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\7.8.0\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="e23ea11124bb700eeddd4ab7aa848c615f493850">
-        <dex dex="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-7d84cf73cb390ace9ff2cfd8feb68829f5c60219.jar" />
-    </item>
-    <item
-        jar="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\7.8.0\jars\classes.jar"
+        jar="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\7.8.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="adebe28e0c0c05d34a3bfd76f3275bf4d8ff87b6">
-        <dex dex="Z:\Project\Android Studio\latest\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-983d07567ae680bc124fec093cd1b35b13f59018.jar" />
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-44bc0edf52b2092ce4f7de9ff865d5bbb9a0c0df.jar" />
+    </item>
+    <item
+        jar="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d11330ea68c0d964d30d5caed1f27e6b1488b189">
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-f279b9feb803dd3583783a03a88ebd8eb994577a.jar" />
+    </item>
+    <item
+        jar="C:\Users\CodeLabs\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\3.6.0\a7537446a030da8eb0da4c71424d16c2589f6c4a\glide-3.6.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a7537446a030da8eb0da4c71424d16c2589f6c4a">
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\glide-3.6.0-77a00922819878ea9d924a4bd22b282a4a1a4714.jar" />
+    </item>
+    <item
+        jar="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="77a9dcb5f8b1dba36aacaa9c150eb0942dbea158">
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-0faf49829c9165f8846837b2b4bab9ec4e61274f.jar" />
+    </item>
+    <item
+        jar="C:\Users\CodeLabs\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.4.0\5b72bf48563ea8410e650de14aa33ff69a3e8c35\okio-1.4.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="5b72bf48563ea8410e650de14aa33ff69a3e8c35">
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\okio-1.4.0-f0908b245f872f300528f283d6e7961adc871b9a.jar" />
+    </item>
+    <item
+        jar="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="6e85edfc9b5346d216e50ccef1f8e825504144a3">
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-eb28cae29b6989e6ebe9bc4ced9a10ab1058c8f3.jar" />
+    </item>
+    <item
+        jar="C:\Users\CodeLabs\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.3.1\ecb6e1f8e4b0e84c4b886c2f14a1500caf309757\gson-2.3.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\gson-2.3.1-6830d8770d8719944dc9d7a54b928f4534a46714.jar" />
+    </item>
+    <item
+        jar="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\libs\internal_impl-22.2.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.1-4a2da97285384bdc918d8cd38b12ba9afcf17645.jar" />
+    </item>
+    <item
+        jar="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e23ea11124bb700eeddd4ab7aa848c615f493850">
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-cb0c3a9ec846cfcf564c6882b3693cd32553428a.jar" />
+    </item>
+    <item
+        jar="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="0124ce31248c0e8acfa2b28283c6d1a4d76e73d2">
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-d3579cb8b70278fe3417c612b1a17321ece2a7d3.jar" />
+    </item>
+    <item
+        jar="C:\Users\CodeLabs\AppData\Local\Android\SDK\extras\android\m2repository\com\android\support\support-annotations\22.2.1\support-annotations-22.2.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.1-3e95f27db67c8422d9d61bb61c69ab6f65d16d63.jar" />
+    </item>
+    <item
+        jar="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\22.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e1fa5e1123997a55e3ed65b44892993ff4b58cfe">
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-05c2469278c21f1246dba6d839753c5a56f6b0ba.jar" />
+    </item>
+    <item
+        jar="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f8efd0096475e0daf054267b61544e10dc776503">
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-d4fb82abf3d814ccf1cd4379964e23636eb1c9ab.jar" />
+    </item>
+    <item
+        jar="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="cb6fab7a71fa9ec1f483d44c5fca65ab469d8aca">
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-3e7ad0181942e176d0961412d1e22cb3e15289fd.jar" />
+    </item>
+    <item
+        jar="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="2e24e5f1b11170163028277de63f709e42525db4">
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-11dcf5d92d9e88b1a67a0333e6b48ae8a40a3c4e.jar" />
+    </item>
+    <item
+        jar="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="166e458ee3b5fb5fcff0f936df3f3a788e6c54f3">
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-20200c622c03dd891bd2b4f0a30f268ffb6c484c.jar" />
+    </item>
+    <item
+        jar="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="dcf8c83c3dead00a6c4fe313e95f7aaca20dc641">
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-5b4314d44ebedde710f50056901b9bceb16c82a6.jar" />
+    </item>
+    <item
+        jar="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appstate\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="edea92852b40eee716e910af8dad9eeaa58fb0e1">
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-f7e88709230e4d08ef85f475eea864bec4ba2fe6.jar" />
+    </item>
+    <item
+        jar="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\22.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="3abb4b88f5a8a0584a9b01d3170d7165f12f8588">
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-c0a243acb14599c308b07693314cd11cf5a30728.jar" />
+    </item>
+    <item
+        jar="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c756d14e99d39471e99013a1e8fd2f3813ed42bf">
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-81d4c8801767366310f8489d3b1fcea1c419c2aa.jar" />
+    </item>
+    <item
+        jar="C:\Users\CodeLabs\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp\okhttp\2.4.0\40340c0748190fe897baf7bffbc1b282734294e5\okhttp-2.4.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="40340c0748190fe897baf7bffbc1b282734294e5">
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\okhttp-2.4.0-e26e0f1e2b105721330fdafa1eb332c28029821f.jar" />
+    </item>
+    <item
+        jar="C:\Users\CodeLabs\.gradle\caches\modules-2\files-2.1\com.mcxiaoke.volley\library\1.0.19\a8f23f65fc1e522ee4a1a697ee569901a46741fa\library-1.0.19.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a8f23f65fc1e522ee4a1a697ee569901a46741fa">
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\library-1.0.19-dd943b99811c67cc7c48ed727616eb5f00e4a5bf.jar" />
+    </item>
+    <item
+        jar="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-95b0ad412cc1d52a31da0d921cbc95501d9ca9ab.jar" />
+    </item>
+    <item
+        jar="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4a135d56554069e5d0ff80e3220e887e57146ee5">
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-ff3bbfc57b11c7f5d9b7b612f97e6ad81a8d9289.jar" />
+    </item>
+    <item
+        jar="C:\Users\CodeLabs\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp\okhttp-urlconnection\2.4.0\a0c195f14cefc7597e0bebf22c3e7b43920dcf4\okhttp-urlconnection-2.4.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="0a0c195f14cefc7597e0bebf22c3e7b43920dcf4">
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\okhttp-urlconnection-2.4.0-356d910a1a21146f8944313f338648750ac04374.jar" />
+    </item>
+    <item
+        jar="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1ff30fa49c07a08c3035d7218a3efebf5680d522">
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-0bf05b1b9439c55f0e66417bf8e41e161fdb23e0.jar" />
+    </item>
+    <item
+        jar="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="b99f0b78bbcb76b915bc6529a83b65d4d46990dd">
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-ec9e26caabb1b7581c8b43526593e32094cc7e2a.jar" />
+    </item>
+    <item
+        jar="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c5cafb324568d954780abb858c25db7ce675ab3c">
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-8eaf88d308100031003c322a714f1a7b3dfef09d.jar" />
+    </item>
+    <item
+        jar="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="42a1ee578b62fd1bd28b3307a679dc9ba0791587">
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-9ab361a5bf6e1bbde479dd13a3b05bc6aa82b95b.jar" />
+    </item>
+    <item
+        jar="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="2491ae1b2a848af1f4f0c795f3117c1bd6a1989f">
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-b4d17b1012f32ecb0db4c38cac852b23bbc1764d.jar" />
+    </item>
+    <item
+        jar="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c0c912d58c9468b1f9d9769c8975afdf2c85d681">
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-27381d9339565fed52eb1c98d8b237614c45a5ab.jar" />
+    </item>
+    <item
+        jar="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\exploded-aar\com.android.support\design\22.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1821601ddbec5ff125653097812823388700af74">
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-239d4261949eefa6256b633b50c59ae578ca5e40.jar" />
+    </item>
+    <item
+        jar="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="98137c4d12c50923f5809852b1ef4d1c4e162081">
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-2f93eb9518105604687b7575a5be80af030b2d9c.jar" />
+    </item>
+    <item
+        jar="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\libs\internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="0632f06970823b7e3436f649bfa65b47035c91d0">
+        <dex dex="G:\Backup HDD\F\Data\Alfons\shoutcap-android\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-c7c7a07e4dfab55bf316f2abd165dbcba5d1909c.jar" />
     </item>
 
 </items>

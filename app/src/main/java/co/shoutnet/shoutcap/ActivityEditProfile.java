@@ -8,6 +8,7 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -19,22 +20,23 @@ import java.util.Locale;
 /**
  * Created by Adam MB on 9/14/2015.
  */
-public class ActivityEditProfile extends AppCompatActivity{
+public class ActivityEditProfile extends AppCompatActivity {
 
-    private EditText editNama;
-    private EditText editAlamat;
-    private EditText editKodePos;
-    private EditText editNomorHP;
-    private EditText editEmail;
-    private EditText editTwitter;
+    private EditText edtName;
+    private EditText edtAddress;
+    private EditText edtPostalCode;
+    private EditText edtPhone;
+    private EditText edtEmail;
+    private EditText edtTwitter;
     private ArrayAdapter<CharSequence> adapter;
-    private Spinner spinnerProvinsi;
-    private Spinner spinnerKota;
+    private Spinner spinnerProvince;
+    private Spinner spinnerCity;
     private Spinner spinnerKecamatan;
     private Toolbar toolbar;
-    private EditText editTanggalLahir;
+    private EditText edtBirth;
     private DatePickerDialog datePickerDialog;
     private SimpleDateFormat simpleDateFormat;
+    private Button btnSave;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +46,28 @@ public class ActivityEditProfile extends AppCompatActivity{
         setSpinner();
         setDateTimeField();
         initToolbar();
+        setTwitter();
+    }
+
+    private void setTwitter() {
+        edtTwitter.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (edtTwitter.hasFocus()) {
+                    if (edtTwitter.length() <= 1) {
+                        edtTwitter.setText("@");
+                    }
+                } else {
+                    if (edtTwitter.length() <= 1) {
+                        edtTwitter.setText("");
+                    }
+                }
+            }
+        });
     }
 
     private void initToolbar() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar_edit_profile);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Edit Profile");
@@ -57,8 +78,8 @@ public class ActivityEditProfile extends AppCompatActivity{
                 this, R.array.provinsi,
                 android.R.layout.simple_spinner_dropdown_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerProvinsi.setAdapter(adapter);
-        spinnerProvinsi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinnerProvince.setAdapter(adapter);
+        spinnerProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View v,
@@ -76,8 +97,8 @@ public class ActivityEditProfile extends AppCompatActivity{
                 this, R.array.kota,
                 android.R.layout.simple_spinner_dropdown_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerKota.setAdapter(adapter);
-        spinnerKota.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinnerCity.setAdapter(adapter);
+        spinnerCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View v,
@@ -112,28 +133,28 @@ public class ActivityEditProfile extends AppCompatActivity{
     }
 
     private void initView() {
-        editTanggalLahir = (EditText) findViewById(R.id.edit_tanggal_lahir_edit_profile);
-        editTanggalLahir.setInputType(InputType.TYPE_NULL);
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
-        spinnerProvinsi = (Spinner)findViewById(R.id.spinner_provinsi_edit_profile);
-        spinnerKota = (Spinner)findViewById(R.id.spinner_kota_edit_profile);
-        spinnerKecamatan = (Spinner)findViewById(R.id.spinner_kecamatan_edit_profile);
-        editNama = (EditText)findViewById(R.id.edit_nama_edit_profile);
-        editAlamat = (EditText)findViewById(R.id.edit_alamat_edit_profile);
-        editKodePos = (EditText)findViewById(R.id.edit_kode_pos_edit_profile);
-        editNomorHP = (EditText)findViewById(R.id.edit_nomor_hp_edit_profile);
-        editEmail = (EditText)findViewById(R.id.edit_email_edit_profile);
-        editTwitter = (EditText)findViewById(R.id.edit_twitter_edit_profile);
+        edtBirth = (EditText) findViewById(R.id.edt_edit_profile_birth);
+        edtBirth.setInputType(InputType.TYPE_NULL);
+        spinnerProvince = (Spinner) findViewById(R.id.spinner_edit_province);
+        spinnerCity = (Spinner) findViewById(R.id.spinner_edit_city);
+        spinnerKecamatan = (Spinner) findViewById(R.id.spinner_edit_kecamatan);
+        edtName = (EditText) findViewById(R.id.edt_edit_profile_name);
+        edtAddress = (EditText) findViewById(R.id.edt_edit_address);
+        edtPostalCode = (EditText) findViewById(R.id.edt_edit_postal_kode);
+        edtPhone = (EditText) findViewById(R.id.edt_edit_phone);
+        edtEmail = (EditText) findViewById(R.id.edt_edit_email);
+        edtTwitter = (EditText) findViewById(R.id.edt_edit_twitter);
+        btnSave = (Button) findViewById(R.id.btn_edit_save);
     }
 
     private void setDateTimeField() {
         simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
 
-        editTanggalLahir.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        edtBirth.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
-                if (editTanggalLahir.hasFocus()) {
-                    if (view == editTanggalLahir) {
+                if (edtBirth.hasFocus()) {
+                    if (view == edtBirth) {
                         datePickerDialog.show();
                     }
                 }
@@ -145,10 +166,10 @@ public class ActivityEditProfile extends AppCompatActivity{
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 Calendar newDate = Calendar.getInstance();
                 newDate.set(year, monthOfYear, dayOfMonth);
-                editTanggalLahir.setText(simpleDateFormat.format(newDate.getTime()));
+                edtBirth.setText(simpleDateFormat.format(newDate.getTime()));
             }
 
-        },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
+        }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
 
     }
 }

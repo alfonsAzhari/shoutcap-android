@@ -1,6 +1,7 @@
 package co.shoutnet.shoutcap;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -43,26 +44,22 @@ public class SettingsActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 switch (i) {
                     case 0:
+                        Intent intentEdit = new Intent(SettingsActivity.this, ActivityEditProfile.class);
+                        startActivity(intentEdit);
                         break;
 
                     case 1:
+                        Intent intentChange = new Intent(SettingsActivity.this, ActivityChangePassword.class);
+                        startActivity(intentChange);
                         break;
 
                     case 2:
+                        Intent intentAbout = new Intent(SettingsActivity.this, ActivityAbout.class);
+                        startActivity(intentAbout);
                         break;
 
                     case 3:
-                        final ProgressDialog progressDialog = new ProgressDialog(SettingsActivity.this);
-                        progressDialog.setIndeterminate(true);
-                        progressDialog.setMessage("Signing Out");
-                        progressDialog.show();
-                        new android.os.Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                progressDialog.dismiss();
-                                manager.logoutUser();
-                            }
-                        }, 3000);
+                        logout(3000);
                         break;
                 }
             }
@@ -96,6 +93,16 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void logout(long time) {
-
+        final ProgressDialog progressDialog = new ProgressDialog(SettingsActivity.this);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Signing Out");
+        progressDialog.show();
+        new android.os.Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                progressDialog.dismiss();
+                manager.logoutUser();
+            }
+        }, time);
     }
 }

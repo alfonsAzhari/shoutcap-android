@@ -13,78 +13,105 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:orientation="vertical">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ID Order" />
-
-            <EditText
-                android:id="@+id/edit_id_order_payment_confirmation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:singleLine="true" />
+                android:background="@color/color_primary_dark"
+                android:padding="12dp"
+                android:text="Pemesan"
+                android:textColor="@android:color/white" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Nama Lengkap Pemesan" />
-
-            <EditText
-                android:id="@+id/edit_nama_pemesan_payment_confirmation"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:singleLine="true" />
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:paddingTop="8dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="No.HP" />
+                <EditText
+                    android:id="@+id/edit_nama_pemesan_payment_confirmation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nama Lengkap Pemesan" />
+            </android.support.design.widget.TextInputLayout>
 
-            <EditText
-                android:id="@+id/edit_no_hp_payment_confirmation"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:singleLine="true" />
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Email" />
+                <EditText
+                    android:id="@+id/edit_no_hp_payment_confirmation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="No HP" />
+            </android.support.design.widget.TextInputLayout>
 
-            <EditText
-                android:id="@+id/edit_email_payment_confirmation"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:singleLine="true" />
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp">
+
+                <EditText
+                    android:id="@+id/edit_email_payment_confirmation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Email" />
+            </android.support.design.widget.TextInputLayout>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Tanggal Pembayaran" />
-
-            <EditText
-                android:id="@+id/edit_tanggal_pembayaran_payment_confirmation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:singleLine="true" />
+                android:background="@color/color_primary_dark"
+                android:padding="12dp"
+                android:text="Transaksi"
+                android:layout_marginTop="24dp"
+                android:textColor="@android:color/white" />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:paddingTop="8dp">
+
+                <EditText
+                    android:id="@+id/edit_id_order_payment_confirmation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="ID Order" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp">
+
+                <EditText
+                    android:id="@+id/edit_tanggal_pembayaran_payment_confirmation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Tanggal Pembayaran" />
+            </android.support.design.widget.TextInputLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:paddingLeft="24dp"
+                android:paddingTop="8dp"
                 android:text="Cara Pembayaran" />
 
             <RadioGroup
                 android:id="@+id/radio_group_cara_pembayaran_payment_confirmation"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp">
 
                 <RadioButton
                     android:id="@+id/radio_transfer_bca_payment_confirmation"
@@ -127,70 +154,78 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:paddingLeft="24dp"
+                android:paddingTop="8dp"
                 android:text="Nama Bank Asal Transfer (jika melakukan pembayaran dengan cara transfer bank)" />
 
-            <RadioGroup
-                android:id="@+id/radio_group_bank_asal_payment_confirmation"
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp">
 
-                <RadioButton
-                    android:id="@+id/radio_bca_payment_confirmation"
+                <RadioGroup
+                    android:id="@+id/radio_group_bank_asal_payment_confirmation"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="BCA" />
+                    android:layout_height="wrap_content">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/radio_bca_payment_confirmation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="BCA" />
 
                     <RadioButton
                         android:id="@+id/radio_bank_lain_payment_confirmation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Bank Lain, Sebutkan: " />
+                        android:text="Bank Lain: " />
 
-                    <EditText
-                        android:id="@+id/edit_bank_lain_payment_confirmation"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:singleLine="true" />
+                </RadioGroup>
 
-                </LinearLayout>
-            </RadioGroup>
+                <EditText
+                    android:id="@+id/edit_bank_lain_payment_confirmation"
+                    android:layout_width="match_parent"
+                    android:layout_toRightOf="@id/radio_group_bank_asal_payment_confirmation"
+                    android:layout_alignBottom="@id/radio_group_bank_asal_payment_confirmation"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Nama Pemilik Rekening Bank" />
+            </RelativeLayout>
 
-            <EditText
-                android:id="@+id/edit_pemilik_rekening_payment_confirmation"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:singleLine="true" />
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:paddingTop="8dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Jumlah uang yang dibayarkan" />
+                <EditText
+                    android:id="@+id/edit_pemilik_rekening_payment_confirmation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nama Pemilik Rekening Bank" />
+            </android.support.design.widget.TextInputLayout>
 
-            <EditText
-                android:id="@+id/edit_jumlah_uang_payment_confirmation"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:singleLine="true" />
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp">
+
+                <EditText
+                    android:id="@+id/edit_jumlah_uang_payment_confirmation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Jumlah uang yang dibayarkan" />
+            </android.support.design.widget.TextInputLayout>
 
             <Button
                 android:id="@+id/button_send_payment_confirmation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="SEND"/>
+                android:text="SEND" />
 
         </LinearLayout>
     </ScrollView>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="co.shoutnet.shoutcap">
+    package="co.shoutnet.shoutcap">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -77,10 +77,6 @@
         </service>
 
         <activity
-            android:name=".SettingsContentActivity"
-            android:parentActivityName=".SettingsActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".CartActivity"
             android:label="@string/action_cart" />
         <activity
@@ -89,25 +85,31 @@
         <activity
             android:name=".PreviewActivity"
             android:label="@string/title_activity_preview"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ActivityChangePassword"
+            android:parentActivityName=".SettingsActivity"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".ActivityAbout"
-            android:theme="@style/AppTheme"/>
+            android:parentActivityName=".SettingsActivity"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".ActivityEditProfile"
-            android:theme="@style/AppTheme"/>
+            android:parentActivityName=".SettingsActivity"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".ActivityHowToOrder"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".ActivityNewsDetail"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".ActivityPaymentConfirmation"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".ActivityFAQ"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
