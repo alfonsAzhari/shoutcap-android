@@ -4,48 +4,70 @@ package co.shoutnet.shoutcap.model;
  * Created by Codelabs on 9/14/2015.
  */
 public class ModelAdapterCart {
+    private int id;
+    private String image;
+    private String name; //text
+    private int price;
+    private long subTotal;
+    private int qty;
 
-    private int imgCart;
-    private String txtProduct;
-    private String txtPrice;
-    private String txtSubTotal;
-
-    public ModelAdapterCart(int imgCart, String txtProduct, String txtPrice, String txtSubTotal){
-        this.imgCart=imgCart;
-        this.txtProduct=txtProduct;
-        this.txtPrice=txtPrice;
-        this.txtSubTotal=txtSubTotal;
+    public ModelAdapterCart() {
     }
 
-    public int getImgCart() {
-        return imgCart;
+    public ModelAdapterCart(int id, String image, String name, int price, long subTotal, int qty) {
+        this.id = id;
+        this.image = image;
+        this.name = name;
+        this.price = price;
+        this.subTotal = subTotal;
+        this.qty = qty;
     }
 
-    public void setImgCart(int imgCart) {
-        this.imgCart = imgCart;
+    public int getId() {
+        return id;
     }
 
-    public String getTxtProduct() {
-        return txtProduct;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setTxtProduct(String txtProduct) {
-        this.txtProduct = txtProduct;
+    public String getImage() {
+        return image;
     }
 
-    public String getTxtPrice() {
-        return txtPrice;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public void setTxtPrice(String txtPrice) {
-        this.txtPrice = txtPrice;
+    public String getName() {
+        return name;
     }
 
-    public String getTxtSubTotal() {
-        return txtSubTotal;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setTxtSubTotal(String txtSubTotal) {
-        this.txtSubTotal = txtSubTotal;
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public long getSubTotal() {
+        return subTotal;
+    }
+
+    public void setSubTotal(long subTotal) {
+        this.subTotal = subTotal;
+    }
+
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
     }
 }

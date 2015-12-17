@@ -4,12 +4,11 @@ import java.util.ArrayList;
 
 import co.shoutnet.shoutcap.model.ModelAdapterInbox;
 import co.shoutnet.shoutcap.model.ModelAdapterNews;
-import co.shoutnet.shoutcap.model.ModelAdapterRack;
 import co.shoutnet.shoutcap.model.ModelAdapterReward;
-import co.shoutnet.shoutcap.model.ModelAdapterCart;
+import co.shoutnet.shoutcap.model.ModelNewsDetail;
 
 /**
- * Created by Codelabs on 8/25/2015.
+ * Created by Adam MB on 9/9/2015.
  */
 public class Dummy {
 
@@ -60,54 +59,86 @@ public class Dummy {
 
         return list;
     }
-    public static ArrayList<ModelAdapterRack> getDataRack() {
-        ArrayList<ModelAdapterRack> list = new ArrayList<>();
-        ModelAdapterRack modelAdapterRack;
 
-        modelAdapterRack=new ModelAdapterRack(R.drawable.bg1);
-        list.add(modelAdapterRack);
+//    public static ArrayList<ModelAdapterRack> getDataRack() {
+//        ArrayList<ModelAdapterRack> list = new ArrayList<>();
+//        ModelAdapterRack modelAdapterRack;
+//
+//        modelAdapterRack = new ModelAdapterRack(R.drawable.bg1);
+//        list.add(modelAdapterRack);
+//
+//        modelAdapterRack = new ModelAdapterRack(R.drawable.bg2);
+//        list.add(modelAdapterRack);
+//
+//        modelAdapterRack = new ModelAdapterRack(R.drawable.bg3);
+//        list.add(modelAdapterRack);
+//
+//        modelAdapterRack = new ModelAdapterRack(R.drawable.bg4);
+//        list.add(modelAdapterRack);
+//
+//        modelAdapterRack = new ModelAdapterRack(R.drawable.bg3);
+//        list.add(modelAdapterRack);
+//
+//        modelAdapterRack = new ModelAdapterRack(R.drawable.bg1);
+//        list.add(modelAdapterRack);
+//
+//        modelAdapterRack = new ModelAdapterRack(R.drawable.bg3);
+//        list.add(modelAdapterRack);
+//
+//        modelAdapterRack = new ModelAdapterRack(R.drawable.bg2);
+//        list.add(modelAdapterRack);
+//
+//        modelAdapterRack = new ModelAdapterRack(R.drawable.bg4);
+//        list.add(modelAdapterRack);
+//
+//        return list;
+//    }
 
-        modelAdapterRack=new ModelAdapterRack(R.drawable.bg2);
-        list.add(modelAdapterRack);
+//    public static ArrayList<ModelAdapterCart> getDataCart() {
+//        ArrayList<ModelAdapterCart> list = new ArrayList<>();
+//        ModelAdapterCart modelCart;
+//
+//        modelCart = new ModelAdapterCart(R.drawable.bg1, "ShoutCap", 125000, 125000);
+//        list.add(modelCart);
+//
+//        modelCart = new ModelAdapterCart(R.drawable.bg1, "ShoutCap", 125000, 125000);
+//        list.add(modelCart);
+//
+//        modelCart = new ModelAdapterCart(R.drawable.bg1, "ShoutCap", 225000, 225000);
+//        list.add(modelCart);
+//
+//        modelCart = new ModelAdapterCart(R.drawable.bg1, "ShoutCap", 125000, 125000);
+//        list.add(modelCart);
+//
+//        modelCart = new ModelAdapterCart(R.drawable.bg1, "ShoutCap", 125000, 125000);
+//        list.add(modelCart);
+//
+//        return list;
+//    }
 
-        modelAdapterRack=new ModelAdapterRack(R.drawable.bg3);
-        list.add(modelAdapterRack);
+    public ArrayList<ModelNewsDetail> getNewsDetail() {
+        ArrayList<ModelNewsDetail> list = new ArrayList<>();
+        ModelNewsDetail modelNewsDetail;
 
-        modelAdapterRack=new ModelAdapterRack(R.drawable.bg4);
-        list.add(modelAdapterRack);
-
-        modelAdapterRack=new ModelAdapterRack(R.drawable.bg3);
-        list.add(modelAdapterRack);
-
-        modelAdapterRack=new ModelAdapterRack(R.drawable.bg1);
-        list.add(modelAdapterRack);
-
-        modelAdapterRack=new ModelAdapterRack(R.drawable.bg3);
-        list.add(modelAdapterRack);
-
-        modelAdapterRack=new ModelAdapterRack(R.drawable.bg2);
-        list.add(modelAdapterRack);
-
-        modelAdapterRack=new ModelAdapterRack(R.drawable.bg4);
-        list.add(modelAdapterRack);
+        modelNewsDetail = new ModelNewsDetail();
+        modelNewsDetail.setImage(R.drawable.bg1);
+        modelNewsDetail.setTitle("Title Title Title");
+        modelNewsDetail.setDate("23-9-2016");
+        modelNewsDetail.setInfo("ajkshefaohdfoaisdhfajsdhfkahsdfalsdjhfoaisufowiehflajhdfoqueh");
+        list.add(modelNewsDetail);
 
         return list;
     }
-    public static ArrayList<ModelAdapterCart> getDataCart() {
-        ArrayList<ModelAdapterCart> list = new ArrayList<>();
-        ModelAdapterCart modelCart;
 
-        modelCart=new ModelAdapterCart(R.drawable.bg1,"ShoutCap","Rp. 300.300.00","Rp. 300.300.00");
-        list.add(modelCart);
+    public ArrayList<ModelInboxDetail> getInboxDetail() {
+        ArrayList<ModelInboxDetail> list = new ArrayList<>();
+        ModelInboxDetail modelInboxDetail;
 
-        modelCart=new ModelAdapterCart(R.drawable.bg2,"ShoutCap","Rp. 300.300.00","Rp. 300.300.00");
-        list.add(modelCart);
-
-        modelCart=new ModelAdapterCart(R.drawable.bg3,"ShoutCap","Rp. 300.300.00","Rp. 300.300.00");
-        list.add(modelCart);
-
-        modelCart=new ModelAdapterCart(R.drawable.bg4,"ShoutCap","Rp. 300.300.00","Rp. 300.300.00");
-        list.add(modelCart);
+        modelInboxDetail = new ModelInboxDetail();
+        modelInboxDetail.setTitle("Title Title Title");
+        modelInboxDetail.setDate("23-9-2016");
+        modelInboxDetail.setContent("ajkshefaohdfoaisdhfajsdhfkahsdfalsdjhfoaisufowiehflajhdfoqueh");
+        list.add(modelInboxDetail);
 
         return list;
     }

@@ -17,20 +17,21 @@ import co.shoutnet.shoutcap.adapter.RackAdapter;
 public class FragmentPromo extends Fragment {
     RecyclerView recyclerView;
     LinearLayoutManager layoutManager;
+
     public FragmentPromo() {
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_promo,container,false);
+        View view = inflater.inflate(R.layout.fragment_promo, container, false);
 
-        layoutManager=new LinearLayoutManager(getActivity().getApplicationContext());
-        RackAdapter adapter=new RackAdapter(getActivity().getApplicationContext(),Dummy.getDataRack());
-
-        recyclerView=(RecyclerView)view.findViewById(R.id.recyclerview_promo);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
+//        layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
+//        RackAdapter adapter = new RackAdapter(getActivity().getApplicationContext(), Dummy.getDataRack());
+//
+//        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview_promo);
+//        recyclerView.setLayoutManager(layoutManager);
+//        recyclerView.setAdapter(adapter);
         return view;
     }
 }

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/tool_bar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ID Order" />
+
+            <EditText
+                android:id="@+id/edit_id_order_payment_confirmation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Nama Lengkap Pemesan" />
+
+            <EditText
+                android:id="@+id/edit_nama_pemesan_payment_confirmation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="No.HP" />
+
+            <EditText
+                android:id="@+id/edit_no_hp_payment_confirmation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Email" />
+
+            <EditText
+                android:id="@+id/edit_email_payment_confirmation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Tanggal Pembayaran" />
+
+            <EditText
+                android:id="@+id/edit_tanggal_pembayaran_payment_confirmation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Cara Pembayaran" />
+
+            <RadioGroup
+                android:id="@+id/radio_group_cara_pembayaran_payment_confirmation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/radio_transfer_bca_payment_confirmation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Transfer ke BCA No. Rek 4371236699" />
+
+                <RadioButton
+                    android:id="@+id/radio_tunai_bca_payment_confirmation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Setor Tunai ke BCA No. Rek 4371236699" />
+
+                <RadioButton
+                    android:id="@+id/radio_transfer_mandiri_payment_confirmation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Transfer ke MANDIRI No. Rek 131-00-12796159" />
+
+                <RadioButton
+                    android:id="@+id/radio_tunai_mandiri_payment_confirmation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Setor Tunai ke MANDIRI No. Rek 131-00-12796159" />
+
+                <RadioButton
+                    android:id="@+id/radio_transfer_bni_payment_confirmation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Transfer ke BNI No. Rek 8092010897" />
+
+                <RadioButton
+                    android:id="@+id/radio_tunai_bni_payment_confirmation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Setor Tunai ke BNI No. Rek 8092010897" />
+
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Nama Bank Asal Transfer (jika melakukan pembayaran dengan cara transfer bank)" />
+
+            <RadioGroup
+                android:id="@+id/radio_group_bank_asal_payment_confirmation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/radio_bca_payment_confirmation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BCA" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/radio_bank_lain_payment_confirmation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bank Lain, Sebutkan: " />
+
+                    <EditText
+                        android:id="@+id/edit_bank_lain_payment_confirmation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true" />
+
+                </LinearLayout>
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Nama Pemilik Rekening Bank" />
+
+            <EditText
+                android:id="@+id/edit_pemilik_rekening_payment_confirmation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Jumlah uang yang dibayarkan" />
+
+            <EditText
+                android:id="@+id/edit_jumlah_uang_payment_confirmation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
+
+            <Button
+                android:id="@+id/button_send_payment_confirmation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="SEND"/>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

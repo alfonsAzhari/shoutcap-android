@@ -28,7 +28,7 @@ public class RewardAdapter extends RecyclerView.Adapter<RewardAdapter.RewardView
 
     @Override
     public RewardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_reward, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_reward_new, parent, false);
         RewardViewHolder rewardViewHolder = new RewardViewHolder(view);
 
         return rewardViewHolder;
@@ -56,10 +56,10 @@ public class RewardAdapter extends RecyclerView.Adapter<RewardAdapter.RewardView
 
         public RewardViewHolder(View itemView) {
             super(itemView);
-            txtTitle = (TextView) itemView.findViewById(R.id.txt_reward_title);
-            txtDate = (TextView) itemView.findViewById(R.id.txt_reward_date);
-            txtCoin = (TextView) itemView.findViewById(R.id.txt_reward_coin);
-            txtPoint = (TextView) itemView.findViewById(R.id.txt_reward_point);
+            txtTitle = (TextView) itemView.findViewById(R.id.txt_title_reward);
+            txtDate = (TextView) itemView.findViewById(R.id.txt_date_reward);
+            txtCoin = (TextView) itemView.findViewById(R.id.txt_coin_reward);
+            txtPoint = (TextView) itemView.findViewById(R.id.txt_point_reward);
         }
     }
 }
