@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ActivityChangePassword"
+            android:name=".ActivityPaymentConfirmation"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,7 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActivityPaymentConfirmation" />
+        <activity android:name=".ActivityChangePassword" />
         <activity android:name=".ActivityAbout" />
         <activity android:name=".ActivityHowToOrder" />
         <activity android:name=".ActivityFAQ" />

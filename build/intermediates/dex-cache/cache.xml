@@ -2,39 +2,39 @@
 <items version="2" >
 
     <item
-        jar="E:\KP\shoutcap-android\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\classes.jar"
+        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.android.support\design\22.2.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="f8efd0096475e0daf054267b61544e10dc776503">
-        <dex dex="E:\KP\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-8d67d4a7734c7031932ff46daf6ac5177cadf4da.jar" />
+        sha1="fc63b820d54c8a27a3a614bdd93920e0076581c2">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-6f45c8bffe16603301888a2c2b32858d5eef7940.jar" />
     </item>
     <item
-        jar="E:\KP\shoutcap-android\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\libs\internal_impl-22.2.1.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
-        <dex dex="E:\KP\shoutcap-android\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.1-b46d1d33fca89989eb97edaf8fe290456dbc49f9.jar" />
-    </item>
-    <item
-        jar="E:\KP\shoutcap-android\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.1\jars\classes.jar"
+        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.1\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
-        <dex dex="E:\KP\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-914f021ecdd85ac07adbe972f15e040a12f140cb.jar" />
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-35d5c6dc104d648d04ed13c783d0c92fe9ad384b.jar" />
     </item>
     <item
         jar="C:\Users\Adam MB\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.1\support-annotations-22.2.1.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
-        <dex dex="E:\KP\shoutcap-android\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.1-072b1d2016057dc51467f76e713fcb5d501edaf9.jar" />
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.1-072b1d2016057dc51467f76e713fcb5d501edaf9.jar" />
     </item>
     <item
-        jar="E:\KP\shoutcap-android\app\build\intermediates\exploded-aar\com.android.support\design\22.2.0\jars\classes.jar"
+        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="fc63b820d54c8a27a3a614bdd93920e0076581c2">
-        <dex dex="E:\KP\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-694ba123ed82c533434091722def62bc23adac67.jar" />
+        sha1="f8efd0096475e0daf054267b61544e10dc776503">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-e2f3be738acd0a093d985ce0c2d362c84fdc3f4e.jar" />
+    </item>
+    <item
+        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\libs\internal_impl-22.2.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.1-c6179478242304263f7dba9da3f9aeb886d0592e.jar" />
     </item>
 
 </items>
