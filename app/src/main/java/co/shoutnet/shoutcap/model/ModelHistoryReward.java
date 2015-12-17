@@ -33,13 +33,13 @@ public class ModelHistoryReward {
         private String no;
         private String history;
         private String date;
-        @SerializedName("bobot_coin")
+        @SerializedName("bobot_koin")
         private String bobotCoin;
-        @SerializedName("jumlah_coin")
+        @SerializedName("jumlah_koin")
         private String jumlahCoin;
-        @SerializedName("bobot_point")
+        @SerializedName("bobot_poin")
         private String bobotPoint;
-        @SerializedName("jumlah_point")
+        @SerializedName("jumlah_poin")
         private String jumlahPoint;
 
         public String getNo() {

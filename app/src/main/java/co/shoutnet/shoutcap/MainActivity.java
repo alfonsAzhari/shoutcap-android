@@ -3,8 +3,11 @@ package co.shoutnet.shoutcap;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -19,8 +22,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
+
 import java.util.HashMap;
 
+import co.shoutnet.shoutcap.utility.RoundedImageView;
 import co.shoutnet.shoutcap.utility.SessionManager;
 
 
@@ -37,6 +44,11 @@ public class MainActivity extends AppCompatActivity {
     private TextView txtProfileCoin;
     private TextView txtProfilePoint;
 
+    private ImageView imgAva;
+    private TextView txtShoutId;
+    private TextView txtCoin;
+    private TextView txtPoint;
+
     private int exitCounter;
 
     SessionManager sessionManager;
@@ -47,26 +59,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         exitCounter = 1;
 
+        //validate login
         sessionManager = new SessionManager(getApplicationContext());
 
         sessionManager.checkLogin();
 
         HashMap<String, String> user = sessionManager.getUserDetails();
 
-        String shoutId = user.get(SessionManager.KEY_SHOUTID);
-        String sessionId = user.get(SessionManager.KEY_SESSIONID);
-
-        Log.i("shoutid + sessionid", shoutId + sessionId);
-
         initToolbar();
         initView();
 
-        imgProfileAva.setImageResource(R.drawable.download);
-        txtProfileName.setText("Nama Orang");
-        txtProfileCoin.setText("1000 Coin");
-        txtProfilePoint.setText("1000 Point");
-
         setUpNavDrawer();
+
+        setUpProfile(user);
 
         setDefaultFragment();
 
@@ -82,6 +87,11 @@ public class MainActivity extends AppCompatActivity {
     private void initView() {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_main);
         navigationView = (NavigationView) findViewById(R.id.navigation_main);
+
+        imgAva = (ImageView) findViewById(R.id.img_drawer_photo_user);
+        txtShoutId = (TextView) findViewById(R.id.txt_drawer_shout_id);
+        txtCoin = (TextView) findViewById(R.id.txt_drawer_coin);
+        txtPoint = (TextView) findViewById(R.id.txt_drawer_poin);
 
         imgProfileAva = (ImageView) findViewById(R.id.img_profile_ava);
         txtProfileName = (TextView) findViewById(R.id.txt_profile_name);
@@ -101,6 +111,30 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    private void setUpProfile(HashMap<String, String> user) {
+        Glide.with(this).load(user.get(SessionManager.KEY_URL_AVATAR)).asBitmap().centerCrop().into(new BitmapImageViewTarget(imgAva) {
+            @Override
+            protected void setResource(Bitmap resource) {
+                RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(getApplicationContext().getResources(), resource);
+                imgAva.setImageDrawable(roundedBitmapDrawable);
+            }
+        });
+        txtShoutId.setText(user.get(SessionManager.KEY_SHOUTID));
+        txtPoint.setText(user.get(SessionManager.KEY_POINT));
+        txtCoin.setText(user.get(SessionManager.KEY_COIN));
+
+        Glide.with(this).load(user.get(SessionManager.KEY_URL_AVATAR)).asBitmap().centerCrop().into(new BitmapImageViewTarget(imgProfileAva) {
+            @Override
+            protected void setResource(Bitmap resource) {
+                RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(getApplicationContext().getResources(), resource);
+                imgProfileAva.setImageDrawable(roundedBitmapDrawable);
+            }
+        });
+        txtProfileName.setText(user.get(SessionManager.KEY_SHOUTID));
+        txtProfilePoint.setText(user.get(SessionManager.KEY_POINT));
+        txtProfileCoin.setText(user.get(SessionManager.KEY_COIN));
     }
 
     private void setDefaultFragment() {
@@ -159,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    NavigationView.OnNavigationItemSelectedListener navItemSelect = new NavigationView.OnNavigationItemSelectedListener() {
+    private NavigationView.OnNavigationItemSelectedListener navItemSelect = new NavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(MenuItem menuItem) {
 

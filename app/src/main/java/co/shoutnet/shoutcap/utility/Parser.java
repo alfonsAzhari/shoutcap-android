@@ -10,7 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import co.shoutnet.shoutcap.model.ModelColor;
+import co.shoutnet.shoutcap.model.ModelHistoryReward;
 import co.shoutnet.shoutcap.model.ModelInbox;
+import co.shoutnet.shoutcap.model.ModelInboxDetail;
 import co.shoutnet.shoutcap.model.ModelSignIn;
 
 /**
@@ -39,5 +41,17 @@ public class Parser {
         gson = new Gson();
 
         return gson.fromJson(json, ModelInbox.class);
+    }
+
+    public static ModelInboxDetail getInboxDetail(String json) throws IOException {
+        gson = new Gson();
+
+        return gson.fromJson(json, ModelInboxDetail.class);
+    }
+
+    public static ModelHistoryReward getRewardHistory(String json) throws IOException {
+        gson = new Gson();
+
+        return gson.fromJson(json, ModelHistoryReward.class);
     }
 }

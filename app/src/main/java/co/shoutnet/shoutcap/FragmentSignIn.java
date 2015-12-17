@@ -115,17 +115,7 @@ public class FragmentSignIn extends Fragment {
 
                 if (modelSignIn.getResult().equals("success")) {
 
-                    sessionManager.createLoginSession(modelSignIn.getShoutId(), modelSignIn.getSessionId());
-
-                    /*editor.putString("shoutId", modelSignIn.getShoutId());
-                    editor.putString("sessionId", modelSignIn.getSessionId());*/
-                   /* editor.putString("urlAvatar", modelSignIn.getSessionId());
-                    editor.putInt("point", Integer.parseInt(modelSignIn.getPoint()));
-                    editor.putInt("coin", Integer.parseInt(modelSignIn.getCoin()));
-                    editor.putInt("shoutCapQuota", Integer.parseInt(modelSignIn.getShoutcapQuota()));
-                    editor.putInt("screamShirtQuota", Integer.parseInt(modelSignIn.getScreamShirtQuota()));
-                    editor.putInt("picToCapQuota", Integer.parseInt(modelSignIn.getPictocapQuota()));
-                    editor.commit();*/
+                    sessionManager.createLoginSession(modelSignIn.getShoutId(), modelSignIn.getSessionId(), modelSignIn.getPoint(), modelSignIn.getCoin(), modelSignIn.getUrlAvatar(), modelSignIn.getShoutcapQuota(), modelSignIn.getScreamShirtQuota(), modelSignIn.getPictocapQuota());
 
                     Intent i = new Intent(mContext, MainActivity.class);
                     startActivity(i);
@@ -168,6 +158,10 @@ public class FragmentSignIn extends Fragment {
         queue.add(stringRequest);
     }
 
+    private void getProfile(String url) {
+
+    }
+
     private void login() {
         final String shoutid = edtShoutId.getText().toString();
         final String password = edtpassword.getText().toString();
@@ -176,7 +170,7 @@ public class FragmentSignIn extends Fragment {
 
         btnSignIn.setEnabled(false);
 
-        final ProgressDialog progressDialog = new ProgressDialog(mContext, R.style.AppTheme_Dark_Dialog);
+        final ProgressDialog progressDialog = new ProgressDialog(mContext);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Signing In");
         progressDialog.show();
@@ -185,7 +179,6 @@ public class FragmentSignIn extends Fragment {
             @Override
             public void run() {
                 fetchData(shoutid, password);
-
                 progressDialog.dismiss();
             }
         }, 3000);

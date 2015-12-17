@@ -6,7 +6,7 @@
     android:paddingLeft="32dp"
     android:paddingStart="32dp">
 
-    <co.shoutnet.shoutcap.utility.RoundedImageView
+    <ImageView
         android:id="@+id/img_drawer_photo_user"
         android:layout_width="64dp"
         android:layout_height="64dp"

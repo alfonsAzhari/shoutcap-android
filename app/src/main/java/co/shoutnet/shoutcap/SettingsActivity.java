@@ -1,5 +1,6 @@
 package co.shoutnet.shoutcap;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -9,6 +10,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import co.shoutnet.shoutcap.utility.SessionManager;
+
 public class SettingsActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
@@ -16,10 +19,14 @@ public class SettingsActivity extends AppCompatActivity {
     private ListView listView;
     private String[] items;
 
+    SessionManager manager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        manager = new SessionManager(this);
 
         initToolbar();
         initView();
@@ -45,6 +52,17 @@ public class SettingsActivity extends AppCompatActivity {
                         break;
 
                     case 3:
+                        final ProgressDialog progressDialog = new ProgressDialog(SettingsActivity.this);
+                        progressDialog.setIndeterminate(true);
+                        progressDialog.setMessage("Signing Out");
+                        progressDialog.show();
+                        new android.os.Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                progressDialog.dismiss();
+                                manager.logoutUser();
+                            }
+                        }, 3000);
                         break;
                 }
             }
@@ -75,5 +93,9 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void logout(long time) {
+
     }
 }

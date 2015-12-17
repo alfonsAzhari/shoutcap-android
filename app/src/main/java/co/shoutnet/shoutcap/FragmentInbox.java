@@ -1,6 +1,7 @@
 package co.shoutnet.shoutcap;
 
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -37,18 +39,23 @@ import co.shoutnet.shoutcap.model.ModelAdapterInbox;
 import co.shoutnet.shoutcap.model.ModelInbox;
 import co.shoutnet.shoutcap.utility.ApiReferences;
 import co.shoutnet.shoutcap.utility.Parser;
+import co.shoutnet.shoutcap.utility.RecyclerItemClickListener;
 import co.shoutnet.shoutcap.utility.SessionManager;
+import co.shoutnet.shoutcap.utility.SimpleDividerItemDecoration;
 
 /**
  * Created by Codelabs on 8/26/2015.
  */
 public class FragmentInbox extends Fragment {
 
+    private Context mContext;
+
     private RecyclerView recyclerView;
     private InboxAdapter adapter;
     private ArrayList<ModelAdapterInbox> inboxes;
+    private ModelInbox inbox = null;
 
-    private Context mContext;
+    private LinearLayout linProgress;
 
     SessionManager manager;
     HashMap<String, String> user;
@@ -80,6 +87,8 @@ public class FragmentInbox extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+        recyclerView.addItemDecoration(new SimpleDividerItemDecoration(mContext));
+        recyclerView.addOnItemTouchListener(itemClick);
 
         fetchData(ApiReferences.getUrlGetInbox());
 
@@ -93,14 +102,16 @@ public class FragmentInbox extends Fragment {
 
     private void initView(View v) {
         recyclerView = (RecyclerView) v.findViewById(R.id.recyclerview_inbox);
+        linProgress = (LinearLayout) v.findViewById(R.id.lin_inbox_progress);
     }
 
     private void fetchData(String url) {
+
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.i("json", response.toString());
-                ModelInbox inbox = null;
+
                 try {
                     inbox = Parser.getInbox(response.toString());
                 } catch (IOException e) {
@@ -110,14 +121,12 @@ public class FragmentInbox extends Fragment {
                 if (inbox.getResult().equals("success")) {
                     inboxes = new ArrayList<>();
                     for (ModelInbox.Item item : inbox.getItem()) {
-                        Log.i("title", item.getTitle());
-                        Log.i("date", item.getDate());
-                        Log.i("message", item.getMessage());
                         inboxes.add(new ModelAdapterInbox(item.getTitle(), item.getDate(), item.getMessage()));
                     }
 
                     adapter = new InboxAdapter(mContext, inboxes);
                     recyclerView.setAdapter(adapter);
+                    linProgress.setVisibility(View.GONE);
                 }
             }
         }, new Response.ErrorListener() {
@@ -149,4 +158,22 @@ public class FragmentInbox extends Fragment {
         RequestQueue queue = Volley.newRequestQueue(mContext);
         queue.add(stringRequest);
     }
+
+    private RecyclerItemClickListener itemClick = new RecyclerItemClickListener(mContext, recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
+        @Override
+        public void onItemClick(View view, int position) {
+            FragmentTransaction fragmentTransaction = getActivity().getFragmentManager().beginTransaction();
+            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_ENTER_MASK);
+
+            FragmentInboxDetail inboxDetail = FragmentInboxDetail.newInstance(inbox.getItem().get(position).getId());
+
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.replace(R.id.frame_content_main, inboxDetail).commit();
+        }
+
+        @Override
+        public void onItemLongClick(View view, int position) {
+
+        }
+    });
 }
