@@ -1,6 +1,5 @@
 package co.shoutnet.shoutcap;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,28 +7,36 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+
+import com.android.volley.Request;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import co.shoutnet.shoutcap.adapter.CheckoutAdapter;
 import co.shoutnet.shoutcap.model.ItemCartModel;
 import co.shoutnet.shoutcap.model.ModelResponseCheckout;
+import co.shoutnet.shoutcap.utility.CustomLinearLayoutManager;
 import co.shoutnet.shoutcap.utility.DBCapsHelper;
 import co.shoutnet.shoutcap.utility.Parser;
+import co.shoutnet.shoutcap.utility.VolleyRequest;
 
 public class ActivityCheckout extends AppCompatActivity {
 
     private Toolbar toolbar;
     private RecyclerView itemList;
-    private ssss layoutManager;
+    private CustomLinearLayoutManager layoutManager;
 
     private int[] qtyItem;
     private String jsonResponse;
     private ArrayList<ItemCartModel> caps;
     private ArrayList<ModelResponseCheckout> checkouts;
     private ModelResponseCheckout checkout;
+    private Bundle consigneeBundle;
 
     private TextView txtName;
     private TextView txtphone;
@@ -40,7 +47,10 @@ public class ActivityCheckout extends AppCompatActivity {
     private TextView txtdiscQtyIDR;
     private TextView txtdiscVoucherPersen;
     private TextView txtdiscVoucherIDR;
+    private TextView txtCostDelivery;
     private TextView txtTotal;
+
+    private Button btnConfirm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +63,7 @@ public class ActivityCheckout extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         qtyItem = bundle.getIntArray("qtyItems");
         jsonResponse = bundle.getString("jsonResponse");
+        consigneeBundle = bundle.getBundle("bundle");
         caps = new DBCapsHelper(getApplicationContext()).getItemCart();
         checkout = new ModelResponseCheckout();
         try {
@@ -63,14 +74,59 @@ public class ActivityCheckout extends AppCompatActivity {
         checkouts = new ArrayList<>();
         checkouts.add(checkout);
 
-        //requirement item for viewing data
-        layoutManager = new ssss(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+        //bind data
+        bindData(checkouts);
+
+        //requirement component for viewing data
+        layoutManager = new CustomLinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         CheckoutAdapter adapter = new CheckoutAdapter(caps, qtyItem);
 
         //set require item to container view
-//        itemList.setHasFixedSize(true);
+        itemList.setHasFixedSize(true);
         itemList.setLayoutManager(layoutManager);
         itemList.setAdapter(adapter);
+
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://api.shoutnet.co/shoutcap/order_create.php";
+
+                Map<String, String> params = new HashMap<>();
+                params.put("shoutid", "devtest");
+                params.put("sessionid", "fab19834f4aac1c399b1273245d7b648");
+                params.put("from", "app");
+                params.put("id_checkout", checkout.getItem().getId_checkout());
+
+                new VolleyRequest().request(getApplicationContext(), Request.Method.POST, url, params, new VolleyRequest.RequestListener() {
+                    @Override
+                    public void OnSuccess(String response) {
+
+                    }
+
+                    @Override
+                    public void OnFaliure() {
+
+                    }
+                });
+            }
+        });
+    }
+
+    private void bindData(ArrayList<ModelResponseCheckout> checkouts) {
+        ModelResponseCheckout.Item item = checkouts.get(0).getItem();
+        Log.i("bundle name", consigneeBundle.getString("phone"));
+
+        txtName.setText(consigneeBundle.getString("name"));
+        txtphone.setText(consigneeBundle.getString("phone"));
+        txtEmail.setText(consigneeBundle.getString("email"));
+        txtAddress.setText(consigneeBundle.getString("address"));
+
+        txtdiscQtyPersen.setText(item.getDisc_qty_persen());
+        txtdiscQtyIDR.setText(item.getDisc_qty_idr());
+        txtdiscVoucherPersen.setText(item.getDisc_voucher_persen());
+        txtdiscVoucherIDR.setText(item.getDisc_voucher_idr());
+        txtCostDelivery.setText(item.getOngkos_kirim());
+        txtTotal.setText(item.getTotal());
     }
 
     private void initView() {
@@ -79,23 +135,19 @@ public class ActivityCheckout extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
-    }
 
-    public class ssss extends LinearLayoutManager {
+        txtName = (TextView) findViewById(R.id.txt_name_checkout);
+        txtphone = (TextView) findViewById(R.id.txt_phone_checkout);
+        txtEmail = (TextView) findViewById(R.id.txt_email_checkout);
+        txtAddress = (TextView) findViewById(R.id.txt_address_checkout);
 
-        public ssss(Context context, int orientation, boolean reverseLayout) {
-            super(context, orientation, reverseLayout);
-        }
+        txtdiscQtyPersen = (TextView) findViewById(R.id.txt_discQtyPercent_checkout);
+        txtdiscQtyIDR = (TextView) findViewById(R.id.txt_discQtyIDR_checkout);
+        txtdiscVoucherPersen = (TextView) findViewById(R.id.txt_discVoucherPercent_checkout);
+        txtdiscVoucherIDR = (TextView) findViewById(R.id.txt_discVoucherIDR_checkout);
+        txtCostDelivery = (TextView) findViewById(R.id.txt_costDelivery_checkout);
+        txtTotal = (TextView) findViewById(R.id.txt_total_checkout);
 
-        @Override
-        public void onMeasure(RecyclerView.Recycler recycler, RecyclerView.State state, int widthSpec, int heightSpec) {
-            Log.i("height", String.valueOf(heightSpec));
-            Log.i("height", String.valueOf(View.MeasureSpec.getMode(heightSpec)));
-            Log.i("height", String.valueOf(View.MeasureSpec.getSize(heightSpec)));
-
-            int height = state.getItemCount() * View.MeasureSpec.getMode(heightSpec);
-            Log.i("new ", String.valueOf(height));
-            super.onMeasure(recycler, state, widthSpec, height);
-        }
+        btnConfirm = (Button) findViewById(R.id.btn_confirm_checkout);
     }
 }

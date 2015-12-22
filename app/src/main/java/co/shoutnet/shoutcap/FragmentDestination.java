@@ -255,7 +255,7 @@ public class FragmentDestination extends Fragment {
         Map<String, String> params = mappingData();
 
         String url = "https://api.shoutnet.co/shoutcap/order_tujuan.php";
-        new VolleyRequest().request(getActivity(), url, params, new VolleyRequest.RequestListener() {
+        new VolleyRequest().request(getActivity(), Request.Method.POST, url, params, new VolleyRequest.RequestListener() {
             @Override
             public void OnSuccess(String response) {
                 Log.i("json", response);

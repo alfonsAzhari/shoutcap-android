@@ -40,11 +40,19 @@ public class RackItemDialog extends DialogFragment {
         ImageView imageView = (ImageView) view.findViewById(R.id.img_preview_rack);
         imageView.setImageBitmap(image);
 
-        Button button = (Button) view.findViewById(R.id.btn_addtocart_rack);
-        button.setOnClickListener(new View.OnClickListener() {
+        Button btnAdd = (Button) view.findViewById(R.id.btn_addtocart_rack);
+        btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mListener.adding();
+                mListener.onAction('a');
+            }
+        });
+
+        Button btnDelete = (Button) view.findViewById(R.id.btn_delete_rack);
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onAction('d');
             }
         });
 
@@ -52,6 +60,6 @@ public class RackItemDialog extends DialogFragment {
     }
 
     public interface RackDialogListener {
-        void adding();
+        void onAction(char action);
     }
 }

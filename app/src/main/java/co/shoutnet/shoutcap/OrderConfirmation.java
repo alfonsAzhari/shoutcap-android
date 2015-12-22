@@ -18,15 +18,7 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.RetryPolicy;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -61,11 +53,16 @@ public class OrderConfirmation extends AppCompatActivity {
     private TextInputLayout lyZip;
     private Button btnSubmit;
 
-    private FetchData fetchData;
+    //    private FetchData fetchData;
     private ArrayAdapter<String> adapter;
+    private Map<String, String> params;
 
     private int[] qtyItems;
     private Context context;
+
+    private String urlProvince = "https://api.shoutnet.co/shoutid/get_provinsi.php";
+    private String urlCity = "https://api.shoutnet.co/shoutid/get_kota.php";
+    private String urlDistrict = "https://api.shoutnet.co/shoutid/get_kecamatan.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,14 +104,24 @@ public class OrderConfirmation extends AppCompatActivity {
             }
         });
 
-        getData("prov", "prov", "https://api.shoutnet.co/shoutid/get_provinsi.php", spnProvince);
+//        getData("prov", "prov", "https://api.shoutnet.co/shoutid/get_provinsi.php", spnProvince);
+        getData(null, Request.Method.GET, urlProvince, spnProvince);
 
         spnProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedItem = spnProvince.getSelectedItem().toString();
-                String url = "https://api.shoutnet.co/shoutid/get_kota.php";
-                getData(selectedItem, "provinsi", url, spnCity);
+                String selectedItem;
+                int item = spnProvince.getAdapter().getCount();
+                if (item > 1) {
+                    selectedItem = spnProvince.getSelectedItem().toString();
+
+                    params = new HashMap<>();
+                    params.put("provinsi", selectedItem);
+
+                    getData(params, Request.Method.POST, urlCity, spnCity);
+                } else {
+                    getData(null, Request.Method.GET, urlProvince, spnProvince);
+                }
             }
 
             @Override
@@ -125,9 +132,16 @@ public class OrderConfirmation extends AppCompatActivity {
         spnCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String selectedItem = spnCity.getSelectedItem().toString();
-                String url = "https://api.shoutnet.co/shoutid/get_kecamatan.php";
-                getData(selectedItem, "kota", url, spnDistrict);
+                String selectedItem;
+                int item = spnCity.getAdapter().getCount();
+                if (item > 1) {
+                    selectedItem = spnCity.getSelectedItem().toString();
+                    params = new HashMap<>();
+                    params.put("kota", selectedItem);
+                    getData(params, Request.Method.POST, urlDistrict, spnDistrict);
+                } else {
+
+                }
             }
 
             @Override
@@ -172,26 +186,52 @@ public class OrderConfirmation extends AppCompatActivity {
         btnSubmit = (Button) findViewById(R.id.btn_submit_destination);
     }
 
-    private void getData(String param, String key, String url, final Spinner spinner) {
-        fetchData = new FetchData(param, key, url, new RequestListener() {
+    private void getData(Map<String, String> param, int method, String url, final Spinner spinner) {
+//        fetchData = new FetchData(param, key, url, new RequestListener() {
+//            @Override
+//            public void OnDataLoaded(String result) {
+//                ModelProvince dataAddrs = null;
+//                try {
+//                    dataAddrs = Parser.getDataAddrs(result);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                if (dataAddrs != null) {
+//                    String[] data = dataAddrs.getItem();
+//                    if (data != null) {
+//                        adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, data);
+//                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+////                    spnProvince.setAdapter(adapter);
+//                        spinner.setAdapter(adapter);
+//                        spinner.setEnabled(true);
+//                    }
+//                }
+//            }
+//        });
+        new VolleyRequest().request(getApplicationContext(), method, url, param, new VolleyRequest.RequestListener() {
             @Override
-            public void OnDataLoaded(String result) {
+            public void OnSuccess(String response) {
                 ModelProvince dataAddrs = null;
                 try {
-                    dataAddrs = Parser.getDataAddrs(result);
+                    dataAddrs = Parser.getDataAddrs(response);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
                 if (dataAddrs != null) {
                     String[] data = dataAddrs.getItem();
                     if (data != null) {
                         adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, data);
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//                    spnProvince.setAdapter(adapter);
                         spinner.setAdapter(adapter);
                         spinner.setEnabled(true);
                     }
                 }
+            }
+
+            @Override
+            public void OnFaliure() {
+
             }
         });
     }
@@ -222,13 +262,24 @@ public class OrderConfirmation extends AppCompatActivity {
             return;
         }
 
+        final Bundle bundle = new Bundle();
+        bundle.putString("name", edtName.getText().toString().trim());
+        bundle.putString("phone", edtPhone.getText().toString().trim());
+        bundle.putString("email", edtEmail.getText().toString().trim());
+        String address = edtAddress.getText().toString() + " " +
+                edtZipCode.getText().toString() + " " +
+                spnDistrict.getSelectedItem().toString() + " " +
+                spnCity.getSelectedItem().toString() + " " +
+                spnProvince.getSelectedItem().toString();
+        bundle.putString("address", address);
+
         //send data to server
         Log.i("info", "redeh to upload data");
 
         Map<String, String> params = mappingData();
 
         String url = "https://api.shoutnet.co/shoutcap/order_tujuan.php";
-        new VolleyRequest().request(getApplicationContext(), url, params, new VolleyRequest.RequestListener() {
+        new VolleyRequest().request(getApplicationContext(), Request.Method.POST, url, params, new VolleyRequest.RequestListener() {
             @Override
             public void OnSuccess(String response) {
                 Log.i("json", response);
@@ -243,6 +294,7 @@ public class OrderConfirmation extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), ActivityCheckout.class);
                     intent.putExtra("qtyItems", qtyItems);
                     intent.putExtra("jsonResponse", response);
+                    intent.putExtra("bundle", bundle);
                     startActivity(intent);
                 }
             }
@@ -252,6 +304,31 @@ public class OrderConfirmation extends AppCompatActivity {
 
             }
         });
+//        new VolleyRequest().request(getApplicationContext(), Request.Method.POST, url, params, new VolleyRequest.RequestListener() {
+//            @Override
+//            public void OnSuccess(String response) {
+//                Log.i("json", response);
+//                ModelResponseCheckout modelResult = new ModelResponseCheckout();
+//                try {
+//                    modelResult = Parser.getResultCheckout(response);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//
+//                if (modelResult.getResult().equals("success")) {
+//                    Intent intent = new Intent(getApplicationContext(), ActivityCheckout.class);
+//                    intent.putExtra("qtyItems", qtyItems);
+//                    intent.putExtra("jsonResponse", response);
+//                    intent.putExtra("bundle",bundle);
+//                    startActivity(intent);
+//                }
+//            }
+//
+//            @Override
+//            public void OnFaliure() {
+//
+//            }
+//        });
     }
 
     private boolean validateName() {
@@ -320,63 +397,63 @@ public class OrderConfirmation extends AppCompatActivity {
         return params;
     }
 
-    public interface RequestListener {
-        void OnDataLoaded(String result);
-    }
+//    public interface RequestListener {
+//        void OnDataLoaded(String result);
+//    }
 
-    private class FetchData {
-        private String param;
-        private String keyParam;
-        private String url;
-        private String requestResult = null;
-        private RequestListener listener;
-
-        public FetchData(String param, String keyParam, String url, RequestListener listener) {
-            this.param = param;
-            this.keyParam = keyParam;
-            this.url = url;
-            this.listener = listener;
-            getData();
-        }
-
-        public String getData() {
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    requestResult = response;
-                    Log.i("json", response);
-                    listener.OnDataLoaded(response);
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Log.e("error", error.getMessage());
-                }
-            }) {
-                @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    Map<String, String> params = new HashMap<>();
-                    params.put(keyParam, param);
-                    return params;
-                }
-
-                @Override
-                public Map<String, String> getHeaders() throws AuthFailureError {
-                    Map<String, String> params = new HashMap<>();
-                    params.put("Content-Type", "application/x-www-form-urlencoded");
-                    return params;
-                }
-            };
-
-            RetryPolicy retryPolicy = new DefaultRetryPolicy(10000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-            stringRequest.setRetryPolicy(retryPolicy);
-            RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-            requestQueue.add(stringRequest);
-
-            return requestResult;
-        }
-
-    }
+//    private class FetchData {
+//        private String param;
+//        private String keyParam;
+//        private String url;
+//        private String requestResult = null;
+//        private RequestListener listener;
+//
+//        public FetchData(String param, String keyParam, String url, RequestListener listener) {
+//            this.param = param;
+//            this.keyParam = keyParam;
+//            this.url = url;
+//            this.listener = listener;
+//            getData();
+//        }
+//
+//        public String getData() {
+//            StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+//                @Override
+//                public void onResponse(String response) {
+//                    requestResult = response;
+//                    Log.i("json", response);
+//                    listener.OnDataLoaded(response);
+//                }
+//            }, new Response.ErrorListener() {
+//                @Override
+//                public void onErrorResponse(VolleyError error) {
+//                    Log.e("error", error.getMessage());
+//                }
+//            }) {
+//                @Override
+//                protected Map<String, String> getParams() throws AuthFailureError {
+//                    Map<String, String> params = new HashMap<>();
+//                    params.put(keyParam, param);
+//                    return params;
+//                }
+//
+//                @Override
+//                public Map<String, String> getHeaders() throws AuthFailureError {
+//                    Map<String, String> params = new HashMap<>();
+//                    params.put("Content-Type", "application/x-www-form-urlencoded");
+//                    return params;
+//                }
+//            };
+//
+//            RetryPolicy retryPolicy = new DefaultRetryPolicy(10000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+//            stringRequest.setRetryPolicy(retryPolicy);
+//            RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+//            requestQueue.add(stringRequest);
+//
+//            return requestResult;
+//        }
+//
+//    }
 
     private class Watcher implements TextWatcher {
         private View view;

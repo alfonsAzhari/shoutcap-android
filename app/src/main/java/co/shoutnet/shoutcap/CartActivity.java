@@ -14,7 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -43,6 +42,7 @@ import co.shoutnet.shoutcap.model.ModelVoucher;
 import co.shoutnet.shoutcap.utility.DBCapsHelper;
 import co.shoutnet.shoutcap.utility.Parser;
 import co.shoutnet.shoutcap.utility.RecyclerSwipeTouchListener;
+import co.shoutnet.shoutcap.utility.VolleyRequest;
 import co.shoutnet.shoutcap.utility.VoucherDialog;
 
 
@@ -122,7 +122,7 @@ public class CartActivity extends AppCompatActivity {
             public void onDismiss(RecyclerView recyclerView, int[] reversePositions) {
                 for (int position : reversePositions) {
                     String id = String.valueOf(modelAdapterCarts.get(position).getId());
-                    new DBCapsHelper(getApplicationContext()).deleteCartData(modelAdapterCarts.get(position).getId());
+                    new DBCapsHelper(getApplicationContext()).deleteData(modelAdapterCarts.get(position).getId());
                     modelAdapterCarts.remove(position);
                     total = 0;
                     capName = new String[modelAdapterCarts.size()];
@@ -141,11 +141,25 @@ public class CartActivity extends AppCompatActivity {
                     }
                     adapter.notifyItemRemoved(position);
                     recyclerView.removeViewAt(position);
+
+                    String url = "https://api.shoutnet.co/shoutcap/delete_cart.php";
                     Map<String, String> params = new HashMap<>();
                     params.put("shoutid", "devtest");
                     params.put("sessionid", "fab19834f4aac1c399b1273245d7b648");
                     params.put("id_cart", id);
-                    new DeleteCap().deleteData("https://api.shoutnet.co/shoutcap/delete_cart.php", params, new CartListenter() {
+//                    new DeleteCap().deleteData("https://api.shoutnet.co/shoutcap/delete_cart.php", params, new CartListenter() {
+//                        @Override
+//                        public void OnSuccess(String response) {
+//
+//                        }
+//
+//                        @Override
+//                        public void OnFaliure() {
+//
+//                        }
+//                    });
+
+                    new VolleyRequest().request(getApplicationContext(), Request.Method.POST, url, params, new VolleyRequest.RequestListener() {
                         @Override
                         public void OnSuccess(String response) {
 
@@ -260,7 +274,29 @@ public class CartActivity extends AppCompatActivity {
         }
 
         String url = "https://api.shoutnet.co/shoutcap/update_qty_voucher_cart.php";
-        new DeleteCap().deleteData(url, params, new CartListenter() {
+//        new DeleteCap().deleteData(url, params, new CartListenter() {
+//            @Override
+//            public void OnSuccess(String response) {
+//                ModelOnlyResult result = new ModelOnlyResult();
+//                try {
+//                    result = Parser.getResult(response);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//
+//                if (result.getResult().equals("success")) {
+//                    Intent intent = new Intent(getApplicationContext(), OrderConfirmation.class);
+//                    intent.putExtra("qtyItems", qtyItem);
+//                    startActivity(intent);
+//                }
+//            }
+//
+//            @Override
+//            public void OnFaliure() {
+//                Toast.makeText(getApplicationContext(), "Upload data is failed", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+        new VolleyRequest().request(getApplicationContext(), Request.Method.POST, url, params, new VolleyRequest.RequestListener() {
             @Override
             public void OnSuccess(String response) {
                 ModelOnlyResult result = new ModelOnlyResult();
@@ -279,7 +315,7 @@ public class CartActivity extends AppCompatActivity {
 
             @Override
             public void OnFaliure() {
-                Toast.makeText(getApplicationContext(), "Upload data is failed", Toast.LENGTH_SHORT).show();
+
             }
         });
     }

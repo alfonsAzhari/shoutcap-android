@@ -5,7 +5,6 @@ import android.util.Log;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
@@ -13,14 +12,15 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Created by Henra SN on 12/13/2015.
  */
 public class VolleyRequest {
-    public void request(Context context, String url, final Map<String, String> param, final RequestListener listenter) {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+    public void request(Context context, int method, String url, final Map<String, String> param, final RequestListener listenter) {
+        StringRequest stringRequest = new StringRequest(method, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.i("response", response);
@@ -38,12 +38,12 @@ public class VolleyRequest {
                 return param;
             }
 
-//                @Override
-//                public Map<String, String> getHeaders() throws AuthFailureError {
-//                    Map<String,String> params=new HashMap<>();
-//                    params.put("Content-Type", "application/x-www-form-urlencoded");
-//                    return params;
-//                }
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+                return params;
+            }
         };
 
         RetryPolicy retryPolicy = new DefaultRetryPolicy(10000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);

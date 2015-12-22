@@ -155,8 +155,31 @@ public class DBCapsHelper extends SQLiteOpenHelper {
         return data;
     }
 
-    public List<ModelAdapterCart> getCartData() {
-        List<ModelAdapterCart> data = new ArrayList<>();
+    public CapsModel getRack(int id) {
+        String query = "SELECT * FROM " + TB_NAME + " WHERE id= " + id;
+
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        CapsModel capsModel = null;
+        if (cursor.moveToFirst()) {
+            capsModel = new CapsModel();
+            capsModel.setId(String.valueOf(cursor.getInt(0)));
+            capsModel.setText(cursor.getString(1));
+            capsModel.setModel(cursor.getInt(2));
+            capsModel.setSize(cursor.getString(3));
+            capsModel.setFont(cursor.getString(4));
+            capsModel.setColor(cursor.getInt(5));
+            capsModel.setFontsize(cursor.getInt(6));
+            capsModel.setLine(cursor.getInt(7));
+            capsModel.setPrice(cursor.getInt(8));
+            capsModel.setBaseImage(cursor.getString(9));
+        }
+        return capsModel;
+    }
+
+    public ArrayList<ModelAdapterCart> getCartData() {
+        ArrayList<ModelAdapterCart> data = new ArrayList<>();
         ModelAdapterCart modelAdapterCart;
         String query = "SELECT id, baseImage, text, price FROM " + TB_NAME + " WHERE status = 'cart' OR status = 'both'";
 
@@ -223,16 +246,16 @@ public class DBCapsHelper extends SQLiteOpenHelper {
     }
 
     public void updateStatus(String status, String id) {
-        SQLiteDatabase db=getWritableDatabase();
+        SQLiteDatabase db = getWritableDatabase();
 
-        ContentValues values=new ContentValues();
-        values.put(KEY_STATUS,status);
+        ContentValues values = new ContentValues();
+        values.put(KEY_STATUS, status);
 
         db.update(TB_NAME, values, "id = " + id, null);
         db.close();
     }
 
-    public void deleteCartData(int id) {
+    public void deleteData(int id) {
         SQLiteDatabase db = getWritableDatabase();
         db.delete(TB_NAME, "id = " + id, null);
         db.close();

@@ -51,8 +51,8 @@ public class RackAdapter extends RecyclerView.Adapter<RackAdapter.RackViewHolder
             public void onClick(View v) {
                 DialogFragment dialogFragment = RackItemDialog.newInstance(bitmap, new RackItemDialog.RackDialogListener() {
                     @Override
-                    public void adding() {
-                        listener.testing(racks.get(position).getId());
+                    public void onAction(char action) {
+                        listener.testing(racks.get(position).getId(), action);
                     }
                 });
                 Activity activity = (Activity) context;
@@ -67,7 +67,7 @@ public class RackAdapter extends RecyclerView.Adapter<RackAdapter.RackViewHolder
     }
 
     public interface RackListener {
-        void testing(String id);
+        void testing(String id, char act);
     }
 
     public static class RackViewHolder extends RecyclerView.ViewHolder {

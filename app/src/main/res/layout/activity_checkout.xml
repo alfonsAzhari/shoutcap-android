@@ -149,10 +149,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="Discount"/>
+            android:text="Discount qty (%)" />
 
         <TextView
-            android:id="@+id/txt_disc_checkout"
+            android:id="@+id/txt_discQtyPercent_checkout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1.5"
@@ -173,10 +173,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="Discount"/>
+            android:text="Discount qty (IDR)" />
 
         <TextView
-            android:id="@+id/txt_disc1_checkout"
+            android:id="@+id/txt_discQtyIDR_checkout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1.5"
@@ -197,10 +197,58 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="Discount"/>
+            android:text="Discount Voucher (%)" />
 
         <TextView
-            android:id="@+id/txt_disc2_checkout"
+            android:id="@+id/txt_discVoucherPercent_checkout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:gravity="right"
+            android:text="Discount"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="Discount Voucher (IDR)" />
+
+        <TextView
+            android:id="@+id/txt_discVoucherIDR_checkout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:gravity="right"
+            android:text="Discount"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="Cost Delivery" />
+
+        <TextView
+            android:id="@+id/txt_costDelivery_checkout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1.5"
@@ -226,7 +274,7 @@
             android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/txt_disc3_checkout"
+            android:id="@+id/txt_total_checkout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1.5"
@@ -237,6 +285,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/btn_confirm_checkout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"

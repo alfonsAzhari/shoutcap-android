@@ -15,15 +15,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.RetryPolicy;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -38,6 +30,7 @@ import co.shoutnet.shoutcap.model.ModelRack;
 import co.shoutnet.shoutcap.utility.DBCapsHelper;
 import co.shoutnet.shoutcap.utility.InternetConnection;
 import co.shoutnet.shoutcap.utility.Parser;
+import co.shoutnet.shoutcap.utility.VolleyRequest;
 
 /**
  * Created by Alfons on 29/8/2015.
@@ -51,6 +44,7 @@ public class FragmentPreviewShout extends Fragment {
     private Button btnAddCart;
     private Uri uri;
     private boolean both=false;
+    private Map<String, String> params;
 
     public FragmentPreviewShout() {
 
@@ -108,7 +102,36 @@ public class FragmentPreviewShout extends Fragment {
     }
 
     private void addToCart() {
-        new AddCaps().sendData("https://api.shoutnet.co/shoutcap/add_to_cart.php", capsModel, new CapsResult() {
+        String url = "https://api.shoutnet.co/shoutcap/add_to_cart.php";
+        params = mapping(capsModel);
+//        new AddCaps().sendData("https://api.shoutnet.co/shoutcap/add_to_cart.php", capsModel, new CapsResult() {
+//            @Override
+//            public void OnSuccess(String response) {
+//                ModelCart modelCart = null;
+//                try {
+//                    modelCart = Parser.getCartResponse(response);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                ModelCart.Item item = modelCart.getItem().get(0);
+//                capsModel.setPrice(Integer.parseInt(item.getPrice()));
+//                capsModel.setId(item.getId());
+//                if (!both) {
+//                    both = true;
+//                    capsModel.setStatus("cart");
+//                    dbCapsHelper.addCap(capsModel);
+//                } else {
+//                    dbCapsHelper.updateStatus("both", item.getId());
+//                }
+//            }
+//
+//            @Override
+//            public void OnFailure(String message) {
+//                btnAddCart.setEnabled(true);
+//                Toast.makeText(getActivity(), "Add to cart failed", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+        new VolleyRequest().request(getActivity(), Request.Method.POST, url, params, new VolleyRequest.RequestListener() {
             @Override
             public void OnSuccess(String response) {
                 ModelCart modelCart = null;
@@ -120,25 +143,55 @@ public class FragmentPreviewShout extends Fragment {
                 ModelCart.Item item = modelCart.getItem().get(0);
                 capsModel.setPrice(Integer.parseInt(item.getPrice()));
                 capsModel.setId(item.getId());
-                if (!both) {
-                    both = true;
+//                if (!both) {
+//                    both = true;
                     capsModel.setStatus("cart");
                     dbCapsHelper.addCap(capsModel);
-                } else {
-                    dbCapsHelper.updateStatus("both", item.getId());
-                }
+//                } else {
+//                    dbCapsHelper.updateStatus("both", item.getId());
+//                }
             }
 
             @Override
-            public void OnFailure(String message) {
-                btnAddCart.setEnabled(true);
-                Toast.makeText(getActivity(), "Add to cart failed", Toast.LENGTH_SHORT).show();
+            public void OnFaliure() {
+
             }
         });
+//        String url=null;
+//        Map<String,String> params=new HashMap<>();
+//        sendData(url,params);
     }
 
     private void addToRack() {
-        new AddCaps().sendData("https://api.shoutnet.co/shoutcap/add_to_cart.php", capsModel, new CapsResult() {
+        String url = "https://api.shoutnet.co/shoutcap/add_to_rack.php";
+        params = mapping(capsModel);
+//        new AddCaps().sendData("https://api.shoutnet.co/shoutcap/add_to_cart.php", capsModel, new CapsResult() {
+//            @Override
+//            public void OnSuccess(String response) {
+//                ModelRack modelRack = null;
+//                try {
+//                    modelRack = Parser.getRackResponse(response);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                ModelRack.Item item = modelRack.getItem().get(0);
+//                capsModel.setPrice(Integer.parseInt(item.getPrice()));
+//                capsModel.setId(item.getId());
+//                if (!both) {
+//                    both = true;
+//                    capsModel.setStatus("rack");
+//                    dbCapsHelper.addCap(capsModel);
+//                } else {
+//                    dbCapsHelper.updateStatus("both", item.getId());
+//                }
+//            }
+//
+//            @Override
+//            public void OnFailure(String message) {
+//
+//            }
+//        });
+        new VolleyRequest().request(getActivity(), Request.Method.POST, url, params, new VolleyRequest.RequestListener() {
             @Override
             public void OnSuccess(String response) {
                 ModelRack modelRack = null;
@@ -150,20 +203,43 @@ public class FragmentPreviewShout extends Fragment {
                 ModelRack.Item item = modelRack.getItem().get(0);
                 capsModel.setPrice(Integer.parseInt(item.getPrice()));
                 capsModel.setId(item.getId());
-                if (!both) {
-                    both = true;
+//                if (!both) {
+//                    both = true;
                     capsModel.setStatus("rack");
                     dbCapsHelper.addCap(capsModel);
-                } else {
-                    dbCapsHelper.updateStatus("both", item.getId());
-                }
+//                } else {
+//                    dbCapsHelper.updateStatus("both", item.getId());
+//                }
             }
 
             @Override
-            public void OnFailure(String message) {
+            public void OnFaliure() {
 
             }
         });
+//        String url=null;
+//        Map<String,String> params=new HashMap<>();
+//        sendData(url,params);
+    }
+
+    private Map<String, String> mapping(CapsModel capsModel) {
+        params = new HashMap<>();
+        params.put("shoutid", "devtest");
+        params.put("sessionid", "fab19834f4aac1c399b1273245d7b648");
+        params.put("from", "app");
+        params.put("id_model", String.valueOf(capsModel.getModel()));
+        params.put("size", capsModel.getSize());
+        params.put("font_type", capsModel.getFont());
+        params.put("id_font_color", String.valueOf(capsModel.getColor()));
+        params.put("font_size", String.valueOf(capsModel.getFontsize()));
+        params.put("shout", capsModel.getText());
+        params.put("jum_baris", String.valueOf(capsModel.getLine()));
+        params.put("shout_caption", "n");
+        params.put("caption", "n");
+        params.put("mirror", "n");
+        params.put("flip", "n");
+        params.put("image", capsModel.getBaseImage());
+        return params;
     }
 
     private Uri saveImageToStorage(String image, String name) {
@@ -200,60 +276,60 @@ public class FragmentPreviewShout extends Fragment {
         btnAddRack = (Button) v.findViewById(R.id.btn_addrack_preview);
     }
 
-    public interface CapsResult {
-        void OnSuccess(String response);
-
-        void OnFailure(String message);
-    }
-
-    private class AddCaps {
-        public void sendData(String url, final CapsModel capsModel, final CapsResult capsResult) {
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    Log.i("response", response);
-                    capsResult.OnSuccess(response);
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Log.i("error", error.getMessage());
-                    capsResult.OnFailure(error.getMessage());
-                }
-            }) {
-                @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    Map<String, String> params = new HashMap<>();
-                    params.put("shoutid", "devtest");
-                    params.put("sessionid", "fab19834f4aac1c399b1273245d7b648");
-                    params.put("from", "app");
-                    params.put("id_model", String.valueOf(capsModel.getModel()));
-                    params.put("size", capsModel.getSize());
-                    params.put("font_type", capsModel.getFont());
-                    params.put("id_font_color", String.valueOf(capsModel.getColor()));
-                    params.put("font_size", String.valueOf(capsModel.getFontsize()));
-                    params.put("shout", capsModel.getText());
-                    params.put("jum_baris", String.valueOf(capsModel.getLine()));
-                    params.put("shout_caption", "n");
-                    params.put("caption", "n");
-                    params.put("mirror", "n");
-                    params.put("flip", "n");
-                    params.put("image", capsModel.getBaseImage());
-                    return params;
-                }
-
+//    public interface CapsResult {
+//        void OnSuccess(String response);
+//
+//        void OnFailure(String message);
+//    }
+//
+//    private class AddCaps {
+//        public void sendData(String url, final CapsModel capsModel, final CapsResult capsResult) {
+//            StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
 //                @Override
-//                public Map<String, String> getHeaders() throws AuthFailureError {
-//                    Map<String,String> params=new HashMap<>();
-//                    params.put("Content-Type", "application/x-www-form-urlencoded");
+//                public void onResponse(String response) {
+//                    Log.i("response", response);
+//                    capsResult.OnSuccess(response);
+//                }
+//            }, new Response.ErrorListener() {
+//                @Override
+//                public void onErrorResponse(VolleyError error) {
+//                    Log.i("error", error.getMessage());
+//                    capsResult.OnFailure(error.getMessage());
+//                }
+//            }) {
+//                @Override
+//                protected Map<String, String> getParams() throws AuthFailureError {
+//                    Map<String, String> params = new HashMap<>();
+//                    params.put("shoutid", "devtest");
+//                    params.put("sessionid", "fab19834f4aac1c399b1273245d7b648");
+//                    params.put("from", "app");
+//                    params.put("id_model", String.valueOf(capsModel.getModel()));
+//                    params.put("size", capsModel.getSize());
+//                    params.put("font_type", capsModel.getFont());
+//                    params.put("id_font_color", String.valueOf(capsModel.getColor()));
+//                    params.put("font_size", String.valueOf(capsModel.getFontsize()));
+//                    params.put("shout", capsModel.getText());
+//                    params.put("jum_baris", String.valueOf(capsModel.getLine()));
+//                    params.put("shout_caption", "n");
+//                    params.put("caption", "n");
+//                    params.put("mirror", "n");
+//                    params.put("flip", "n");
+//                    params.put("image", capsModel.getBaseImage());
 //                    return params;
 //                }
-            };
-
-            RetryPolicy retryPolicy = new DefaultRetryPolicy(10000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-            stringRequest.setRetryPolicy(retryPolicy);
-            RequestQueue queue = Volley.newRequestQueue(getActivity());
-            queue.add(stringRequest);
-        }
-    }
+//
+////                @Override
+////                public Map<String, String> getHeaders() throws AuthFailureError {
+////                    Map<String,String> params=new HashMap<>();
+////                    params.put("Content-Type", "application/x-www-form-urlencoded");
+////                    return params;
+////                }
+//            };
+//
+//            RetryPolicy retryPolicy = new DefaultRetryPolicy(10000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+//            stringRequest.setRetryPolicy(retryPolicy);
+//            RequestQueue queue = Volley.newRequestQueue(getActivity());
+//            queue.add(stringRequest);
+//        }
+//    }
 }
