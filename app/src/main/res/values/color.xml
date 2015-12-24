@@ -6,6 +6,14 @@
     <color name="color_primary_dark">#e6461a</color>
     <color name="color_accent">#11c1f3</color>
 
+    <color name="color_primary_text">#212121</color>
+    <color name="color_secondary_text">#727272</color>
+    <color name="color_divider">#b6b6b6</color>
+
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="red">#ff353f</color>
+
     <bool name="default_circle_indicator_centered">true</bool>
     <color name="default_circle_indicator_fill_color">#FFFFFFFF</color>
     <color name="default_circle_indicator_page_color">#00000000</color>

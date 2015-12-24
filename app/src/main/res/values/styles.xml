@@ -12,4 +12,7 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="switchStyle">
+        <item name="android:colorControlActivated">@color/color_primary</item>
+    </style>
 </resources>
