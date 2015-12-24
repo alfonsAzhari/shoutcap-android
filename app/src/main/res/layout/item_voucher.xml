@@ -18,7 +18,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="24dp"
-                android:text="Voucher code" />
+                android:text="Voucher code"
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/text_voucher_code_voucher"
@@ -43,7 +44,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="24dp"
-                android:text="Discount" />
+                android:text="Discount"
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/text_discount_voucher"
@@ -68,7 +70,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="24dp"
-                android:text="Expire" />
+                android:text="Expire"
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/text_expire_voucher"
@@ -93,7 +96,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="24dp"
-                android:text="Use at order" />
+                android:text="Use at order"
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/text_use_at_order_voucher"
@@ -118,7 +122,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="24dp"
-                android:text="Status" />
+                android:text="Status"
+                android:textColor="@color/black" />
 
             <android.support.v7.widget.SwitchCompat
                 android:id="@+id/switch_status_voucher"

@@ -6,6 +6,28 @@ import java.util.ArrayList;
  * Created by Adam MB on 9/9/2015.
  */
 public class Dummy {
+
+    public ArrayList<ModelOrderHistory> getOrderHistory(){
+        ArrayList<ModelOrderHistory>list = new ArrayList<>();
+        ModelOrderHistory modelOrderHistory;
+
+        modelOrderHistory = new ModelOrderHistory();
+        modelOrderHistory.setOrderID("128371023");
+        modelOrderHistory.setPrice(123456);
+        modelOrderHistory.setPaymentStatus("Belum Dibayar");
+        modelOrderHistory.setProductStatus("Belum");
+        list.add(modelOrderHistory);
+
+        modelOrderHistory = new ModelOrderHistory();
+        modelOrderHistory.setOrderID("12837102123");
+        modelOrderHistory.setPrice(123456);
+        modelOrderHistory.setPaymentStatus("Belum Dibayar");
+        modelOrderHistory.setProductStatus("Belum");
+        list.add(modelOrderHistory);
+
+        return list;
+    }
+
     public ArrayList<ModelVoucher> getVoucher(){
         ArrayList<ModelVoucher>list = new ArrayList<>();
         ModelVoucher modelVoucher;

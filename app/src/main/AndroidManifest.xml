@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ActivityVoucher"
+            android:name=".ActivityOrderHistory"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +23,8 @@
         <activity android:name=".ActivityInboxDetail" />
         <activity android:name=".ActivityNewsDetail" />
         <activity android:name=".ActivityEditProfile" />
-        <activity android:name=".ActivityPaymentConfirmation"/>
+        <activity android:name=".ActivityPaymentConfirmation" />
+        <activity android:name=".ActivityVoucher"/>
     </application>
 
 </manifest>
