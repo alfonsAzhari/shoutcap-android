@@ -26,7 +26,8 @@ public class MyGcmListenerService extends GcmListenerService {
 
         Log.v(TAG, message);
         Log.v(TAG, point);
-        if (from.startsWith("/topics/")) {
+        Log.v(TAG, from);
+        if (from.startsWith("/topics/global")) {
             isTopic = true;
             sendNotification(message, isTopic, point);
         } else {

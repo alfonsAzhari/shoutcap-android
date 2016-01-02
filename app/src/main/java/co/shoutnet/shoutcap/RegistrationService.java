@@ -40,8 +40,9 @@ public class RegistrationService extends IntentService {
 
         try {
             InstanceID instanceID = InstanceID.getInstance(this);
-            String token = instanceID.getToken(getString(R.string.gcm_defaultSenderId), GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
-//            String token = instanceID.getToken(ConfigGCM.GOOGLE_SENDER_ID, GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
+            Log.i("senderID", String.valueOf(R.string.gcm_defaultSenderId));
+//            String token = instanceID.getToken(getString(R.string.gcm_defaultSenderId), GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
+            String token = instanceID.getToken(ConfigGCM.GOOGLE_SENDER_ID, GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
 //            instanceID.deleteToken(getString(R.string.gcm_defaultSenderId), GoogleCloudMessaging.INSTANCE_ID_SCOPE);
 
             Log.i(TAG, "GCM Reg Token: " + token);
