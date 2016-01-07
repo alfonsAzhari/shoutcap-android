@@ -1,5 +1,7 @@
 package co.shoutnet.shoutcap;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Adam MB on 1/7/2016.
  */

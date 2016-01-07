@@ -1,10 +1,40 @@
 package co.shoutnet.shoutcap;
 
+import android.app.DownloadManager;
+import android.app.Fragment;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import co.shoutnet.shoutcap.model.ModelSignIn;
+import co.shoutnet.shoutcap.utility.ApiReferences;
+import co.shoutnet.shoutcap.utility.Parser;
+import co.shoutnet.shoutcap.utility.SessionManager;
 
 /**
  * Created by Adam MB on 1/7/2016.
@@ -72,7 +102,7 @@ public class FragmentSignIn extends Fragment {
         sharedPreferences = mContext.getSharedPreferences("prefLogin", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, ApiReferences.getUrlLogin(), new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(DownloadManager.Request.Method.POST, ApiReferences.getUrlLogin(), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.i("response volley", response.toString());
