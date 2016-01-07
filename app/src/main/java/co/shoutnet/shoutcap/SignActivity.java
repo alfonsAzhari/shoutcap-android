@@ -5,17 +5,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-/**
- * Created by Adam MB on 1/7/2016.
- */
-public class SignActivity extends AppCompatActivity{
+public class SignActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign);
 
         FragmentSignIn signIn = new FragmentSignIn();
-        getFragmentManager().beginTransaction().replace(R.id.frame_content_sign, signIn).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_content_sign, signIn).commit();
     }
 
     @Override

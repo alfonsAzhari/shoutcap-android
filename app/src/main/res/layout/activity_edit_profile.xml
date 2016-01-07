@@ -4,7 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/tool_bar" />
+    <include
+        android:id="@+id/toolbar_edit_profile"
+        layout="@layout/toolbar" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -156,8 +158,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:layout_marginLeft="24dp"
+                android:layout_marginTop="8dp"
                 android:text="Minat" />
 
             <TableLayout
@@ -283,10 +285,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
                 android:background="@color/color_primary_dark"
                 android:padding="12dp"
                 android:text="Alamat"
-                android:layout_marginTop="24dp"
                 android:textColor="@android:color/white" />
 
             <android.support.design.widget.TextInputLayout
@@ -340,9 +342,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
                 android:background="@color/color_primary_dark"
                 android:padding="12dp"
-                android:layout_marginTop="24dp"
                 android:text="Jejaring Sosial"
                 android:textColor="@android:color/white" />
 
@@ -365,7 +367,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="simpan"/>
+                android:text="simpan" />
         </LinearLayout>
 
     </ScrollView>

@@ -47,7 +47,7 @@ public class ActivityPaymentConfirmation extends AppCompatActivity {
     }
 
     private void initView() {
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar = (Toolbar)findViewById(R.id.toolbar_payment_confirmation);
         idOrder = (EditText)findViewById(R.id.edit_id_order_payment_confirmation);
         namaPemesan = (EditText)findViewById(R.id.edit_nama_pemesan_payment_confirmation);
         nomorHP = (EditText)findViewById(R.id.edit_no_hp_payment_confirmation);

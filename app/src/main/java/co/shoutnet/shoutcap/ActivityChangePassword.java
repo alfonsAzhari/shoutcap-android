@@ -114,7 +114,7 @@ public class ActivityChangePassword extends AppCompatActivity {
     }
 
     private void initView() {
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar = (Toolbar)findViewById(R.id.toolbar_change_password);
         passwordLama = (EditText)findViewById(R.id.edit_pass_lama_change_password);
         passwordBaru = (EditText)findViewById(R.id.edit_pass_baru_change_password);
         passwordKonfirmasi = (EditText)findViewById(R.id.edit_pass_konfirmasi_change_password);

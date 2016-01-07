@@ -137,7 +137,7 @@ public class ActivityEditProfile extends AppCompatActivity{
     private void initView() {
         editTanggalLahir = (EditText) findViewById(R.id.edit_tanggal_lahir_edit_profile);
         editTanggalLahir.setInputType(InputType.TYPE_NULL);
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar = (Toolbar)findViewById(R.id.toolbar_edit_profile);
         spinnerProvinsi = (Spinner)findViewById(R.id.spinner_provinsi_edit_profile);
         spinnerKota = (Spinner)findViewById(R.id.spinner_kota_edit_profile);
         spinnerKecamatan = (Spinner)findViewById(R.id.spinner_kecamatan_edit_profile);

@@ -41,6 +41,6 @@ public class ActivityInboxDetail extends AppCompatActivity{
         title = (TextView)findViewById(R.id.txt_title_inbox_detail);
         date = (TextView)findViewById(R.id.txt_date_inbox_detail);
         content = (TextView)findViewById(R.id.txt_content_inbox_detail);
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar = (Toolbar)findViewById(R.id.toolbar_inbox_detail);
     }
 }

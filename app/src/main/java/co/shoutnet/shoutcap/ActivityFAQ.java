@@ -29,7 +29,7 @@ public class ActivityFAQ extends AppCompatActivity{
     }
 
     private void initView() {
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar = (Toolbar)findViewById(R.id.toolbar_faq);
         ExpandList = (ExpandableListView) findViewById(R.id.expandable_list_view);
     }
 

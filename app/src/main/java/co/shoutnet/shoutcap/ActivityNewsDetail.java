@@ -44,6 +44,6 @@ public class ActivityNewsDetail extends AppCompatActivity {
         textTitle = (TextView)findViewById(R.id.txt_title_news_detail);
         textDate = (TextView)findViewById(R.id.txt_date_news_detail);
         textInfo = (TextView)findViewById(R.id.txt_info_news_detail);
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar = (Toolbar)findViewById(R.id.toolbar_news_detail);
     }
 }

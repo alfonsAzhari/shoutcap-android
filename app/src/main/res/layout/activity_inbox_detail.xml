@@ -5,7 +5,8 @@
     android:orientation="vertical">
 
     <include
-        layout="@layout/tool_bar"/>
+        android:id="@+id/toolbar_inbox_detail"
+        layout="@layout/toolbar"/>
 
     <ScrollView
         android:layout_width="match_parent"

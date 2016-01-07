@@ -32,7 +32,7 @@ public class ActivityOrderHistory extends AppCompatActivity {
 
     private void initView() {
         recyclerView = (RecyclerView)findViewById(R.id.recycler_order_history);
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar = (Toolbar)findViewById(R.id.toolbar_order_history);
     }
 
     private void initToolbar() {

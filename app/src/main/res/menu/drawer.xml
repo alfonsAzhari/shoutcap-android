@@ -31,4 +31,8 @@
         android:id="@+id/drawer_item_reward"
         android:icon="@drawable/abc_btn_rating_star_on_mtrl_alpha"
         android:title="@string/drawer_item_reward" />
+    <item
+        android:id="@+id/drawer_item_voucher"
+        android:icon="@drawable/abc_btn_rating_star_on_mtrl_alpha"
+        android:title="@string/drawer_item_voucher" />
 </menu>

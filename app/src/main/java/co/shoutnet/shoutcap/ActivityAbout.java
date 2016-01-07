@@ -27,6 +27,6 @@ public class ActivityAbout extends AppCompatActivity{
     }
 
     private void initView(){
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar = (Toolbar)findViewById(R.id.toolbar_about);
     }
 }

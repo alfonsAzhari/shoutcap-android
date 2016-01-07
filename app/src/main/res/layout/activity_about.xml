@@ -6,7 +6,8 @@
     android:background="#FFFFFF">
 
     <include
-        layout="@layout/tool_bar"/>
+        android:id="@+id/toolbar_about"
+        layout="@layout/toolbar"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
