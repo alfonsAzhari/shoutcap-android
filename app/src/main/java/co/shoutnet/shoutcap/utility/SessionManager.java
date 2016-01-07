@@ -1,10 +1,12 @@
-package co.shoutnet.shoutcap;
+package co.shoutnet.shoutcap.utility;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
 import java.util.HashMap;
+
+import co.shoutnet.shoutcap.SignActivity;
 
 /**
  * Created by Adam MB on 1/7/2016.
