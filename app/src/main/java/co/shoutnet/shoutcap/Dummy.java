@@ -34,18 +34,20 @@ public class Dummy {
 
         modelVoucher = new ModelVoucher();
         modelVoucher.setVoucherCode("lajshd0q837eu");
-        modelVoucher.setDiscount("10% to Baseball+Coor+Mixed+");
+        modelVoucher.setDiscount("10%");
+        modelVoucher.setDiscountTo("Baseball+Coor+Mixed+");
         modelVoucher.setExpire("2014-07-13");
-        modelVoucher.setUseAtOrder("Belum Digunakan");
-        modelVoucher.setStatus(true);
+        modelVoucher.setUseAtOrder("null");
+        modelVoucher.setStatus("Belum digunakan");
         list.add(modelVoucher);
 
         modelVoucher = new ModelVoucher();
         modelVoucher.setVoucherCode("lajshd0q837eu");
-        modelVoucher.setDiscount("10% to Baseball+Coor+Mixed+");
+        modelVoucher.setDiscount("10%");
+        modelVoucher.setDiscountTo("Baseball+Coor+Mixed+");
         modelVoucher.setExpire("2014-07-13");
-        modelVoucher.setUseAtOrder("Belum Digunakan");
-        modelVoucher.setStatus(false);
+        modelVoucher.setUseAtOrder("null");
+        modelVoucher.setStatus("Belum digunakan");
         list.add(modelVoucher);
 
         return list;

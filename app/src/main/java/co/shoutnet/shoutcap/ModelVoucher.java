@@ -8,9 +8,10 @@ import java.util.Date;
 public class ModelVoucher {
     private String VoucherCode;
     private String Discount;
+    private String DiscountTo;
     private String Expire;
     private String UseAtOrder;
-    private boolean Status;
+    private String Status;
 
     public String getVoucherCode() {
         return VoucherCode;
@@ -26,6 +27,14 @@ public class ModelVoucher {
 
     public void setDiscount(String discount) {
         Discount = discount;
+    }
+
+    public String getDiscountTo() {
+        return DiscountTo;
+    }
+
+    public void setDiscountTo(String discountTo) {
+        DiscountTo = discountTo;
     }
 
     public String getExpire() {
@@ -44,11 +53,11 @@ public class ModelVoucher {
         UseAtOrder = useAtOrder;
     }
 
-    public boolean isStatus() {
+    public String getStatus() {
         return Status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(String status) {
         Status = status;
     }
 }

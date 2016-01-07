@@ -6,6 +6,7 @@ import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.VoucherV
         TextView discount;
         TextView expire;
         TextView useAtOrder;
-        SwitchCompat status;
+        TextView status;
 
         public VoucherViewHolder(View itemView) {
             super(itemView);
@@ -31,7 +32,7 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.VoucherV
             discount = (TextView) itemView.findViewById(R.id.text_discount_voucher);
             expire = (TextView) itemView.findViewById(R.id.text_expire_voucher);
             useAtOrder = (TextView) itemView.findViewById(R.id.text_use_at_order_voucher);
-            status = (SwitchCompat) itemView.findViewById(R.id.switch_status_voucher);
+            status = (TextView) itemView.findViewById(R.id.text_status_voucher);
         }
     }
 
@@ -56,10 +57,10 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.VoucherV
     @Override
     public void onBindViewHolder(VoucherAdapter.VoucherViewHolder holder, int position) {
         holder.voucherCode.setText(vouchers.get(position).getVoucherCode());
-        holder.discount.setText(vouchers.get(position).getDiscount());
+        holder.discount.setText(vouchers.get(position).getDiscount()+" to "+vouchers.get(position).getDiscountTo());
         holder.expire.setText(vouchers.get(position).getExpire().toString());
         holder.useAtOrder.setText(vouchers.get(position).getUseAtOrder());
-        holder.status.setChecked(vouchers.get(position).isStatus());
+        holder.status.setText(vouchers.get(position).getStatus());
     }
 
     @Override
