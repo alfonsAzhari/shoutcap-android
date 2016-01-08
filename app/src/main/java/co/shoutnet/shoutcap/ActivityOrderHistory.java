@@ -8,6 +8,9 @@ import android.support.v7.widget.Toolbar;
 
 import java.util.List;
 
+import co.shoutnet.shoutcap.adapter.OrderHistoryAdapter;
+import co.shoutnet.shoutcap.model.ModelOrderHistory;
+
 public class ActivityOrderHistory extends AppCompatActivity {
 
     private List<ModelOrderHistory> orderHistories;

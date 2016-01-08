@@ -7,6 +7,9 @@ import android.widget.ExpandableListView;
 
 import java.util.ArrayList;
 
+import co.shoutnet.shoutcap.adapter.FAQAdapter;
+import co.shoutnet.shoutcap.model.ModelQuestionFAQ;
+
 /**
  * Created by Adam MB on 10/21/2015.
  */

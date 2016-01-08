@@ -2,6 +2,10 @@ package co.shoutnet.shoutcap;
 
 import java.util.ArrayList;
 
+import co.shoutnet.shoutcap.model.ModelNewsDetail;
+import co.shoutnet.shoutcap.model.ModelOrderHistory;
+import co.shoutnet.shoutcap.model.ModelVoucher;
+
 /**
  * Created by Adam MB on 9/9/2015.
  */

@@ -2,6 +2,9 @@ package co.shoutnet.shoutcap;
 
 import java.util.ArrayList;
 
+import co.shoutnet.shoutcap.model.ModelAnswerFAQ;
+import co.shoutnet.shoutcap.model.ModelQuestionFAQ;
+
 /**
  * Created by Adam MB on 10/21/2015.
  */

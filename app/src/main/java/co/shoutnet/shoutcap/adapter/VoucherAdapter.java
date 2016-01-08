@@ -1,15 +1,16 @@
-package co.shoutnet.shoutcap;
+package co.shoutnet.shoutcap.adapter;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.List;
+
+import co.shoutnet.shoutcap.model.ModelVoucher;
+import co.shoutnet.shoutcap.R;
 
 /**
  * Created by Adam MB on 12/24/2015.
@@ -38,7 +39,7 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.VoucherV
 
     List<ModelVoucher> vouchers;
 
-    VoucherAdapter(List<ModelVoucher> vouchers) {
+    public VoucherAdapter(List<ModelVoucher> vouchers) {
         this.vouchers = vouchers;
     }
 

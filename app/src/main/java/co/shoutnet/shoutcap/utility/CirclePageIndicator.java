@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package co.shoutnet.shoutcap;
+package co.shoutnet.shoutcap.utility;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -32,6 +32,8 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
+
+import co.shoutnet.shoutcap.R;
 
 import static android.graphics.Paint.ANTI_ALIAS_FLAG;
 import static android.widget.LinearLayout.HORIZONTAL;

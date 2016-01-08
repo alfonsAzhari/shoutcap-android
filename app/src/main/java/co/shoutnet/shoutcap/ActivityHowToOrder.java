@@ -5,6 +5,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
+import co.shoutnet.shoutcap.adapter.HowToOrderAdapter;
+import co.shoutnet.shoutcap.utility.CirclePageIndicator;
+
 public class ActivityHowToOrder extends AppCompatActivity {
 
     private ViewPager viewPager;

@@ -1,4 +1,4 @@
-package co.shoutnet.shoutcap;
+package co.shoutnet.shoutcap.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import co.shoutnet.shoutcap.model.ModelAnswerFAQ;
+import co.shoutnet.shoutcap.model.ModelQuestionFAQ;
+import co.shoutnet.shoutcap.R;
 
 /**
  * Created by Adam MB on 10/21/2015.

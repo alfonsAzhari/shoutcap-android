@@ -1,4 +1,4 @@
-package co.shoutnet.shoutcap;
+package co.shoutnet.shoutcap.model;
 
 /**
  * Created by Adam MB on 10/28/2015.

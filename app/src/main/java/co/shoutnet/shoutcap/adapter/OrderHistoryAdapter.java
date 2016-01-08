@@ -1,4 +1,4 @@
-package co.shoutnet.shoutcap;
+package co.shoutnet.shoutcap.adapter;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.List;
+
+import co.shoutnet.shoutcap.model.ModelOrderHistory;
+import co.shoutnet.shoutcap.R;
 
 /**
  * Created by Adam MB on 12/24/2015.

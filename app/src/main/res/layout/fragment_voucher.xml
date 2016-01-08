@@ -4,11 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="co.shoutnet.shoutcap.ActivityVoucher">
-
-    <include
-        android:id="@+id/toolbar_voucher"
-        layout="@layout/toolbar"/>
+    tools:context=".FragmentVoucher">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_voucher"

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package co.shoutnet.shoutcap;
+package co.shoutnet.shoutcap.utility;
 
 import android.support.v4.view.ViewPager;
 

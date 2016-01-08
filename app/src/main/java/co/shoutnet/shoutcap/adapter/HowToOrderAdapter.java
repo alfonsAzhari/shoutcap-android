@@ -1,8 +1,11 @@
-package co.shoutnet.shoutcap;
+package co.shoutnet.shoutcap.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+
+import co.shoutnet.shoutcap.FragmentHowToOrder;
+import co.shoutnet.shoutcap.R;
 
 /**
  * Created by Codelabs on 9/3/2015.
