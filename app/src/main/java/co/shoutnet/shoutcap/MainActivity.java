@@ -163,12 +163,13 @@ public class MainActivity extends AppCompatActivity {
             startActivity(i);
 
             return true;
-        } /*else if (id == R.id.action_cart) {
-            Intent i = new Intent(MainActivity.this, CartActivity.class);
-            startActivity(i);
-
-            return true;
-        }*/
+        }
+//        else if (id == R.id.action_cart) {
+//            Intent i = new Intent(MainActivity.this, CartActivity.class);
+//            startActivity(i);
+//
+//            return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -201,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
 
             drawerLayout.closeDrawer(GravityCompat.START);
             FragmentCreateShout fragmentCreateShout;
-            FragmentRack fragmentRack;
+//            FragmentRack fragmentRack;
             FragmentManager fragmentManager = getFragmentManager();
 
             imgProfileAva.setVisibility(View.GONE);
@@ -222,14 +223,14 @@ public class MainActivity extends AppCompatActivity {
 //                    FragmentPromo fragmentPromo = new FragmentPromo();
 //                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentPromo).commit();
 //                    return true;
-
-                case R.id.drawer_item_create:
-                    getSupportActionBar().setTitle("Create Shout");
-
-                    fragmentCreateShout = new FragmentCreateShout();
-                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentCreateShout).commit();
-                    return true;
-
+//
+//                case R.id.drawer_item_create:
+//                    getSupportActionBar().setTitle("Create Shout");
+//
+//                    fragmentCreateShout = new FragmentCreateShout();
+//                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentCreateShout).commit();
+//                    return true;
+//
 //                case R.id.drawer_item_profile:
 //                    imgProfileAva.setVisibility(View.VISIBLE);
 //                    txtProfileName.setVisibility(View.VISIBLE);
@@ -240,21 +241,21 @@ public class MainActivity extends AppCompatActivity {
 //                    fragmentRack = new FragmentRack();
 //                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentRack).commit();
 //                    return true;
-
+//
 //                case R.id.drawer_item_inbox:
 //                    getSupportActionBar().setTitle("Inbox");
 //
 //                    FragmentInbox fragmentInbox = new FragmentInbox();
 //                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentInbox).commit();
 //                    return true;
-
+//
 //                case R.id.drawer_item_rack:
 //                    getSupportActionBar().setTitle("Rack");
 //
 //                    fragmentRack = new FragmentRack();
 //                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentRack).commit();
 //                    return true;
-
+//
 //                case R.id.drawer_item_order:
 //                    getSupportActionBar().setTitle("Order History");
 //
@@ -268,6 +269,13 @@ public class MainActivity extends AppCompatActivity {
 //                    FragmentReward fragmentReward = FragmentReward.newInstance();
 //                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentReward).commit();
 //                    return true;
+
+                case R.id.drawer_item_voucher:
+                    getSupportActionBar().setTitle("Voucher");
+
+                    FragmentVoucher fragmentVoucher = FragmentVoucher.newInstance();
+                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentVoucher).commit();
+                    return true;
 
                 default:
                     return true;

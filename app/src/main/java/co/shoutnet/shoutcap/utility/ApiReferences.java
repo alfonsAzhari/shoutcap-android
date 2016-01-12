@@ -10,6 +10,7 @@ public class ApiReferences {
     private static String MOD_INBOX = "shoutid/get_inbox.php";
     private static String MOD_INBOX_DETAIL = "shoutid/get_inbox_detail.php";
     private static String MOD_REWARD_HISTORY = "shoutid/get_history_reward.php";
+    private static String MOD_VOUCHER = "shoutcap/get_voucher.php";
 
     public static String getUrlLogin() {
         return URL + MOD_LOGIN;
@@ -26,4 +27,6 @@ public class ApiReferences {
     public static String getUrlGetRewardHistory() {
         return URL + MOD_REWARD_HISTORY;
     }
+
+    public static String getUrlGetVoucher() { return URL + MOD_VOUCHER; }
 }

@@ -43,7 +43,7 @@ import co.shoutnet.shoutcap.utility.WebAppInterface;
 public class FragmentCreateShout extends Fragment {
 //    private static CapsModel capsModel = new CapsModel();
 //    private static ArrayList<CapsModel> caps;
-    private Context context;
+//    private Context context;
 //    private WebView webView;
 //    private Button btnCreate;
 //    private Spinner spinModel;
@@ -226,8 +226,8 @@ public class FragmentCreateShout extends Fragment {
         getActivity().setTitle("Create Shout");
 
 //        initView(rootView);
-        context = getActivity();
-
+//        context = getActivity();
+//
 //        WebSettings settings = webView.getSettings();
 //        final WebAppInterface webApp = new WebAppInterface(context);
 //        settings.setJavaScriptEnabled(true);
@@ -236,10 +236,10 @@ public class FragmentCreateShout extends Fragment {
 //        settings.setAllowFileAccessFromFileURLs(true);
 //        webView.addJavascriptInterface(this, "Android");
 //        webView.loadUrl("file:///android_asset/create_page/index.html");
-
-//        webView.addJavascriptInterface(this, "Android");
-
-        //Set Gesture WebView
+//
+////        webView.addJavascriptInterface(this, "Android");
+//
+//        //Set Gesture WebView
 //        final GestureDetector gestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
 //            @Override
 //            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
@@ -272,7 +272,7 @@ public class FragmentCreateShout extends Fragment {
 //
 //            }
 //        });
-
+//
 //        webView.setOnTouchListener(new View.OnTouchListener() {
 //            @Override
 //            public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -310,7 +310,7 @@ public class FragmentCreateShout extends Fragment {
 //
         return rootView;
     }
-
+//
 //    @JavascriptInterface
 //    public void capData(String data) {
 //        SecureRandom random = new SecureRandom();
@@ -335,23 +335,23 @@ public class FragmentCreateShout extends Fragment {
 //            Log.i("text", capsModel.getText());
 //            Log.i("line", String.valueOf(capsModel.getLine()));
 //            Log.i("image", capsModel.getBaseImage());
-
-//            DBCapsHelper dbCapsHelper = new DBCapsHelper(context);
-//            dbCapsHelper.addCap(capsModel);
 //
-//            int id = dbCapsHelper.getLatestId();
-//
+////            DBCapsHelper dbCapsHelper = new DBCapsHelper(context);
+////            dbCapsHelper.addCap(capsModel);
+////
+////            int id = dbCapsHelper.getLatestId();
+////
 //            Fragment fragment = FragmentPreviewShout.newInstance(name, capsModel.getModel(),
 //                    capsModel.getSize(), capsModel.getFont(), capsModel.getColor(), capsModel.getFontsize(),
 //                    capsModel.getText(), capsModel.getLine(), capsModel.getBaseImage());
 //            FragmentManager fragmentManager = getActivity().getFragmentManager();
 //            fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragment).commit();
-
+//
 //        } catch (JSONException e) {
 //            e.printStackTrace();
 //        }
 //    }
-
+//
 //    private void initView(View v) {
 //        webView = (WebView) v.findViewById(R.id.web_create_shout);
 //        btnCreate = (Button) v.findViewById(R.id.btn_create);
@@ -363,7 +363,7 @@ public class FragmentCreateShout extends Fragment {
 //        rbAdult = (RadioButton) v.findViewById(R.id.rb_adult_create);
 //        rbJunior = (RadioButton) v.findViewById(R.id.rb_junior_create);
 //    }
-
+//
 //    private String getFileFromAsset(String fileName) throws IOException {
 //        InputStream stream = context.getAssets().open(fileName);
 //        int size = stream.available();

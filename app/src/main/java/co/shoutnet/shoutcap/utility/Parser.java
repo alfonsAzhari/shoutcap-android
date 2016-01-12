@@ -15,6 +15,7 @@ import co.shoutnet.shoutcap.model.ModelHistoryReward;
 import co.shoutnet.shoutcap.model.ModelInbox;
 import co.shoutnet.shoutcap.model.ModelInboxDetail;
 import co.shoutnet.shoutcap.model.ModelSignIn;
+import co.shoutnet.shoutcap.model.ModelVoucher;
 
 /**
  * Created by CodeLabs on 09/11/2015.
@@ -63,5 +64,11 @@ public class Parser {
         gson = new Gson();
 
         return gson.fromJson(json, ModelHistoryReward.class);
+    }
+
+    public static ModelVoucher getVoucher(String json) throws IOException {
+        gson = new Gson();
+
+        return gson.fromJson(json, ModelVoucher.class);
     }
 }

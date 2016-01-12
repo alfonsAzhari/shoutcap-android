@@ -1,11 +1,11 @@
 package co.shoutnet.shoutcap;
 
+import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,9 +36,10 @@ import co.shoutnet.shoutcap.utility.Parser;
 import co.shoutnet.shoutcap.utility.SessionManager;
 
 /**
- * Created by Adam MB on 1/7/2016.
+ * Created by Codelabs on 9/2/2015.
  */
 public class FragmentSignIn extends Fragment {
+
     private Context mContext;
 
     private EditText edtShoutId;

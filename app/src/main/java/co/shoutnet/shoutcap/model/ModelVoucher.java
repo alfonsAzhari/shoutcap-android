@@ -1,63 +1,90 @@
 package co.shoutnet.shoutcap.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
  * Created by Adam MB on 12/24/2015.
  */
 public class ModelVoucher {
-    private String VoucherCode;
-    private String Discount;
-    private String DiscountTo;
-    private String Expire;
-    private String UseAtOrder;
-    private String Status;
+    private String result;
+    private ArrayList<Item> item;
 
-    public String getVoucherCode() {
-        return VoucherCode;
+    public ModelVoucher(String result, ArrayList<Item> item) {
+        this.result = result;
+        this.item = item;
     }
 
-    public void setVoucherCode(String voucherCode) {
-        VoucherCode = voucherCode;
+    public String getResult() {
+        return result;
     }
 
-    public String getDiscount() {
-        return Discount;
+    public void setResult(String result) {
+        this.result = result;
     }
 
-    public void setDiscount(String discount) {
-        Discount = discount;
+    public ArrayList<Item> getItem() {
+        return item;
     }
 
-    public String getDiscountTo() {
-        return DiscountTo;
+    public void setItem(ArrayList<Item> item) {
+        this.item = item;
     }
 
-    public void setDiscountTo(String discountTo) {
-        DiscountTo = discountTo;
-    }
+    public class Item {
+        private String VoucherCode;
+        private String Discount;
+        private String DiscountTo;
+        private String Expire;
+        private String UseAtOrder;
+        private String Status;
 
-    public String getExpire() {
-        return Expire;
-    }
+        public String getVoucherCode() {
+            return VoucherCode;
+        }
 
-    public void setExpire(String expire) {
-        Expire = expire;
-    }
+        public void setVoucherCode(String voucherCode) {
+            VoucherCode = voucherCode;
+        }
 
-    public String getUseAtOrder() {
-        return UseAtOrder;
-    }
+        public String getDiscount() {
+            return Discount;
+        }
 
-    public void setUseAtOrder(String useAtOrder) {
-        UseAtOrder = useAtOrder;
-    }
+        public void setDiscount(String discount) {
+            Discount = discount;
+        }
 
-    public String getStatus() {
-        return Status;
-    }
+        public String getDiscountTo() {
+            return DiscountTo;
+        }
 
-    public void setStatus(String status) {
-        Status = status;
+        public void setDiscountTo(String discountTo) {
+            DiscountTo = discountTo;
+        }
+
+        public String getExpire() {
+            return Expire;
+        }
+
+        public void setExpire(String expire) {
+            Expire = expire;
+        }
+
+        public String getUseAtOrder() {
+            return UseAtOrder;
+        }
+
+        public void setUseAtOrder(String useAtOrder) {
+            UseAtOrder = useAtOrder;
+        }
+
+        public String getStatus() {
+            return Status;
+        }
+
+        public void setStatus(String status) {
+            Status = status;
+        }
     }
 }

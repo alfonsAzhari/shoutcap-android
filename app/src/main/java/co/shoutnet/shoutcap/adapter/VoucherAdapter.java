@@ -1,14 +1,18 @@
 package co.shoutnet.shoutcap.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import co.shoutnet.shoutcap.model.ModelAdapterVoucher;
 import co.shoutnet.shoutcap.model.ModelVoucher;
 import co.shoutnet.shoutcap.R;
 
@@ -17,9 +21,11 @@ import co.shoutnet.shoutcap.R;
  */
 public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.VoucherViewHolder> {
 
+    ArrayList<ModelAdapterVoucher> vouchers;
+    private Context context;
+
     public static class VoucherViewHolder extends RecyclerView.ViewHolder {
 
-        CardView cardView;
         TextView voucherCode;
         TextView discount;
         TextView expire;
@@ -28,7 +34,6 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.VoucherV
 
         public VoucherViewHolder(View itemView) {
             super(itemView);
-            cardView = (CardView) itemView.findViewById(R.id.card_voucher);
             voucherCode = (TextView) itemView.findViewById(R.id.text_voucher_code_voucher);
             discount = (TextView) itemView.findViewById(R.id.text_discount_voucher);
             expire = (TextView) itemView.findViewById(R.id.text_expire_voucher);
@@ -37,30 +42,34 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.VoucherV
         }
     }
 
-    List<ModelVoucher> vouchers;
-
-    public VoucherAdapter(List<ModelVoucher> vouchers) {
+    public VoucherAdapter(Context context, ArrayList<ModelAdapterVoucher> vouchers) {
+        this.context = context;
         this.vouchers = vouchers;
     }
 
-    @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
-        super.onAttachedToRecyclerView(recyclerView);
-    }
+//    @Override
+//    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+//        super.onAttachedToRecyclerView(recyclerView);
+//    }
 
     @Override
     public VoucherAdapter.VoucherViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_voucher, parent, false);
+        View v = LayoutInflater.from(context).inflate(R.layout.item_voucher, parent, false);
         VoucherViewHolder viewHolder = new VoucherViewHolder(v);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(VoucherAdapter.VoucherViewHolder holder, int position) {
+
         holder.voucherCode.setText(vouchers.get(position).getVoucherCode());
-        holder.discount.setText(vouchers.get(position).getDiscount()+" to "+vouchers.get(position).getDiscountTo());
+        holder.discount.setText(vouchers.get(position).getDiscount() + " to " + vouchers.get(position).getDiscountTo());
         holder.expire.setText(vouchers.get(position).getExpire().toString());
-        holder.useAtOrder.setText(vouchers.get(position).getUseAtOrder());
+        if (vouchers.get(position).getUseAtOrder().isEmpty()) {
+            holder.useAtOrder.setText("Belum digunakan");
+        } else {
+            holder.useAtOrder.setText(vouchers.get(position).getUseAtOrder());
+        }
         holder.status.setText(vouchers.get(position).getStatus());
     }
 

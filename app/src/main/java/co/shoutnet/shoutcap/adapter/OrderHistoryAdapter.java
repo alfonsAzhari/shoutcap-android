@@ -37,7 +37,7 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
 
     List<ModelOrderHistory> orderHistories;
 
-    OrderHistoryAdapter(List<ModelOrderHistory> orderHistories) {
+    public OrderHistoryAdapter(List<ModelOrderHistory> orderHistories) {
         this.orderHistories = orderHistories;
     }
 

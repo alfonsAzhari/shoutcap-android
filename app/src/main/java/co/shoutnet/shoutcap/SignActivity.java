@@ -13,7 +13,7 @@ public class SignActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign);
 
         FragmentSignIn signIn = new FragmentSignIn();
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_content_sign, signIn).commit();
+        getFragmentManager().beginTransaction().replace(R.id.frame_content_sign, signIn).commit();
     }
 
     @Override
