@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -47,8 +48,10 @@ public class FragmentVoucher extends Fragment {
     private ModelVoucher voucher = null;
     private VoucherAdapter adapter;
 
-    SessionManager manager;
-    HashMap<String, String> user;
+    private LinearLayout linProgress;
+
+    private SessionManager manager;
+    private HashMap<String, String> user;
 
     public FragmentVoucher() {
 
@@ -82,6 +85,12 @@ public class FragmentVoucher extends Fragment {
         return rootView;
     }
 
+
+    private void initView(View v) {
+        recyclerView = (RecyclerView) v.findViewById(R.id.recycler_voucher);
+        linProgress = (LinearLayout) v.findViewById(R.id.lin_voucher_progress);
+    }
+
     private void fetchData(String url) {
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -91,7 +100,6 @@ public class FragmentVoucher extends Fragment {
 
                 try {
                     voucher = Parser.getVoucher(response.toString());
-                    Log.i("parser voucher", voucher.toString());
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -100,18 +108,15 @@ public class FragmentVoucher extends Fragment {
                 if (voucher.getResult().equals("success")) {
                     vouchers = new ArrayList<>();
                     for (ModelVoucher.Item item : voucher.getItem()) {
-                        Log.i("masuk", "OK");
-                        Log.i("voucher code", item.getVoucherCode());
-                        Log.i("discount", item.getDiscount());
-                        Log.i("discount to", item.getDiscountTo());
-                        Log.i("expire", item.getExpire());
-                        Log.i("order", item.getUseAtOrder());
-                        Log.i("status", item.getStatus());
-                        vouchers.add(new ModelAdapterVoucher(item.getVoucherCode(), item.getDiscount(), item.getDiscountTo(), item.getExpire(), item.getUseAtOrder(), item.getStatus()));
+                        if (item.getId_order()== null || item.getId_order()==""){
+                            item.setId_order("-");
+                        }
+                        vouchers.add(new ModelAdapterVoucher(item.getVoucher_code(),  item.getStatus(), item.getExpire(), item.getDiscount(), item.getDiscount_to(), item.getId_order().toString()));
                     }
 
                     adapter = new VoucherAdapter(mContext, vouchers);
                     recyclerView.setAdapter(adapter);
+                    linProgress.setVisibility(View.GONE);
 
                 }
             }
@@ -143,9 +148,5 @@ public class FragmentVoucher extends Fragment {
         stringRequest.setRetryPolicy(retryPolicy);
         RequestQueue queue = Volley.newRequestQueue(mContext);
         queue.add(stringRequest);
-    }
-
-    private void initView(View v) {
-        recyclerView = (RecyclerView) v.findViewById(R.id.recycler_voucher);
     }
 }

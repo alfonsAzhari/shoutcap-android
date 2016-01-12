@@ -62,14 +62,10 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.VoucherV
     @Override
     public void onBindViewHolder(VoucherAdapter.VoucherViewHolder holder, int position) {
 
-        holder.voucherCode.setText(vouchers.get(position).getVoucherCode());
-        holder.discount.setText(vouchers.get(position).getDiscount() + " to " + vouchers.get(position).getDiscountTo());
-        holder.expire.setText(vouchers.get(position).getExpire().toString());
-        if (vouchers.get(position).getUseAtOrder().isEmpty()) {
-            holder.useAtOrder.setText("Belum digunakan");
-        } else {
-            holder.useAtOrder.setText(vouchers.get(position).getUseAtOrder());
-        }
+        holder.voucherCode.setText(vouchers.get(position).getVoucher_code());
+        holder.discount.setText(vouchers.get(position).getDiscount() + " to " + vouchers.get(position).getDiscount_to());
+        holder.expire.setText(vouchers.get(position).getExpire());
+        holder.useAtOrder.setText(vouchers.get(position).getId_order());
         holder.status.setText(vouchers.get(position).getStatus());
     }
 

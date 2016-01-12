@@ -2,6 +2,27 @@
 <items version="2" >
 
     <item
+        jar="C:\Users\Adam MB\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\23.1.1\support-annotations-23.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\support-annotations-23.1.1-954f2c908e0dc1587a6ddc59d3519293967963a9.jar" />
+    </item>
+    <item
+        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.android.support\design\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="fc63b820d54c8a27a3a614bdd93920e0076581c2">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-6f45c8bffe16603301888a2c2b32858d5eef7940.jar" />
+    </item>
+    <item
+        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-1f232f7894ae5c9aaa337b233c19a30274aeb278.jar" />
+    </item>
+    <item
         jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.1.1\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
@@ -21,27 +42,6 @@
         revision="22.0.1"
         sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
         <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\internal_impl-23.1.1-fd6bbd7c2cad3ce3e9c23ee6db31a29be50be3e3.jar" />
-    </item>
-    <item
-        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.android.support\design\22.2.0\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="fc63b820d54c8a27a3a614bdd93920e0076581c2">
-        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-6f45c8bffe16603301888a2c2b32858d5eef7940.jar" />
-    </item>
-    <item
-        jar="C:\Users\Adam MB\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\23.1.1\support-annotations-23.1.1.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
-        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\support-annotations-23.1.1-954f2c908e0dc1587a6ddc59d3519293967963a9.jar" />
-    </item>
-    <item
-        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.1.1\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
-        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-1f232f7894ae5c9aaa337b233c19a30274aeb278.jar" />
     </item>
 
 </items>
