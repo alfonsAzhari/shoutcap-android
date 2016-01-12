@@ -44,7 +44,7 @@ public class FragmentVoucher extends Fragment {
 
     private ArrayList<ModelAdapterVoucher> vouchers;
     private RecyclerView recyclerView;
-    private ModelVoucher voucher=null;
+    private ModelVoucher voucher = null;
     private VoucherAdapter adapter;
 
     SessionManager manager;
@@ -91,6 +91,7 @@ public class FragmentVoucher extends Fragment {
 
                 try {
                     voucher = Parser.getVoucher(response.toString());
+                    Log.i("parser voucher", voucher.toString());
 
                 } catch (IOException e) {
                     e.printStackTrace();

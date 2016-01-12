@@ -24,7 +24,7 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.VoucherV
     ArrayList<ModelAdapterVoucher> vouchers;
     private Context context;
 
-    public static class VoucherViewHolder extends RecyclerView.ViewHolder {
+    public class VoucherViewHolder extends RecyclerView.ViewHolder {
 
         TextView voucherCode;
         TextView discount;
@@ -53,7 +53,7 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.VoucherV
 //    }
 
     @Override
-    public VoucherAdapter.VoucherViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public VoucherViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.item_voucher, parent, false);
         VoucherViewHolder viewHolder = new VoucherViewHolder(v);
         return viewHolder;
