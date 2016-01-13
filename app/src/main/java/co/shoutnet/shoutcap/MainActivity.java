@@ -25,6 +25,9 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 
+import org.apache.http.client.HttpClient;
+import org.apache.http.impl.client.DefaultHttpClient;
+
 import java.util.HashMap;
 
 import co.shoutnet.shoutcap.utility.RoundedImageView;

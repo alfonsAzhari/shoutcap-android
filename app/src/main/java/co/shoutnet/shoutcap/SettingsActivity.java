@@ -1,6 +1,7 @@
 package co.shoutnet.shoutcap;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -34,25 +35,30 @@ public class SettingsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         items = getResources().getStringArray(R.array.settings_item_array);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, items);
 
         listView.setAdapter(arrayAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent;
                 switch (i) {
                     case 0:
                         break;
 
                     case 1:
+                        intent = new Intent(SettingsActivity.this, ChangeAvatarActivity.class);
+                        startActivity(intent);
                         break;
 
                     case 2:
                         break;
 
                     case 3:
-                        final ProgressDialog progressDialog = new ProgressDialog(SettingsActivity.this);
+                        break;
+
+                    case 4:final ProgressDialog progressDialog = new ProgressDialog(SettingsActivity.this);
                         progressDialog.setIndeterminate(true);
                         progressDialog.setMessage("Signing Out");
                         progressDialog.show();
