@@ -2,6 +2,7 @@ package co.shoutnet.shoutcap;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -72,6 +73,7 @@ public class FragmentInvoice extends Fragment {
         initView(rootView);
 
         sessionManager = new SessionManager(mContext);
+
         user = sessionManager.getUserDetails();
 
         Bundle bundle = getArguments();
@@ -80,6 +82,14 @@ public class FragmentInvoice extends Fragment {
         Log.i("id order invoice", bundle.getString(ID_ORDER));
 
         fetchData(ApiReferences.getInvoice(), bundle.getString(ID_ORDER));
+
+        confirmation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), ActivityPaymentConfirmation.class);
+                startActivity(i);
+            }
+        });
 
         return rootView;
     }
