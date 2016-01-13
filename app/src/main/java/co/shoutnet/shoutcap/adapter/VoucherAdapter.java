@@ -21,7 +21,7 @@ import co.shoutnet.shoutcap.R;
  */
 public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.VoucherViewHolder> {
 
-    ArrayList<ModelAdapterVoucher> vouchers;
+    private ArrayList<ModelAdapterVoucher> vouchers;
     private Context context;
 
     public class VoucherViewHolder extends RecyclerView.ViewHolder {

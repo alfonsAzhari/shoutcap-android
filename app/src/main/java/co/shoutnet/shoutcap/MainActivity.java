@@ -277,6 +277,13 @@ public class MainActivity extends AppCompatActivity {
                     fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentVoucher).commit();
                     return true;
 
+                case R.id.drawer_item_order:
+                    getSupportActionBar().setTitle("Order History");
+
+                    FragmentOrderHistory fragmentOrderHistory = FragmentOrderHistory.newInstance();
+                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentOrderHistory).commit();
+                    return true;
+
                 default:
                     return true;
             }

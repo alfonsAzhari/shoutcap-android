@@ -14,6 +14,8 @@ import co.shoutnet.shoutcap.model.ModelColor;
 import co.shoutnet.shoutcap.model.ModelHistoryReward;
 import co.shoutnet.shoutcap.model.ModelInbox;
 import co.shoutnet.shoutcap.model.ModelInboxDetail;
+import co.shoutnet.shoutcap.model.ModelInvoice;
+import co.shoutnet.shoutcap.model.ModelOrderHistory;
 import co.shoutnet.shoutcap.model.ModelSignIn;
 import co.shoutnet.shoutcap.model.ModelVoucher;
 
@@ -70,5 +72,17 @@ public class Parser {
         gson = new Gson();
 
         return gson.fromJson(json, ModelVoucher.class);
+    }
+
+    public static ModelOrderHistory getOrderHistory(String json) throws IOException {
+        gson = new Gson();
+
+        return gson.fromJson(json, ModelOrderHistory.class);
+    }
+
+    public static ModelInvoice getInvoice(String json) throws IOException {
+        gson = new Gson();
+
+        return gson.fromJson(json, ModelInvoice.class);
     }
 }

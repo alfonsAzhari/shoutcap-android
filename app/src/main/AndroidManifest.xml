@@ -54,38 +54,39 @@
             </intent-filter>
         </receiver>
 
-        <!--<service-->
-            <!--android:name=".MyGcmListenerService"-->
-            <!--android:exported="false">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="com.google.android.c2dm.intent.RECEIVE" />-->
-            <!--</intent-filter>-->
-        <!--</service>-->
-        <!--<service-->
-            <!--android:name=".MyInstanceIDListenerService"-->
-            <!--android:exported="false">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="com.google.android.gms.iid.InstanceID" />-->
-            <!--</intent-filter>-->
-        <!--</service>-->
-        <!--<service-->
-            <!--android:name=".RegistrationService"-->
-            <!--android:exported="false">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="com.google.android.gms.iid.InstanceID" />-->
-            <!--</intent-filter>-->
-        <!--</service>-->
+        <!-- <service -->
+        <!-- android:name=".MyGcmListenerService" -->
+        <!-- android:exported="false"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.google.android.c2dm.intent.RECEIVE" /> -->
+        <!-- </intent-filter> -->
+        <!-- </service> -->
+        <!-- <service -->
+        <!-- android:name=".MyInstanceIDListenerService" -->
+        <!-- android:exported="false"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.google.android.gms.iid.InstanceID" /> -->
+        <!-- </intent-filter> -->
+        <!-- </service> -->
+        <!-- <service -->
+        <!-- android:name=".RegistrationService" -->
+        <!-- android:exported="false"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.google.android.gms.iid.InstanceID" /> -->
+        <!-- </intent-filter> -->
+        <!-- </service> -->
 
-        <!--<activity-->
-            <!--android:name=".CartActivity"-->
-            <!--android:label="@string/action_cart" />-->
-        <!--<activity-->
-            <!--android:name=".ActivityInboxDetail"-->
-            <!--android:parentActivityName=".MainActivity" />-->
-        <!--<activity-->
-            <!--android:name=".PreviewActivity"-->
-            <!--android:label="@string/title_activity_preview"-->
-            <!--android:theme="@style/AppTheme" />-->
+
+        <!-- <activity -->
+        <!-- android:name=".CartActivity" -->
+        <!-- android:label="@string/action_cart" /> -->
+        <!-- <activity -->
+        <!-- android:name=".ActivityInboxDetail" -->
+        <!-- android:parentActivityName=".MainActivity" /> -->
+        <!-- <activity -->
+        <!-- android:name=".PreviewActivity" -->
+        <!-- android:label="@string/title_activity_preview" -->
+        <!-- android:theme="@style/AppTheme" /> -->
         <activity
             android:name=".ActivityChangePassword"
             android:parentActivityName=".SettingsActivity"
@@ -110,6 +111,7 @@
         <activity
             android:name=".ActivityFAQ"
             android:theme="@style/AppTheme" />
+        <activity android:name=".FragmentInvoice"></activity>
     </application>
 
 </manifest>

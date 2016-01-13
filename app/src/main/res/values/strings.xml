@@ -181,23 +181,23 @@
     </string-array>
 
     <!--<array name="cap_trucker_classic_collection">-->
-        <!--<item>@drawable/trucker_classic_curved_black</item>-->
-        <!--<item>@drawable/trucker_classic_curved_red</item>-->
+    <!--<item>@drawable/trucker_classic_curved_black</item>-->
+    <!--<item>@drawable/trucker_classic_curved_red</item>-->
     <!--</array>-->
 
     <!--<array name="cap_trucker_color_collection">-->
-        <!--<item>@drawable/trucker_color_curved_black</item>-->
-        <!--<item>@drawable/trucker_color_curved_red</item>-->
+    <!--<item>@drawable/trucker_color_curved_black</item>-->
+    <!--<item>@drawable/trucker_color_curved_red</item>-->
     <!--</array>-->
 
     <!--<array name="cap_trucker_mixed_collection">-->
-        <!--<item>@drawable/trucker_mixed_curved_blue</item>-->
-        <!--<item>@drawable/trucker_mixed_curved_green</item>-->
+    <!--<item>@drawable/trucker_mixed_curved_blue</item>-->
+    <!--<item>@drawable/trucker_mixed_curved_green</item>-->
     <!--</array>-->
 
     <!--<array name="cap_baseball_collection">-->
-        <!--<item>@drawable/baseball_curved_black</item>-->
-        <!--<item>@drawable/baseball_curved_red</item>-->
+    <!--<item>@drawable/baseball_curved_black</item>-->
+    <!--<item>@drawable/baseball_curved_red</item>-->
     <!--</array>-->
 
     <array name="color_collection">

@@ -12,26 +12,26 @@ import co.shoutnet.shoutcap.model.ModelVoucher;
  */
 public class Dummy {
 
-    public ArrayList<ModelOrderHistory> getOrderHistory(){
-        ArrayList<ModelOrderHistory>list = new ArrayList<>();
-        ModelOrderHistory modelOrderHistory;
-
-        modelOrderHistory = new ModelOrderHistory();
-        modelOrderHistory.setOrderID("128371023");
-        modelOrderHistory.setPrice(123456);
-        modelOrderHistory.setPaymentStatus("Belum Dibayar");
-        modelOrderHistory.setProductStatus("Belum");
-        list.add(modelOrderHistory);
-
-        modelOrderHistory = new ModelOrderHistory();
-        modelOrderHistory.setOrderID("12837102123");
-        modelOrderHistory.setPrice(123456);
-        modelOrderHistory.setPaymentStatus("Belum Dibayar");
-        modelOrderHistory.setProductStatus("Belum");
-        list.add(modelOrderHistory);
-
-        return list;
-    }
+//    public ArrayList<ModelOrderHistory> getOrderHistory(){
+//        ArrayList<ModelOrderHistory>list = new ArrayList<>();
+//        ModelOrderHistory modelOrderHistory;
+//
+//        modelOrderHistory = new ModelOrderHistory();
+//        modelOrderHistory.setOrderID("128371023");
+//        modelOrderHistory.setPrice(123456);
+//        modelOrderHistory.setPaymentStatus("Belum Dibayar");
+//        modelOrderHistory.setProductStatus("Belum");
+//        list.add(modelOrderHistory);
+//
+//        modelOrderHistory = new ModelOrderHistory();
+//        modelOrderHistory.setOrderID("12837102123");
+//        modelOrderHistory.setPrice(123456);
+//        modelOrderHistory.setPaymentStatus("Belum Dibayar");
+//        modelOrderHistory.setProductStatus("Belum");
+//        list.add(modelOrderHistory);
+//
+//        return list;
+//    }
 
 //    public ArrayList<ModelAdapterVoucher> getVoucher(){
 //        ArrayList<ModelAdapterVoucher>list = new ArrayList<>();

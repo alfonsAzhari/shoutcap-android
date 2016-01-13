@@ -4,13 +4,13 @@
     android:layout_height="match_parent">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_voucher"
+        android:id="@+id/recycler_order_history"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="4dp"/>
 
     <LinearLayout
-        android:id="@+id/lin_voucher_progress"
+        android:id="@+id/lin_order_history_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true">
