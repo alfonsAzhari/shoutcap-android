@@ -5,7 +5,7 @@ package co.shoutnet.shoutcap.model;
  */
 public class ModelInvoice {
     private String result;
-    private String urlInvoice;
+    private String item;
 
     public String getResult() {
         return result;
@@ -15,11 +15,11 @@ public class ModelInvoice {
         this.result = result;
     }
 
-    public String getUrlInvoice() {
-        return urlInvoice;
+    public String getItem() {
+        return item;
     }
 
-    public void setUrlInvoice(String urlInvoice) {
-        this.urlInvoice = urlInvoice;
+    public void setItem(String item) {
+        this.item = item;
     }
 }
