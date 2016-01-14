@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,9 +14,30 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+
+import co.shoutnet.shoutcap.utility.ApiReferences;
 
 /**
  * Created by Adam MB on 9/14/2015.
@@ -44,6 +66,7 @@ public class ActivityEditProfile extends AppCompatActivity {
         setContentView(R.layout.activity_edit_profile);
         initView();
         setSpinner();
+        getProvice(ApiReferences.getUrlGetProvince());
         setDateTimeField();
         initToolbar();
         setTwitter();
@@ -74,17 +97,12 @@ public class ActivityEditProfile extends AppCompatActivity {
     }
 
     private void setSpinner() {
-        adapter = ArrayAdapter.createFromResource(
-                this, R.array.provinsi,
-                android.R.layout.simple_spinner_dropdown_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerProvince.setAdapter(adapter);
         spinnerProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
             @Override
-            public void onItemSelected(AdapterView<?> parent, View v,
-                                       int position, long id) {
-
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                getCity(ApiReferences.getUrlGetCity(), spinnerProvince.getSelectedItem().toString());
+                spinnerCity.setEnabled(true);
+                spinnerKecamatan.setEnabled(false);
             }
 
             @Override
@@ -93,43 +111,33 @@ public class ActivityEditProfile extends AppCompatActivity {
             }
         });
 
-        adapter = ArrayAdapter.createFromResource(
-                this, R.array.kota,
-                android.R.layout.simple_spinner_dropdown_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerCity.setAdapter(adapter);
         spinnerCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
             @Override
-            public void onItemSelected(AdapterView<?> parent, View v,
-                                       int position, long id) {
-
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                getKecamatan(ApiReferences.getUrlGetKec(), spinnerCity.getSelectedItem().toString());
+                spinnerKecamatan.setEnabled(true);
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
 
-        adapter = ArrayAdapter.createFromResource(
-                this, R.array.kecamatan,
-                android.R.layout.simple_spinner_dropdown_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerKecamatan.setAdapter(adapter);
         spinnerKecamatan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
             @Override
-            public void onItemSelected(AdapterView<?> parent, View v,
-                                       int position, long id) {
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
+
+        spinnerCity.setEnabled(false);
+        spinnerKecamatan.setEnabled(false);
     }
 
     private void initView() {
@@ -171,5 +179,120 @@ public class ActivityEditProfile extends AppCompatActivity {
 
         }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
 
+    }
+
+    private void getProvice(String url) {
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, url, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                JSONObject jsonObject = null;
+                try {
+                    jsonObject = new JSONObject(response.toString());
+                    if (jsonObject.get("result").equals("success")) {
+                        JSONArray jsonArray = jsonObject.getJSONArray("item");
+                        List<String> listProvince = new ArrayList<>();
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            listProvince.add(jsonArray.get(i).toString());
+                        }
+                        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(ActivityEditProfile.this, android.R.layout.simple_spinner_item, listProvince);
+                        spinnerProvince.setAdapter(arrayAdapter);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.i("volley error", error.toString());
+            }
+        });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        RetryPolicy retryPolicy = new DefaultRetryPolicy(10000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        objectRequest.setRetryPolicy(retryPolicy);
+        requestQueue.add(objectRequest);
+    }
+
+    private void getCity(String url, final String province) {
+        StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                JSONObject jsonObject = null;
+                try {
+                    jsonObject = new JSONObject(response.toString());
+                    if (jsonObject.get("result").equals("success")) {
+                        JSONArray jsonArray = jsonObject.getJSONArray("item");
+                        List<String> listCity = new ArrayList<>();
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            listCity.add(jsonArray.get(i).toString());
+                        }
+                        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(ActivityEditProfile.this, android.R.layout.simple_spinner_item, listCity);
+                        spinnerCity.setAdapter(arrayAdapter);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> data = new HashMap<>();
+                data.put("provinsi", province);
+
+                return data;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        RetryPolicy retryPolicy = new DefaultRetryPolicy(10000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        request.setRetryPolicy(retryPolicy);
+        requestQueue.add(request);
+    }
+
+    private void getKecamatan(String url, final String city) {
+        StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                JSONObject jsonObject = null;
+                try {
+                    jsonObject = new JSONObject(response.toString());
+                    if (jsonObject.get("result").equals("success")) {
+                        JSONArray jsonArray = jsonObject.getJSONArray("item");
+                        List<String> listKecamatan = new ArrayList<>();
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            listKecamatan.add(jsonArray.get(i).toString());
+                        }
+                        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(ActivityEditProfile.this, android.R.layout.simple_spinner_item, listKecamatan);
+                        spinnerKecamatan.setAdapter(arrayAdapter);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> data = new HashMap<>();
+                data.put("kota", city);
+
+                return data;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        RetryPolicy retryPolicy = new DefaultRetryPolicy(10000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        request.setRetryPolicy(retryPolicy);
+        requestQueue.add(request);
     }
 }

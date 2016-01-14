@@ -30,6 +30,10 @@
     <string name="choose_font">Select Font</string>
     <string name="choose_font_color">Select Font Color</string>
 
+    <string name="choose_province">Pilih Provinsi</string>
+    <string name="choose_city">Pilih Kota</string>
+    <string name="choose_kec">Pilih Kecamatan</string>
+
     <string-array name="cap_model_list">
         <item>Trucker Cap</item>
         <item>Baseball Cap</item>
@@ -178,26 +182,6 @@
         <item>Flock Red</item>
         <item>Flock White</item>
     </string-array>
-
-    <array name="cap_trucker_classic_collection">
-        <item>@drawable/trucker_classic_curved_black</item>
-        <item>@drawable/trucker_classic_curved_red</item>
-    </array>
-
-    <array name="cap_trucker_color_collection">
-        <item>@drawable/trucker_color_curved_black</item>
-        <item>@drawable/trucker_color_curved_red</item>
-    </array>
-
-    <array name="cap_trucker_mixed_collection">
-        <item>@drawable/trucker_mixed_curved_blue</item>
-        <item>@drawable/trucker_mixed_curved_green</item>
-    </array>
-
-    <array name="cap_baseball_collection">
-        <item>@drawable/baseball_curved_black</item>
-        <item>@drawable/baseball_curved_red</item>
-    </array>
 
     <array name="color_collection">
         <item>@color/black</item>

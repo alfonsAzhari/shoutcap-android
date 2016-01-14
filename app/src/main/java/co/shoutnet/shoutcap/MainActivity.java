@@ -22,11 +22,25 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
+import co.shoutnet.shoutcap.model.ModelProfile;
+import co.shoutnet.shoutcap.utility.ApiReferences;
+import co.shoutnet.shoutcap.utility.Parser;
 import co.shoutnet.shoutcap.utility.RoundedImageView;
 import co.shoutnet.shoutcap.utility.SessionManager;
 
@@ -49,7 +63,10 @@ public class MainActivity extends AppCompatActivity {
     private TextView txtCoin;
     private TextView txtPoint;
 
-    private int exitCounter;
+    private ModelProfile modelProfile = null;
+    private HashMap<String, String> user;
+
+    private boolean exitCounter = false;
 
     SessionManager sessionManager;
 
@@ -57,19 +74,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        exitCounter = 1;
 
         //validate login
         sessionManager = new SessionManager(getApplicationContext());
 
         sessionManager.checkLogin();
 
-        HashMap<String, String> user = sessionManager.getUserDetails();
+        user = sessionManager.getUserDetails();
+        Log.i(SessionManager.KEY_SHOUTID, user.get(SessionManager.KEY_SHOUTID));
+        Log.i(SessionManager.KEY_SESSIONID, user.get(SessionManager.KEY_SESSIONID));
 
         initToolbar();
         initView();
 
         setUpNavDrawer();
+
+        getProfile(ApiReferences.getUrlProfile(), user.get(SessionManager.KEY_SHOUTID), user.get(SessionManager.KEY_SESSIONID));
+
+        user = sessionManager.getUserDetails();
 
         setUpProfile(user);
 
@@ -185,11 +207,19 @@ public class MainActivity extends AppCompatActivity {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else if (getFragmentManager().getBackStackEntryCount() > 0) {
             getFragmentManager().popBackStack();
-        } else if (exitCounter > 0) {
-            exitCounter -= 1;
-            Toast.makeText(getApplicationContext(), "Press Back Again to Exit", Toast.LENGTH_SHORT).show();
         } else {
-            super.onBackPressed();
+            if (exitCounter) {
+                super.onBackPressed();
+                return;
+            }
+            exitCounter = true;
+            Toast.makeText(getApplicationContext(), "Press Back Again to Exit", Toast.LENGTH_SHORT).show();
+            new android.os.Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    exitCounter = false;
+                }
+            }, 2500);
         }
     }
 
@@ -203,6 +233,9 @@ public class MainActivity extends AppCompatActivity {
             FragmentCreateShout fragmentCreateShout;
             FragmentRack fragmentRack;
             FragmentManager fragmentManager = getFragmentManager();
+            if (fragmentManager.getBackStackEntryCount() > 0) {
+                fragmentManager.popBackStack();
+            }
 
             imgProfileAva.setVisibility(View.GONE);
             txtProfileName.setVisibility(View.GONE);
@@ -274,4 +307,55 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     };
+
+    private void getProfile(String url, final String shoutId, final String sessionId) {
+        StringRequest requestProfile = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.i("response profile", response.toString());
+
+                try {
+                    modelProfile = Parser.getProfile(response.toString());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                if (modelProfile.getResult().equals("success")) {
+                    sessionManager.addProfile(modelProfile.getItem().getNama(), modelProfile.getItem().getEmail(), modelProfile.getItem().getHp(),
+                            modelProfile.getItem().getGender(), modelProfile.getItem().getAlamat(), modelProfile.getItem().getKecamatan(), modelProfile.getItem().getKota(), modelProfile.getItem().getProvinsi(),
+                            modelProfile.getItem().getKodePos(), modelProfile.getItem().getTglLahir(), modelProfile.getItem().getMinat(), modelProfile.getItem().getStatusKerja());
+
+                    user = sessionManager.getUserDetails();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("error profile", error.toString());
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+
+                params.put("shoutid", shoutId);
+                params.put("sessionid", sessionId);
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+
+                return params;
+            }
+        };
+
+        RetryPolicy retryPolicy = new DefaultRetryPolicy(5000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        requestProfile.setRetryPolicy(retryPolicy);
+        final RequestQueue queue = Volley.newRequestQueue(this);
+        queue.add(requestProfile);
+    }
 }

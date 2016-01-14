@@ -312,23 +312,29 @@
             <Spinner
                 android:id="@+id/spinner_edit_province"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp" />
+                android:layout_marginRight="24dp"
+                android:prompt="@string/choose_province"
+                android:spinnerMode="dialog" />
 
             <Spinner
                 android:id="@+id/spinner_edit_city"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp" />
+                android:layout_marginRight="24dp"
+                android:prompt="@string/choose_city"
+                android:spinnerMode="dialog" />
 
             <Spinner
                 android:id="@+id/spinner_edit_kecamatan"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp" />
+                android:layout_marginRight="24dp"
+                android:prompt="@string/choose_kec"
+                android:spinnerMode="dialog" />
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
