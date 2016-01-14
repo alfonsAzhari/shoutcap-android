@@ -10,12 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import co.shoutnet.shoutcap.model.ModelCapModel;
+import co.shoutnet.shoutcap.model.ModelCaraBayar;
 import co.shoutnet.shoutcap.model.ModelColor;
 import co.shoutnet.shoutcap.model.ModelHistoryReward;
 import co.shoutnet.shoutcap.model.ModelInbox;
 import co.shoutnet.shoutcap.model.ModelInboxDetail;
 import co.shoutnet.shoutcap.model.ModelInvoice;
+import co.shoutnet.shoutcap.model.ModelMessage;
 import co.shoutnet.shoutcap.model.ModelOrderHistory;
+import co.shoutnet.shoutcap.model.ModelPaymentConfirmation;
 import co.shoutnet.shoutcap.model.ModelSignIn;
 import co.shoutnet.shoutcap.model.ModelVoucher;
 
@@ -84,5 +87,17 @@ public class Parser {
         gson = new Gson();
 
         return gson.fromJson(json, ModelInvoice.class);
+    }
+
+    public static ModelCaraBayar getCaraBayar(String json) throws IOException {
+        gson = new Gson();
+
+        return gson.fromJson(json, ModelCaraBayar.class);
+    }
+
+    public static ModelMessage getMessage(String json) throws IOException {
+        gson = new Gson();
+
+        return gson.fromJson(json, ModelMessage.class);
     }
 }

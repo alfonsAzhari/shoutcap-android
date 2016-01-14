@@ -111,7 +111,7 @@ public class FragmentVoucher extends Fragment {
                         if (item.getId_order()== null || item.getId_order()==""){
                             item.setId_order("-");
                         }
-                        vouchers.add(new ModelAdapterVoucher(item.getVoucher_code(),  item.getStatus(), item.getExpire(), item.getDiscount(), item.getDiscount_to(), item.getId_order().toString()));
+                        vouchers.add(new ModelAdapterVoucher(item.getVoucher_code(),  item.getStatus(), item.getExpire(), item.getDiscount(), item.getDiscount_to(), item.getId_order()));
                     }
 
                     adapter = new VoucherAdapter(mContext, vouchers);

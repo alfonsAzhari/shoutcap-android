@@ -113,45 +113,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="24dp"
-                android:paddingRight="24dp">
-
-                <RadioButton
-                    android:id="@+id/radio_transfer_bca_payment_confirmation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Transfer ke BCA No. Rek 4371236699" />
-
-                <RadioButton
-                    android:id="@+id/radio_tunai_bca_payment_confirmation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Setor Tunai ke BCA No. Rek 4371236699" />
-
-                <RadioButton
-                    android:id="@+id/radio_transfer_mandiri_payment_confirmation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Transfer ke MANDIRI No. Rek 131-00-12796159" />
-
-                <RadioButton
-                    android:id="@+id/radio_tunai_mandiri_payment_confirmation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Setor Tunai ke MANDIRI No. Rek 131-00-12796159" />
-
-                <RadioButton
-                    android:id="@+id/radio_transfer_bni_payment_confirmation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Transfer ke BNI No. Rek 8092010897" />
-
-                <RadioButton
-                    android:id="@+id/radio_tunai_bni_payment_confirmation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Setor Tunai ke BNI No. Rek 8092010897" />
-
-            </RadioGroup>
+                android:paddingRight="24dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -191,6 +153,7 @@
                     android:layout_toRightOf="@id/radio_group_bank_asal_payment_confirmation"
                     android:layout_alignBottom="@id/radio_group_bank_asal_payment_confirmation"
                     android:layout_height="wrap_content"
+                    android:enabled="false"
                     android:singleLine="true" />
 
             </RelativeLayout>

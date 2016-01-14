@@ -76,7 +76,7 @@ public class FragmentInvoice extends Fragment {
 
         user = sessionManager.getUserDetails();
 
-        Bundle bundle = getArguments();
+        final Bundle bundle = getArguments();
         Log.i("id invoice", user.get("shoutId"));
         Log.i("session invoice", user.get("sessionId"));
         Log.i("id order invoice", bundle.getString(ID_ORDER));
@@ -87,6 +87,7 @@ public class FragmentInvoice extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getActivity(), ActivityPaymentConfirmation.class);
+                i.putExtras(bundle);
                 startActivity(i);
             }
         });
@@ -114,7 +115,9 @@ public class FragmentInvoice extends Fragment {
                 }
 
                 if (invoice.getResult().equals("success")) {
-                    Glide.with(mContext).load(invoice.getItem()).asBitmap().into(new BitmapImageViewTarget(imgInvoice));
+                    Log.i("img", invoice.getItem());
+                    imgInvoice.setVisibility(View.VISIBLE);
+                    Glide.with(mContext).load(invoice.getItem()).into(imgInvoice);
                 }
 
                 linProgres.setVisibility(View.GONE);
