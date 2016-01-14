@@ -6,11 +6,10 @@ import android.content.SharedPreferences;
 
 import java.util.HashMap;
 
-import co.shoutnet.shoutcap.MainActivity;
 import co.shoutnet.shoutcap.SignActivity;
 
 /**
- * Created by CodeLabs on 27/11/2015.
+ * Created by Alfons on 27/11/2015.
  */
 public class SessionManager {
 
@@ -32,6 +31,18 @@ public class SessionManager {
     public static final String KEY_SHOUT_QUOTA = "shoutCapQuota";
     public static final String KEY_SCREAM_QUOTA = "screamShirtQuota";
     public static final String KEY_PICTO_QUOTA = "pictoCapQuota";
+    public static final String KEY_NAME = "name";
+    public static final String KEY_EMAIL = "email";
+    public static final String KEY_PHONE = "phone";
+    public static final String KEY_GENDER = "gender";
+    public static final String KEY_ADDRESS = "address";
+    public static final String KEY_CITY = "city";
+    public static final String KEY_KEC = "kecamatan";
+    public static final String KEY_PROVINCE = "province";
+    public static final String KEY_POSTAL_CODE = "postalCode";
+    public static final String KEY_DATE_BIRTH = "dateBirth";
+    public static final String KEY_MINAT = "minat";
+    public static final String KEY_WORK_STATUS = "workStatus";
 
     public SessionManager(Context context) {
 
@@ -51,6 +62,24 @@ public class SessionManager {
         editor.putString(KEY_SHOUT_QUOTA, shoutQuota);
         editor.putString(KEY_SCREAM_QUOTA, screamQuota);
         editor.putString(KEY_PICTO_QUOTA, pictoQuota);
+
+        editor.commit();
+    }
+
+    public void addProfile(String name, String email, String phone, String gender, String address, String kec, String city, String province, String postalCode, String dateBirth, String minat, String workStatus) {
+        editor.putString(KEY_NAME, name);
+        editor.putString(KEY_EMAIL, email);
+        editor.putString(KEY_PHONE, phone);
+        editor.putString(KEY_GENDER, gender);
+        editor.putString(KEY_ADDRESS, address);
+        editor.putString(KEY_KEC, kec);
+        editor.putString(KEY_CITY, city);
+        editor.putString(KEY_PROVINCE, province);
+        editor.putString(KEY_POSTAL_CODE, postalCode);
+        editor.putString(KEY_DATE_BIRTH, dateBirth);
+        editor.putString(KEY_MINAT, minat);
+        editor.putString(KEY_WORK_STATUS, workStatus);
+
         editor.commit();
     }
 
@@ -76,7 +105,19 @@ public class SessionManager {
         user.put(KEY_URL_AVATAR, pref.getString(KEY_URL_AVATAR, null));
         user.put(KEY_SHOUT_QUOTA, pref.getString(KEY_SHOUT_QUOTA, null));
         user.put(KEY_SCREAM_QUOTA, pref.getString(KEY_SCREAM_QUOTA, null));
-        user.put(KEY_PICTO_QUOTA, pref.getString(KEY_SCREAM_QUOTA, null));
+        user.put(KEY_PICTO_QUOTA, pref.getString(KEY_PICTO_QUOTA, null));
+        user.put(KEY_NAME, pref.getString(KEY_NAME, null));
+        user.put(KEY_EMAIL, pref.getString(KEY_EMAIL, null));
+        user.put(KEY_PHONE, pref.getString(KEY_PHONE, null));
+        user.put(KEY_GENDER, pref.getString(KEY_GENDER, null));
+        user.put(KEY_ADDRESS, pref.getString(KEY_ADDRESS, null));
+        user.put(KEY_KEC, pref.getString(KEY_KEC, null));
+        user.put(KEY_CITY, pref.getString(KEY_CITY, null));
+        user.put(KEY_PROVINCE, pref.getString(KEY_PROVINCE, null));
+        user.put(KEY_POSTAL_CODE, pref.getString(KEY_POSTAL_CODE, null));
+        user.put(KEY_DATE_BIRTH, pref.getString(KEY_DATE_BIRTH, null));
+        user.put(KEY_MINAT, pref.getString(KEY_MINAT, null));
+        user.put(KEY_WORK_STATUS, pref.getString(KEY_WORK_STATUS, null));
 
         return user;
     }

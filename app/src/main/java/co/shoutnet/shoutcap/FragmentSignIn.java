@@ -29,7 +29,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
+import co.shoutnet.shoutcap.model.ModelProfile;
 import co.shoutnet.shoutcap.model.ModelSignIn;
 import co.shoutnet.shoutcap.utility.ApiReferences;
 import co.shoutnet.shoutcap.utility.Parser;
@@ -46,7 +51,9 @@ public class FragmentSignIn extends Fragment {
     private EditText edtpassword;
     private Button btnSignIn;
 
-    private ModelSignIn modelSignIn;
+    private ModelSignIn modelSignIn = null;
+    private ModelProfile modelProfile = null;
+    private ProgressDialog progressDialog;
 
     SharedPreferences sharedPreferences;
     SessionManager sessionManager;
@@ -100,12 +107,11 @@ public class FragmentSignIn extends Fragment {
 
     private void fetchData(final String shoutid, final String password) {
         sharedPreferences = mContext.getSharedPreferences("prefLogin", Context.MODE_PRIVATE);
-        final SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, ApiReferences.getUrlLogin(), new Response.Listener<String>() {
+        final StringRequest requestLogin = new StringRequest(Request.Method.POST, ApiReferences.getUrlLogin(), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.i("response volley", response.toString());
+                Log.i("response sign in", response.toString());
 
                 try {
                     modelSignIn = Parser.getReturnSignIn(response.toString());
@@ -114,12 +120,8 @@ public class FragmentSignIn extends Fragment {
                 }
 
                 if (modelSignIn.getResult().equals("success")) {
-
-                    sessionManager.createLoginSession(modelSignIn.getShoutId(), modelSignIn.getSessionId(), modelSignIn.getPoint(), modelSignIn.getCoin(), modelSignIn.getUrlAvatar(), modelSignIn.getShoutcapQuota(), modelSignIn.getScreamShirtQuota(), modelSignIn.getPictocapQuota());
-
-                    Intent i = new Intent(mContext, MainActivity.class);
-                    startActivity(i);
-                    getActivity().finish();
+                    sessionManager.createLoginSession(modelSignIn.getShoutId(), modelSignIn.getSessionId(), modelSignIn.getPoint(), modelSignIn.getCoin(), modelSignIn.getUrlAvatar(), modelSignIn.getShoutcapQuota(),
+                            modelSignIn.getScreamShirtQuota(), modelSignIn.getPictocapQuota());
                 } else {
                     Toast.makeText(mContext, "Your ShoutId or Password are wrong", Toast.LENGTH_SHORT).show();
 
@@ -129,7 +131,7 @@ public class FragmentSignIn extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("error volley", error.toString());
+                Log.e("error sign in", error.toString());
             }
         }) {
             @Override
@@ -152,14 +154,64 @@ public class FragmentSignIn extends Fragment {
             }
         };
 
-        RetryPolicy retryPolicy = new DefaultRetryPolicy(10000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-        stringRequest.setRetryPolicy(retryPolicy);
-        RequestQueue queue = Volley.newRequestQueue(mContext);
-        queue.add(stringRequest);
-    }
+        final StringRequest requestProfile = new StringRequest(Request.Method.POST, ApiReferences.getUrlProfile(), new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.i("response profile", response.toString());
 
-    private void getProfile(String url) {
+                try {
+                    modelProfile = Parser.getProfile(response.toString());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
+                if (modelProfile.getResult().equals("success")) {
+                    sessionManager.addProfile(modelProfile.getItem().getNama(), modelProfile.getItem().getEmail(), modelProfile.getItem().getHp(),
+                            modelProfile.getItem().getGender(), modelProfile.getItem().getAlamat(), modelProfile.getItem().getKecamatan(), modelProfile.getItem().getKota(), modelProfile.getItem().getProvinsi(),
+                            modelProfile.getItem().getKodePos(), modelProfile.getItem().getTglLahir(), modelProfile.getItem().getMinat(), modelProfile.getItem().getStatusKerja());
+
+                    progressDialog.dismiss();
+
+                    Intent i = new Intent(mContext, MainActivity.class);
+                    startActivity(i);
+                    getActivity().finish();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("error profile", error.toString());
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+
+                params.put("shoutid", shoutid);
+                params.put("sessionid", modelSignIn.getSessionId());
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+
+                return params;
+            }
+        };
+
+        RetryPolicy retryPolicy = new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        requestLogin.setRetryPolicy(retryPolicy);
+        final RequestQueue queue = Volley.newRequestQueue(mContext);
+        queue.add(requestLogin);
+        new android.os.Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                queue.add(requestProfile);
+            }
+        }, (retryPolicy.getCurrentRetryCount() + 1) * retryPolicy.getCurrentTimeout());
     }
 
     private void login() {
@@ -170,17 +222,10 @@ public class FragmentSignIn extends Fragment {
 
         btnSignIn.setEnabled(false);
 
-        final ProgressDialog progressDialog = new ProgressDialog(mContext);
+        progressDialog = new ProgressDialog(mContext);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Signing In");
         progressDialog.show();
-
-        new android.os.Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                fetchData(shoutid, password);
-                progressDialog.dismiss();
-            }
-        }, 3000);
+        fetchData(shoutid, password);
     }
 }
