@@ -4,18 +4,22 @@ import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,8 +34,13 @@ import java.util.HashMap;
 import co.shoutnet.shoutcap.utility.RoundedImageView;
 import co.shoutnet.shoutcap.utility.SessionManager;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
+
+import co.shoutnet.shoutcap.utility.ConfigGCM;
 
 public class MainActivity extends AppCompatActivity {
+
 
     private Toolbar toolbar;
 
@@ -48,10 +57,113 @@ public class MainActivity extends AppCompatActivity {
     private TextView txtShoutId;
     private TextView txtCoin;
     private TextView txtPoint;
+    private TextView txtProfileCoin;
+    private TextView txtProfilePoint;
 
     private int exitCounter;
 
     SessionManager sessionManager;
+
+    private static final int PLAY_SERVICE_RESOLUTION_REQUEST = 9000;
+    private static final String TAG = "MainActivity";
+    private BroadcastReceiver registrationBroadcastReceiver;
+    private Toolbar toolbar;
+
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
+
+    private ImageView imgProfileAva;
+    private TextView txtProfileName;
+    private LinearLayout linProfile;
+
+    NavigationView.OnNavigationItemSelectedListener navItemSelect = new NavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(MenuItem menuItem) {
+
+            menuItem.setChecked(true);
+
+            drawerLayout.closeDrawer(GravityCompat.START);
+            FragmentCreateShout fragmentCreateShout;
+            FragmentRack fragmentRack;
+            FragmentManager fragmentManager = getFragmentManager();
+
+            imgProfileAva.setVisibility(View.GONE);
+            txtProfileName.setVisibility(View.GONE);
+            linProfile.setVisibility(View.GONE);
+
+            switch (menuItem.getItemId()) {
+                case R.id.drawer_item_news:
+                    getSupportActionBar().setTitle("News");
+
+                    FragmentNews fragmentNews = new FragmentNews();
+                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentNews).commit();
+                    return true;
+
+                case R.id.drawer_item_promo:
+                    getSupportActionBar().setTitle("Promo");
+
+                    FragmentPromo fragmentPromo = new FragmentPromo();
+                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentPromo).commit();
+                    return true;
+
+                case R.id.drawer_item_create:
+                    getSupportActionBar().setTitle("Create Shout");
+
+                    fragmentCreateShout = new FragmentCreateShout();
+                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentCreateShout).commit();
+                    return true;
+
+                case R.id.drawer_item_profile:
+                    imgProfileAva.setVisibility(View.VISIBLE);
+                    txtProfileName.setVisibility(View.VISIBLE);
+                    linProfile.setVisibility(View.VISIBLE);
+
+                    getSupportActionBar().setTitle("Profile");
+
+                    fragmentRack = new FragmentRack();
+                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentRack).commit();
+                    return true;
+
+                case R.id.drawer_item_inbox:
+                    getSupportActionBar().setTitle("Inbox");
+
+                    FragmentInbox fragmentInbox = new FragmentInbox();
+                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentInbox).commit();
+                    return true;
+
+                case R.id.drawer_item_rack:
+                    getSupportActionBar().setTitle("Rack");
+
+                    fragmentRack = new FragmentRack();
+                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentRack).commit();
+                    return true;
+
+                case R.id.drawer_item_order:
+                    getSupportActionBar().setTitle("Order History");
+
+                    FragmentOrderHistory fragmentOrderHistory = FragmentOrderHistory.newInstance();
+                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentOrderHistory).commit();
+                    return true;
+
+                case R.id.drawer_item_reward:
+                    getSupportActionBar().setTitle("Reward");
+
+                    FragmentReward fragmentReward = FragmentReward.newInstance();
+                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentReward).commit();
+                    return true;
+
+                case R.id.drawer_item_voucher:
+                    getSupportActionBar().setTitle("Voucher");
+
+                    FragmentVoucher fragmentVoucher = FragmentVoucher.newInstance();
+                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentVoucher).commit();
+                    return true;
+
+                default:
+                    return true;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +178,8 @@ public class MainActivity extends AppCompatActivity {
 
         HashMap<String, String> user = sessionManager.getUserDetails();
 
+        onNewIntent(getIntent());
+        initGcm();
         initToolbar();
         initView();
 
@@ -98,6 +212,46 @@ public class MainActivity extends AppCompatActivity {
         linProfile = (LinearLayout) findViewById(R.id.lin_profile);
         txtProfileCoin = (TextView) findViewById(R.id.txt_profile_coin);
         txtProfilePoint = (TextView) findViewById(R.id.txt_profile_point);
+    }
+
+    private void initGcm() {
+        registrationBroadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+//                registerProgressBar.setVisibility(ProgressBar.GONE);
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                boolean sentToken = sharedPreferences.getBoolean(ConfigGCM.SENT_TOKEN_TO_SERVER, false);
+
+                if (sentToken) {
+//                    information.setText(getString(R.string.gcm_send_message));
+                    Toast.makeText(getApplicationContext(), "sukses", Toast.LENGTH_SHORT).show();
+                } else {
+//                    information.setText(getString(R.string.token_error_message));
+                    Toast.makeText(getApplicationContext(), "gagal", Toast.LENGTH_SHORT).show();
+                }
+            }
+        };
+
+        if (checkPlayService()) {
+            Intent intent = new Intent(this, RegistrationService.class);
+            startService(intent);
+        }
+    }
+
+    private boolean checkPlayService() {
+        GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+        int resultCode = apiAvailability.isGooglePlayServicesAvailable(this);
+
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (apiAvailability.isUserResolvableError(resultCode)) {
+                apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICE_RESOLUTION_REQUEST).show();
+            } else {
+                Log.i(TAG, "This device is not supported");
+                finish();
+            }
+            return false;
+        }
+        return true;
     }
 
     private void setUpNavDrawer() {
@@ -163,13 +317,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(i);
 
             return true;
+        } else if (id == R.id.action_cart) {
+            Intent i = new Intent(MainActivity.this, CartActivity.class);
+            startActivity(i);
+
+            return true;
         }
-//        else if (id == R.id.action_cart) {
-//            Intent i = new Intent(MainActivity.this, CartActivity.class);
-//            startActivity(i);
-//
-//            return true;
-//        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -194,99 +347,23 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private NavigationView.OnNavigationItemSelectedListener navItemSelect = new NavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(MenuItem menuItem) {
-
-            menuItem.setChecked(true);
-
-            drawerLayout.closeDrawer(GravityCompat.START);
-            FragmentCreateShout fragmentCreateShout;
-//            FragmentRack fragmentRack;
-            FragmentManager fragmentManager = getFragmentManager();
-
-            imgProfileAva.setVisibility(View.GONE);
-            txtProfileName.setVisibility(View.GONE);
-            linProfile.setVisibility(View.GONE);
-
-            switch (menuItem.getItemId()) {
-//                case R.id.drawer_item_news:
-//                    getSupportActionBar().setTitle("News");
-//
-//                    FragmentNews fragmentNews = new FragmentNews();
-//                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentNews).commit();
-//                    return true;
-//
-//                case R.id.drawer_item_promo:
-//                    getSupportActionBar().setTitle("Promo");
-//
-//                    FragmentPromo fragmentPromo = new FragmentPromo();
-//                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentPromo).commit();
-//                    return true;
-//
-//                case R.id.drawer_item_create:
-//                    getSupportActionBar().setTitle("Create Shout");
-//
-//                    fragmentCreateShout = new FragmentCreateShout();
-//                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentCreateShout).commit();
-//                    return true;
-//
-//                case R.id.drawer_item_profile:
-//                    imgProfileAva.setVisibility(View.VISIBLE);
-//                    txtProfileName.setVisibility(View.VISIBLE);
-//                    linProfile.setVisibility(View.VISIBLE);
-//
-//                    getSupportActionBar().setTitle("Profile");
-//
-//                    fragmentRack = new FragmentRack();
-//                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentRack).commit();
-//                    return true;
-//
-//                case R.id.drawer_item_inbox:
-//                    getSupportActionBar().setTitle("Inbox");
-//
-//                    FragmentInbox fragmentInbox = new FragmentInbox();
-//                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentInbox).commit();
-//                    return true;
-//
-//                case R.id.drawer_item_rack:
-//                    getSupportActionBar().setTitle("Rack");
-//
-//                    fragmentRack = new FragmentRack();
-//                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentRack).commit();
-//                    return true;
-//
-//                case R.id.drawer_item_order:
-//                    getSupportActionBar().setTitle("Order History");
-//
-//                    FragmentOrderHistory fragmentOrderHistory = FragmentOrderHistory.newInstance();
-//                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentOrderHistory).commit();
-//                    return true;
-//
-//                case R.id.drawer_item_reward:
-//                    getSupportActionBar().setTitle("Reward");
-//
-//                    FragmentReward fragmentReward = FragmentReward.newInstance();
-//                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentReward).commit();
-//                    return true;
-
-                case R.id.drawer_item_voucher:
-                    getSupportActionBar().setTitle("Voucher");
-
-                    FragmentVoucher fragmentVoucher = FragmentVoucher.newInstance();
-                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentVoucher).commit();
-                    return true;
-
-                case R.id.drawer_item_order:
-                    getSupportActionBar().setTitle("Order History");
-
-                    FragmentOrderHistory fragmentOrderHistory = FragmentOrderHistory.newInstance();
-                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentOrderHistory).commit();
-                    return true;
-
-                default:
-                    return true;
+    @Override
+    protected void onNewIntent(Intent intent) {
+        FragmentManager fragmentManager = getFragmentManager();
+        Bundle bundle = intent.getExtras();
+        if (bundle != null) {
+            String point = bundle.getString("point");
+            if (point.equals("reward")) {
+                FragmentReward fragmentReward = new FragmentReward();
+                fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentReward).commit();
+            } else if (point.equals("promo")) {
+                FragmentPromo fragmentPromo = new FragmentPromo();
+                fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentPromo).commit();
+            } else {
+                Log.i("Point MainActivity", "Unknown Point");
             }
+        } else {
+            Log.i("Bundle MainActivity", "empty");
         }
-    };
+    }
 }

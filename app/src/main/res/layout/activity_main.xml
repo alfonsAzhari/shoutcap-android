@@ -25,12 +25,13 @@
                     android:id="@+id/toolbar_main"
                     layout="@layout/toolbar" />
 
-                <ImageView
+                <co.shoutnet.shoutcap.utility.RoundedImageView
                     android:id="@+id/img_profile_ava"
                     android:layout_width="96dp"
                     android:layout_height="96dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="12dp"
+                    android:src="@drawable/download"
                     android:visibility="gone" />
 
                 <TextView
@@ -40,52 +41,37 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="12dp"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
                     android:visibility="gone" />
 
                 <LinearLayout
                     android:id="@+id/lin_profile"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:visibility="gone">
 
-                    <RelativeLayout
+                    <TextView
+                        android:id="@+id/txt_profile_coin"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:drawableLeft="@drawable/abc_btn_check_to_on_mtrl_015"
+                        android:drawableStart="@drawable/abc_btn_check_to_on_mtrl_015"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textCursorDrawable="@drawable/abc_btn_check_to_on_mtrl_015" />
 
-                        <TextView
-                            android:id="@+id/txt_profile_coin"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:drawableLeft="@drawable/abc_btn_check_to_on_mtrl_015"
-                            android:drawableStart="@drawable/abc_btn_check_to_on_mtrl_015"
-                            android:textColor="@color/white"
-                            android:textCursorDrawable="@drawable/abc_btn_check_to_on_mtrl_015"
-                            android:textSize="24sp" />
-                    </RelativeLayout>
-
-                    <RelativeLayout
+                    <TextView
+                        android:id="@+id/txt_profile_point"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-                        <TextView
-                            android:id="@+id/txt_profile_point"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:drawableLeft="@drawable/abc_btn_check_to_on_mtrl_015"
-                            android:drawableStart="@drawable/abc_btn_check_to_on_mtrl_015"
-                            android:textColor="@color/white"
-                            android:textSize="24sp" />
-                    </RelativeLayout>
-
-
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:drawableLeft="@drawable/abc_btn_check_to_on_mtrl_015"
+                        android:drawableStart="@drawable/abc_btn_check_to_on_mtrl_015"
+                        android:gravity="center"
+                        android:textColor="@color/white" />
                 </LinearLayout>
             </LinearLayout>
         </android.support.design.widget.AppBarLayout>

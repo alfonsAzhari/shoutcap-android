@@ -2,58 +2,119 @@ package co.shoutnet.shoutcap;
 
 import java.util.ArrayList;
 
-import co.shoutnet.shoutcap.model.ModelAdapterVoucher;
+import co.shoutnet.shoutcap.model.ModelAdapterCart;
+import co.shoutnet.shoutcap.model.ModelAdapterInbox;
+import co.shoutnet.shoutcap.model.ModelAdapterNews;
+import co.shoutnet.shoutcap.model.ModelAdapterRack;
+import co.shoutnet.shoutcap.model.ModelAdapterReward;
+import co.shoutnet.shoutcap.model.ModelInboxDetail;
 import co.shoutnet.shoutcap.model.ModelNewsDetail;
-import co.shoutnet.shoutcap.model.ModelOrderHistory;
-import co.shoutnet.shoutcap.model.ModelVoucher;
 
 /**
- * Created by Adam MB on 9/9/2015.
+ * Created by Codelabs on 8/25/2015.
  */
 public class Dummy {
 
-//    public ArrayList<ModelOrderHistory> getOrderHistory(){
-//        ArrayList<ModelOrderHistory>list = new ArrayList<>();
-//        ModelOrderHistory modelOrderHistory;
+    public static ArrayList<ModelAdapterNews> getDataNews() {
+        ArrayList<ModelAdapterNews> list = new ArrayList<>();
+        ModelAdapterNews modelAdapterNews;
+
+        modelAdapterNews = new ModelAdapterNews("Kriminalitas Dikalangan Anak TK", "12/12/12", R.drawable.download);
+        list.add(modelAdapterNews);
+
+        modelAdapterNews = new ModelAdapterNews("Kenakalan Anak SD Menyebabkan Presiden MATI", "13/12/12", R.drawable.download);
+        list.add(modelAdapterNews);
+
+        return list;
+    }
+
+    public static ArrayList<ModelAdapterInbox> getDataInbox() {
+        ArrayList<ModelAdapterInbox> list = new ArrayList<>();
+        ModelAdapterInbox modelAdapterInbox;
+
+        modelAdapterInbox = new ModelAdapterInbox("Pesan Satu", "12/12/12", "Isi Pesan Satu");
+        list.add(modelAdapterInbox);
+
+        modelAdapterInbox = new ModelAdapterInbox("Pesan Dua", "12/12/12", "Isi Pesan Dua");
+        list.add(modelAdapterInbox);
+
+        modelAdapterInbox = new ModelAdapterInbox("Pesan Tiga", "12/12/12", "Isi Pesan Tiga");
+        list.add(modelAdapterInbox);
+
+        return list;
+    }
+
+    public static ArrayList<ModelAdapterReward> getDataReward() {
+        ArrayList<ModelAdapterReward> list = new ArrayList<>();
+        ModelAdapterReward modelAdapterReward;
+
+        modelAdapterReward = new ModelAdapterReward("Reward", "12/12/12", "1000", "1000");
+        list.add(modelAdapterReward);
+
+        modelAdapterReward = new ModelAdapterReward("Reward", "12/12/12", "1000", "1000");
+        list.add(modelAdapterReward);
+
+        modelAdapterReward = new ModelAdapterReward("Reward", "12/12/12", "1000", "1000");
+        list.add(modelAdapterReward);
+
+        modelAdapterReward = new ModelAdapterReward("Reward", "12/12/12", "1000", "1000");
+        list.add(modelAdapterReward);
+
+        return list;
+    }
+
+//    public static ArrayList<ModelAdapterRack> getDataRack() {
+//        ArrayList<ModelAdapterRack> list = new ArrayList<>();
+//        ModelAdapterRack modelAdapterRack;
 //
-//        modelOrderHistory = new ModelOrderHistory();
-//        modelOrderHistory.setOrderID("128371023");
-//        modelOrderHistory.setPrice(123456);
-//        modelOrderHistory.setPaymentStatus("Belum Dibayar");
-//        modelOrderHistory.setProductStatus("Belum");
-//        list.add(modelOrderHistory);
+//        modelAdapterRack = new ModelAdapterRack(R.drawable.bg1);
+//        list.add(modelAdapterRack);
 //
-//        modelOrderHistory = new ModelOrderHistory();
-//        modelOrderHistory.setOrderID("12837102123");
-//        modelOrderHistory.setPrice(123456);
-//        modelOrderHistory.setPaymentStatus("Belum Dibayar");
-//        modelOrderHistory.setProductStatus("Belum");
-//        list.add(modelOrderHistory);
+//        modelAdapterRack = new ModelAdapterRack(R.drawable.bg2);
+//        list.add(modelAdapterRack);
+//
+//        modelAdapterRack = new ModelAdapterRack(R.drawable.bg3);
+//        list.add(modelAdapterRack);
+//
+//        modelAdapterRack = new ModelAdapterRack(R.drawable.bg4);
+//        list.add(modelAdapterRack);
+//
+//        modelAdapterRack = new ModelAdapterRack(R.drawable.bg3);
+//        list.add(modelAdapterRack);
+//
+//        modelAdapterRack = new ModelAdapterRack(R.drawable.bg1);
+//        list.add(modelAdapterRack);
+//
+//        modelAdapterRack = new ModelAdapterRack(R.drawable.bg3);
+//        list.add(modelAdapterRack);
+//
+//        modelAdapterRack = new ModelAdapterRack(R.drawable.bg2);
+//        list.add(modelAdapterRack);
+//
+//        modelAdapterRack = new ModelAdapterRack(R.drawable.bg4);
+//        list.add(modelAdapterRack);
 //
 //        return list;
 //    }
 
-//    public ArrayList<ModelAdapterVoucher> getVoucher(){
-//        ArrayList<ModelAdapterVoucher>list = new ArrayList<>();
-//        ModelAdapterVoucher modelVoucher;
+//    public static ArrayList<ModelAdapterCart> getDataCart() {
+//        ArrayList<ModelAdapterCart> list = new ArrayList<>();
+//        ModelAdapterCart modelCart;
 //
-//        modelVoucher = new ModelAdapterVoucher();
-//        modelVoucher.setVoucherCode("lajshd0q837eu");
-//        modelVoucher.setDiscount("10%");
-//        modelVoucher.setDiscountTo("Baseball+Coor+Mixed+");
-//        modelVoucher.setExpire("2014-07-13");
-//        modelVoucher.setUseAtOrder("");
-//        modelVoucher.setStatus("Belum digunakan");
-//        list.add(modelVoucher);
+//        modelCart = new ModelAdapterCart(R.drawable.bg1, "ShoutCap", 125000, 125000);
+//        list.add(modelCart);
 //
-//        modelVoucher = new ModelAdapterVoucher();
-//        modelVoucher.setVoucherCode("lajshd0q837eu");
-//        modelVoucher.setDiscount("10%");
-//        modelVoucher.setDiscountTo("Baseball+Coor+Mixed+");
-//        modelVoucher.setExpire("2014-07-13");
-//        modelVoucher.setUseAtOrder("");
-//        modelVoucher.setStatus("Belum digunakan");
-//        list.add(modelVoucher);
+//        modelCart = new ModelAdapterCart(R.drawable.bg1, "ShoutCap", 125000, 125000);
+//        list.add(modelCart);
+//
+//        modelCart = new ModelAdapterCart(R.drawable.bg1, "ShoutCap", 225000, 225000);
+//        list.add(modelCart);
+//
+//        modelCart = new ModelAdapterCart(R.drawable.bg1, "ShoutCap", 125000, 125000);
+//        list.add(modelCart);
+//
+//        modelCart = new ModelAdapterCart(R.drawable.bg1, "ShoutCap", 125000, 125000);
+//        list.add(modelCart);
 //
 //        return list;
 //    }

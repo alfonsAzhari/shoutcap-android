@@ -6,6 +6,16 @@
 
     <string name="shout_id">ShoutID</string>
 
+    <string-array name="province">
+        <item>Province</item>
+    </string-array>
+    <string-array name="city">
+        <item>CITY</item>
+    </string-array>
+    <string-array name="district">
+        <item>District</item>
+    </string-array>
+
     //drawer item list
     <string name="drawer_item_news">News</string>
     <string name="drawer_item_promo">Promo</string>
@@ -180,25 +190,25 @@
         <item>Flock White</item>
     </string-array>
 
-    <!--<array name="cap_trucker_classic_collection">-->
-    <!--<item>@drawable/trucker_classic_curved_black</item>-->
-    <!--<item>@drawable/trucker_classic_curved_red</item>-->
-    <!--</array>-->
+    <array name="cap_trucker_classic_collection">
+        <item>@drawable/trucker_classic_curved_black</item>
+        <item>@drawable/trucker_classic_curved_red</item>
+    </array>
 
-    <!--<array name="cap_trucker_color_collection">-->
-    <!--<item>@drawable/trucker_color_curved_black</item>-->
-    <!--<item>@drawable/trucker_color_curved_red</item>-->
-    <!--</array>-->
+    <array name="cap_trucker_color_collection">
+        <item>@drawable/trucker_color_curved_black</item>
+        <item>@drawable/trucker_color_curved_red</item>
+    </array>
 
-    <!--<array name="cap_trucker_mixed_collection">-->
-    <!--<item>@drawable/trucker_mixed_curved_blue</item>-->
-    <!--<item>@drawable/trucker_mixed_curved_green</item>-->
-    <!--</array>-->
+    <array name="cap_trucker_mixed_collection">
+        <item>@drawable/trucker_mixed_curved_blue</item>
+        <item>@drawable/trucker_mixed_curved_green</item>
+    </array>
 
-    <!--<array name="cap_baseball_collection">-->
-    <!--<item>@drawable/baseball_curved_black</item>-->
-    <!--<item>@drawable/baseball_curved_red</item>-->
-    <!--</array>-->
+    <array name="cap_baseball_collection">
+        <item>@drawable/baseball_curved_black</item>
+        <item>@drawable/baseball_curved_red</item>
+    </array>
 
     <array name="color_collection">
         <item>@color/black</item>
@@ -260,4 +270,8 @@
         <item>Dayeuhkolot</item>
     </string-array>
     <string name="title_activity_preview">PreviewActivity</string>
+    <string name="title_activity_order_confirmation">Order Confirmation</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

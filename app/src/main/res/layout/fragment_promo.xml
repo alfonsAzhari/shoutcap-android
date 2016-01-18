@@ -1,0 +1,23 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="co.shoutnet.shoutcap.PromoActivity">
+
+    <Button
+        android:id="@+id/btn_promo_create"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:text="Create Shout" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview_promo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/btn_promo_create"
+        android:padding="2dp" />
+
+</RelativeLayout>

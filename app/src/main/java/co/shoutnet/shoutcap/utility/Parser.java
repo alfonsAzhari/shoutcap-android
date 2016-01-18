@@ -20,6 +20,12 @@ import co.shoutnet.shoutcap.model.ModelMessage;
 import co.shoutnet.shoutcap.model.ModelOrderHistory;
 import co.shoutnet.shoutcap.model.ModelPaymentConfirmation;
 import co.shoutnet.shoutcap.model.ModelSignIn;
+import co.shoutnet.shoutcap.model.ModelCart;
+import co.shoutnet.shoutcap.model.ModelOnlyResult;
+import co.shoutnet.shoutcap.model.ModelProvince;
+import co.shoutnet.shoutcap.model.ModelQty;
+import co.shoutnet.shoutcap.model.ModelRack;
+import co.shoutnet.shoutcap.model.ModelResponseCheckout;
 import co.shoutnet.shoutcap.model.ModelVoucher;
 
 /**
@@ -99,5 +105,40 @@ public class Parser {
         gson = new Gson();
 
         return gson.fromJson(json, ModelMessage.class);
+    }
+
+    public static ModelProvince getDataAddrs(String json) throws IOException {
+        gson = new Gson();
+        return gson.fromJson(json, ModelProvince.class);
+    }
+
+    public static ModelCart getCartResponse(String json) throws IOException {
+        gson = new Gson();
+        return gson.fromJson(json, ModelCart.class);
+    }
+
+    public static ModelRack getRackResponse(String json) throws IOException {
+        gson = new Gson();
+        return gson.fromJson(json, ModelRack.class);
+    }
+
+    public static String getJsonCart(List<ModelQty> obj) throws IOException {
+        gson = new Gson();
+        return gson.toJson(obj);
+    }
+
+    public static ModelOnlyResult getResult(String json) throws IOException {
+        gson = new Gson();
+        return gson.fromJson(json, ModelOnlyResult.class);
+    }
+
+    public static String getJsonVoucher(List<ModelVoucher> obj) throws IOException {
+        gson = new Gson();
+        return gson.toJson(obj);
+    }
+
+    public static ModelResponseCheckout getResultCheckout(String json) throws IOException {
+        gson = new Gson();
+        return gson.fromJson(json, ModelResponseCheckout.class);
     }
 }

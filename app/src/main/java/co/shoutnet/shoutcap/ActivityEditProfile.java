@@ -12,6 +12,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.text.InputType;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -40,6 +44,14 @@ public class ActivityEditProfile extends AppCompatActivity{
     private DatePickerDialog datePickerDialog;
     private SimpleDateFormat simpleDateFormat;
     private Button simpan;
+
+    ArrayAdapter<CharSequence> adapter;
+    Spinner spinnerProvinsi, spinnerKota, spinnerKecamatan;
+    Toolbar toolbar;
+    private String[] provinsi, kota, kecamatan;
+    private EditText dateEditText;
+    private DatePickerDialog datePickerDialog;
+    private SimpleDateFormat simpleDateFormat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
