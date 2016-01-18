@@ -50,8 +50,6 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imgProfileAva;
     private TextView txtProfileName;
     private LinearLayout linProfile;
-    private TextView txtProfileCoin;
-    private TextView txtProfilePoint;
 
     private ImageView imgAva;
     private TextView txtShoutId;
@@ -67,14 +65,6 @@ public class MainActivity extends AppCompatActivity {
     private static final int PLAY_SERVICE_RESOLUTION_REQUEST = 9000;
     private static final String TAG = "MainActivity";
     private BroadcastReceiver registrationBroadcastReceiver;
-    private Toolbar toolbar;
-
-    private DrawerLayout drawerLayout;
-    private NavigationView navigationView;
-
-    private ImageView imgProfileAva;
-    private TextView txtProfileName;
-    private LinearLayout linProfile;
 
     NavigationView.OnNavigationItemSelectedListener navItemSelect = new NavigationView.OnNavigationItemSelectedListener() {
         @Override

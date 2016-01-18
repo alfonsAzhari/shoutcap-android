@@ -29,7 +29,7 @@ public class VolleyRequest {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.i("error", error.getMessage());
+//                Log.i("error", error.getMessage());
 //                    capsResult.OnFailure(error.getMessage());
             }
         }) {

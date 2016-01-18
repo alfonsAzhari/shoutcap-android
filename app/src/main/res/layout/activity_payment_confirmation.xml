@@ -207,8 +207,12 @@
             <Button
                 android:id="@+id/button_send_payment_confirmation"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:layout_marginTop="24dp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/custom_button"
+                android:textColor="@android:color/white"
                 android:text="SEND" />
 
         </LinearLayout>

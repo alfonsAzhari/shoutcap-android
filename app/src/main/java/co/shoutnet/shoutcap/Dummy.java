@@ -133,16 +133,16 @@ public class Dummy {
         return list;
     }
 
-    public ArrayList<ModelInboxDetail> getInboxDetail() {
-        ArrayList<ModelInboxDetail> list = new ArrayList<>();
-        ModelInboxDetail modelInboxDetail;
-
-        modelInboxDetail = new ModelInboxDetail();
-        modelInboxDetail.setTitle("Title Title Title");
-        modelInboxDetail.setDate("23-9-2016");
-        modelInboxDetail.setContent("ajkshefaohdfoaisdhfajsdhfkahsdfalsdjhfoaisufowiehflajhdfoqueh");
-        list.add(modelInboxDetail);
-
-        return list;
-    }
+//    public ArrayList<ModelInboxDetail> getInboxDetail() {
+//        ArrayList<ModelInboxDetail> list = new ArrayList<>();
+//        ModelInboxDetail modelInboxDetail;
+//
+//        modelInboxDetail = new ModelInboxDetail();
+//        modelInboxDetail.setTitle("Title Title Title");
+//        modelInboxDetail.setDate("23-9-2016");
+//        modelInboxDetail.setContent("ajkshefaohdfoaisdhfajsdhfkahsdfalsdjhfoaisufowiehflajhdfoqueh");
+//        list.add(modelInboxDetail);
+//
+//        return list;
+//    }
 }

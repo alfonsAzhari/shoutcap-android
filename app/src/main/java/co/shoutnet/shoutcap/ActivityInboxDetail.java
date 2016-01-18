@@ -24,7 +24,7 @@ public class ActivityInboxDetail extends AppCompatActivity{
         initView();
         initToolbar();
 
-        list = new Dummy().getInboxDetail();
+//        list = new Dummy().getInboxDetail();
         title.setText(list.get(0).getTitle());
         date.setText(list.get(0).getDate());
         content.setText(list.get(0).getContent());

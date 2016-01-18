@@ -27,6 +27,7 @@ import co.shoutnet.shoutcap.model.ModelQty;
 import co.shoutnet.shoutcap.model.ModelRack;
 import co.shoutnet.shoutcap.model.ModelResponseCheckout;
 import co.shoutnet.shoutcap.model.ModelVoucher;
+import co.shoutnet.shoutcap.model.ModelVoucherCart;
 
 /**
  * Created by CodeLabs on 09/11/2015.
@@ -132,7 +133,7 @@ public class Parser {
         return gson.fromJson(json, ModelOnlyResult.class);
     }
 
-    public static String getJsonVoucher(List<ModelVoucher> obj) throws IOException {
+    public static String getJsonVoucher(List<ModelVoucherCart> obj) throws IOException {
         gson = new Gson();
         return gson.toJson(obj);
     }

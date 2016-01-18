@@ -33,7 +33,7 @@ public class VoucherDialog extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
         final LayoutInflater inflater = getActivity().getLayoutInflater();
-        final View view = inflater.inflate(R.layout.item_voucher, null);
+        final View view = inflater.inflate(R.layout.item_voucher_dialog, null);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setView(view)

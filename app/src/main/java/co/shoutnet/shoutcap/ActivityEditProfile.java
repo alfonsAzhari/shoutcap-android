@@ -45,13 +45,8 @@ public class ActivityEditProfile extends AppCompatActivity{
     private SimpleDateFormat simpleDateFormat;
     private Button simpan;
 
-    ArrayAdapter<CharSequence> adapter;
-    Spinner spinnerProvinsi, spinnerKota, spinnerKecamatan;
-    Toolbar toolbar;
     private String[] provinsi, kota, kecamatan;
     private EditText dateEditText;
-    private DatePickerDialog datePickerDialog;
-    private SimpleDateFormat simpleDateFormat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

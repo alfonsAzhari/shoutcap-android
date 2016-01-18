@@ -39,6 +39,7 @@ import co.shoutnet.shoutcap.model.ModelAdapterCart;
 import co.shoutnet.shoutcap.model.ModelOnlyResult;
 import co.shoutnet.shoutcap.model.ModelQty;
 import co.shoutnet.shoutcap.model.ModelVoucher;
+import co.shoutnet.shoutcap.model.ModelVoucherCart;
 import co.shoutnet.shoutcap.utility.DBCapsHelper;
 import co.shoutnet.shoutcap.utility.Parser;
 import co.shoutnet.shoutcap.utility.RecyclerSwipeTouchListener;
@@ -236,9 +237,9 @@ public class CartActivity extends AppCompatActivity {
                 Log.i("voucher code", voucherCode);
                 String id = data.get(item);
                 Log.i("id", id);
-                List<ModelVoucher> toJson = Collections.synchronizedList(new ArrayList<ModelVoucher>());
+                List<ModelVoucherCart> toJson = Collections.synchronizedList(new ArrayList<ModelVoucherCart>());
 
-                ModelVoucher modelVoucher = new ModelVoucher();
+                ModelVoucherCart modelVoucher = new ModelVoucherCart();
                 modelVoucher.setId(id);
                 modelVoucher.setVoucherCode(voucherCode.trim());
 
