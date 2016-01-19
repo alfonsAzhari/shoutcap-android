@@ -10,7 +10,6 @@ import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -24,13 +23,9 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
-
-import org.apache.http.client.HttpClient;
-import org.apache.http.impl.client.DefaultHttpClient;
-
 import java.util.HashMap;
 
-import co.shoutnet.shoutcap.utility.RoundedImageView;
+import co.shoutnet.shoutcap.model.ModelProfile;
 import co.shoutnet.shoutcap.utility.SessionManager;
 
 
@@ -52,7 +47,10 @@ public class MainActivity extends AppCompatActivity {
     private TextView txtCoin;
     private TextView txtPoint;
 
-    private int exitCounter;
+    private ModelProfile modelProfile = null;
+    private HashMap<String, String> user;
+
+    private boolean exitCounter = false;
 
     SessionManager sessionManager;
 
@@ -60,19 +58,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        exitCounter = 1;
 
         //validate login
         sessionManager = new SessionManager(getApplicationContext());
 
         sessionManager.checkLogin();
 
-        HashMap<String, String> user = sessionManager.getUserDetails();
+        user = sessionManager.getUserDetails();
+        Log.i(SessionManager.KEY_SHOUTID, user.get(SessionManager.KEY_SHOUTID));
+        Log.i(SessionManager.KEY_SESSIONID, user.get(SessionManager.KEY_SESSIONID));
 
         initToolbar();
         initView();
 
         setUpNavDrawer();
+
+        user = sessionManager.getUserDetails();
 
         setUpProfile(user);
 
@@ -188,12 +189,43 @@ public class MainActivity extends AppCompatActivity {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else if (getFragmentManager().getBackStackEntryCount() > 0) {
             getFragmentManager().popBackStack();
-        } else if (exitCounter > 0) {
-            exitCounter -= 1;
-            Toast.makeText(getApplicationContext(), "Press Back Again to Exit", Toast.LENGTH_SHORT).show();
         } else {
-            super.onBackPressed();
+            if (exitCounter) {
+                super.onBackPressed();
+                return;
+            }
+            exitCounter = true;
+            Toast.makeText(getApplicationContext(), "Press Back Again to Exit", Toast.LENGTH_SHORT).show();
+            new android.os.Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    exitCounter = false;
+                }
+            }, 2500);
         }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        user = sessionManager.getUserDetails();
+
+        Glide.with(this).load(user.get(SessionManager.KEY_URL_AVATAR)).asBitmap().centerCrop().into(new BitmapImageViewTarget(imgAva) {
+            @Override
+            protected void setResource(Bitmap resource) {
+                RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(getApplicationContext().getResources(), resource);
+                imgAva.setImageDrawable(roundedBitmapDrawable);
+            }
+        });
+
+        Glide.with(this).load(user.get(SessionManager.KEY_URL_AVATAR)).asBitmap().centerCrop().into(new BitmapImageViewTarget(imgProfileAva) {
+            @Override
+            protected void setResource(Bitmap resource) {
+                RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(getApplicationContext().getResources(), resource);
+                imgProfileAva.setImageDrawable(roundedBitmapDrawable);
+            }
+        });
     }
 
     private NavigationView.OnNavigationItemSelectedListener navItemSelect = new NavigationView.OnNavigationItemSelectedListener() {
@@ -206,6 +238,9 @@ public class MainActivity extends AppCompatActivity {
             FragmentCreateShout fragmentCreateShout;
             FragmentRack fragmentRack;
             FragmentManager fragmentManager = getFragmentManager();
+            if (fragmentManager.getBackStackEntryCount() > 0) {
+                fragmentManager.popBackStack();
+            }
 
             imgProfileAva.setVisibility(View.GONE);
             txtProfileName.setVisibility(View.GONE);

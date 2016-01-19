@@ -205,13 +205,21 @@ public class FragmentSignIn extends Fragment {
         RetryPolicy retryPolicy = new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         requestLogin.setRetryPolicy(retryPolicy);
         final RequestQueue queue = Volley.newRequestQueue(mContext);
-        queue.add(requestLogin);
-        new android.os.Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                queue.add(requestProfile);
-            }
-        }, (retryPolicy.getCurrentRetryCount() + 1) * retryPolicy.getCurrentTimeout());
+
+        try {
+            queue.add(requestLogin);
+            new android.os.Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    queue.add(requestProfile);
+                }
+            }, (retryPolicy.getCurrentRetryCount() + 1) * retryPolicy.getCurrentTimeout());
+        } catch (Exception e) {
+            Toast.makeText(mContext, "Connection failed, please try again later", Toast.LENGTH_LONG).show();
+            edtShoutId.setEnabled(true);
+            edtpassword.setEnabled(true);
+            btnSignIn.setEnabled(true);
+        }
     }
 
     private void login() {

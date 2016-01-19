@@ -83,6 +83,12 @@ public class SessionManager {
         editor.commit();
     }
 
+    public void updateAvatar(String urlAva) {
+        editor.putString(KEY_URL_AVATAR, urlAva);
+
+        editor.commit();
+    }
+
     public void checkLogin() {
 
         if (!this.isLoggedIn()) {

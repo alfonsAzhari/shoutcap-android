@@ -45,6 +45,8 @@ public class SettingsActivity extends AppCompatActivity {
                 Intent intent;
                 switch (i) {
                     case 0:
+                        Intent intentEdit = new Intent(SettingsActivity.this, ActivityEditProfile.class);
+                        startActivity(intentEdit);
                         break;
 
                     case 1:
@@ -53,22 +55,17 @@ public class SettingsActivity extends AppCompatActivity {
                         break;
 
                     case 2:
+                        Intent intentChange = new Intent(SettingsActivity.this, ActivityChangePassword.class);
+                        startActivity(intentChange);
                         break;
 
                     case 3:
+                        Intent intentAbout = new Intent(SettingsActivity.this, ActivityAbout.class);
+                        startActivity(intentAbout);
                         break;
 
-                    case 4:final ProgressDialog progressDialog = new ProgressDialog(SettingsActivity.this);
-                        progressDialog.setIndeterminate(true);
-                        progressDialog.setMessage("Signing Out");
-                        progressDialog.show();
-                        new android.os.Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                progressDialog.dismiss();
-                                manager.logoutUser();
-                            }
-                        }, 3000);
+                    case 4:
+                        logout(3000);
                         break;
                 }
             }
@@ -102,6 +99,16 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void logout(long time) {
-
+        final ProgressDialog progressDialog = new ProgressDialog(SettingsActivity.this);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Signing Out");
+        progressDialog.show();
+        new android.os.Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                progressDialog.dismiss();
+                manager.logoutUser();
+            }
+        }, time);
     }
 }
