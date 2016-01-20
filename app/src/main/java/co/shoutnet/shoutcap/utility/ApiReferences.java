@@ -16,6 +16,14 @@ public class ApiReferences {
     private static String MOD_INVOICE = "shoutcap/get_invoice.php";
     private static String MOD_CARA_BAYAR = "shoutcap/list_cara_bayar.php";
     private static String MOD_PAYMENT_CONFIRMATION = "shoutcap/konfirmasi_pembayaran.php";
+    private static String MOD_PROFILE = "shoutid/get_profile.php";
+
+    private static String MOD_CHANGE_AVA = "shoutid/change_avatar.php";
+    private static String MOD_CHANGE_PASS = "shoutid/change_password.php";
+
+    private static String MOD_GET_PROVINCE = "shoutid/get_provinsi.php";
+    private static String MOD_GET_CITY = "shoutid/get_kota.php";
+    private static String MOD_GET_KEC = "shoutid/get_kecamatan.php";
 
 
     public static String getUrlLogin() {
@@ -43,4 +51,28 @@ public class ApiReferences {
     public static String getCaraBayar() { return URL + MOD_CARA_BAYAR; }
 
     public static String getPaymentConfirmation() { return URL + MOD_PAYMENT_CONFIRMATION; }
+
+    public static String getUrlProfile() {
+        return URL + MOD_PROFILE;
+    }
+
+    public static String getUrlChangeAvatar() {
+        return URL + MOD_CHANGE_AVA;
+    }
+
+    public static String getUrlChangePass() {
+        return URL + MOD_CHANGE_PASS;
+    }
+
+    public static String getUrlGetProvince() {
+        return URL + MOD_GET_PROVINCE;
+    }
+
+    public static String getUrlGetCity() {
+        return URL + MOD_GET_CITY;
+    }
+
+    public static String getUrlGetKec() {
+        return URL + MOD_GET_KEC;
+    }
 }

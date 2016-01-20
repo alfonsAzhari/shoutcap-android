@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,7 +10,6 @@
         <include
             android:id="@+id/toolbar_edit_profile"
             layout="@layout/toolbar" />
-
     </android.support.design.widget.AppBarLayout>
 
     <ScrollView
@@ -39,7 +37,7 @@
                 android:paddingTop="8dp">
 
                 <EditText
-                    android:id="@+id/edit_nama_edit_profile"
+                    android:id="@+id/edt_edit_profile_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Nama" />
@@ -52,7 +50,7 @@
                 android:paddingRight="24dp">
 
                 <EditText
-                    android:id="@+id/edit_tanggal_lahir_edit_profile"
+                    android:id="@+id/edt_edit_profile_birth"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Tanggal Lahir" />
@@ -67,7 +65,7 @@
                 android:paddingRight="28dp">
 
                 <RadioButton
-                    android:id="@+id/radio_laki_edit_profile"
+                    android:id="@+id/radio_edit_male"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:layout_weight="1"
@@ -79,7 +77,7 @@
                     android:textColor="@android:color/white" />
 
                 <RadioButton
-                    android:id="@+id/radio_perempuan_edit_profile"
+                    android:id="@+id/radio_edit_female"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:layout_weight="1"
@@ -98,7 +96,7 @@
                 android:paddingRight="24dp">
 
                 <EditText
-                    android:id="@+id/edit_nomor_hp_edit_profile"
+                    android:id="@+id/edt_edit_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Nomor HP" />
@@ -111,7 +109,7 @@
                 android:paddingRight="24dp">
 
                 <EditText
-                    android:id="@+id/edit_email_edit_profile"
+                    android:id="@+id/edt_edit_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Email" />
@@ -125,37 +123,37 @@
                 android:text="Status" />
 
             <RadioGroup
-                android:id="@+id/radio_group_status_edit_profile"
+                android:id="@+id/radio_group_edit_status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="24dp">
 
                 <RadioButton
-                    android:id="@+id/radio_sekolah_edit_profile"
+                    android:id="@+id/radio_edit_school"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sekolah" />
 
                 <RadioButton
-                    android:id="@+id/radio_kuliah_edit_profile"
+                    android:id="@+id/radio_edit_college"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Kuliah" />
 
                 <RadioButton
-                    android:id="@+id/radio_kerja_edit_profile"
+                    android:id="@+id/radio_edit_work"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Kerja" />
 
                 <RadioButton
-                    android:id="@+id/radio_kuliah_kerja_edit_profile"
+                    android:id="@+id/radio_edit_college_work"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Kuliah+Kerja" />
+                    android:text="Kuliah + Kerja" />
 
                 <RadioButton
-                    android:id="@+id/radio_other_edit_profile"
+                    android:id="@+id/radio_edit_other"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Other" />
@@ -178,13 +176,13 @@
                 <TableRow>
 
                     <CheckBox
-                        android:id="@+id/checkbox_art_edit_profile"
+                        android:id="@+id/checkbox_edit_art"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Art" />
 
                     <CheckBox
-                        android:id="@+id/checkbox_music_edit_profile"
+                        android:id="@+id/checkbox_edit_music"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Music" />
@@ -194,13 +192,13 @@
                 <TableRow>
 
                     <CheckBox
-                        android:id="@+id/checkbox_book_edit_profile"
+                        android:id="@+id/checkbox_edit_book"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Book" />
 
                     <CheckBox
-                        android:id="@+id/checkbox_photography_edit_profile"
+                        android:id="@+id/checkbox_edit_photography"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Photography" />
@@ -210,13 +208,13 @@
                 <TableRow>
 
                     <CheckBox
-                        android:id="@+id/checkbox_culinary_edit_profile"
+                        android:id="@+id/checkbox_edit_culinary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Culinary" />
 
                     <CheckBox
-                        android:id="@+id/checkbox_sport_edit_profile"
+                        android:id="@+id/checkbox_edit_sport"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Sport" />
@@ -226,13 +224,13 @@
                 <TableRow>
 
                     <CheckBox
-                        android:id="@+id/checkbox_culture_edit_profile"
+                        android:id="@+id/checkbox_edit_culture"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Culture" />
 
                     <CheckBox
-                        android:id="@+id/checkbox_standup_comedy_edit_profile"
+                        android:id="@+id/checkbox_edit_standup"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Standup Comedy" />
@@ -242,13 +240,13 @@
                 <TableRow>
 
                     <CheckBox
-                        android:id="@+id/checkbox_fashion_edit_profile"
+                        android:id="@+id/checkbox_edit_fashion"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Fashion" />
 
                     <CheckBox
-                        android:id="@+id/checkbox_technology_edit_profile"
+                        android:id="@+id/checkbox_edit_technology"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Technology" />
@@ -258,13 +256,13 @@
                 <TableRow>
 
                     <CheckBox
-                        android:id="@+id/checkbox_games_edit_profile"
+                        android:id="@+id/checkbox_edit_games"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Games" />
 
                     <CheckBox
-                        android:id="@+id/checkbox_travel_edit_profile"
+                        android:id="@+id/checkbox_edit_travel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Travel" />
@@ -274,13 +272,13 @@
                 <TableRow>
 
                     <CheckBox
-                        android:id="@+id/checkbox_movie_edit_profile"
+                        android:id="@+id/checkbox_edit_movie"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Movie" />
 
                     <CheckBox
-                        android:id="@+id/checkbox_other_edit_profile"
+                        android:id="@+id/checkbox_edit_other"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Other" />
@@ -305,32 +303,38 @@
                 android:paddingTop="8dp">
 
                 <EditText
-                    android:id="@+id/edit_alamat_edit_profile"
+                    android:id="@+id/edt_edit_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Alamat" />
             </android.support.design.widget.TextInputLayout>
 
             <Spinner
-                android:id="@+id/spinner_provinsi_edit_profile"
+                android:id="@+id/spinner_edit_province"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp" />
+                android:layout_marginRight="24dp"
+                android:prompt="@string/choose_province"
+                android:spinnerMode="dialog" />
 
             <Spinner
-                android:id="@+id/spinner_kota_edit_profile"
+                android:id="@+id/spinner_edit_city"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp" />
+                android:layout_marginRight="24dp"
+                android:prompt="@string/choose_city"
+                android:spinnerMode="dialog" />
 
             <Spinner
-                android:id="@+id/spinner_kecamatan_edit_profile"
+                android:id="@+id/spinner_edit_kecamatan"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp" />
+                android:layout_marginRight="24dp"
+                android:prompt="@string/choose_kec"
+                android:spinnerMode="dialog" />
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -339,7 +343,7 @@
                 android:paddingRight="24dp">
 
                 <EditText
-                    android:id="@+id/edit_kode_pos_edit_profile"
+                    android:id="@+id/edt_edit_postal_kode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Kode POS" />
@@ -362,23 +366,18 @@
                 android:paddingTop="8dp">
 
                 <EditText
-                    android:id="@+id/edit_twitter_edit_profile"
+                    android:id="@+id/edt_edit_twitter"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Twitter" />
             </android.support.design.widget.TextInputLayout>
 
             <Button
-                android:layout_weight="1"
-                android:id="@+id/button_simpan_edit_profile"
+                android:id="@+id/btn_edit_save"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:layout_gravity="bottom"
-                android:text="simpan"
-                android:background="@drawable/custom_button"
-                android:textColor="@android:color/white"/>
-
+                android:text="simpan" />
         </LinearLayout>
 
     </ScrollView>
