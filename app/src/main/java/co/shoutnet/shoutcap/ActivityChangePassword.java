@@ -44,7 +44,7 @@ public class ActivityChangePassword extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if(match&&passwordLama.length()>0){
+                if(match&&passwordLama.length()>0&&passwordBaru.length()>0&&passwordKonfirmasi.length()>0){
                     simpan.setEnabled(true);
                 }else {
                     simpan.setEnabled(false);
@@ -71,7 +71,7 @@ public class ActivityChangePassword extends AppCompatActivity {
                     layoutKonfirmasi.setError("Password tidak sama");
                     match=false;
                 }
-                if(match&&passwordLama.length()>0){
+                if(match&&passwordLama.length()>0&&passwordBaru.length()>0&&passwordKonfirmasi.length()>0){
                     simpan.setEnabled(true);
                 }else {
                     simpan.setEnabled(false);
@@ -98,7 +98,7 @@ public class ActivityChangePassword extends AppCompatActivity {
                     layoutKonfirmasi.setError("Password tidak sama");
                     match=false;
                 }
-                if(match&&passwordLama.length()>0){
+                if(match&&passwordLama.length()>0&&passwordBaru.length()>0&&passwordKonfirmasi.length()>0){
                     simpan.setEnabled(true);
                 }else {
                     simpan.setEnabled(false);

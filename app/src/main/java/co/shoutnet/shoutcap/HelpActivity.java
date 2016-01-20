@@ -2,8 +2,8 @@ package co.shoutnet.shoutcap;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,7 +13,7 @@ import android.widget.ListView;
 
 import co.shoutnet.shoutcap.utility.SessionManager;
 
-public class SettingsActivity extends AppCompatActivity {
+public class HelpActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
 
@@ -25,7 +25,7 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_help);
 
         manager = new SessionManager(this);
 
@@ -34,7 +34,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        items = getResources().getStringArray(R.array.settings_item_array);
+        items = getResources().getStringArray(R.array.help_item_array);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, items);
 
         listView.setAdapter(arrayAdapter);
@@ -45,27 +45,13 @@ public class SettingsActivity extends AppCompatActivity {
                 Intent intent;
                 switch (i) {
                     case 0:
-                        intent = new Intent(SettingsActivity.this, ActivityEditProfile.class);
+                        intent = new Intent(HelpActivity.this, ActivityHowToOrder.class);
                         startActivity(intent);
                         break;
 
                     case 1:
-                        intent = new Intent(SettingsActivity.this, ChangeAvatarActivity.class);
+                        intent = new Intent(HelpActivity.this, ActivityFAQ.class);
                         startActivity(intent);
-                        break;
-
-                    case 2:
-                        intent = new Intent(SettingsActivity.this, ActivityChangePassword.class);
-                        startActivity(intent);
-                        break;
-
-                    case 3:
-                        intent = new Intent(SettingsActivity.this, ActivityAbout.class);
-                        startActivity(intent);
-                        break;
-
-                    case 4:
-                        logout(3000);
                         break;
                 }
             }
@@ -73,12 +59,12 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void initToolbar() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar_settings);
+        toolbar = (Toolbar) findViewById(R.id.toolbar_help);
         setSupportActionBar(toolbar);
     }
 
     private void initView() {
-        listView = (ListView) findViewById(R.id.listview_settings);
+        listView = (ListView) findViewById(R.id.listview_help);
     }
 
     @Override
@@ -96,19 +82,5 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    private void logout(long time) {
-        final ProgressDialog progressDialog = new ProgressDialog(SettingsActivity.this);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Signing Out");
-        progressDialog.show();
-        new android.os.Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                progressDialog.dismiss();
-                manager.logoutUser();
-            }
-        }, time);
     }
 }

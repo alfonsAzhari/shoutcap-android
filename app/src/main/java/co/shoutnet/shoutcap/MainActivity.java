@@ -225,6 +225,9 @@ public class MainActivity extends AppCompatActivity {
             startActivity(i);
 
             return true;
+        }else if (id == R.id.action_help){
+            Intent i = new Intent(MainActivity.this, HelpActivity.class);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);

@@ -37,6 +37,12 @@
         <item>Sign Out</item>
     </string-array>
 
+    //help item list
+    <string-array name="help_item_array">
+        <item>How to Order</item>
+        <item>FAQ</item>
+    </string-array>
+
     <string name="choose_model">Select Model</string>
     <string name="choose_category">Select Category</string>
     <string name="choose_font">Select Font</string>
