@@ -31,6 +31,7 @@
     //settings item list
     <string-array name="settings_item_array">
         <item>Edit Profile</item>
+        <item>Change Avatar</item>
         <item>Change Password</item>
         <item>About</item>
         <item>Sign Out</item>

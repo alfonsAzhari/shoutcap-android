@@ -1,9 +1,10 @@
 package co.shoutnet.shoutcap.utility;
 
 /**
- * Created by Adam MB on 1/7/2016.
+ * Created by alfons on 19/11/15.
  */
 public class ApiReferences {
+
     private static String URL = "https://api.shoutnet.co/";
 
     private static String MOD_LOGIN = "shoutid/login.php";

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    package="co.shoutnet.shoutcap"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="co.shoutnet.shoutcap">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <permission
         android:name="co.shoutnet.shoutcap.permission.C2D_MESSAGE"
@@ -84,6 +84,9 @@
         <activity
             android:name=".CartActivity"
             android:label="@string/action_cart"/>
+
+        <activity android:name=".ChangeAvatarActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ActivityInboxDetail"
             android:parentActivityName=".MainActivity"/>
@@ -124,7 +127,7 @@
         <activity
             android:name=".ActivityFAQ"
             android:theme="@style/AppTheme" />
-        <activity android:name=".FragmentInvoice"></activity>
+        <activity android:name=".FragmentInvoice"/>
     </application>
 
 </manifest>

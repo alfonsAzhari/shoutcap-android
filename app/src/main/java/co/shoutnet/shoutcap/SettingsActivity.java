@@ -35,31 +35,45 @@ public class SettingsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         items = getResources().getStringArray(R.array.settings_item_array);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, items);
 
         listView.setAdapter(arrayAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent;
                 switch (i) {
                     case 0:
-                        Intent intentEdit = new Intent(SettingsActivity.this, ActivityEditProfile.class);
+                        intent = new Intent(SettingsActivity.this, ActivityEditProfile.class);
                         startActivity(intentEdit);
                         break;
 
                     case 1:
-                        Intent intentChange = new Intent(SettingsActivity.this, ActivityChangePassword.class);
-                        startActivity(intentChange);
+                        intent = new Intent(SettingsActivity.this, ChangeAvatarActivity.class);
+                        startActivity(intent);
                         break;
 
                     case 2:
-                        Intent intentAbout = new Intent(SettingsActivity.this, ActivityAbout.class);
+                        intent = new Intent(SettingsActivity.this, ActivityAbout.class);
                         startActivity(intentAbout);
                         break;
 
                     case 3:
                         logout(3000);
+                        break;
+
+                    case 4:final ProgressDialog progressDialog = new ProgressDialog(SettingsActivity.this);
+                        progressDialog.setIndeterminate(true);
+                        progressDialog.setMessage("Signing Out");
+                        progressDialog.show();
+                        new android.os.Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                progressDialog.dismiss();
+                                manager.logoutUser();
+                            }
+                        }, 3000);
                         break;
                 }
             }

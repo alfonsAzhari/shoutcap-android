@@ -49,6 +49,7 @@ public class RecyclerItemClickListener implements RecyclerView.OnItemTouchListen
             @Override
             public void onLongPress(MotionEvent motionEvent) {
                 /*View childView = recyclerView.findChildViewUnder(motionEvent.getX(), motionEvent.getY());
+
                 if (childView != null && mListener != null) {
                     mListener.onItemLongClick(childView, recyclerView.getChildAdapterPosition(childView));
                 }*/

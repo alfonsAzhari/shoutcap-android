@@ -20,4 +20,10 @@
     <style name="CusRadioButton" parent="android:Widget.CompoundButton.RadioButton">
         <item name="android:button">@drawable/custom_button_radio</item>
     </style>
+
+    <style name="AppTheme.Dark.Dialog" parent="Theme.AppCompat.Dialog">
+        <item name="colorAccent">@color/color_accent</item>
+        <item name="android:textColorPrimary">@color/color_primary_text</item>
+        <item name="android:background">@color/color_primary</item>
+    </style>
 </resources>

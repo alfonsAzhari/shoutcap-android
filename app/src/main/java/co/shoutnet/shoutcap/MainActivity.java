@@ -4,7 +4,6 @@ import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +17,7 @@ import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -28,6 +28,9 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
+
+import org.apache.http.client.HttpClient;
+import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.util.HashMap;
 
@@ -41,7 +44,6 @@ import co.shoutnet.shoutcap.utility.ConfigGCM;
 
 public class MainActivity extends AppCompatActivity {
 
-
     private Toolbar toolbar;
 
     private DrawerLayout drawerLayout;
@@ -50,13 +52,13 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imgProfileAva;
     private TextView txtProfileName;
     private LinearLayout linProfile;
+    private TextView txtProfileCoin;
+    private TextView txtProfilePoint;
 
     private ImageView imgAva;
     private TextView txtShoutId;
     private TextView txtCoin;
     private TextView txtPoint;
-    private TextView txtProfileCoin;
-    private TextView txtProfilePoint;
 
     private int exitCounter;
 
@@ -65,95 +67,6 @@ public class MainActivity extends AppCompatActivity {
     private static final int PLAY_SERVICE_RESOLUTION_REQUEST = 9000;
     private static final String TAG = "MainActivity";
     private BroadcastReceiver registrationBroadcastReceiver;
-
-    NavigationView.OnNavigationItemSelectedListener navItemSelect = new NavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(MenuItem menuItem) {
-
-            menuItem.setChecked(true);
-
-            drawerLayout.closeDrawer(GravityCompat.START);
-            FragmentCreateShout fragmentCreateShout;
-            FragmentRack fragmentRack;
-            FragmentManager fragmentManager = getFragmentManager();
-
-            imgProfileAva.setVisibility(View.GONE);
-            txtProfileName.setVisibility(View.GONE);
-            linProfile.setVisibility(View.GONE);
-
-            switch (menuItem.getItemId()) {
-                case R.id.drawer_item_news:
-                    getSupportActionBar().setTitle("News");
-
-                    FragmentNews fragmentNews = new FragmentNews();
-                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentNews).commit();
-                    return true;
-
-                case R.id.drawer_item_promo:
-                    getSupportActionBar().setTitle("Promo");
-
-                    FragmentPromo fragmentPromo = new FragmentPromo();
-                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentPromo).commit();
-                    return true;
-
-                case R.id.drawer_item_create:
-                    getSupportActionBar().setTitle("Create Shout");
-
-                    fragmentCreateShout = new FragmentCreateShout();
-                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentCreateShout).commit();
-                    return true;
-
-                case R.id.drawer_item_profile:
-                    imgProfileAva.setVisibility(View.VISIBLE);
-                    txtProfileName.setVisibility(View.VISIBLE);
-                    linProfile.setVisibility(View.VISIBLE);
-
-                    getSupportActionBar().setTitle("Profile");
-
-                    fragmentRack = new FragmentRack();
-                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentRack).commit();
-                    return true;
-
-                case R.id.drawer_item_inbox:
-                    getSupportActionBar().setTitle("Inbox");
-
-                    FragmentInbox fragmentInbox = new FragmentInbox();
-                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentInbox).commit();
-                    return true;
-
-                case R.id.drawer_item_rack:
-                    getSupportActionBar().setTitle("Rack");
-
-                    fragmentRack = new FragmentRack();
-                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentRack).commit();
-                    return true;
-
-                case R.id.drawer_item_order:
-                    getSupportActionBar().setTitle("Order History");
-
-                    FragmentOrderHistory fragmentOrderHistory = FragmentOrderHistory.newInstance();
-                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentOrderHistory).commit();
-                    return true;
-
-                case R.id.drawer_item_reward:
-                    getSupportActionBar().setTitle("Reward");
-
-                    FragmentReward fragmentReward = FragmentReward.newInstance();
-                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentReward).commit();
-                    return true;
-
-                case R.id.drawer_item_voucher:
-                    getSupportActionBar().setTitle("Voucher");
-
-                    FragmentVoucher fragmentVoucher = FragmentVoucher.newInstance();
-                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentVoucher).commit();
-                    return true;
-
-                default:
-                    return true;
-            }
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -336,6 +249,95 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
+
+    NavigationView.OnNavigationItemSelectedListener navItemSelect = new NavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(MenuItem menuItem) {
+
+            menuItem.setChecked(true);
+
+            drawerLayout.closeDrawer(GravityCompat.START);
+            FragmentCreateShout fragmentCreateShout;
+            FragmentRack fragmentRack;
+            FragmentManager fragmentManager = getFragmentManager();
+
+            imgProfileAva.setVisibility(View.GONE);
+            txtProfileName.setVisibility(View.GONE);
+            linProfile.setVisibility(View.GONE);
+
+            switch (menuItem.getItemId()) {
+                case R.id.drawer_item_news:
+                    getSupportActionBar().setTitle("News");
+
+                    FragmentNews fragmentNews = new FragmentNews();
+                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentNews).commit();
+                    return true;
+
+                case R.id.drawer_item_promo:
+                    getSupportActionBar().setTitle("Promo");
+
+                    FragmentPromo fragmentPromo = new FragmentPromo();
+                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentPromo).commit();
+                    return true;
+
+                case R.id.drawer_item_create:
+                    getSupportActionBar().setTitle("Create Shout");
+
+                    fragmentCreateShout = new FragmentCreateShout();
+                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentCreateShout).commit();
+                    return true;
+
+                case R.id.drawer_item_profile:
+                    imgProfileAva.setVisibility(View.VISIBLE);
+                    txtProfileName.setVisibility(View.VISIBLE);
+                    linProfile.setVisibility(View.VISIBLE);
+
+                    getSupportActionBar().setTitle("Profile");
+
+                    fragmentRack = new FragmentRack();
+                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentRack).commit();
+                    return true;
+
+                case R.id.drawer_item_inbox:
+                    getSupportActionBar().setTitle("Inbox");
+
+                    FragmentInbox fragmentInbox = new FragmentInbox();
+                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentInbox).commit();
+                    return true;
+
+                case R.id.drawer_item_rack:
+                    getSupportActionBar().setTitle("Rack");
+
+                    fragmentRack = new FragmentRack();
+                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentRack).commit();
+                    return true;
+
+                case R.id.drawer_item_order:
+                    getSupportActionBar().setTitle("Order History");
+
+                    FragmentOrderHistory fragmentOrderHistory = FragmentOrderHistory.newInstance();
+                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentOrderHistory).commit();
+                    return true;
+
+                case R.id.drawer_item_reward:
+                    getSupportActionBar().setTitle("Reward");
+
+                    FragmentReward fragmentReward = FragmentReward.newInstance();
+                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentReward).commit();
+                    return true;
+
+                case R.id.drawer_item_voucher:
+                    getSupportActionBar().setTitle("Voucher");
+
+                    FragmentVoucher fragmentVoucher = FragmentVoucher.newInstance();
+                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentVoucher).commit();
+                    return true;
+
+                default:
+                    return true;
+            }
+        }
+    };
 
     @Override
     protected void onNewIntent(Intent intent) {

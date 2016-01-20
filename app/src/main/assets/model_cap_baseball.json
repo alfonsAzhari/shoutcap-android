@@ -1,32 +1,26 @@
 [
   {
-    "id": "1",
-    "img_path": "baseball/img_cap_baseball_black_curved.jpg",
-    "price": "30000"
+    "id": "85",
+    "img_path": "baseball/img_cap_baseball_black_curved.jpg"
   },
   {
-    "id": "2",
-    "img_path": "baseball/img_cap_baseball_black_straight.jpg",
-    "price": "30000"
+    "id": "86",
+    "img_path": "baseball/img_cap_baseball_black_straight.jpg"
   },
   {
-    "id": "3",
-    "img_path": "baseball/img_cap_baseball_darkblue_curved.jpg",
-    "price": "30000"
+    "id": "87",
+    "img_path": "baseball/img_cap_baseball_red_curved.jpg"
   },
   {
-    "id": "4",
-    "img_path": "baseball/img_cap_baseball_darkblue_straight.jpg",
-    "price": "30000"
+    "id": "88",
+    "img_path": "baseball/img_cap_baseball_red_straight.jpg"
   },
   {
-    "id": "5",
-    "img_path": "baseball/img_cap_baseball_red_curved.jpg",
-    "price": "30000"
+    "id": "89",
+    "img_path": "baseball/img_cap_baseball_darkblue_curved.jpg"
   },
   {
-    "id": "6",
-    "img_path": "baseball/img_cap_baseball_red_straight.jpg",
-    "price": "30000"
+    "id": "90",
+    "img_path": "baseball/img_cap_baseball_darkblue_straight.jpg"
   }
 ]

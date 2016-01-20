@@ -1,72 +1,58 @@
 [
   {
-    "id": "1",
-    "img_path": "trucker_color/img_cap_trucker_color_black_curved.jpg",
-    "price": "30000"
+    "id": "15",
+    "img_path": "trucker_color/img_cap_trucker_color_black_curved.jpg"
   },
   {
-    "id": "2",
-    "img_path": "trucker_color/img_cap_trucker_color_black_straight.jpg",
-    "price": "30000"
+    "id": "16",
+    "img_path": "trucker_color/img_cap_trucker_color_black_straight.jpg"
   },
   {
-    "id": "3",
-    "img_path": "trucker_color/img_cap_trucker_color_blue_curved.jpg",
-    "price": "30000"
+    "id": "17",
+    "img_path": "trucker_color/img_cap_trucker_color_darkblue_curved.jpg"
   },
   {
-    "id": "4",
-    "img_path": "trucker_color/img_cap_trucker_color_blue_straight.jpg",
-    "price": "30000"
+    "id": "18",
+    "img_path": "trucker_color/img_cap_trucker_color_darkblue_straight.jpg"
   },
   {
-    "id": "5",
-    "img_path": "trucker_color/img_cap_trucker_color_darkblue_curved.jpg",
-    "price": "30000"
+    "id": "19",
+    "img_path": "trucker_color/img_cap_trucker_color_green_curved.jpg"
   },
   {
-    "id": "6",
-    "img_path": "trucker_color/img_cap_trucker_color_darkblue_straight.jpg",
-    "price": "30000"
+    "id": "20",
+    "img_path": "trucker_color/img_cap_trucker_color_green_straight.jpg"
   },
   {
-    "id": "7",
-    "img_path": "trucker_color/img_cap_trucker_color_green_curved.jpg",
-    "price": "30000"
+    "id": "21",
+    "img_path": "trucker_color/img_cap_trucker_color_red_curved.jpg"
   },
   {
-    "id": "8",
-    "img_path": "trucker_color/img_cap_trucker_color_green_straight.jpg",
-    "price": "30000"
+    "id": "22",
+    "img_path": "trucker_color/img_cap_trucker_color_red_straight.jpg"
   },
   {
-    "id": "9",
-    "img_path": "trucker_color/img_cap_trucker_color_orange_curved.jpg",
-    "price": "30000"
+    "id": "23",
+    "img_path": "trucker_color/img_cap_trucker_color_orange_curved.jpg"
   },
   {
-    "id": "10",
-    "img_path": "trucker_color/img_cap_trucker_color_orange_straight.jpg",
-    "price": "30000"
+    "id": "24",
+    "img_path": "trucker_color/img_cap_trucker_color_orange_straight.jpg"
   },
   {
-    "id": "11",
-    "img_path": "trucker_color/img_cap_trucker_color_purple_curved.jpg",
-    "price": "30000"
+    "id": "25",
+    "img_path": "trucker_color/img_cap_trucker_color_purple_curved.jpg"
   },
   {
-    "id": "12",
-    "img_path": "trucker_color/img_cap_trucker_color_purple_straight.jpg",
-    "price": "30000"
+    "id": "26",
+    "img_path": "trucker_color/img_cap_trucker_color_purple_straight.jpg"
   },
   {
-    "id": "13",
-    "img_path": "trucker_color/img_cap_trucker_color_red_curved.jpg",
-    "price": "30000"
+    "id": "27",
+    "img_path": "trucker_color/img_cap_trucker_color_blue_curved.jpg"
   },
   {
-    "id": "14",
-    "img_path": "trucker_color/img_cap_trucker_color_red_straight.jpg",
-    "price": "30000"
+    "id": "28",
+    "img_path": "trucker_color/img_cap_trucker_color_blue_straight.jpg"
   }
 ]

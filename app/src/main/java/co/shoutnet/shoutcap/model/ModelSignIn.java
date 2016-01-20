@@ -3,9 +3,10 @@ package co.shoutnet.shoutcap.model;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by Adam MB on 1/7/2016.
+ * Created by CodeLabs on 26/11/2015.
  */
 public class ModelSignIn {
+
     private String result;
     @SerializedName("shoutid")
     private String shoutId;

@@ -6,12 +6,14 @@ import android.content.SharedPreferences;
 
 import java.util.HashMap;
 
+import co.shoutnet.shoutcap.MainActivity;
 import co.shoutnet.shoutcap.SignActivity;
 
 /**
- * Created by Adam MB on 1/7/2016.
+ * Created by CodeLabs on 27/11/2015.
  */
 public class SessionManager {
+
     private SharedPreferences pref;
 
     private SharedPreferences.Editor editor;
