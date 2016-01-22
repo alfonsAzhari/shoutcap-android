@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -45,6 +46,7 @@ public class FragmentSignIn extends Fragment {
     private EditText edtShoutId;
     private EditText edtpassword;
     private Button btnSignIn;
+    private TextView txtSignUp;
 
     private ModelSignIn modelSignIn;
 
@@ -89,6 +91,13 @@ public class FragmentSignIn extends Fragment {
             }
         });
 
+        txtSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentSignUp signUp = new FragmentSignUp();
+                getFragmentManager().beginTransaction().replace(R.id.frame_content_sign, signUp).commit();
+            }
+        });
         return rootView;
     }
 
@@ -96,6 +105,7 @@ public class FragmentSignIn extends Fragment {
         edtShoutId = (EditText) v.findViewById(R.id.edt_signin_shoutid);
         edtpassword = (EditText) v.findViewById(R.id.edt_signin_pass);
         btnSignIn = (Button) v.findViewById(R.id.btn_signin_sign);
+        txtSignUp = (TextView)v.findViewById(R.id.txt_signin_signup);
     }
 
     private void fetchData(final String shoutid, final String password) {

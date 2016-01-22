@@ -16,6 +16,7 @@
         android:src="@drawable/logo_welcome" />
 
     <android.support.design.widget.TextInputLayout
+        android:id="@+id/lyt_signup_shoutid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -27,6 +28,7 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
+        android:id="@+id/lyt_signup_pass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -39,6 +41,7 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
+        android:id="@+id/lyt_signup_confirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -51,6 +54,7 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
+        android:id="@+id/lyt_signup_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

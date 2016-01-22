@@ -1,6 +1,7 @@
 package co.shoutnet.shoutcap;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
@@ -202,11 +203,15 @@ public class ActivityPaymentConfirmation extends AppCompatActivity {
             return;
         }
 
-        mappingData();
         postConfirmation(ApiReferences.getPaymentConfirmation());
     }
 
     private void postConfirmation(String url) {
+        final ProgressDialog progressDialog = new ProgressDialog(mContext);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Sending");
+        progressDialog.show();
+
         Map<String, String> params = mappingData();
         modelMessage = new ModelMessage();
 
@@ -220,12 +225,14 @@ public class ActivityPaymentConfirmation extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
+                progressDialog.dismiss();
                 Toast.makeText(mContext, modelMessage.getMessage(), Toast.LENGTH_SHORT).show();
                 finish();
             }
 
             @Override
             public void OnFaliure() {
+                progressDialog.dismiss();
                 Toast.makeText(mContext, "Sending data failed", Toast.LENGTH_SHORT).show();
             }
         });

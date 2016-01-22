@@ -18,7 +18,8 @@ import co.shoutnet.shoutcap.model.ModelInboxDetail;
 import co.shoutnet.shoutcap.model.ModelInvoice;
 import co.shoutnet.shoutcap.model.ModelMessage;
 import co.shoutnet.shoutcap.model.ModelOrderHistory;
-import co.shoutnet.shoutcap.model.ModelPaymentConfirmation;
+import co.shoutnet.shoutcap.model.ModelRegister;
+import co.shoutnet.shoutcap.model.ModelRegisterError;
 import co.shoutnet.shoutcap.model.ModelSignIn;
 import co.shoutnet.shoutcap.model.ModelCart;
 import co.shoutnet.shoutcap.model.ModelOnlyResult;
@@ -141,5 +142,15 @@ public class Parser {
     public static ModelResponseCheckout getResultCheckout(String json) throws IOException {
         gson = new Gson();
         return gson.fromJson(json, ModelResponseCheckout.class);
+    }
+
+    public static ModelRegister getRegister(String json) throws IOException {
+        gson = new Gson();
+        return gson.fromJson(json, ModelRegister.class);
+    }
+
+    public static ModelRegisterError getRegisterError(String json) throws IOException {
+        gson = new Gson();
+        return gson.fromJson(json, ModelRegisterError.class);
     }
 }
