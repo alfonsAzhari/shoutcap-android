@@ -203,15 +203,21 @@ public class ActivityPaymentConfirmation extends AppCompatActivity {
             return;
         }
 
-        postConfirmation(ApiReferences.getPaymentConfirmation());
-    }
-
-    private void postConfirmation(String url) {
         final ProgressDialog progressDialog = new ProgressDialog(mContext);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Sending");
         progressDialog.show();
 
+        new android.os.Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                postConfirmation(ApiReferences.getPaymentConfirmation());
+                progressDialog.dismiss();
+            }
+        }, 3000);
+    }
+
+    private void postConfirmation(String url) {
         Map<String, String> params = mappingData();
         modelMessage = new ModelMessage();
 
@@ -225,14 +231,12 @@ public class ActivityPaymentConfirmation extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                progressDialog.dismiss();
                 Toast.makeText(mContext, modelMessage.getMessage(), Toast.LENGTH_SHORT).show();
                 finish();
             }
 
             @Override
             public void OnFaliure() {
-                progressDialog.dismiss();
                 Toast.makeText(mContext, "Sending data failed", Toast.LENGTH_SHORT).show();
             }
         });

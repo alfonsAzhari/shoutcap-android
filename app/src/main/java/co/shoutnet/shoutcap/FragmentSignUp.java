@@ -101,17 +101,23 @@ public class FragmentSignUp extends Fragment {
             return;
         }
 
-        post(ApiReferences.getUrlRegister());
-
-        Log.i("click", "OK");
-    }
-
-    private void post(String url) {
         final ProgressDialog progressDialog = new ProgressDialog(getActivity());
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Signing Up");
         progressDialog.show();
 
+        new android.os.Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                post(ApiReferences.getUrlRegister());
+                progressDialog.dismiss();
+            }
+        }, 3000);
+
+        Log.i("click", "OK");
+    }
+
+    private void post(String url) {
         Map<String, String> params = mappingData();
         modelRegister = new ModelRegister();
         modelRegisterError = new ModelRegisterError();
@@ -127,7 +133,6 @@ public class FragmentSignUp extends Fragment {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    progressDialog.dismiss();
                     Toast.makeText(getActivity(), modelRegister.getResult(), Toast.LENGTH_SHORT).show();
                     signIn();
                 }else{
@@ -142,14 +147,12 @@ public class FragmentSignUp extends Fragment {
                     } else {
                         space = "\n";
                     }
-                    progressDialog.dismiss();
                     Toast.makeText(getActivity(), modelRegisterError.getItem().getShoutid_error()+space+modelRegisterError.getItem().getEmail_error(),Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void OnFaliure() {
-                progressDialog.dismiss();
                 Toast.makeText(getActivity(), "Sending data failed", Toast.LENGTH_SHORT).show();
             }
         });
