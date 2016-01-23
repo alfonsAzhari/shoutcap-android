@@ -1,5 +1,7 @@
 package co.shoutnet.shoutcap;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 
@@ -22,7 +25,9 @@ import co.shoutnet.shoutcap.model.ItemCartModel;
 import co.shoutnet.shoutcap.model.ModelResponseCheckout;
 import co.shoutnet.shoutcap.utility.CustomLinearLayoutManager;
 import co.shoutnet.shoutcap.utility.DBCapsHelper;
+import co.shoutnet.shoutcap.utility.Loading;
 import co.shoutnet.shoutcap.utility.Parser;
+import co.shoutnet.shoutcap.utility.SessionManager;
 import co.shoutnet.shoutcap.utility.VolleyRequest;
 
 public class ActivityCheckout extends AppCompatActivity {
@@ -51,6 +56,10 @@ public class ActivityCheckout extends AppCompatActivity {
     private TextView txtTotal;
 
     private Button btnConfirm;
+    private ProgressDialog loading;
+
+    private SessionManager manager;
+    private HashMap<String, String> user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +67,8 @@ public class ActivityCheckout extends AppCompatActivity {
         setContentView(R.layout.activity_checkout);
 
         initView();
+        manager = new SessionManager(getApplicationContext());
+        user = manager.getUserDetails();
 
         //get data to view
         Bundle bundle = getIntent().getExtras();
@@ -89,23 +100,30 @@ public class ActivityCheckout extends AppCompatActivity {
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                loading.show();
                 String url = "https://api.shoutnet.co/shoutcap/order_create.php";
 
                 Map<String, String> params = new HashMap<>();
-                params.put("shoutid", "devtest");
-                params.put("sessionid", "fab19834f4aac1c399b1273245d7b648");
+                params.put("shoutid", user.get("shoutId"));
+                params.put("sessionid", user.get("sessionId"));
+//                params.put("shoutid", "devtest");
+//                params.put("sessionid", "fab19834f4aac1c399b1273245d7b648");
                 params.put("from", "app");
                 params.put("id_checkout", checkout.getItem().getId_checkout());
 
                 new VolleyRequest().request(getApplicationContext(), Request.Method.POST, url, params, new VolleyRequest.RequestListener() {
                     @Override
                     public void OnSuccess(String response) {
-
+                        loading.dismiss();
+                        new DBCapsHelper(getApplicationContext()).deleteCartData();
+                        Intent intent = new Intent(ActivityCheckout.this, MainActivity.class);
+                        startActivity(intent);
                     }
 
                     @Override
                     public void OnFaliure() {
-
+                        loading.dismiss();
+                        Toast.makeText(ActivityCheckout.this, "Try Again", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -149,5 +167,7 @@ public class ActivityCheckout extends AppCompatActivity {
         txtTotal = (TextView) findViewById(R.id.txt_total_checkout);
 
         btnConfirm = (Button) findViewById(R.id.btn_confirm_checkout);
+        loading = Loading.newInstance(ActivityCheckout.this);
+        this.setTitle("Checkout");
     }
 }

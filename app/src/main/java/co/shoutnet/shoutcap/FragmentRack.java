@@ -1,5 +1,6 @@
 package co.shoutnet.shoutcap;
 
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -21,7 +22,9 @@ import co.shoutnet.shoutcap.model.CapsModel;
 import co.shoutnet.shoutcap.model.ModelAdapterRack;
 import co.shoutnet.shoutcap.model.ModelRack;
 import co.shoutnet.shoutcap.utility.DBCapsHelper;
+import co.shoutnet.shoutcap.utility.DialogConfirm;
 import co.shoutnet.shoutcap.utility.Parser;
+import co.shoutnet.shoutcap.utility.SessionManager;
 import co.shoutnet.shoutcap.utility.VolleyRequest;
 
 /**
@@ -31,6 +34,12 @@ public class FragmentRack extends Fragment {
 
     RecyclerView recyclerView;
     GridLayoutManager layoutManager;
+    private SessionManager manager;
+    private HashMap<String, String> user;
+    private RackAdapter adapter;
+    private DialogFragment dialogFragment;
+    private ArrayList<ModelAdapterRack> racks;
+    private DBCapsHelper dbCapsHelper;
 
     public FragmentRack() {
 
@@ -49,27 +58,39 @@ public class FragmentRack extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_rack, container, false);
 
+        manager = new SessionManager(getActivity());
+        user = manager.getUserDetails();
 
-        DBCapsHelper dbCapsHelper = new DBCapsHelper(getActivity());
-        ArrayList<ModelAdapterRack> racks = dbCapsHelper.getRackData();
+        dbCapsHelper = new DBCapsHelper(getActivity());
+        racks = dbCapsHelper.getRackData();
         if (racks.size() > 0) {
             Log.i("rack", String.valueOf(racks.get(0).getImgRack()));
         } else {
             Log.i("rack", "null");
         }
         layoutManager = new GridLayoutManager(getActivity().getApplicationContext(), 3);
-        RackAdapter adapter = new RackAdapter(getActivity(), racks, new RackAdapter.RackListener() {
+        adapter = new RackAdapter(getActivity(), racks, new RackAdapter.RackListener() {
             @Override
-            public void testing(String id, char act) {
-                Log.i("rack", id);
+            public void linstener(final String id, final char act, final int position) {
                 switch (act) {
                     case 'a': {
-                        act("https://api.shoutnet.co/shoutcap/add_to_cart_from_rack.php", id, act);
+                        act("https://api.shoutnet.co/shoutcap/add_to_cart_from_rack.php", id, act, position);
                         break;
                     }
                     case 'd': {
-                        act("https://api.shoutnet.co/shoutcap/delete_rack.php", id, act);
-                        new DBCapsHelper(getActivity()).deleteData(Integer.parseInt(id));
+                        dialogFragment = DialogConfirm.newInstance(new DialogConfirm.ConfirmDialogListener() {
+                            @Override
+                            public void onYesAction() {
+                                dialogFragment.dismiss();
+                                act("https://api.shoutnet.co/shoutcap/delete_rack.php", id, act, position);
+                            }
+
+                            @Override
+                            public void onNoAction() {
+                                dialogFragment.dismiss();
+                            }
+                        });
+                        dialogFragment.show(getFragmentManager(), null);
                         break;
                     }
                 }
@@ -78,22 +99,24 @@ public class FragmentRack extends Fragment {
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerview_rack);
         recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
 
         return rootView;
     }
 
-    private void act(String url, final String id, final char act) {
+    private void act(String url, final String id, final char act, final int position) {
         Map<String, String> params = new HashMap<>();
-        params.put("shoutid", "devtest");
-        params.put("sessionid", "fab19834f4aac1c399b1273245d7b648");
+        params.put("shoutid", user.get("shoutId"));
+        params.put("sessionid", user.get("sessionId"));
+//        params.put("shoutid", "devtest");
+//        params.put("sessionid", "fab19834f4aac1c399b1273245d7b648");
         params.put("from", "app");
         params.put("id_rack", id);
 
         new VolleyRequest().request(getActivity(), Request.Method.POST, url, params, new VolleyRequest.RequestListener() {
             @Override
             public void OnSuccess(String response) {
-                Log.i("json", response);
                 if (act == 'a') {
 
                     ModelRack modelRack = new ModelRack();
@@ -102,12 +125,16 @@ public class FragmentRack extends Fragment {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    ArrayList<ModelRack.Item> items = modelRack.getItem();
+                    ModelRack.Item items = modelRack.getItem();
                     CapsModel capsModel;
                     capsModel = new DBCapsHelper(getActivity()).getRack(Integer.parseInt(id));
-                    capsModel.setId(items.get(0).getId());
-                    capsModel.setPrice(Integer.parseInt(items.get(0).getPrice()));
+                    capsModel.setId(items.getId_rack());
                     new DBCapsHelper(getActivity()).addCap(capsModel);
+                } else if (act == 'd') {
+                    new DBCapsHelper(getActivity()).deleteData(Integer.parseInt(id));
+                    racks.remove(position);
+                    adapter.notifyItemRemoved(position);
+                    recyclerView.removeViewAt(position);
                 }
             }
 

@@ -1,11 +1,11 @@
 package co.shoutnet.shoutcap;
 
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,9 +17,6 @@ import android.widget.Toast;
 
 import com.android.volley.Request;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +26,9 @@ import co.shoutnet.shoutcap.model.ModelCart;
 import co.shoutnet.shoutcap.model.ModelRack;
 import co.shoutnet.shoutcap.utility.DBCapsHelper;
 import co.shoutnet.shoutcap.utility.InternetConnection;
+import co.shoutnet.shoutcap.utility.Loading;
 import co.shoutnet.shoutcap.utility.Parser;
+import co.shoutnet.shoutcap.utility.SessionManager;
 import co.shoutnet.shoutcap.utility.VolleyRequest;
 
 /**
@@ -45,6 +44,9 @@ public class FragmentPreviewShout extends Fragment {
     private Uri uri;
     private boolean both=false;
     private Map<String, String> params;
+    private ProgressDialog loading;
+    private HashMap<String, String> user;
+    private SessionManager manager;
 
     public FragmentPreviewShout() {
 
@@ -64,6 +66,11 @@ public class FragmentPreviewShout extends Fragment {
         initView(rootView);
         getActivity().setTitle("Preview ShoutCap");
         dbCapsHelper=new DBCapsHelper(getActivity());
+
+        loading = Loading.newInstance(getActivity());
+        manager = new SessionManager(getActivity());
+        user = manager.getUserDetails();
+
 
         byte[] decodeImage = Base64.decode(capsModel.getBaseImage(), Base64.DEFAULT);
         Bitmap bitmap = BitmapFactory.decodeByteArray(decodeImage, 0, decodeImage.length);
@@ -104,6 +111,7 @@ public class FragmentPreviewShout extends Fragment {
     private void addToCart() {
         String url = "https://api.shoutnet.co/shoutcap/add_to_cart.php";
         params = mapping(capsModel);
+        loading.show();
 //        new AddCaps().sendData("https://api.shoutnet.co/shoutcap/add_to_cart.php", capsModel, new CapsResult() {
 //            @Override
 //            public void OnSuccess(String response) {
@@ -150,11 +158,12 @@ public class FragmentPreviewShout extends Fragment {
 //                } else {
 //                    dbCapsHelper.updateStatus("both", item.getId());
 //                }
+                loading.dismiss();
             }
 
             @Override
             public void OnFaliure() {
-
+                loading.dismiss();
             }
         });
 //        String url=null;
@@ -165,6 +174,7 @@ public class FragmentPreviewShout extends Fragment {
     private void addToRack() {
         String url = "https://api.shoutnet.co/shoutcap/add_to_rack.php";
         params = mapping(capsModel);
+        loading.show();
 //        new AddCaps().sendData("https://api.shoutnet.co/shoutcap/add_to_cart.php", capsModel, new CapsResult() {
 //            @Override
 //            public void OnSuccess(String response) {
@@ -194,15 +204,17 @@ public class FragmentPreviewShout extends Fragment {
         new VolleyRequest().request(getActivity(), Request.Method.POST, url, params, new VolleyRequest.RequestListener() {
             @Override
             public void OnSuccess(String response) {
-                ModelRack modelRack = null;
-                try {
-                    modelRack = Parser.getRackResponse(response);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                ModelRack.Item item = modelRack.getItem().get(0);
-                capsModel.setPrice(Integer.parseInt(item.getPrice()));
-                capsModel.setId(item.getId());
+
+                String[] split = response.split("\"");
+                if (split[3].equals("success")) {
+                    ModelRack modelRack = null;
+                    try {
+                        modelRack = Parser.getRackResponse(response);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    ModelRack.Item item = modelRack.getItem();
+                    capsModel.setId(item.getId_rack());
 //                if (!both) {
 //                    both = true;
                     capsModel.setStatus("rack");
@@ -210,11 +222,16 @@ public class FragmentPreviewShout extends Fragment {
 //                } else {
 //                    dbCapsHelper.updateStatus("both", item.getId());
 //                }
+                    loading.dismiss();
+                } else if (split[3].equals("error")) {
+                    loading.dismiss();
+                    Toast.makeText(getActivity(), "Isi rack penuh! maksimum 6 desain", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
             public void OnFaliure() {
-
+                loading.dismiss();
             }
         });
 //        String url=null;
@@ -224,8 +241,10 @@ public class FragmentPreviewShout extends Fragment {
 
     private Map<String, String> mapping(CapsModel capsModel) {
         params = new HashMap<>();
-        params.put("shoutid", "devtest");
-        params.put("sessionid", "fab19834f4aac1c399b1273245d7b648");
+        params.put("shoutid", user.get("shoutId"));
+        params.put("sessionid", user.get("sessionId"));
+//        params.put("shoutid", "devtest");
+//        params.put("sessionid", "fab19834f4aac1c399b1273245d7b648");
         params.put("from", "app");
         params.put("id_model", String.valueOf(capsModel.getModel()));
         params.put("size", capsModel.getSize());
@@ -242,33 +261,33 @@ public class FragmentPreviewShout extends Fragment {
         return params;
     }
 
-    private Uri saveImageToStorage(String image, String name) {
-
-        String fileName = "/" + name + ".png";
-        Uri uri = null;
-        byte[] decoded = Base64.decode(image, Base64.DEFAULT);
-        Bitmap bitmap = BitmapFactory.decodeByteArray(decoded, 0, decoded.length);
-
-        if (bitmap != null) {
-            File file = new File(Environment.getExternalStorageDirectory() + "/shoutcap");
-            if (!file.isDirectory()) {
-                file.mkdir();
-            }
-            uri = Uri.parse(file.toURI() + fileName);
-            FileOutputStream out;
-            try {
-                out = new FileOutputStream(file.getAbsolutePath() + fileName.toString());
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
-                out.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-//        dbCapsHelper.updateUri(id,uri.toString());
-        return uri;
-    }
+//    private Uri saveImageToStorage(String image, String name) {
+//
+//        String fileName = "/" + name + ".png";
+//        Uri uri = null;
+//        byte[] decoded = Base64.decode(image, Base64.DEFAULT);
+//        Bitmap bitmap = BitmapFactory.decodeByteArray(decoded, 0, decoded.length);
+//
+//        if (bitmap != null) {
+//            File file = new File(Environment.getExternalStorageDirectory() + "/shoutcap");
+//            if (!file.isDirectory()) {
+//                file.mkdir();
+//            }
+//            uri = Uri.parse(file.toURI() + fileName);
+//            FileOutputStream out;
+//            try {
+//                out = new FileOutputStream(file.getAbsolutePath() + fileName.toString());
+//                bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+//                out.close();
+//            } catch (FileNotFoundException e) {
+//                e.printStackTrace();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+////        dbCapsHelper.updateUri(id,uri.toString());
+//        return uri;
+//    }
 
     private void initView(View v) {
         imgPreview = (ImageView) v.findViewById(R.id.img_preview_hat);

@@ -68,6 +68,7 @@ public class VoucherDialog extends DialogFragment {
                 .setNegativeButton("Skip", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+//                        dialogInterface.dismiss();
                         dialogListener.skipVoucher();
                     }
                 });

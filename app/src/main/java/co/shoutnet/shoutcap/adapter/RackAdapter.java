@@ -26,6 +26,7 @@ public class RackAdapter extends RecyclerView.Adapter<RackAdapter.RackViewHolder
     ArrayList<ModelAdapterRack> racks;
     Context context;
     RackListener listener;
+    DialogFragment dialogFragment;
 
     public RackAdapter(Context context, ArrayList<ModelAdapterRack> racks, RackListener listener) {
         this.context = context;
@@ -49,10 +50,11 @@ public class RackAdapter extends RecyclerView.Adapter<RackAdapter.RackViewHolder
         holder.imgRack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment dialogFragment = RackItemDialog.newInstance(bitmap, new RackItemDialog.RackDialogListener() {
+                dialogFragment = RackItemDialog.newInstance(bitmap, new RackItemDialog.RackDialogListener() {
                     @Override
                     public void onAction(char action) {
-                        listener.testing(racks.get(position).getId(), action);
+                        dialogFragment.dismiss();
+                        listener.linstener(racks.get(position).getId(), action, position);
                     }
                 });
                 Activity activity = (Activity) context;
@@ -67,7 +69,7 @@ public class RackAdapter extends RecyclerView.Adapter<RackAdapter.RackViewHolder
     }
 
     public interface RackListener {
-        void testing(String id, char act);
+        void linstener(String id, char act, int position);
     }
 
     public static class RackViewHolder extends RecyclerView.ViewHolder {

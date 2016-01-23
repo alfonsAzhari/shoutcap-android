@@ -36,12 +36,13 @@
             android:text="Delete" />
     </LinearLayout>
 
-    <ImageView
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:clickable="true"
-        android:src="@drawable/abc_ic_menu_share_mtrl_alpha" />
+    <!--button share-->
+    <!--<ImageView-->
+    <!--android:layout_width="35dp"-->
+    <!--android:layout_height="35dp"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:layout_marginRight="10dp"-->
+    <!--android:layout_marginTop="10dp"-->
+    <!--android:clickable="true"-->
+    <!--android:src="@drawable/abc_ic_menu_share_mtrl_alpha" />-->
 </RelativeLayout>

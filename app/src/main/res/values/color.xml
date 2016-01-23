@@ -23,4 +23,6 @@
     <color name="default_circle_indicator_stroke_color">#FFDDDDDD</color>
     <dimen name="default_circle_indicator_stroke_width">1dp</dimen>
 
+    <color name="darK_gray_transparent">#8cffffff</color>
+
 </resources>
