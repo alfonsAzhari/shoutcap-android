@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/color_primary_dark"
                 android:padding="12dp"
-                android:text="Biodata"
+                android:text="Bio"
                 android:textColor="@android:color/white" />
 
             <android.support.design.widget.TextInputLayout
@@ -40,7 +40,7 @@
                     android:id="@+id/edt_edit_profile_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Nama" />
+                    android:hint="Name" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -53,7 +53,7 @@
                     android:id="@+id/edt_edit_profile_birth"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Tanggal Lahir" />
+                    android:hint="Date of birth" />
             </android.support.design.widget.TextInputLayout>
 
             <RadioGroup
@@ -73,7 +73,7 @@
                     android:button="@null"
                     android:checked="true"
                     android:gravity="center"
-                    android:text="Laki-laki"
+                    android:text="Male"
                     android:textColor="@android:color/white" />
 
                 <RadioButton
@@ -84,7 +84,7 @@
                     android:background="@drawable/custom_button_radio"
                     android:button="@null"
                     android:gravity="center"
-                    android:text="Perempuan"
+                    android:text="Female"
                     android:textColor="@android:color/white" />
             </RadioGroup>
 
@@ -99,7 +99,7 @@
                     android:id="@+id/edt_edit_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Nomor HP" />
+                    android:hint="Phone" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -112,7 +112,7 @@
                     android:id="@+id/edt_edit_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Email" />
+                    android:hint="E-mail" />
             </android.support.design.widget.TextInputLayout>
 
             <TextView
@@ -132,25 +132,25 @@
                     android:id="@+id/radio_edit_school"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sekolah" />
+                    android:text="Student" />
 
                 <RadioButton
                     android:id="@+id/radio_edit_college"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Kuliah" />
+                    android:text="Collage Student" />
 
                 <RadioButton
                     android:id="@+id/radio_edit_work"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Kerja" />
+                    android:text="Employee" />
 
                 <RadioButton
                     android:id="@+id/radio_edit_college_work"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Kuliah + Kerja" />
+                    android:text="Student + Employee" />
 
                 <RadioButton
                     android:id="@+id/radio_edit_other"
@@ -164,7 +164,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="24dp"
                 android:layout_marginTop="8dp"
-                android:text="Minat" />
+                android:text="Passion" />
 
             <TableLayout
                 android:layout_width="match_parent"
@@ -292,7 +292,7 @@
                 android:layout_marginTop="24dp"
                 android:background="@color/color_primary_dark"
                 android:padding="12dp"
-                android:text="Alamat"
+                android:text="Address"
                 android:textColor="@android:color/white" />
 
             <android.support.design.widget.TextInputLayout
@@ -306,7 +306,7 @@
                     android:id="@+id/edt_edit_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Alamat" />
+                    android:hint="Address" />
             </android.support.design.widget.TextInputLayout>
 
             <Spinner
@@ -346,7 +346,7 @@
                     android:id="@+id/edt_edit_postal_kode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Kode POS" />
+                    android:hint="Zip Code" />
             </android.support.design.widget.TextInputLayout>
 
             <TextView
@@ -355,7 +355,7 @@
                 android:layout_marginTop="24dp"
                 android:background="@color/color_primary_dark"
                 android:padding="12dp"
-                android:text="Jejaring Sosial"
+                android:text="Social Network"
                 android:textColor="@android:color/white" />
 
             <android.support.design.widget.TextInputLayout
@@ -377,7 +377,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="simpan" />
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/custom_button"
+                android:textColor="@android:color/white"
+                android:text="Save" />
         </LinearLayout>
 
     </ScrollView>

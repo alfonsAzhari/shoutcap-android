@@ -31,6 +31,7 @@ import java.util.Map;
 
 import co.shoutnet.shoutcap.model.ModelSignIn;
 import co.shoutnet.shoutcap.utility.ApiReferences;
+import co.shoutnet.shoutcap.utility.Loading;
 import co.shoutnet.shoutcap.utility.Parser;
 import co.shoutnet.shoutcap.utility.SessionManager;
 
@@ -39,14 +40,15 @@ import co.shoutnet.shoutcap.utility.SessionManager;
  */
 public class FragmentSignIn extends Fragment {
 
-    SharedPreferences sharedPreferences;
-    SessionManager sessionManager;
+    private SharedPreferences sharedPreferences;
+    private SessionManager sessionManager;
     private Context mContext;
     private EditText edtShoutId;
     private EditText edtpassword;
     private Button btnSignIn;
     private TextView txtSignUp;
     private ModelSignIn modelSignIn;
+    private ProgressDialog loading;
 
     public FragmentSignIn() {
 
@@ -66,7 +68,7 @@ public class FragmentSignIn extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_sign_in, container, false);
 
         mContext = getActivity();
-
+        loading = Loading.newInstance(mContext);
         sessionManager = new SessionManager(mContext);
 
         initView(rootView);
@@ -130,11 +132,13 @@ public class FragmentSignIn extends Fragment {
 
                     btnSignIn.setEnabled(true);
                 }
+                loading.dismiss();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("error volley", error.toString());
+                loading.dismiss();
             }
         }) {
             @Override
@@ -175,17 +179,20 @@ public class FragmentSignIn extends Fragment {
 
         btnSignIn.setEnabled(false);
 
-        final ProgressDialog progressDialog = new ProgressDialog(mContext);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Signing In");
-        progressDialog.show();
-
-        new android.os.Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                fetchData(shoutid, password);
-                progressDialog.dismiss();
-            }
-        }, 3000);
+        loading.setMessage("Signing in");
+        loading.show();
+        fetchData(shoutid,password);
+//        final ProgressDialog progressDialog = new ProgressDialog(mContext);
+//        progressDialog.setIndeterminate(true);
+//        progressDialog.setMessage("Signing In");
+//        progressDialog.show();
+//
+//        new android.os.Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                fetchData(shoutid, password);
+//                progressDialog.dismiss();
+//            }
+//        }, 3000);
     }
 }

@@ -35,6 +35,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import co.shoutnet.shoutcap.utility.ApiReferences;
+import co.shoutnet.shoutcap.utility.Loading;
 import co.shoutnet.shoutcap.utility.SessionManager;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -52,6 +53,7 @@ public class ChangeAvatarActivity extends AppCompatActivity {
 
     private Button btnChange;
     private ImageView imgPreview;
+    private ProgressDialog loading;
 
     private HashMap<String, String> user;
 
@@ -64,6 +66,7 @@ public class ChangeAvatarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_avatar);
+        loading = Loading.newInstance(this);
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -149,10 +152,13 @@ public class ChangeAvatarActivity extends AppCompatActivity {
 
         } else {
 
-            ProgressDialog dialog = new ProgressDialog(this);
-            dialog.setIndeterminate(true);
-            dialog.setMessage("Please Wait");
-            dialog.show();
+//            ProgressDialog dialog = new ProgressDialog(this);
+//            dialog.setIndeterminate(true);
+//            dialog.setMessage("Please Wait");
+//            dialog.show();
+
+            loading.setMessage("Please wait");
+            loading.show();
 
             try {
 
@@ -187,7 +193,7 @@ public class ChangeAvatarActivity extends AppCompatActivity {
                     try {
                         JSONObject object = new JSONObject(response.body().string());
                         if (object.getString("result").equals("success")) {
-                            dialog.dismiss();
+                            loading.dismiss();
                             sessionManager.updateAvatar(object.getString("url_avatar"));
                             user = sessionManager.getUserDetails();
                             Toast.makeText(this, "Avatar Changed", Toast.LENGTH_SHORT).show();
@@ -195,7 +201,7 @@ public class ChangeAvatarActivity extends AppCompatActivity {
                             this.finish();
                         }
                     } catch (JSONException e) {
-                        dialog.dismiss();
+                        loading.dismiss();
                         Toast.makeText(this, "Connection failed, please try again later", Toast.LENGTH_SHORT).show();
                         //Log.e("Exception Response", e.toString());
                     }

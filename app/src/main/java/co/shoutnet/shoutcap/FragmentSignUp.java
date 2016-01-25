@@ -25,6 +25,7 @@ import co.shoutnet.shoutcap.model.ModelOnlyResult;
 import co.shoutnet.shoutcap.model.ModelRegister;
 import co.shoutnet.shoutcap.model.ModelRegisterError;
 import co.shoutnet.shoutcap.utility.ApiReferences;
+import co.shoutnet.shoutcap.utility.Loading;
 import co.shoutnet.shoutcap.utility.Parser;
 import co.shoutnet.shoutcap.utility.VolleyRequest;
 
@@ -42,7 +43,8 @@ public class FragmentSignUp extends Fragment {
     private TextInputLayout lytPassword;
     private TextInputLayout lytConfirm;
     private TextInputLayout lytEmail;
-    private Button  btnSignUp;
+    private Button btnSignUp;
+    private ProgressDialog loading;
 
     public FragmentSignUp() {
 
@@ -60,6 +62,8 @@ public class FragmentSignUp extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_sign_up, container, false);
+
+        loading = Loading.newInstance(getActivity());
         initView(rootView);
         initViewAction();
 
@@ -101,18 +105,22 @@ public class FragmentSignUp extends Fragment {
             return;
         }
 
-        final ProgressDialog progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Signing Up");
-        progressDialog.show();
+        loading.setMessage("Signing up");
+        loading.show();
+        post(ApiReferences.getUrlRegister());
 
-        new android.os.Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                post(ApiReferences.getUrlRegister());
-                progressDialog.dismiss();
-            }
-        }, 3000);
+
+//        final ProgressDialog progressDialog = new ProgressDialog(getActivity());
+//        progressDialog.setIndeterminate(true);
+//        progressDialog.setMessage("Signing Up");
+//        progressDialog.show();
+//
+//        new android.os.Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                progressDialog.dismiss();
+//            }
+//        }, 3000);
 
         Log.i("click", "OK");
     }
@@ -126,33 +134,36 @@ public class FragmentSignUp extends Fragment {
             @Override
             public void OnSuccess(String response) {
                 Log.i("json", response);
-                Log.i("char",response.substring(11,12));
-                if(response.substring(11,12).equals("s")) {
+                Log.i("char", response.substring(11, 12));
+                if (response.substring(11, 12).equals("s")) {
                     try {
                         modelRegister = Parser.getRegister(response.toString());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                    loading.dismiss();
                     Toast.makeText(getActivity(), modelRegister.getResult(), Toast.LENGTH_SHORT).show();
                     signIn();
-                }else{
+                } else {
                     try {
                         modelRegisterError = Parser.getRegisterError(response.toString());
-                    } catch (IOException e){
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    String space="";
-                    if (modelRegisterError.getItem().getShoutid_error().trim().equals("")||modelRegisterError.getItem().getEmail_error().trim().equals("")){
+                    String space = "";
+                    if (modelRegisterError.getItem().getShoutid_error().trim().equals("") || modelRegisterError.getItem().getEmail_error().trim().equals("")) {
                         space = "";
                     } else {
                         space = "\n";
                     }
-                    Toast.makeText(getActivity(), modelRegisterError.getItem().getShoutid_error()+space+modelRegisterError.getItem().getEmail_error(),Toast.LENGTH_LONG).show();
+                    loading.dismiss();
+                    Toast.makeText(getActivity(), modelRegisterError.getItem().getShoutid_error() + space + modelRegisterError.getItem().getEmail_error(), Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void OnFaliure() {
+                loading.dismiss();
                 Toast.makeText(getActivity(), "Sending data failed", Toast.LENGTH_SHORT).show();
             }
         });
@@ -173,14 +184,14 @@ public class FragmentSignUp extends Fragment {
 
     private void initView(View v) {
         edtShoutId = (EditText) v.findViewById(R.id.edt_signup_shoutid);
-        edtPassword = (EditText)v.findViewById(R.id.edt_signup_pass);
-        edtConfirmPassword = (EditText)v.findViewById(R.id.edt_signup_confirm);
-        edtEmail = (EditText)v.findViewById(R.id.edt_signup_email);
-        lytShoutId = (TextInputLayout)v.findViewById(R.id.lyt_signup_shoutid);
-        lytPassword = (TextInputLayout)v.findViewById(R.id.lyt_signup_pass);
-        lytConfirm = (TextInputLayout)v.findViewById(R.id.lyt_signup_confirm);
-        lytEmail = (TextInputLayout)v.findViewById(R.id.lyt_signup_email);
-        btnSignUp = (Button)v.findViewById(R.id.btn_signup_sign);
+        edtPassword = (EditText) v.findViewById(R.id.edt_signup_pass);
+        edtConfirmPassword = (EditText) v.findViewById(R.id.edt_signup_confirm);
+        edtEmail = (EditText) v.findViewById(R.id.edt_signup_email);
+        lytShoutId = (TextInputLayout) v.findViewById(R.id.lyt_signup_shoutid);
+        lytPassword = (TextInputLayout) v.findViewById(R.id.lyt_signup_pass);
+        lytConfirm = (TextInputLayout) v.findViewById(R.id.lyt_signup_confirm);
+        lytEmail = (TextInputLayout) v.findViewById(R.id.lyt_signup_email);
+        btnSignUp = (Button) v.findViewById(R.id.btn_signup_sign);
     }
 
     private class Watcher implements TextWatcher {
@@ -220,7 +231,7 @@ public class FragmentSignUp extends Fragment {
     }
 
     private boolean validateEmail() {
-        if (edtEmail.getText().toString().trim().isEmpty()){
+        if (edtEmail.getText().toString().trim().isEmpty()) {
             lytEmail.setError("Please insert Email");
             return false;
         } else {
@@ -230,14 +241,14 @@ public class FragmentSignUp extends Fragment {
     }
 
     private boolean validateConfirm() {
-        if (edtConfirmPassword.getText().toString().trim().isEmpty()){
+        if (edtConfirmPassword.getText().toString().trim().isEmpty()) {
             lytConfirm.setError("Please insert Confirm Password");
             return false;
         } else {
-            if (!edtPassword.getText().toString().equals(edtConfirmPassword.getText().toString())){
+            if (!edtPassword.getText().toString().equals(edtConfirmPassword.getText().toString())) {
                 lytConfirm.setError("Password not match");
                 return false;
-            } else{
+            } else {
                 lytConfirm.setErrorEnabled(false);
             }
         }
@@ -245,7 +256,7 @@ public class FragmentSignUp extends Fragment {
     }
 
     private boolean validatePass() {
-        if (edtPassword.getText().toString().trim().isEmpty()){
+        if (edtPassword.getText().toString().trim().isEmpty()) {
             lytPassword.setError("Please insert Password");
             return false;
         } else {
@@ -255,7 +266,7 @@ public class FragmentSignUp extends Fragment {
     }
 
     private boolean validateShoutId() {
-        if (edtShoutId.getText().toString().trim().isEmpty()){
+        if (edtShoutId.getText().toString().trim().isEmpty()) {
             lytShoutId.setError("Please insert Shout ID");
             return false;
         } else {

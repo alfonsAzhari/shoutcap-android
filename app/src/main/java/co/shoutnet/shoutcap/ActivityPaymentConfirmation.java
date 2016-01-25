@@ -42,6 +42,7 @@ import java.util.Map;
 import co.shoutnet.shoutcap.model.ModelCaraBayar;
 import co.shoutnet.shoutcap.model.ModelMessage;
 import co.shoutnet.shoutcap.utility.ApiReferences;
+import co.shoutnet.shoutcap.utility.Loading;
 import co.shoutnet.shoutcap.utility.Parser;
 import co.shoutnet.shoutcap.utility.SessionManager;
 import co.shoutnet.shoutcap.utility.VolleyRequest;
@@ -82,6 +83,7 @@ public class ActivityPaymentConfirmation extends AppCompatActivity {
     private TextInputLayout lytPemilikRekening;
     private TextInputLayout lytJumlahUang;
     private LinearLayout linProgress;
+    private ProgressDialog loading;
 
     private Bundle bundle;
     private SessionManager manager;
@@ -98,6 +100,7 @@ public class ActivityPaymentConfirmation extends AppCompatActivity {
         manager = new SessionManager(mContext);
         user = manager.getUserDetails();
         bundle = getIntent().getExtras();
+        loading = Loading.newInstance(mContext);
 
         initView();
         setToolbar();
@@ -203,18 +206,21 @@ public class ActivityPaymentConfirmation extends AppCompatActivity {
             return;
         }
 
-        final ProgressDialog progressDialog = new ProgressDialog(mContext);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Sending");
-        progressDialog.show();
+        loading.setMessage("Sending Data");
+        loading.show();
+        postConfirmation(ApiReferences.getPaymentConfirmation());
 
-        new android.os.Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                postConfirmation(ApiReferences.getPaymentConfirmation());
-                progressDialog.dismiss();
-            }
-        }, 3000);
+//        final ProgressDialog progressDialog = new ProgressDialog(mContext);
+//        progressDialog.setIndeterminate(true);
+//        progressDialog.setMessage("Sending");
+//        progressDialog.show();
+//
+//        new android.os.Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                progressDialog.dismiss();
+//            }
+//        }, 3000);
     }
 
     private void postConfirmation(String url) {
@@ -231,12 +237,14 @@ public class ActivityPaymentConfirmation extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
+                loading.dismiss();
                 Toast.makeText(mContext, modelMessage.getMessage(), Toast.LENGTH_SHORT).show();
                 finish();
             }
 
             @Override
             public void OnFaliure() {
+                loading.dismiss();
                 Toast.makeText(mContext, "Sending data failed", Toast.LENGTH_SHORT).show();
             }
         });

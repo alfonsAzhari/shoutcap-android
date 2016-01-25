@@ -32,6 +32,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import co.shoutnet.shoutcap.utility.ApiReferences;
+import co.shoutnet.shoutcap.utility.Loading;
 import co.shoutnet.shoutcap.utility.SessionManager;
 
 public class ActivityChangePassword extends AppCompatActivity {
@@ -43,6 +44,7 @@ public class ActivityChangePassword extends AppCompatActivity {
     private TextInputLayout layoutConfirm;
     private Button btnSave;
     private boolean match;
+    private ProgressDialog loading;
 
     private Context mContext;
 
@@ -55,7 +57,7 @@ public class ActivityChangePassword extends AppCompatActivity {
         setContentView(R.layout.activity_change_password);
 
         mContext = getApplicationContext();
-
+        loading = Loading.newInstance(mContext);
         sessionManager = new SessionManager(this);
         user = sessionManager.getUserDetails();
 
@@ -183,26 +185,27 @@ public class ActivityChangePassword extends AppCompatActivity {
 
     private void changePassword(String url, final String oldPass, final String newPass) {
 
-        final ProgressDialog dialog = new ProgressDialog(ActivityChangePassword.this);
-        dialog.setIndeterminate(true);
-        dialog.setMessage("Please Wait");
-        dialog.show();
+//        final ProgressDialog dialog = new ProgressDialog(ActivityChangePassword.this);
+//        dialog.setIndeterminate(true);
+//        dialog.setMessage("Please Wait");
+//        dialog.show();
 
+        loading.setMessage("Please wait");
+        loading.show();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
                     JSONObject object = new JSONObject(response.toString());
                     if (object.getString("result").equals("success")) {
-                        dialog.dismiss();
                         Toast.makeText(mContext, "Password Changed", Toast.LENGTH_SHORT).show();
                         ActivityChangePassword.this.finish();
                     } else {
-                        dialog.dismiss();
                         Toast.makeText(mContext, "Old Password you entered is invalid", Toast.LENGTH_SHORT).show();
                     }
+                    loading.dismiss();
                 } catch (JSONException e) {
-                    dialog.dismiss();
+                    loading.dismiss();
                     Toast.makeText(mContext, "Connection Lost, please try again later", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -210,6 +213,7 @@ public class ActivityChangePassword extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 //Log.e("voleyChangePass", error.toString());
+                loading.dismiss();
             }
         }) {
             @Override

@@ -79,7 +79,6 @@ public class FragmentReward extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.addItemDecoration(new SimpleDividerItemDecoration(mContext));
 
         fetchData(ApiReferences.getUrlGetRewardHistory());
 

@@ -269,19 +269,19 @@ public class MainActivity extends AppCompatActivity {
             linProfile.setVisibility(View.GONE);
 
             switch (menuItem.getItemId()) {
-                case R.id.drawer_item_news:
-                    getSupportActionBar().setTitle("News");
+//                case R.id.drawer_item_news:
+//                    getSupportActionBar().setTitle("News");
+//
+//                    FragmentNews fragmentNews = new FragmentNews();
+//                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentNews).commit();
+//                    return true;
 
-                    FragmentNews fragmentNews = new FragmentNews();
-                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentNews).commit();
-                    return true;
-
-                case R.id.drawer_item_promo:
-                    getSupportActionBar().setTitle("Promo");
-
-                    FragmentPromo fragmentPromo = new FragmentPromo();
-                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentPromo).commit();
-                    return true;
+//                case R.id.drawer_item_promo:
+//                    getSupportActionBar().setTitle("Promo");
+//
+//                    FragmentPromo fragmentPromo = new FragmentPromo();
+//                    fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentPromo).commit();
+//                    return true;
 
                 case R.id.drawer_item_create:
                     getSupportActionBar().setTitle("Create Shout");
