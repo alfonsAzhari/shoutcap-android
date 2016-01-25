@@ -1,7 +1,7 @@
 package co.shoutnet.shoutcap;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -14,6 +14,13 @@ public class SignActivity extends AppCompatActivity {
 
         FragmentSignIn signIn = new FragmentSignIn();
         getFragmentManager().beginTransaction().replace(R.id.frame_content_sign, signIn).commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (getFragmentManager().getBackStackEntryCount() > 0) {
+            getFragmentManager().popBackStack();
+        }
     }
 
     @Override

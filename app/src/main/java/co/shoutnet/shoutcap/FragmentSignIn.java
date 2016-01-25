@@ -22,11 +22,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,17 +39,14 @@ import co.shoutnet.shoutcap.utility.SessionManager;
  */
 public class FragmentSignIn extends Fragment {
 
+    SharedPreferences sharedPreferences;
+    SessionManager sessionManager;
     private Context mContext;
-
     private EditText edtShoutId;
     private EditText edtpassword;
     private Button btnSignIn;
     private TextView txtSignUp;
-
     private ModelSignIn modelSignIn;
-
-    SharedPreferences sharedPreferences;
-    SessionManager sessionManager;
 
     public FragmentSignIn() {
 
@@ -95,7 +90,7 @@ public class FragmentSignIn extends Fragment {
             @Override
             public void onClick(View view) {
                 FragmentSignUp signUp = new FragmentSignUp();
-                getFragmentManager().beginTransaction().replace(R.id.frame_content_sign, signUp).commit();
+                getFragmentManager().beginTransaction().replace(R.id.frame_content_sign, signUp).addToBackStack(null).commit();
             }
         });
         return rootView;
