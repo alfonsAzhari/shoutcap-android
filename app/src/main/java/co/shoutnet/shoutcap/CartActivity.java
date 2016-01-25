@@ -1,6 +1,7 @@
 package co.shoutnet.shoutcap;
 
 import android.app.DialogFragment;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -38,11 +39,12 @@ import co.shoutnet.shoutcap.adapter.CartAdapter;
 import co.shoutnet.shoutcap.model.ModelAdapterCart;
 import co.shoutnet.shoutcap.model.ModelOnlyResult;
 import co.shoutnet.shoutcap.model.ModelQty;
-import co.shoutnet.shoutcap.model.ModelVoucher;
 import co.shoutnet.shoutcap.model.ModelVoucherCart;
 import co.shoutnet.shoutcap.utility.DBCapsHelper;
+import co.shoutnet.shoutcap.utility.Loading;
 import co.shoutnet.shoutcap.utility.Parser;
 import co.shoutnet.shoutcap.utility.RecyclerSwipeTouchListener;
+import co.shoutnet.shoutcap.utility.SessionManager;
 import co.shoutnet.shoutcap.utility.VolleyRequest;
 import co.shoutnet.shoutcap.utility.VoucherDialog;
 
@@ -61,6 +63,9 @@ public class CartActivity extends AppCompatActivity {
     private String jsonVoucher;
     private List<String> data;
     private int[] qtyItem;
+    private ProgressDialog loading;
+    private HashMap<String, String> user;
+    private SessionManager manager;
 
     public static long getTotal() {
         return total;
@@ -84,6 +89,9 @@ public class CartActivity extends AppCompatActivity {
 
         initToolbar();
         initView();
+
+        manager = new SessionManager(getApplicationContext());
+        user = manager.getUserDetails();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -192,6 +200,7 @@ public class CartActivity extends AppCompatActivity {
                 ModelQty modelQty;
                 data = new DBCapsHelper(getApplicationContext()).getCart();
                 List<ModelQty> obj = Collections.synchronizedList(new ArrayList<ModelQty>());
+                qtyItem = new int[size];
                 for (int i = 0; i < size; i++) {
                     child = recyclerView.getChildAt(i);
                     editText = (EditText) child.findViewById(R.id.edt_count_cart);
@@ -201,7 +210,6 @@ public class CartActivity extends AppCompatActivity {
                     modelQty.setQty(Integer.parseInt(editText.getText().toString()));
                     obj.add(modelQty);
 
-                    qtyItem = new int[size];
                     qtyItem[i] = Integer.parseInt(editText.getText().toString());
                 }
                 dialogResult();
@@ -225,6 +233,7 @@ public class CartActivity extends AppCompatActivity {
         DialogFragment dialogFragment = VoucherDialog.newInstance(capName, new VoucherDialog.DialogListener() {
             @Override
             public void skipVoucher() {
+                loading.show();
                 submitData();
 //                Intent intent = new Intent(getApplicationContext(), OrderConfirmation.class);
 //                startActivity(intent);
@@ -252,6 +261,7 @@ public class CartActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
+                loading.show();
                 submitData();
 //                }
             }
@@ -261,8 +271,10 @@ public class CartActivity extends AppCompatActivity {
 
     private void submitData() {
         Map<String, String> params = new HashMap<>();
-        params.put("shoutid", "devtest");
-        params.put("sessionid", "fab19834f4aac1c399b1273245d7b648");
+        params.put("shoutid", user.get("shoutId"));
+        params.put("sessionid", user.get("sessionId"));
+//        params.put("shoutid", "devtest");
+//        params.put("sessionid", "fab19834f4aac1c399b1273245d7b648");
         if (jsonQty != null) {
             Log.i("jsonQty", "not null");
             params.put("qty", jsonQty);
@@ -312,11 +324,12 @@ public class CartActivity extends AppCompatActivity {
                     intent.putExtra("qtyItems", qtyItem);
                     startActivity(intent);
                 }
+                loading.dismiss();
             }
 
             @Override
             public void OnFaliure() {
-
+                loading.dismiss();
             }
         });
     }
@@ -329,6 +342,7 @@ public class CartActivity extends AppCompatActivity {
     private void initView() {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_cart);
         btnTotal = (Button) findViewById(R.id.btn_purchase_cart);
+        loading = Loading.newInstance(CartActivity.this);
     }
 
     @Override

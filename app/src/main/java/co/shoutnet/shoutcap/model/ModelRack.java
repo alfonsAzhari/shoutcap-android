@@ -1,19 +1,17 @@
 package co.shoutnet.shoutcap.model;
 
-import java.util.ArrayList;
-
 /**
  * Created by Henra SN on 12/9/2015.
  */
 public class ModelRack {
     private String result;
-    private ArrayList<Item> item;
+    private Item item;
 
-    public ArrayList<Item> getItem() {
+    public Item getItem() {
         return item;
     }
 
-    public void setItem(ArrayList<Item> item) {
+    public void setItem(Item item) {
         this.item = item;
     }
 
@@ -26,41 +24,14 @@ public class ModelRack {
     }
 
     public class Item {
-        private String id;
-        private String shout;
-        private String image;
-        private String price;
+        private String id_rack;
 
-        public String getId() {
-            return id;
+        public String getId_rack() {
+            return id_rack;
         }
 
-        public void setId(String id) {
-            this.id = id;
-        }
-
-        public String getImage() {
-            return image;
-        }
-
-        public void setImage(String image) {
-            this.image = image;
-        }
-
-        public String getPrice() {
-            return price;
-        }
-
-        public void setPrice(String price) {
-            this.price = price;
-        }
-
-        public String getShout() {
-            return shout;
-        }
-
-        public void setShout(String shout) {
-            this.shout = shout;
+        public void setId_rack(String id_rack) {
+            this.id_rack = id_rack;
         }
     }
 }

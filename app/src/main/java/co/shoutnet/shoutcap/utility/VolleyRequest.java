@@ -31,6 +31,7 @@ public class VolleyRequest {
             public void onErrorResponse(VolleyError error) {
 //                Log.i("error", error.getMessage());
 //                    capsResult.OnFailure(error.getMessage());
+                listenter.OnFaliure();
             }
         }) {
             @Override
@@ -46,7 +47,7 @@ public class VolleyRequest {
             }
         };
 
-        RetryPolicy retryPolicy = new DefaultRetryPolicy(10000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        RetryPolicy retryPolicy = new DefaultRetryPolicy(20000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         stringRequest.setRetryPolicy(retryPolicy);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(stringRequest);

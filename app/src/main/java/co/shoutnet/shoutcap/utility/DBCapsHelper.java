@@ -113,26 +113,26 @@ public class DBCapsHelper extends SQLiteOpenHelper {
 //        }
 //        return caps;
 //    }
-
-    public void updateUri(int id, String uri) {
-        SQLiteDatabase db = getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put("baseImage", uri);
-
-        db.update(TB_NAME, values, "id = " + id, null);
-        db.close();
-    }
-
-    public int getLatestId() {
-        String query = "SELECT id FROM " + TB_NAME + " ORDER BY id DESC LIMIT 1";
-
-        SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery(query, null);
-        cursor.moveToFirst();
-
-        return cursor.getInt(0);
-    }
+//
+//    public void updateUri(int id, String uri) {
+//        SQLiteDatabase db = getWritableDatabase();
+//
+//        ContentValues values = new ContentValues();
+//        values.put("baseImage", uri);
+//
+//        db.update(TB_NAME, values, "id = " + id, null);
+//        db.close();
+//    }
+//
+//    public int getLatestId() {
+//        String query = "SELECT id FROM " + TB_NAME + " ORDER BY id DESC LIMIT 1";
+//
+//        SQLiteDatabase db = getReadableDatabase();
+//        Cursor cursor = db.rawQuery(query, null);
+//        cursor.moveToFirst();
+//
+//        return cursor.getInt(0);
+//    }
 
     public ArrayList<ModelAdapterRack> getRackData() {
         ArrayList<ModelAdapterRack> data = new ArrayList<>();
@@ -258,6 +258,12 @@ public class DBCapsHelper extends SQLiteOpenHelper {
     public void deleteData(int id) {
         SQLiteDatabase db = getWritableDatabase();
         db.delete(TB_NAME, "id = " + id, null);
+        db.close();
+    }
+
+    public void deleteCartData() {
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(TB_NAME, "status = 'cart'", null);
         db.close();
     }
 }

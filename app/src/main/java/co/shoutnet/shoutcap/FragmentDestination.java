@@ -1,6 +1,7 @@
 package co.shoutnet.shoutcap;
 
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.text.Editable;
@@ -33,7 +34,9 @@ import java.util.Map;
 
 import co.shoutnet.shoutcap.model.DestinationModel;
 import co.shoutnet.shoutcap.model.ModelProvince;
+import co.shoutnet.shoutcap.utility.Loading;
 import co.shoutnet.shoutcap.utility.Parser;
+import co.shoutnet.shoutcap.utility.SessionManager;
 import co.shoutnet.shoutcap.utility.VolleyRequest;
 
 public class FragmentDestination extends Fragment {
@@ -59,11 +62,13 @@ public class FragmentDestination extends Fragment {
     private Button btnSubmit;
     private String result;
     private boolean[] emptyField;
+    private ProgressDialog loading;
 
     private FetchData fetchData;
     private ArrayAdapter<String> adapter;
 
-    private String[] name = {"name1", "name2", "name3", "name4", "name5", "name6", "name7", "name8"};
+    private SessionManager manager;
+    private HashMap<String, String> user;
 
     public static FragmentDestination newInstance(String param1, String param2) {
         FragmentDestination fragment = new FragmentDestination();
@@ -80,6 +85,10 @@ public class FragmentDestination extends Fragment {
         if (destModel == null) {
             destModel = new DestinationModel();
         }
+
+        loading = Loading.newInstance(getActivity());
+        manager = new SessionManager(getActivity());
+        user = manager.getUserDetails();
 
         initView(view);
         initViewAction();
@@ -140,6 +149,7 @@ public class FragmentDestination extends Fragment {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                loading.show();
                 edtValidate();
             }
         });
@@ -249,9 +259,6 @@ public class FragmentDestination extends Fragment {
             return;
         }
 
-        //send data to server
-        Log.i("info", "redeh to upload data");
-
         Map<String, String> params = mappingData();
 
         String url = "https://api.shoutnet.co/shoutcap/order_tujuan.php";
@@ -259,19 +266,23 @@ public class FragmentDestination extends Fragment {
             @Override
             public void OnSuccess(String response) {
                 Log.i("json", response);
+                loading.dismiss();
             }
 
             @Override
             public void OnFaliure() {
-
+                loading.dismiss();
+                Toast.makeText(getActivity(), "Try Again", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private Map<String, String> mappingData() {
         Map<String, String> params = new HashMap<>();
-        params.put("shoutid", "devtest");
-        params.put("sessionid", "fab19834f4aac1c399b1273245d7b648");
+        params.put("shoutid", user.get("shoutId"));
+        params.put("sessionid", user.get("sessionId"));
+//        params.put("shoutid", "devtest");
+//        params.put("sessionid", "fab19834f4aac1c399b1273245d7b648");
         params.put("nama", edtName.getText().toString().trim());
         params.put("hp", edtPhone.getText().toString().trim());
         params.put("email", edtEmail.getText().toString().trim());

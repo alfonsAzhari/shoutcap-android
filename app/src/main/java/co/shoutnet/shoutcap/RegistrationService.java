@@ -18,8 +18,10 @@ import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import co.shoutnet.shoutcap.utility.ConfigGCM;
+import co.shoutnet.shoutcap.utility.SessionManager;
 
 /**
  * Created by Henra SN on 9/15/2015.
@@ -69,9 +71,16 @@ public class RegistrationService extends IntentService {
     }
 
     private void sendRegistrationToServer(final String token) throws IOException {
+        HashMap<String, String> user;
+        SessionManager manager;
+
+        manager = new SessionManager(getApplicationContext());
+        user = manager.getUserDetails();
+
         OkHttpClient client = new OkHttpClient();
         RequestBody requestBody = new FormEncodingBuilder()
                 .add("regId", token)
+                .add("userId", user.get("shoutId"))
                 .build();
         Request request = new Request.Builder()
                 .url(ConfigGCM.SERVER_URL)
