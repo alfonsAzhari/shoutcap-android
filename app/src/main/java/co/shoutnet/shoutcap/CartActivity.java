@@ -343,6 +343,7 @@ public class CartActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_cart);
         btnTotal = (Button) findViewById(R.id.btn_purchase_cart);
         loading = Loading.newInstance(CartActivity.this);
+        loading.setMessage("Sending cart data");
     }
 
     @Override

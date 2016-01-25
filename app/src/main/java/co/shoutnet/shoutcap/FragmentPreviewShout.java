@@ -111,6 +111,7 @@ public class FragmentPreviewShout extends Fragment {
     private void addToCart() {
         String url = "https://api.shoutnet.co/shoutcap/add_to_cart.php";
         params = mapping(capsModel);
+        loading.setMessage("Adding to cart");
         loading.show();
 //        new AddCaps().sendData("https://api.shoutnet.co/shoutcap/add_to_cart.php", capsModel, new CapsResult() {
 //            @Override
@@ -174,6 +175,7 @@ public class FragmentPreviewShout extends Fragment {
     private void addToRack() {
         String url = "https://api.shoutnet.co/shoutcap/add_to_rack.php";
         params = mapping(capsModel);
+        loading.setMessage("Adding to rack");
         loading.show();
 //        new AddCaps().sendData("https://api.shoutnet.co/shoutcap/add_to_cart.php", capsModel, new CapsResult() {
 //            @Override
