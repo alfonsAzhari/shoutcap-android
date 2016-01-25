@@ -152,7 +152,7 @@ public class ActivityCheckout extends AppCompatActivity {
         itemList = (RecyclerView) findViewById(R.id.rv_items_checkout);
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         txtName = (TextView) findViewById(R.id.txt_name_checkout);
         txtphone = (TextView) findViewById(R.id.txt_phone_checkout);
@@ -168,6 +168,7 @@ public class ActivityCheckout extends AppCompatActivity {
 
         btnConfirm = (Button) findViewById(R.id.btn_confirm_checkout);
         loading = Loading.newInstance(ActivityCheckout.this);
+        loading.setMessage("Sending confirmation");
         this.setTitle("Checkout");
     }
 }

@@ -87,6 +87,7 @@ public class FragmentDestination extends Fragment {
         }
 
         loading = Loading.newInstance(getActivity());
+        loading.setMessage("Sending consignee data");
         manager = new SessionManager(getActivity());
         user = manager.getUserDetails();
 
