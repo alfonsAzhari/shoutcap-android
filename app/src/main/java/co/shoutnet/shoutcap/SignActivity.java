@@ -4,8 +4,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class SignActivity extends AppCompatActivity {
+
+    private boolean exitCounter = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +23,19 @@ public class SignActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (getFragmentManager().getBackStackEntryCount() > 0) {
             getFragmentManager().popBackStack();
+        } else {
+            if(exitCounter){
+                super.onBackPressed();
+                return;
+            }
+            exitCounter = true;
+            Toast.makeText(getApplicationContext(), "Press Back Again to Exit", Toast.LENGTH_SHORT).show();
+            new android.os.Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    exitCounter = false;
+                }
+            }, 2500);
         }
     }
 
