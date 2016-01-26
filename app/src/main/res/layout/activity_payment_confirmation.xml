@@ -57,6 +57,7 @@
                     android:id="@+id/edit_no_hp_payment_confirmation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="phone"
                     android:hint="Phone" />
             </android.support.design.widget.TextInputLayout>
 
@@ -71,6 +72,7 @@
                     android:id="@+id/edit_email_payment_confirmation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
                     android:hint="E-mail" />
             </android.support.design.widget.TextInputLayout>
 
@@ -95,6 +97,7 @@
                     android:id="@+id/edit_id_order_payment_confirmation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="number"
                     android:hint="Order ID" />
             </android.support.design.widget.TextInputLayout>
 
@@ -109,6 +112,7 @@
                     android:id="@+id/edit_tanggal_pembayaran_payment_confirmation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="date"
                     android:hint="Payment date" />
             </android.support.design.widget.TextInputLayout>
 
@@ -207,6 +211,7 @@
                     android:id="@+id/edit_jumlah_uang_payment_confirmation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="number"
                     android:hint="Amount" />
             </android.support.design.widget.TextInputLayout>
 
