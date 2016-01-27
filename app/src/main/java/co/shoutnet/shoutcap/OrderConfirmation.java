@@ -1,5 +1,6 @@
 package co.shoutnet.shoutcap;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import java.util.Map;
 import co.shoutnet.shoutcap.model.DestinationModel;
 import co.shoutnet.shoutcap.model.ModelProvince;
 import co.shoutnet.shoutcap.model.ModelResponseCheckout;
+import co.shoutnet.shoutcap.utility.Loading;
 import co.shoutnet.shoutcap.utility.Parser;
 import co.shoutnet.shoutcap.utility.VolleyRequest;
 
@@ -64,6 +66,8 @@ public class OrderConfirmation extends AppCompatActivity {
     private String urlCity = "https://api.shoutnet.co/shoutid/get_kota.php";
     private String urlDistrict = "https://api.shoutnet.co/shoutid/get_kecamatan.php";
 
+    private ProgressDialog loading;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,11 +83,27 @@ public class OrderConfirmation extends AppCompatActivity {
         initViewAction();
 
         Bundle bundle = getIntent().getExtras();
-        qtyItems = bundle.getIntArray("qtyItems");
+        if (bundle != null) {
+            qtyItems = bundle.getIntArray("qtyItems");
+            Log.i("qty", "ayaan tah manggan mamam");
+        } else {
+            Log.i("bun", "null");
+        }
 
 //        FragmentManager fragmentManager = getFragmentManager();
 //        FragmentDestination destination = FragmentDestination.newInstance("dasdas", "dasdasd");
 //        fragmentManager.beginTransaction().add(R.id.frame_content_order, destination).commit();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                int[] tes = data.getIntArrayExtra("qty");
+                Log.i("qty", String.valueOf(tes[0]));
+            }
+        }
     }
 
     private void initViewAction() {
@@ -156,6 +176,7 @@ public class OrderConfirmation extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                loading.show();
                 edtValidate();
             }
         });
@@ -184,6 +205,8 @@ public class OrderConfirmation extends AppCompatActivity {
         lyZip = (TextInputLayout) findViewById(R.id.ly_zip_dest);
 
         btnSubmit = (Button) findViewById(R.id.btn_submit_destination);
+        loading = Loading.newInstance(OrderConfirmation.this);
+        loading.setMessage("Sending consignee data");
     }
 
     private void getData(Map<String, String> param, int method, String url, final Spinner spinner) {
@@ -295,7 +318,9 @@ public class OrderConfirmation extends AppCompatActivity {
                     intent.putExtra("qtyItems", qtyItems);
                     intent.putExtra("jsonResponse", response);
                     intent.putExtra("bundle", bundle);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     startActivity(intent);
+//                    startActivityForResult(intent,1);
                 }
             }
 
