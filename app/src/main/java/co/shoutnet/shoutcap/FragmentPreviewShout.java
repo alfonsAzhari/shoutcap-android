@@ -163,7 +163,7 @@ public class FragmentPreviewShout extends Fragment {
             }
 
             @Override
-            public void OnFaliure() {
+            public void OnFailure() {
                 loading.dismiss();
             }
         });
@@ -232,7 +232,7 @@ public class FragmentPreviewShout extends Fragment {
             }
 
             @Override
-            public void OnFaliure() {
+            public void OnFailure() {
                 loading.dismiss();
             }
         });

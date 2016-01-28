@@ -31,7 +31,7 @@ public class VolleyRequest {
             public void onErrorResponse(VolleyError error) {
 //                Log.i("error", error.getMessage());
 //                    capsResult.OnFailure(error.getMessage());
-                listenter.OnFaliure();
+                listenter.OnFailure();
             }
         }) {
             @Override
@@ -56,6 +56,6 @@ public class VolleyRequest {
     public interface RequestListener {
         void OnSuccess(String response);
 
-        void OnFaliure();
+        void OnFailure();
     }
 }

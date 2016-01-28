@@ -63,6 +63,7 @@ public class FragmentDestination extends Fragment {
     private String result;
     private boolean[] emptyField;
     private ProgressDialog loading;
+    private ProgressDialog progressDialog;
 
     private FetchData fetchData;
     private ArrayAdapter<String> adapter;
@@ -85,6 +86,10 @@ public class FragmentDestination extends Fragment {
         if (destModel == null) {
             destModel = new DestinationModel();
         }
+
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setProgressStyle(android.R.style.Widget_ProgressBar_Large);
+        progressDialog.setCancelable(false);
 
         loading = Loading.newInstance(getActivity());
         loading.setMessage("Sending consignee data");
@@ -150,7 +155,8 @@ public class FragmentDestination extends Fragment {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loading.show();
+//                loading.show();
+                progressDialog.show();
                 edtValidate();
             }
         });
@@ -271,7 +277,7 @@ public class FragmentDestination extends Fragment {
             }
 
             @Override
-            public void OnFaliure() {
+            public void OnFailure() {
                 loading.dismiss();
                 Toast.makeText(getActivity(), "Try Again", Toast.LENGTH_SHORT).show();
             }

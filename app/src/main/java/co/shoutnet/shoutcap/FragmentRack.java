@@ -21,6 +21,7 @@ import co.shoutnet.shoutcap.adapter.RackAdapter;
 import co.shoutnet.shoutcap.model.CapsModel;
 import co.shoutnet.shoutcap.model.ModelAdapterRack;
 import co.shoutnet.shoutcap.model.ModelRack;
+import co.shoutnet.shoutcap.model.ModelSyncRack;
 import co.shoutnet.shoutcap.utility.DBCapsHelper;
 import co.shoutnet.shoutcap.utility.DialogConfirm;
 import co.shoutnet.shoutcap.utility.Parser;
@@ -64,7 +65,8 @@ public class FragmentRack extends Fragment {
         dbCapsHelper = new DBCapsHelper(getActivity());
         racks = dbCapsHelper.getRackData();
         if (racks.size() > 0) {
-            Log.i("rack", String.valueOf(racks.get(0).getImgRack()));
+            //sync from server
+            fetchUrlRack();
         } else {
             Log.i("rack", "null");
         }
@@ -105,12 +107,40 @@ public class FragmentRack extends Fragment {
         return rootView;
     }
 
+    private void fetchUrlRack() {
+        Map<String, String> params = new HashMap<>();
+        String url = "https://api.shoutnet.co/shoutcap/get_rack.php";
+        params.put("shoutid", user.get("shoutId"));
+        params.put("sessionid", user.get("sessionId"));
+
+        new VolleyRequest().request(getActivity(), Request.Method.POST, url, params, new VolleyRequest.RequestListener() {
+            @Override
+            public void OnSuccess(String response) {
+                ModelSyncRack syncRack = new ModelSyncRack();
+                try {
+                    syncRack = Parser.getSyncRack(response);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                ArrayList<ModelSyncRack.Item> items = syncRack.getItem();
+                MappingImage(items);
+            }
+
+            @Override
+            public void OnFailure() {
+
+            }
+        });
+    }
+
+    private void MappingImage(ArrayList<ModelSyncRack.Item> items) {
+
+    }
+
     private void act(String url, final String id, final char act, final int position) {
         Map<String, String> params = new HashMap<>();
         params.put("shoutid", user.get("shoutId"));
         params.put("sessionid", user.get("sessionId"));
-//        params.put("shoutid", "devtest");
-//        params.put("sessionid", "fab19834f4aac1c399b1273245d7b648");
         params.put("from", "app");
         params.put("id_rack", id);
 
@@ -139,7 +169,7 @@ public class FragmentRack extends Fragment {
             }
 
             @Override
-            public void OnFaliure() {
+            public void OnFailure() {
 
             }
         });

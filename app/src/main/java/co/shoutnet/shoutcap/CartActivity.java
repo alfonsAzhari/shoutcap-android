@@ -156,17 +156,6 @@ public class CartActivity extends AppCompatActivity {
                     params.put("shoutid", "devtest");
                     params.put("sessionid", "fab19834f4aac1c399b1273245d7b648");
                     params.put("id_cart", id);
-//                    new DeleteCap().deleteData("https://api.shoutnet.co/shoutcap/delete_cart.php", params, new CartListenter() {
-//                        @Override
-//                        public void OnSuccess(String response) {
-//
-//                        }
-//
-//                        @Override
-//                        public void OnFaliure() {
-//
-//                        }
-//                    });
 
                     new VolleyRequest().request(getApplicationContext(), Request.Method.POST, url, params, new VolleyRequest.RequestListener() {
                         @Override
@@ -175,7 +164,7 @@ public class CartActivity extends AppCompatActivity {
                         }
 
                         @Override
-                        public void OnFaliure() {
+                        public void OnFailure() {
 
                         }
                     });
@@ -287,28 +276,7 @@ public class CartActivity extends AppCompatActivity {
         }
 
         String url = "https://api.shoutnet.co/shoutcap/update_qty_voucher_cart.php";
-//        new DeleteCap().deleteData(url, params, new CartListenter() {
-//            @Override
-//            public void OnSuccess(String response) {
-//                ModelOnlyResult result = new ModelOnlyResult();
-//                try {
-//                    result = Parser.getResult(response);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
 //
-//                if (result.getResult().equals("success")) {
-//                    Intent intent = new Intent(getApplicationContext(), OrderConfirmation.class);
-//                    intent.putExtra("qtyItems", qtyItem);
-//                    startActivity(intent);
-//                }
-//            }
-//
-//            @Override
-//            public void OnFaliure() {
-//                Toast.makeText(getApplicationContext(), "Upload data is failed", Toast.LENGTH_SHORT).show();
-//            }
-//        });
         new VolleyRequest().request(getApplicationContext(), Request.Method.POST, url, params, new VolleyRequest.RequestListener() {
             @Override
             public void OnSuccess(String response) {
@@ -328,10 +296,17 @@ public class CartActivity extends AppCompatActivity {
             }
 
             @Override
-            public void OnFaliure() {
+            public void OnFailure() {
                 loading.dismiss();
             }
         });
+    }
+
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
     }
 
     private void initToolbar() {
@@ -349,7 +324,7 @@ public class CartActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_cart, menu);
         return true;
     }
 
