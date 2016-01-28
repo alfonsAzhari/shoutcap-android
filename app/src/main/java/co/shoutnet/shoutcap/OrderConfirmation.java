@@ -253,7 +253,7 @@ public class OrderConfirmation extends AppCompatActivity {
             }
 
             @Override
-            public void OnFaliure() {
+            public void OnFailure() {
 
             }
         });
@@ -325,35 +325,11 @@ public class OrderConfirmation extends AppCompatActivity {
             }
 
             @Override
-            public void OnFaliure() {
+            public void OnFailure() {
 
             }
         });
-//        new VolleyRequest().request(getApplicationContext(), Request.Method.POST, url, params, new VolleyRequest.RequestListener() {
-//            @Override
-//            public void OnSuccess(String response) {
-//                Log.i("json", response);
-//                ModelResponseCheckout modelResult = new ModelResponseCheckout();
-//                try {
-//                    modelResult = Parser.getResultCheckout(response);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
 //
-//                if (modelResult.getResult().equals("success")) {
-//                    Intent intent = new Intent(getApplicationContext(), ActivityCheckout.class);
-//                    intent.putExtra("qtyItems", qtyItems);
-//                    intent.putExtra("jsonResponse", response);
-//                    intent.putExtra("bundle",bundle);
-//                    startActivity(intent);
-//                }
-//            }
-//
-//            @Override
-//            public void OnFaliure() {
-//
-//            }
-//        });
     }
 
     private boolean validateName() {

@@ -11,21 +11,21 @@ import java.util.List;
 
 import co.shoutnet.shoutcap.model.ModelCapModel;
 import co.shoutnet.shoutcap.model.ModelCaraBayar;
+import co.shoutnet.shoutcap.model.ModelCart;
 import co.shoutnet.shoutcap.model.ModelColor;
 import co.shoutnet.shoutcap.model.ModelHistoryReward;
 import co.shoutnet.shoutcap.model.ModelInbox;
 import co.shoutnet.shoutcap.model.ModelInboxDetail;
 import co.shoutnet.shoutcap.model.ModelInvoice;
 import co.shoutnet.shoutcap.model.ModelMessage;
-import co.shoutnet.shoutcap.model.ModelOrderHistory;
-import co.shoutnet.shoutcap.model.ModelPaymentConfirmation;
-import co.shoutnet.shoutcap.model.ModelSignIn;
-import co.shoutnet.shoutcap.model.ModelCart;
 import co.shoutnet.shoutcap.model.ModelOnlyResult;
+import co.shoutnet.shoutcap.model.ModelOrderHistory;
 import co.shoutnet.shoutcap.model.ModelProvince;
 import co.shoutnet.shoutcap.model.ModelQty;
 import co.shoutnet.shoutcap.model.ModelRack;
 import co.shoutnet.shoutcap.model.ModelResponseCheckout;
+import co.shoutnet.shoutcap.model.ModelSignIn;
+import co.shoutnet.shoutcap.model.ModelSyncRack;
 import co.shoutnet.shoutcap.model.ModelVoucher;
 import co.shoutnet.shoutcap.model.ModelVoucherCart;
 
@@ -141,5 +141,10 @@ public class Parser {
     public static ModelResponseCheckout getResultCheckout(String json) throws IOException {
         gson = new Gson();
         return gson.fromJson(json, ModelResponseCheckout.class);
+    }
+
+    public static ModelSyncRack getSyncRack(String json) throws IOException {
+        gson = new Gson();
+        return gson.fromJson(json, ModelSyncRack.class);
     }
 }

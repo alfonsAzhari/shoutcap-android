@@ -28,7 +28,6 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -225,7 +224,7 @@ public class ActivityPaymentConfirmation extends AppCompatActivity {
             }
 
             @Override
-            public void OnFaliure() {
+            public void OnFailure() {
                 Toast.makeText(mContext, "Sending data failed", Toast.LENGTH_SHORT).show();
             }
         });
@@ -345,51 +344,6 @@ public class ActivityPaymentConfirmation extends AppCompatActivity {
         }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
     }
 
-    private class Watcher implements TextWatcher {
-        private View view;
-
-        public Watcher(View view) {
-            this.view = view;
-        }
-
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-            switch (view.getId()) {
-                case R.id.edit_nama_pemesan_payment_confirmation:
-                    validateNama();
-                    break;
-                case R.id.edit_no_hp_payment_confirmation:
-                    validateHP();
-                    break;
-                case R.id.edit_email_payment_confirmation:
-                    validateEmail();
-                    break;
-                case R.id.edit_id_order_payment_confirmation:
-                    validateIdOrder();
-                    break;
-                case R.id.edit_tanggal_pembayaran_payment_confirmation:
-                    validateTanggalPembayaran();
-                    break;
-                case R.id.edit_pemilik_rekening_payment_confirmation:
-                    validatePemilikRekening();
-                    break;
-                case R.id.edit_jumlah_uang_payment_confirmation:
-                    validateJumlahUang();
-                    break;
-            }
-        }
-    }
-
     private boolean validateNama() {
         if (namaPemesan.getText().toString().trim().isEmpty()){
             lytNamaPemesan.setError("Masukan nama pemesan");
@@ -471,5 +425,50 @@ public class ActivityPaymentConfirmation extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private class Watcher implements TextWatcher {
+        private View view;
+
+        public Watcher(View view) {
+            this.view = view;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            switch (view.getId()) {
+                case R.id.edit_nama_pemesan_payment_confirmation:
+                    validateNama();
+                    break;
+                case R.id.edit_no_hp_payment_confirmation:
+                    validateHP();
+                    break;
+                case R.id.edit_email_payment_confirmation:
+                    validateEmail();
+                    break;
+                case R.id.edit_id_order_payment_confirmation:
+                    validateIdOrder();
+                    break;
+                case R.id.edit_tanggal_pembayaran_payment_confirmation:
+                    validateTanggalPembayaran();
+                    break;
+                case R.id.edit_pemilik_rekening_payment_confirmation:
+                    validatePemilikRekening();
+                    break;
+                case R.id.edit_jumlah_uang_payment_confirmation:
+                    validateJumlahUang();
+                    break;
+            }
+        }
     }
 }

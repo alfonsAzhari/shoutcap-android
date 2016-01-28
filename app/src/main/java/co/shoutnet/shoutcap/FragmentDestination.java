@@ -277,7 +277,7 @@ public class FragmentDestination extends Fragment {
             }
 
             @Override
-            public void OnFaliure() {
+            public void OnFailure() {
                 loading.dismiss();
                 Toast.makeText(getActivity(), "Try Again", Toast.LENGTH_SHORT).show();
             }
