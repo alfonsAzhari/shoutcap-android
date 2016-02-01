@@ -70,7 +70,7 @@ public class RegistrationService extends IntentService {
         }
     }
 
-    private void sendRegistrationToServer(final String token) throws IOException {
+    private void sendRegistrationToServer(String token) throws IOException {
         HashMap<String, String> user;
         SessionManager manager;
 
@@ -79,8 +79,9 @@ public class RegistrationService extends IntentService {
 
         OkHttpClient client = new OkHttpClient();
         RequestBody requestBody = new FormEncodingBuilder()
-                .add("regId", token)
-                .add("userId", user.get("shoutId"))
+                .add("username", user.get("shoutId"))
+                .add("userid", user.get("sessionId"))
+                .add("token", token)
                 .build();
         Request request = new Request.Builder()
                 .url(ConfigGCM.SERVER_URL)
