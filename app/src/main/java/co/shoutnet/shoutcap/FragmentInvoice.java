@@ -77,9 +77,9 @@ public class FragmentInvoice extends Fragment {
         user = sessionManager.getUserDetails();
 
         final Bundle bundle = getArguments();
-        Log.i("id invoice", user.get("shoutId"));
-        Log.i("session invoice", user.get("sessionId"));
-        Log.i("id order invoice", bundle.getString(ID_ORDER));
+//        Log.i("id invoice", user.get("shoutId"));
+//        Log.i("session invoice", user.get("sessionId"));
+//        Log.i("id order invoice", bundle.getString(ID_ORDER));
 
         fetchData(ApiReferences.getInvoice(), bundle.getString(ID_ORDER));
 
@@ -106,7 +106,7 @@ public class FragmentInvoice extends Fragment {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.i("result", response.toString());
+//                Log.i("result", response.toString());
                 ModelInvoice invoice = new ModelInvoice();
                 try {
                     invoice = Parser.getInvoice(response.toString());
@@ -115,7 +115,7 @@ public class FragmentInvoice extends Fragment {
                 }
 
                 if (invoice.getResult().equals("success")) {
-                    Log.i("img", invoice.getItem());
+//                    Log.i("img", invoice.getItem());
                     imgInvoice.setVisibility(View.VISIBLE);
                     Glide.with(mContext).load(invoice.getItem()).into(imgInvoice);
                 }

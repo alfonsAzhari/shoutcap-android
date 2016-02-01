@@ -90,7 +90,7 @@ public class FragmentOrderHistory extends Fragment {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.i("json", response.toString());
+//                Log.i("json", response.toString());
 
                 try {
                     orderHistory = Parser.getOrderHistory(response.toString());
@@ -98,7 +98,7 @@ public class FragmentOrderHistory extends Fragment {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                Log.i("result", orderHistory.getResult());
+//                Log.i("result", orderHistory.getResult());
                 if (orderHistory.getResult().equals("success")) {
                     orderHistories = new ArrayList<>();
                     for (ModelOrderHistory.Item item : orderHistory.getItem()) {
@@ -114,7 +114,7 @@ public class FragmentOrderHistory extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("error volley", error.toString());
+//                Log.e("error volley", error.toString());
             }
         }) {
             @Override

@@ -85,9 +85,9 @@ public class OrderConfirmation extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             qtyItems = bundle.getIntArray("qtyItems");
-            Log.i("qty", "ayaan tah manggan mamam");
+//            Log.i("qty", "ayaan tah manggan mamam");
         } else {
-            Log.i("bun", "null");
+//            Log.i("bun", "null");
         }
 
 //        FragmentManager fragmentManager = getFragmentManager();
@@ -101,7 +101,7 @@ public class OrderConfirmation extends AppCompatActivity {
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
                 int[] tes = data.getIntArrayExtra("qty");
-                Log.i("qty", String.valueOf(tes[0]));
+//                Log.i("qty", String.valueOf(tes[0]));
             }
         }
     }
@@ -297,7 +297,7 @@ public class OrderConfirmation extends AppCompatActivity {
         bundle.putString("address", address);
 
         //send data to server
-        Log.i("info", "redeh to upload data");
+//        Log.i("info", "redeh to upload data");
 
         Map<String, String> params = mappingData();
 
@@ -305,7 +305,7 @@ public class OrderConfirmation extends AppCompatActivity {
         new VolleyRequest().request(getApplicationContext(), Request.Method.POST, url, params, new VolleyRequest.RequestListener() {
             @Override
             public void OnSuccess(String response) {
-                Log.i("json", response);
+//                Log.i("json", response);
                 ModelResponseCheckout modelResult = new ModelResponseCheckout();
                 try {
                     modelResult = Parser.getResultCheckout(response);

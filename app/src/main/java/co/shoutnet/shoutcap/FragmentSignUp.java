@@ -122,7 +122,7 @@ public class FragmentSignUp extends Fragment {
 //            }
 //        }, 3000);
 
-        Log.i("click", "OK");
+//        Log.i("click", "OK");
     }
 
     private void post(String url) {
@@ -133,8 +133,8 @@ public class FragmentSignUp extends Fragment {
         new VolleyRequest().request(getActivity(), Request.Method.POST, url, params, new VolleyRequest.RequestListener() {
             @Override
             public void OnSuccess(String response) {
-                Log.i("json", response);
-                Log.i("char", response.substring(11, 12));
+//                Log.i("json", response);
+//                Log.i("char", response.substring(11, 12));
                 if (response.substring(11, 12).equals("s")) {
                     try {
                         modelRegister = Parser.getRegister(response.toString());

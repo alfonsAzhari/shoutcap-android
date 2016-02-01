@@ -110,14 +110,14 @@ public class FragmentInbox extends Fragment {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.i("json", response.toString());
+//                Log.i("json", response.toString());
 
                 try {
                     inbox = Parser.getInbox(response.toString());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                Log.i("result", inbox.getResult());
+//                Log.i("result", inbox.getResult());
                 if (inbox.getResult().equals("success")) {
                     inboxes = new ArrayList<>();
                     for (ModelInbox.Item item : inbox.getItem()) {
@@ -132,7 +132,7 @@ public class FragmentInbox extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("error volley", error.toString());
+//                Log.e("error volley", error.toString());
             }
         }) {
             @Override

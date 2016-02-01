@@ -42,19 +42,19 @@ public class RegistrationService extends IntentService {
 
         try {
             InstanceID instanceID = InstanceID.getInstance(this);
-            Log.i("senderID", String.valueOf(R.string.gcm_defaultSenderId));
+//            Log.i("senderID", String.valueOf(R.string.gcm_defaultSenderId));
 //            String token = instanceID.getToken(getString(R.string.gcm_defaultSenderId), GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
             String token = instanceID.getToken(ConfigGCM.GOOGLE_SENDER_ID, GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
 //            instanceID.deleteToken(getString(R.string.gcm_defaultSenderId), GoogleCloudMessaging.INSTANCE_ID_SCOPE);
 
-            Log.i(TAG, "GCM Reg Token: " + token);
+//            Log.i(TAG, "GCM Reg Token: " + token);
 
             sendRegistrationToServer(token);
             subscribeTopic(token);
 
             sharedPreferences.edit().putBoolean(ConfigGCM.SENT_TOKEN_TO_SERVER, true).apply();
         } catch (IOException e) {
-            Log.d(TAG, "Failed to complete token refresh", e);
+//            Log.d(TAG, "Failed to complete token refresh", e);
 
             sharedPreferences.edit().putBoolean(ConfigGCM.SENT_TOKEN_TO_SERVER, false).apply();
         }
@@ -89,7 +89,7 @@ public class RegistrationService extends IntentService {
 
         Response response = client.newCall(request).execute();
         if (!response.isSuccessful()) {
-            Log.i(TAG, response.body().toString());
+//            Log.i(TAG, response.body().toString());
         }
     }
 }

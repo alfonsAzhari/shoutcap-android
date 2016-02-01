@@ -23,7 +23,7 @@ public class VolleyRequest {
         StringRequest stringRequest = new StringRequest(method, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.i("response", response);
+//                Log.i("response", response);
                 listenter.OnSuccess(response);
             }
         }, new Response.ErrorListener() {

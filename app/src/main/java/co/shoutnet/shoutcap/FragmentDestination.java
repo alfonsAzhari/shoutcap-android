@@ -272,7 +272,7 @@ public class FragmentDestination extends Fragment {
         new VolleyRequest().request(getActivity(), Request.Method.POST, url, params, new VolleyRequest.RequestListener() {
             @Override
             public void OnSuccess(String response) {
-                Log.i("json", response);
+//                Log.i("json", response);
                 loading.dismiss();
             }
 
@@ -376,13 +376,13 @@ public class FragmentDestination extends Fragment {
                 @Override
                 public void onResponse(String response) {
                     requestResult = response;
-                    Log.i("json", response);
+//                    Log.i("json", response);
                     listener.OnDataLoaded(response);
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.e("error", error.getMessage());
+//                    Log.e("error", error.getMessage());
                 }
             }) {
                 @Override

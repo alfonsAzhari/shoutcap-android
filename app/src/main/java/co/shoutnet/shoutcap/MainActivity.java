@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
             if (apiAvailability.isUserResolvableError(resultCode)) {
                 apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICE_RESOLUTION_REQUEST).show();
             } else {
-                Log.i(TAG, "This device is not supported");
+//                Log.i(TAG, "This device is not supported");
                 finish();
             }
             return false;
@@ -391,10 +391,10 @@ public class MainActivity extends AppCompatActivity {
                 FragmentPromo fragmentPromo = new FragmentPromo();
                 fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragmentPromo).commit();
             } else {
-                Log.i("Point MainActivity", "Unknown Point");
+//                Log.i("Point MainActivity", "Unknown Point");
             }
         } else {
-            Log.i("Bundle MainActivity", "empty");
+//            Log.i("Bundle MainActivity", "empty");
         }
     }
 }

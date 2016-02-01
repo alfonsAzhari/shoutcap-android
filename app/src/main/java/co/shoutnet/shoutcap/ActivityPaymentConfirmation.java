@@ -231,7 +231,7 @@ public class ActivityPaymentConfirmation extends AppCompatActivity {
         new VolleyRequest().request(mContext, Request.Method.POST, url, params, new VolleyRequest.RequestListener() {
             @Override
             public void OnSuccess(String response) {
-                Log.i("json", response);
+//                Log.i("json", response);
                 try {
                     modelMessage = Parser.getMessage(response.toString());
                 } catch (IOException e) {
@@ -271,14 +271,14 @@ public class ActivityPaymentConfirmation extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.i("result", response.toString());
+//                Log.i("result", response.toString());
                 try {
                     caraBayar = Parser.getCaraBayar(response.toString());
 
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                Log.i("result", caraBayar.getResult());
+//                Log.i("result", caraBayar.getResult());
                 if (caraBayar.getResult().equals("success")) {
                     caraBayars = new ArrayList<>();
                     caraBayars = caraBayar.getItem();
@@ -296,7 +296,7 @@ public class ActivityPaymentConfirmation extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("error volley", error.toString());
+//                Log.e("error volley", error.toString());
             }
         });
 

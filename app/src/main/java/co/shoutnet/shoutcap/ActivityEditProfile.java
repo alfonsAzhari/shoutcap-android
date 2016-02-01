@@ -204,7 +204,7 @@ public class ActivityEditProfile extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.i("volley error", error.toString());
+//                Log.i("volley error", error.toString());
             }
         });
 

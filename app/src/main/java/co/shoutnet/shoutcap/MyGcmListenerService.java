@@ -24,9 +24,9 @@ public class MyGcmListenerService extends GcmListenerService {
         String message = data.getString("message");
         String point = data.getString("point");
 
-        Log.v(TAG, message);
-        Log.v(TAG, point);
-        Log.v(TAG, from);
+//        Log.v(TAG, message);
+//        Log.v(TAG, point);
+//        Log.v(TAG, from);
         if (from.startsWith("/topics/global")) {
             isTopic = true;
             sendNotification(message, isTopic, point);

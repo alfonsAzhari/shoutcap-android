@@ -91,7 +91,7 @@ public class FragmentInboxDetail extends Fragment {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.i("result", response.toString());
+//                Log.i("result", response.toString());
                 ModelInboxDetail inboxDetail = new ModelInboxDetail();
                 try {
                     inboxDetail = Parser.getInboxDetail(response.toString());

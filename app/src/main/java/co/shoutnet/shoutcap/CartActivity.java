@@ -135,7 +135,7 @@ public class CartActivity extends AppCompatActivity {
                     modelAdapterCarts.remove(position);
                     total = 0;
                     capName = new String[modelAdapterCarts.size()];
-                    Log.i("size", String.valueOf(modelAdapterCarts.size()));
+//                    Log.i("size", String.valueOf(modelAdapterCarts.size()));
                     if (modelAdapterCarts.size() > 0) {
                         for (int i = 0; i < modelAdapterCarts.size(); i++) {
                             capName[i] = modelAdapterCarts.get(i).getName();
@@ -205,7 +205,7 @@ public class CartActivity extends AppCompatActivity {
 //                View v=recyclerView.getChildAt(0);
 //                EditText editText=(EditText)v.findViewById(R.id.edt_count_cart);
                 try {
-                    Log.i("new json", Parser.getJsonCart(obj));
+//                    Log.i("new json", Parser.getJsonCart(obj));
                     jsonQty = Parser.getJsonCart(obj);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -231,10 +231,10 @@ public class CartActivity extends AppCompatActivity {
             @Override
             public void resultItemVoucher(int item, String voucherCode) {
 //                if (item != null && voucherCode != null) {
-                Log.i("item selected", String.valueOf(item));
-                Log.i("voucher code", voucherCode);
+//                Log.i("item selected", String.valueOf(item));
+//                Log.i("voucher code", voucherCode);
                 String id = data.get(item);
-                Log.i("id", id);
+//                Log.i("id", id);
                 List<ModelVoucherCart> toJson = Collections.synchronizedList(new ArrayList<ModelVoucherCart>());
 
                 ModelVoucherCart modelVoucher = new ModelVoucherCart();
@@ -244,7 +244,7 @@ public class CartActivity extends AppCompatActivity {
                 toJson.add(modelVoucher);
 
                 try {
-                    Log.i("json", Parser.getJsonVoucher(toJson));
+//                    Log.i("json", Parser.getJsonVoucher(toJson));
                     jsonVoucher = Parser.getJsonVoucher(toJson);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -265,11 +265,11 @@ public class CartActivity extends AppCompatActivity {
 //        params.put("shoutid", "devtest");
 //        params.put("sessionid", "fab19834f4aac1c399b1273245d7b648");
         if (jsonQty != null) {
-            Log.i("jsonQty", "not null");
+//            Log.i("jsonQty", "not null");
             params.put("qty", jsonQty);
         }
         if (jsonVoucher != null) {
-            Log.i("jsonVoucher", "not null");
+//            Log.i("jsonVoucher", "not null");
             params.put("voucher", jsonVoucher);
         } else {
             params.put("voucher", "");
@@ -356,20 +356,20 @@ public class CartActivity extends AppCompatActivity {
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
-                    Log.i("response", response);
+//                    Log.i("response", response);
                     listenter.OnSuccess(response);
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.i("error", error.getMessage());
+//                    Log.i("error", error.getMessage());
                     listenter.OnFaliure();
 //                    capsResult.OnFailure(error.getMessage());
                 }
             }) {
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
-                    Log.i("param", param.get("shoutid"));
+//                    Log.i("param", param.get("shoutid"));
                     return param;
                 }
 

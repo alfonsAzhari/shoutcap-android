@@ -119,7 +119,7 @@ public class RecyclerSwipeTouchListener implements RecyclerView.OnItemTouchListe
                     child.getHitRect(rect);
                     if (rect.contains(x, y)) {
                         childView = child;
-                        Log.i("child", String.valueOf(i));
+//                        Log.i("child", String.valueOf(i));
                         break;
                     }
                 }
@@ -219,7 +219,7 @@ public class RecyclerSwipeTouchListener implements RecyclerView.OnItemTouchListe
             }
 
             case MotionEvent.ACTION_MOVE: {
-                Log.i("event", "move");
+//                Log.i("event", "move");
                 if (velocityTracker == null || paused) {
                     break;
                 }

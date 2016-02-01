@@ -112,7 +112,7 @@ public class FragmentSignIn extends Fragment {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, ApiReferences.getUrlLogin(), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.i("response volley", response.toString());
+//                Log.i("response volley", response.toString());
 
                 try {
                     modelSignIn = Parser.getReturnSignIn(response.toString());
@@ -137,7 +137,7 @@ public class FragmentSignIn extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("error volley", error.toString());
+//                Log.e("error volley", error.toString());
                 loading.dismiss();
             }
         }) {
@@ -175,7 +175,7 @@ public class FragmentSignIn extends Fragment {
         final String shoutid = edtShoutId.getText().toString();
         final String password = edtpassword.getText().toString();
 
-        Log.i("TAG", "Login Start");
+//        Log.i("TAG", "Login Start");
 
         btnSignIn.setEnabled(false);
 

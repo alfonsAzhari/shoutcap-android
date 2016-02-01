@@ -153,7 +153,7 @@ public class ActivityCheckout extends AppCompatActivity {
 
     private void bindData(ArrayList<ModelResponseCheckout> checkouts) {
         ModelResponseCheckout.Item item = checkouts.get(0).getItem();
-        Log.i("bundle name", consigneeBundle.getString("phone"));
+//        Log.i("bundle name", consigneeBundle.getString("phone"));
 
         txtName.setText(consigneeBundle.getString("name"));
         txtphone.setText(consigneeBundle.getString("phone"));

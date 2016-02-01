@@ -82,9 +82,9 @@ public class FragmentPreviewShout extends Fragment {
         }
 
         if (new InternetConnection().IsConnected(getActivity())) {
-            Log.i("conn", "connected");
+//            Log.i("conn", "connected");
         } else {
-            Log.i("conn", "disconnect");
+//            Log.i("conn", "disconnect");
             btnAddCart.setEnabled(false);
             btnAddRack.setEnabled(false);
             Toast.makeText(getActivity(), "Pastikan smartphone anda terkoneksi dengan internet", Toast.LENGTH_SHORT).show();

@@ -96,7 +96,7 @@ public class FragmentVoucher extends Fragment {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.i("json", response.toString());
+//                Log.i("json", response.toString());
 
                 try {
                     voucher = Parser.getVoucher(response.toString());
@@ -104,7 +104,7 @@ public class FragmentVoucher extends Fragment {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                Log.i("result", voucher.getResult());
+//                Log.i("result", voucher.getResult());
                 if (voucher.getResult().equals("success")) {
                     vouchers = new ArrayList<>();
                     for (ModelVoucher.Item item : voucher.getItem()) {
@@ -123,7 +123,7 @@ public class FragmentVoucher extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("error volley", error.toString());
+//                Log.e("error volley", error.toString());
             }
         }) {
             @Override

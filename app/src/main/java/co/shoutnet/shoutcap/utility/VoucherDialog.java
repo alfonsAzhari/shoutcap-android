@@ -61,7 +61,7 @@ public class VoucherDialog extends DialogFragment {
                         } else {
                             dialogListener.resultItemVoucher(itemSelected, edtVoucher.getText().toString());
                         }
-                        Log.i("sel", String.valueOf(itemSelected));
+//                        Log.i("sel", String.valueOf(itemSelected));
 
                     }
                 })

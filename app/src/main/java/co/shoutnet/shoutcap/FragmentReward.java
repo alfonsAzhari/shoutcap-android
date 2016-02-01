@@ -95,24 +95,24 @@ public class FragmentReward extends Fragment {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.i("json", response.toString());
+//                Log.i("json", response.toString());
 
                 try {
                     model = Parser.getRewardHistory(response.toString());
                 } catch (IOException e) {
-                    Log.e("IOException", e.toString());
+//                    Log.e("IOException", e.toString());
                 }
 
-                Log.i("result", model.getResult());
+//                Log.i("result", model.getResult());
 
                 if (model.getResult().equals("success")) {
                     rewards = new ArrayList<>();
 
                     for (ModelHistoryReward.Item item : model.getItem()) {
-                        Log.i("bobot coin", item.getBobotCoin());
-                        Log.i("coin", item.getJumlahCoin());
-                        Log.i("bobot poin", item.getBobotPoint());
-                        Log.i("poin", item.getJumlahPoint());
+//                        Log.i("bobot coin", item.getBobotCoin());
+//                        Log.i("coin", item.getJumlahCoin());
+//                        Log.i("bobot poin", item.getBobotPoint());
+//                        Log.i("poin", item.getJumlahPoint());
 
                         rewards.add(new ModelAdapterReward(item.getHistory(), item.getDate(), item.getBobotCoin() + item.getJumlahCoin(), item.getBobotPoint() + item.getJumlahPoint()));
                     }

@@ -60,14 +60,14 @@ public class PreviewActivity extends AppCompatActivity {
 //                                Uri uri=new URI(file.toURI()+"/image.png");
                         imageView.setImageURI(Uri.parse(file.toURI() + "/image.png"));
                     }
-                    Log.i("directory", "exist");
+//                    Log.i("directory", "exist");
                 } else {
                     if (out != null) {
                         bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
                         out.close();
                         imageView.setImageURI(Uri.parse(file.toURI() + "/image.png"));
                     }
-                    Log.i("directory", "doesn't exist");
+//                    Log.i("directory", "doesn't exist");
                 }
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -75,7 +75,7 @@ public class PreviewActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-        Log.i("path", Environment.getExternalStorageDirectory().toString() + "/shoutcap");
+//        Log.i("path", Environment.getExternalStorageDirectory().toString() + "/shoutcap");
     }
 
 

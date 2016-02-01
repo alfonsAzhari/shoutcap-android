@@ -208,7 +208,7 @@ public class FragmentCreateShout extends Fragment {
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
             webView.loadUrl("javascript:changeFontColor('" + color.get(i).getCode() + "')");
-            Log.i("code", color.get(i).getCode());
+//            Log.i("code", color.get(i).getCode());
             capsModel.setColor(color.get(i).getId());
 //            Log.i("id color", String.valueOf(color.get(i).getId()));
 
@@ -271,7 +271,7 @@ public class FragmentCreateShout extends Fragment {
                             return true;
                         }
                     } catch (Exception e) {
-                        Log.e("Swipe Exception", e.toString());
+//                        Log.e("Swipe Exception", e.toString());
                     }
                     return false;
                 }
@@ -333,15 +333,15 @@ public class FragmentCreateShout extends Fragment {
             capsModel.setLine(jsonObject.optInt("line"));
             capsModel.setFontsize(jsonObject.optInt("fontsize"));
 
-            Log.i("name", capsModel.getName());
-            Log.i("id model", String.valueOf(capsModel.getModel()));
-            Log.i("size", capsModel.getSize());
-            Log.i("font", capsModel.getFont());
-            Log.i("font size", String.valueOf(capsModel.getFontsize()));
-            Log.i("font color", String.valueOf(capsModel.getColor()));
-            Log.i("text", capsModel.getText());
-            Log.i("line", String.valueOf(capsModel.getLine()));
-            Log.i("image", capsModel.getBaseImage());
+//            Log.i("name", capsModel.getName());
+//            Log.i("id model", String.valueOf(capsModel.getModel()));
+//            Log.i("size", capsModel.getSize());
+//            Log.i("font", capsModel.getFont());
+//            Log.i("font size", String.valueOf(capsModel.getFontsize()));
+//            Log.i("font color", String.valueOf(capsModel.getColor()));
+//            Log.i("text", capsModel.getText());
+//            Log.i("line", String.valueOf(capsModel.getLine()));
+//            Log.i("image", capsModel.getBaseImage());
 
 //            DBCapsHelper dbCapsHelper = new DBCapsHelper(context);
 //            dbCapsHelper.addCap(capsModel);

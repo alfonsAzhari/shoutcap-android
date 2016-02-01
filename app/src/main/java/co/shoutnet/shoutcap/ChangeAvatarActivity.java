@@ -134,7 +134,7 @@ public class ChangeAvatarActivity extends AppCompatActivity {
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             uri = data.getData();
-            Log.i("uri", getRealPathFromUriApiBelow19(this, uri));
+//            Log.i("uri", getRealPathFromUriApiBelow19(this, uri));
 
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
@@ -208,7 +208,7 @@ public class ChangeAvatarActivity extends AppCompatActivity {
                 }
 
             } catch (IOException e) {
-                Log.e("Exception Change Avatar", e.toString());
+//                Log.e("Exception Change Avatar", e.toString());
             }
         }
     }

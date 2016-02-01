@@ -68,7 +68,7 @@ public class FragmentRack extends Fragment {
             //sync from server
             fetchUrlRack();
         } else {
-            Log.i("rack", "null");
+//            Log.i("rack", "null");
         }
         layoutManager = new GridLayoutManager(getActivity().getApplicationContext(), 3);
         adapter = new RackAdapter(getActivity(), racks, new RackAdapter.RackListener() {
