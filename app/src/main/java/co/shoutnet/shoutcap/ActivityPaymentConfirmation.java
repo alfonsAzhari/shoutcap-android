@@ -3,6 +3,7 @@ package co.shoutnet.shoutcap;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -243,7 +244,7 @@ public class ActivityPaymentConfirmation extends AppCompatActivity {
             }
 
             @Override
-            public void OnFaliure() {
+            public void OnFailure() {
                 loading.dismiss();
                 Toast.makeText(mContext, "Sending data failed", Toast.LENGTH_SHORT).show();
             }
@@ -348,6 +349,13 @@ public class ActivityPaymentConfirmation extends AppCompatActivity {
                     if (view == tanggalPembayaran) {
                         datePickerDialog.setTitle("Tanggal Pembayaran");
                         datePickerDialog.show();
+
+                        datePickerDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                            @Override
+                            public void onCancel(DialogInterface dialogInterface) {
+                                tanggalPembayaran.clearFocus();
+                            }
+                        });
                     }
                 }
             }

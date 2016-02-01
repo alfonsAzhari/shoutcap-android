@@ -2,284 +2,284 @@
 <items version="2" >
 
     <item
-        jar="/Users/codelabs/Documents/android-sdk-macosx/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.1-67b171d051e2c8fc2fcc9b829640b5780cbb79c4.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/7.8.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="4a135d56554069e5d0ff80e3220e887e57146ee5">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/classes-8c1e1c1a232510e3fc788bd28c02f26aeb798192.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/7.8.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="c2ac04c5b232f6f0658ee4f1c13be09cd76406e2">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/classes-ccef3811e8b613203b9e72265b6fd4c8187a01d3.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/7.8.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="d11330ea68c0d964d30d5caed1f27e6b1488b189">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/classes-95669075ff6b3defba1237ffded951c3fc5fc0d1.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/7.8.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="1ff30fa49c07a08c3035d7218a3efebf5680d522">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/classes-ec72e76aaf76d432f98b0e66e378ec818697f388.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.6.0/98476622f10715998eacf9240d6b479f12c66143/okio-1.6.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="98476622f10715998eacf9240d6b479f12c66143">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/okio-1.6.0-ac19837fbae0a83ebb51b82b08115c7e4d1ecadd.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.4.4/b31526a230871fbe285fbcbe2813f9c0839ae9b0/httpcore-4.4.4.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="b31526a230871fbe285fbcbe2813f9c0839ae9b0">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/httpcore-4.4.4-9eefffd38473ff904c7adcfccf3b4c2d2c4592c7.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/22.2.1/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="3abb4b88f5a8a0584a9b01d3170d7165f12f8588">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/classes-3a2e114e53f68a93f885fa7557fd58ca63cc9dfa.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp-urlconnection/2.4.0/a0c195f14cefc7597e0bebf22c3e7b43920dcf4/okhttp-urlconnection-2.4.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="0a0c195f14cefc7597e0bebf22c3e7b43920dcf4">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/okhttp-urlconnection-2.4.0-04781e0d22de1768d64684bdd7abf9345922a61b.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/22.2.1/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="e1fa5e1123997a55e3ed65b44892993ff4b58cfe">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/classes-f4a11bbbad31ae29d79e350ceffaaed247eba23e.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/7.8.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="c5cafb324568d954780abb858c25db7ce675ab3c">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/classes-077bdd3b57f0d19880c11f36cca6176502b645f3.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-drive/7.8.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="42a1ee578b62fd1bd28b3307a679dc9ba0791587">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/classes-75fec6c87338450b9ec022d516b1a6bb72ae0cbd.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-plus/7.8.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="2491ae1b2a848af1f4f0c795f3117c1bd6a1989f">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/classes-24e38161c21d84a25f5e91729e9f3d24d8ad31f4.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-fitness/7.8.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="77a9dcb5f8b1dba36aacaa9c150eb0942dbea158">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/classes-130f55b3ed4adb11b4637eadb90c0d7f59300ead.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appinvite/7.8.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="98137c4d12c50923f5809852b1ef4d1c4e162081">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/classes-d6033fd0a7110f5162ad56efd5dc54f05593e5b6.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appstate/7.8.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="edea92852b40eee716e910af8dad9eeaa58fb0e1">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/classes-17ff067439cfc4e94015e83404ffb748fc62ee80.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-panorama/7.8.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="6e85edfc9b5346d216e50ccef1f8e825504144a3">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/classes-19330b80130d5c4fcfb47f683eabea25951e3093.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-games/7.8.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="2e24e5f1b11170163028277de63f709e42525db4">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/classes-b012d4017d8b3d16a8207a841ced214b40780407.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp/2.4.0/40340c0748190fe897baf7bffbc1b282734294e5/okhttp-2.4.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="40340c0748190fe897baf7bffbc1b282734294e5">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/okhttp-2.4.0-89d820ca582ace160cfeb428c3d48175c86125e1.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/classes-b4ad88296d88cbe70eeda444852f9e74339e0303.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="f8efd0096475e0daf054267b61544e10dc776503">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/classes-76076c3504f7f6e4623075ae8d37d1d463690ea7.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/.gradle/caches/modules-2/files-2.1/com.mcxiaoke.volley/library/1.0.19/a8f23f65fc1e522ee4a1a697ee569901a46741fa/library-1.0.19.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="a8f23f65fc1e522ee4a1a697ee569901a46741fa">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/library-1.0.19-4491055ceae45f93a724f21d76fe4f501b85ec59.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-vision/7.8.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="b99f0b78bbcb76b915bc6529a83b65d4d46990dd">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/classes-7c13e21d635a9ef166f7a8c2eb47cfb555c305be.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/3.6.0/a7537446a030da8eb0da4c71424d16c2589f6c4a/glide-3.6.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="a7537446a030da8eb0da4c71424d16c2589f6c4a">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/glide-3.6.0-7292ab57932b953ef390c9ad355ea0681d4268a8.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/exploded-aar/com.android.support/design/22.2.1/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="1821601ddbec5ff125653097812823388700af74">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/classes-540bf79435ba1906fedec7eab34cd69e22c01fc9.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/7.8.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="e23ea11124bb700eeddd4ab7aa848c615f493850">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/classes-1bf3c84b898d23bff26c6999b2dd2dc6d251af82.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/7.8.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="0124ce31248c0e8acfa2b28283c6d1a4d76e73d2">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/classes-64fa4544bf75f44f550a5889eda7a82bd3f18c60.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/7.8.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="130b32ed466fa0f63efd4c7d6250ccd2ed506790">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/classes-31a7b779b85c77c0e63fec2b273f216090a079c8.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.0.0-RC1/be7e96331952019f16dc52dce09ab25df29353d7/okhttp-3.0.0-RC1.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="be7e96331952019f16dc52dce09ab25df29353d7">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/okhttp-3.0.0-RC1-43e82f883567e0501c15035bf883619dab5bd31d.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3.1/ecb6e1f8e4b0e84c4b886c2f14a1500caf309757/gson-2.3.1.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/gson-2.3.1-4bd9198c313458c42357b0362e93169b58e3dead.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/7.8.0/jars/classes.jar"
+        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\7.8.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="c756d14e99d39471e99013a1e8fd2f3813ed42bf">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/classes-ae21d882e2547141b36ddfdde132cc2b85d349d6.jar" />
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-9bfe228cc41b871470ebaffcb3ec5ca65bd39027.jar" />
     </item>
     <item
-        jar="/Users/codelabs/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/picasso-2.5.2-ae6636e37667321fcc1bb40ab43ccf76a3a1abe1.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/7.8.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="cb6fab7a71fa9ec1f483d44c5fca65ab469d8aca">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/classes-16db8c6803b58feba725af704e0b5c18b4251f8b.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.1-b79afc6b987e5306e6f7482ef4f08fec945819cb.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="dcf8c83c3dead00a6c4fe313e95f7aaca20dc641">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/classes-bc45066927d9b2ce3125a11ccdb490b08fd017d8.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-nearby/7.8.0/jars/classes.jar"
+        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\7.8.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="adebe28e0c0c05d34a3bfd76f3275bf4d8ff87b6">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/classes-ac91a6d3977f81adf1dad09ceb3c2af89cf7f726.jar" />
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-3ef854b4dfc40d5d4940444f73e06da13926ebb2.jar" />
     </item>
     <item
-        jar="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-safetynet/7.8.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="166e458ee3b5fb5fcff0f936df3f3a788e6c54f3">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/classes-8322d12eb94e0def82718dc40fe41ee260e0112d.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.8.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="c0c912d58c9468b1f9d9769c8975afdf2c85d681">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/classes-3d5a77fe7ee2a7f31d785085bf7287b58f80d764.jar" />
-    </item>
-    <item
-        jar="/Users/codelabs/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpmime/4.5.1/96823b9421ebb9f490dec837d9f96134e864e3a7/httpmime-4.5.1.jar"
+        jar="C:\Users\Adam MB\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpmime\4.5.1\96823b9421ebb9f490dec837d9f96134e864e3a7\httpmime-4.5.1.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="96823b9421ebb9f490dec837d9f96134e864e3a7">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/httpmime-4.5.1-8d1492b74d09e188d8c4d6215f689fbe1ef59570.jar" />
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\httpmime-4.5.1-e71862f74e0cf1883d2fc1d5e350469a76cc6b4e.jar" />
     </item>
     <item
-        jar="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.2.0/jars/libs/internal_impl-22.2.0.jar"
+        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="b99f0b78bbcb76b915bc6529a83b65d4d46990dd">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-5ff567b442610479e1254dacf6a554c7d9b859fe.jar" />
+    </item>
+    <item
+        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="2e24e5f1b11170163028277de63f709e42525db4">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-9154751f4647a4ab9c8170c313c192ba84b832ee.jar" />
+    </item>
+    <item
+        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="130b32ed466fa0f63efd4c7d6250ccd2ed506790">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-5f6f8ecd38fdc2ab0a1fa9c2693d51b54ed4005a.jar" />
+    </item>
+    <item
+        jar="C:\Users\Adam MB\.gradle\caches\modules-2\files-2.1\com.mcxiaoke.volley\library\1.0.19\a8f23f65fc1e522ee4a1a697ee569901a46741fa\library-1.0.19.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a8f23f65fc1e522ee4a1a697ee569901a46741fa">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\library-1.0.19-67b682b9a7589cbee2a3fe8f65aa55d25f7c601d.jar" />
+    </item>
+    <item
+        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="2491ae1b2a848af1f4f0c795f3117c1bd6a1989f">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-f2b51ef89cb4f28676d522efe48f867d5d96e3e8.jar" />
+    </item>
+    <item
+        jar="C:\Users\Adam MB\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.0.0-RC1\be7e96331952019f16dc52dce09ab25df29353d7\okhttp-3.0.0-RC1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="be7e96331952019f16dc52dce09ab25df29353d7">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\okhttp-3.0.0-RC1-ae68a989066e4ab762f4b1588ae21ed69557bad3.jar" />
+    </item>
+    <item
+        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e23ea11124bb700eeddd4ab7aa848c615f493850">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-6aee597bee771cc5822e6449b84a49cd91027065.jar" />
+    </item>
+    <item
+        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appstate\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="edea92852b40eee716e910af8dad9eeaa58fb0e1">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-837aadfd5e98d04388088a875d7c30a398df178a.jar" />
+    </item>
+    <item
+        jar="C:\Users\Adam MB\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.3.1\ecb6e1f8e4b0e84c4b886c2f14a1500caf309757\gson-2.3.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\gson-2.3.1-63811d68b0d20cab6a27889b3b3d0d1acd41d657.jar" />
+    </item>
+    <item
+        jar="C:\Users\Adam MB\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\3.6.0\a7537446a030da8eb0da4c71424d16c2589f6c4a\glide-3.6.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a7537446a030da8eb0da4c71424d16c2589f6c4a">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\glide-3.6.0-45cfc38d87ec4b97dbee98db17f21d5e441e5d80.jar" />
+    </item>
+    <item
+        jar="C:\Users\Adam MB\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.6.0\98476622f10715998eacf9240d6b479f12c66143\okio-1.6.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="98476622f10715998eacf9240d6b479f12c66143">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\okio-1.6.0-69d26c40f3d5357e316aea83647a74233a3c0eb6.jar" />
+    </item>
+    <item
+        jar="C:\Users\Adam MB\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.2\7446d06ec8d4f7ffcc53f1da37c95f200dcb9387\picasso-2.5.2.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\picasso-2.5.2-84403529dee0cb3aad9f6892de1f066d50e9dff3.jar" />
+    </item>
+    <item
+        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\22.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="3abb4b88f5a8a0584a9b01d3170d7165f12f8588">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-c614e16817d6d164e7f412f6ec71f8a2aa0b90bf.jar" />
+    </item>
+    <item
+        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\libs\internal_impl-22.2.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.1-c6179478242304263f7dba9da3f9aeb886d0592e.jar" />
+    </item>
+    <item
+        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.android.support\design\22.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1821601ddbec5ff125653097812823388700af74">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-70093da27183d479456c6a2acd6f87ee9db45d32.jar" />
+    </item>
+    <item
+        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="0124ce31248c0e8acfa2b28283c6d1a4d76e73d2">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-a13b4c299380b2e8b49a5885979964ff7dbf352a.jar" />
+    </item>
+    <item
+        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="cb6fab7a71fa9ec1f483d44c5fca65ab469d8aca">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-92d07607904e31da6dab2310bb93150462412814.jar" />
+    </item>
+    <item
+        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d11330ea68c0d964d30d5caed1f27e6b1488b189">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-ddf982aa76ae990687180b675c6322d862bd2f1f.jar" />
+    </item>
+    <item
+        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\libs\internal_impl-22.2.0.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="0632f06970823b7e3436f649bfa65b47035c91d0">
-        <dex dex="/Users/codelabs/AndroidStudioProjects/shoutcap-android/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-355466815b7649a6bbb2332fb4b1057c0eef008b.jar" />
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-fa7c5f7274d32d37222c99971fd540df18fc27a1.jar" />
+    </item>
+    <item
+        jar="C:\Users\Adam MB\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp\okhttp\2.4.0\40340c0748190fe897baf7bffbc1b282734294e5\okhttp-2.4.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="40340c0748190fe897baf7bffbc1b282734294e5">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\okhttp-2.4.0-12b7d6fa172b18f64b04f03efcc0250daf7c7294.jar" />
+    </item>
+    <item
+        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-35d5c6dc104d648d04ed13c783d0c92fe9ad384b.jar" />
+    </item>
+    <item
+        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c0c912d58c9468b1f9d9769c8975afdf2c85d681">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-de158e754462a1da2c352dc9b0569f8db891f27d.jar" />
+    </item>
+    <item
+        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="77a9dcb5f8b1dba36aacaa9c150eb0942dbea158">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-3e3eb3a627cda9994547f4d034bdb3156043ee6d.jar" />
+    </item>
+    <item
+        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="6e85edfc9b5346d216e50ccef1f8e825504144a3">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-1bc7a4a11ef3ac16ca7b457fc9170a4956ca2898.jar" />
+    </item>
+    <item
+        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1ff30fa49c07a08c3035d7218a3efebf5680d522">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-fc3f7b3bea3f6aeed24ead6960ff6a6dd2e99cd5.jar" />
+    </item>
+    <item
+        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c2ac04c5b232f6f0658ee4f1c13be09cd76406e2">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-15450732dc1d277b5fbca937bdc77d6cbc3d8736.jar" />
+    </item>
+    <item
+        jar="C:\Users\Adam MB\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.1\support-annotations-22.2.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.1-072b1d2016057dc51467f76e713fcb5d501edaf9.jar" />
+    </item>
+    <item
+        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f8efd0096475e0daf054267b61544e10dc776503">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-e2f3be738acd0a093d985ce0c2d362c84fdc3f4e.jar" />
+    </item>
+    <item
+        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c5cafb324568d954780abb858c25db7ce675ab3c">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-f93239b3b9db23a7683ec3ce39a03178348eee34.jar" />
+    </item>
+    <item
+        jar="C:\Users\Adam MB\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpcore\4.4.4\b31526a230871fbe285fbcbe2813f9c0839ae9b0\httpcore-4.4.4.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="b31526a230871fbe285fbcbe2813f9c0839ae9b0">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\httpcore-4.4.4-0ee395cdece838799c39de310cbb57d8ee4eafc8.jar" />
+    </item>
+    <item
+        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="166e458ee3b5fb5fcff0f936df3f3a788e6c54f3">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-db529811b3cccf92043fd134caefb83995513bea.jar" />
+    </item>
+    <item
+        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\22.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e1fa5e1123997a55e3ed65b44892993ff4b58cfe">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-217adacb013779cb49c1a1d4cff5c8893dacbd3d.jar" />
+    </item>
+    <item
+        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="98137c4d12c50923f5809852b1ef4d1c4e162081">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-a7f0ce3afea2c278dbceaad8bfbd35039e8c2211.jar" />
+    </item>
+    <item
+        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="42a1ee578b62fd1bd28b3307a679dc9ba0791587">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-afa32568ed8bdc9f934e82dc3fabf298e71e2728.jar" />
+    </item>
+    <item
+        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="dcf8c83c3dead00a6c4fe313e95f7aaca20dc641">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-0ff07cbb925f39abbdef401fa43154487809e2f9.jar" />
+    </item>
+    <item
+        jar="E:\KP\github\shoutcap-android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4a135d56554069e5d0ff80e3220e887e57146ee5">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\classes-1ff6f0551cb045a60a757988ee673827a2c96dab.jar" />
+    </item>
+    <item
+        jar="C:\Users\Adam MB\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp\okhttp-urlconnection\2.4.0\a0c195f14cefc7597e0bebf22c3e7b43920dcf4\okhttp-urlconnection-2.4.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="0a0c195f14cefc7597e0bebf22c3e7b43920dcf4">
+        <dex dex="E:\KP\github\shoutcap-android\app\build\intermediates\pre-dexed\debug\okhttp-urlconnection-2.4.0-1c091c1bafffef2d7f53d603c865d986737da377.jar" />
     </item>
 
 </items>

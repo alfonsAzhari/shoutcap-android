@@ -162,7 +162,7 @@ public class FragmentSignUp extends Fragment {
             }
 
             @Override
-            public void OnFaliure() {
+            public void OnFailure() {
                 loading.dismiss();
                 Toast.makeText(getActivity(), "Sending data failed", Toast.LENGTH_SHORT).show();
             }
