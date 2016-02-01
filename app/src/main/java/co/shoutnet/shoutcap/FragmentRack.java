@@ -48,19 +48,6 @@ import co.shoutnet.shoutcap.utility.VolleyRequest;
  * Created by Codelabs on 9/2/2015.
  */
 
-/*
-* -get data from database
-* -checking data if null
-* -show loading
-* -fetching data for sync if not null
-* -get all url image file
-* -get image to bitmap using target
-* -convert bitmap in target to base64
-* -set base64 data to collection
-* -put all data to db
-* -notify data
-* -dismiss loading*/
-
 public class FragmentRack extends Fragment {
 
     RecyclerView recyclerView;
@@ -175,6 +162,7 @@ public class FragmentRack extends Fragment {
                         Log.i("id", itemId.getId());
                         idRackServer.add(Integer.valueOf(itemId.getId()));
                     }
+
                     for (int i = 0; i < idRack.size(); i++) {
                         if (!idRackServer.contains(idRack.get(i))) {
                             Log.i("id", idRack.get(i) + " deleted");
@@ -183,13 +171,7 @@ public class FragmentRack extends Fragment {
                             changeData('d', i);
                         }
                     }
-//                    for (Integer item:idRack){
-//                        if (!idRackServer.contains(item)){
-//                            Log.i("id",item+"deleted");
-//                            new DBCapsHelper(getActivity()).deleteData(item);
-//                            changeData('d',item,racks.size());
-//                        }
-//                    }
+
                     for (ModelSyncRack.Item item : items) {
                         if (idRack.contains(Integer.valueOf(item.getId()))) {
                             Log.i("idrack", String.valueOf(idRack.get(0)));
@@ -202,6 +184,7 @@ public class FragmentRack extends Fragment {
                             racks.add(adapterRack);
                         }
                     }
+
                     changeData('a', RecyclerView.NO_POSITION);
                 } else {
                     loading.dismiss();
