@@ -1,0 +1,8 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="co.shoutnet.shoutcap.ChangeAvatarActivity">
+    <item android:id="@+id/action_avatar_ok" android:title="@string/ava_ok"
+        android:orderInCategory="100" app:showAsAction="ifRoom"
+        android:icon="@mipmap/ic_check_white_24dp"/>
+</menu>

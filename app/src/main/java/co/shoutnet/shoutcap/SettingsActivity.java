@@ -58,17 +58,8 @@ public class SettingsActivity extends AppCompatActivity {
                     case 3:
                         break;
 
-                    case 4:final ProgressDialog progressDialog = new ProgressDialog(SettingsActivity.this);
-                        progressDialog.setIndeterminate(true);
-                        progressDialog.setMessage("Signing Out");
-                        progressDialog.show();
-                        new android.os.Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                progressDialog.dismiss();
-                                manager.logoutUser();
-                            }
-                        }, 3000);
+                    case 4:
+                        logout(3000);
                         break;
                 }
             }
@@ -102,6 +93,16 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void logout(long time) {
-
+        final ProgressDialog progressDialog = new ProgressDialog(SettingsActivity.this);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Signing Out");
+        progressDialog.show();
+        new android.os.Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                progressDialog.dismiss();
+                manager.logoutUser();
+            }
+        }, time);
     }
 }

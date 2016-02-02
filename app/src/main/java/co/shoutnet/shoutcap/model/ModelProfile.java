@@ -2,6 +2,8 @@ package co.shoutnet.shoutcap.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
 /**
  * Created by CodeLabs on 26/11/2015.
  */
@@ -40,7 +42,7 @@ public class ModelProfile {
         private String kodePos;
         @SerializedName("tgl_lahir")
         private String tglLahir;
-        private String minat;
+        private ArrayList<String> minat;
         @SerializedName("status_kerja")
         private String statusKerja;
 
@@ -124,11 +126,11 @@ public class ModelProfile {
             this.tglLahir = tglLahir;
         }
 
-        public String getMinat() {
+        public ArrayList<String> getMinat() {
             return minat;
         }
 
-        public void setMinat(String minat) {
+        public void setMinat(ArrayList<String> minat) {
             this.minat = minat;
         }
 
