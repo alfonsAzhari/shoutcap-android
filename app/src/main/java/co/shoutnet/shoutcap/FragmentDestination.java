@@ -164,7 +164,7 @@ public class FragmentDestination extends Fragment {
 
     private boolean validateName() {
         if (edtName.getText().toString().trim().isEmpty()) {
-            lyName.setError("Please insert consignee name");
+            lyName.setError("Masukkan nama pemerima");
             return false;
         } else {
             lyName.setErrorEnabled(false);
@@ -174,7 +174,7 @@ public class FragmentDestination extends Fragment {
 
     private boolean validatePhone() {
         if (edtPhone.getText().toString().trim().isEmpty()) {
-            lyPhone.setError("Please insert phone number");
+            lyPhone.setError("Masukkan nomor telepon");
             return false;
         } else {
             lyPhone.setErrorEnabled(false);
@@ -184,7 +184,7 @@ public class FragmentDestination extends Fragment {
 
     private boolean validateEmail() {
         if (edtEmail.getText().toString().trim().isEmpty()) {
-            lyEmail.setError("Please insert e-email");
+            lyEmail.setError("Masukkan e-mail");
             return false;
         } else {
             lyEmail.setErrorEnabled(false);
@@ -194,7 +194,7 @@ public class FragmentDestination extends Fragment {
 
     private boolean validateAddress() {
         if (edtAddress.getText().toString().trim().isEmpty()) {
-            lyAddrs.setError("Please insert destination address");
+            lyAddrs.setError("Masukkan alamat tujuan");
             return false;
         } else {
             lyAddrs.setErrorEnabled(false);
@@ -204,7 +204,7 @@ public class FragmentDestination extends Fragment {
 
     private boolean validateZip() {
         if (edtZipCode.getText().toString().trim().isEmpty()) {
-            lyZip.setError("Please insert zip code");
+            lyZip.setError("Masukkan kode POS");
             return false;
         } else {
             lyZip.setErrorEnabled(false);
@@ -242,27 +242,27 @@ public class FragmentDestination extends Fragment {
 
     private void edtValidate() {
         if (!validateName()) {
-            Toast.makeText(getActivity(), "Name field is empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Nama belum diisi", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (!validatePhone()) {
-            Toast.makeText(getActivity(), "Phone field is empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Nomor telepon belum diisi", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (!validateEmail()) {
-            Toast.makeText(getActivity(), "E-Mail field is empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "E-Mail belum diisi", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (!validateAddress()) {
-            Toast.makeText(getActivity(), "Address field is empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Alamat belum diisi", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (!validateZip()) {
-            Toast.makeText(getActivity(), "Zip code field is empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Kode POS belum diisi", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -279,7 +279,7 @@ public class FragmentDestination extends Fragment {
             @Override
             public void OnFailure() {
                 loading.dismiss();
-                Toast.makeText(getActivity(), "Try Again", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Coba lagi", Toast.LENGTH_SHORT).show();
             }
         });
     }

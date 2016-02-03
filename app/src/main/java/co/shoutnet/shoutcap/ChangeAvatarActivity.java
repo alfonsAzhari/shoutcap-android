@@ -196,13 +196,13 @@ public class ChangeAvatarActivity extends AppCompatActivity {
                             loading.dismiss();
                             sessionManager.updateAvatar(object.getString("url_avatar"));
                             user = sessionManager.getUserDetails();
-                            Toast.makeText(this, "Avatar Changed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, "Avatar telah berubah", Toast.LENGTH_SHORT).show();
                             //Log.i("url ava baru",user.get(SessionManager.KEY_URL_AVATAR));
                             this.finish();
                         }
                     } catch (JSONException e) {
                         loading.dismiss();
-                        Toast.makeText(this, "Connection failed, please try again later", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Koneksi terputus, coba lagi", Toast.LENGTH_SHORT).show();
                         //Log.e("Exception Response", e.toString());
                     }
                 }

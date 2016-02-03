@@ -246,7 +246,7 @@ public class ActivityPaymentConfirmation extends AppCompatActivity {
             @Override
             public void OnFailure() {
                 loading.dismiss();
-                Toast.makeText(mContext, "Sending data failed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "Pengiriman data gagal", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -419,7 +419,7 @@ public class ActivityPaymentConfirmation extends AppCompatActivity {
 
     private boolean validateNama() {
         if (namaPemesan.getText().toString().trim().isEmpty()){
-            lytNamaPemesan.setError("Masukan nama pemesan");
+            lytNamaPemesan.setError("Masukkan nama pemesan");
             return false;
         } else {
             lytNamaPemesan.setErrorEnabled(false);
@@ -429,7 +429,7 @@ public class ActivityPaymentConfirmation extends AppCompatActivity {
 
     private boolean validateHP() {
         if (nomorHP.getText().toString().trim().isEmpty()){
-            lytNomorHP.setError("Masukan nomor HP");
+            lytNomorHP.setError("Masukkan nomor telepon");
             return false;
         } else {
             lytNomorHP.setErrorEnabled(false);
@@ -439,7 +439,7 @@ public class ActivityPaymentConfirmation extends AppCompatActivity {
 
     private boolean validateEmail() {
         if (email.getText().toString().trim().isEmpty()){
-            lytEmail.setError("Masukan e-mail");
+            lytEmail.setError("Masukkan e-mail");
             return false;
         } else {
             lytEmail.setErrorEnabled(false);
@@ -449,7 +449,7 @@ public class ActivityPaymentConfirmation extends AppCompatActivity {
 
     private boolean validateIdOrder() {
         if (idOrder.getText().toString().trim().isEmpty()){
-            lytIdOrder.setError("Masukan ID order");
+            lytIdOrder.setError("Masukkan ID order");
             return false;
         } else {
             lytIdOrder.setErrorEnabled(false);
@@ -459,7 +459,7 @@ public class ActivityPaymentConfirmation extends AppCompatActivity {
 
     private boolean validateTanggalPembayaran() {
         if (tanggalPembayaran.getText().toString().trim().isEmpty()){
-            lytTanggalPembayaran.setError("Masukan tanggal pembayaran");
+            lytTanggalPembayaran.setError("Masukkan tanggal pembayaran");
             return false;
         } else {
             lytTanggalPembayaran.setErrorEnabled(false);
@@ -469,7 +469,7 @@ public class ActivityPaymentConfirmation extends AppCompatActivity {
 
     private boolean validatePemilikRekening() {
         if (pemilikRekening.getText().toString().trim().isEmpty()){
-            lytPemilikRekening.setError("Masukan nama pemilik rekening");
+            lytPemilikRekening.setError("Masukkan nama pemilik rekening");
             return false;
         } else {
             lytPemilikRekening.setErrorEnabled(false);
@@ -479,7 +479,7 @@ public class ActivityPaymentConfirmation extends AppCompatActivity {
 
     private boolean validateJumlahUang() {
         if (jumlahUang.getText().toString().trim().isEmpty()){
-            lytJumlahUang.setError("Masukan jumlah uang");
+            lytJumlahUang.setError("Masukkan jumlah uang");
             return false;
         } else {
             lytJumlahUang.setErrorEnabled(false);

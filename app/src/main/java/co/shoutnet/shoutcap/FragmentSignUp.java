@@ -86,22 +86,22 @@ public class FragmentSignUp extends Fragment {
 
     private void validate() {
         if (!validateShoutId()) {
-            Toast.makeText(getActivity(), "Name field is empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Nama belum diisi", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (!validatePass()) {
-            Toast.makeText(getActivity(), "Password field is empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Password belum diisi", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (!validateConfirm()) {
-            Toast.makeText(getActivity(), "Confirm Password field is empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Password konfirmasi belum diisi", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (!validateEmail()) {
-            Toast.makeText(getActivity(), "Email field is empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "E-mail belum diisi", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -164,7 +164,7 @@ public class FragmentSignUp extends Fragment {
             @Override
             public void OnFailure() {
                 loading.dismiss();
-                Toast.makeText(getActivity(), "Sending data failed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Pengiriman data gagal", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -232,7 +232,7 @@ public class FragmentSignUp extends Fragment {
 
     private boolean validateEmail() {
         if (edtEmail.getText().toString().trim().isEmpty()) {
-            lytEmail.setError("Please insert Email");
+            lytEmail.setError("Masukkan e-mail");
             return false;
         } else {
             lytEmail.setErrorEnabled(false);
@@ -242,11 +242,11 @@ public class FragmentSignUp extends Fragment {
 
     private boolean validateConfirm() {
         if (edtConfirmPassword.getText().toString().trim().isEmpty()) {
-            lytConfirm.setError("Please insert Confirm Password");
+            lytConfirm.setError("Masukkan password konfirmasi");
             return false;
         } else {
             if (!edtPassword.getText().toString().equals(edtConfirmPassword.getText().toString())) {
-                lytConfirm.setError("Password not match");
+                lytConfirm.setError("Password tidak sama");
                 return false;
             } else {
                 lytConfirm.setErrorEnabled(false);
@@ -257,7 +257,7 @@ public class FragmentSignUp extends Fragment {
 
     private boolean validatePass() {
         if (edtPassword.getText().toString().trim().isEmpty()) {
-            lytPassword.setError("Please insert Password");
+            lytPassword.setError("Masukkan password");
             return false;
         } else {
             lytPassword.setErrorEnabled(false);
@@ -267,7 +267,7 @@ public class FragmentSignUp extends Fragment {
 
     private boolean validateShoutId() {
         if (edtShoutId.getText().toString().trim().isEmpty()) {
-            lytShoutId.setError("Please insert Shout ID");
+            lytShoutId.setError("Masukkan Shout ID");
             return false;
         } else {
             lytShoutId.setErrorEnabled(false);

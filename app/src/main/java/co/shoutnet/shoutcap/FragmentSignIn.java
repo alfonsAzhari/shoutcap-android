@@ -77,11 +77,11 @@ public class FragmentSignIn extends Fragment {
             @Override
             public void onClick(View v) {
                 if (edtShoutId.getText().toString().equals("") && edtpassword.getText().toString().equals("")) {
-                    Toast.makeText(mContext, "ShoutID and Password are empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Shout ID dan password belum diisi", Toast.LENGTH_SHORT).show();
                 } else if (edtShoutId.getText().toString().equals("")) {
-                    Toast.makeText(mContext, "ShoutID is empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Shout ID belum diisi", Toast.LENGTH_SHORT).show();
                 } else if (edtpassword.getText().toString().equals("")) {
-                    Toast.makeText(mContext, "Password is empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Password belum diisi", Toast.LENGTH_SHORT).show();
                 } else {
                     login();
                 }
@@ -128,7 +128,7 @@ public class FragmentSignIn extends Fragment {
                     startActivity(i);
                     getActivity().finish();
                 } else {
-                    Toast.makeText(mContext, "Your ShoutId or Password are wrong", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Shout ID atau password salah", Toast.LENGTH_SHORT).show();
 
                     btnSignIn.setEnabled(true);
                 }

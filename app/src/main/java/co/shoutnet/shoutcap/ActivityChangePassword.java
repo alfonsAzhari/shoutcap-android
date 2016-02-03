@@ -198,15 +198,15 @@ public class ActivityChangePassword extends AppCompatActivity {
                 try {
                     JSONObject object = new JSONObject(response.toString());
                     if (object.getString("result").equals("success")) {
-                        Toast.makeText(mContext, "Password Changed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "Password telah berubah", Toast.LENGTH_SHORT).show();
                         ActivityChangePassword.this.finish();
                     } else {
-                        Toast.makeText(mContext, "Old Password you entered is invalid", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "Password yang dimasukkan salah", Toast.LENGTH_SHORT).show();
                     }
                     loading.dismiss();
                 } catch (JSONException e) {
                     loading.dismiss();
-                    Toast.makeText(mContext, "Connection Lost, please try again later", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Koneksi terputus, coba lagi", Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {

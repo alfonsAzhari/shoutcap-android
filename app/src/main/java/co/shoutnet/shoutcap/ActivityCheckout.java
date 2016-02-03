@@ -124,7 +124,7 @@ public class ActivityCheckout extends AppCompatActivity {
                     @Override
                     public void OnFailure() {
                         loading.dismiss();
-                        Toast.makeText(ActivityCheckout.this, "Try Again", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ActivityCheckout.this, "Coba lagi", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
