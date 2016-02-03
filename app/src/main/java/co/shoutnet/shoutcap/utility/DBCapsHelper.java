@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,7 +78,19 @@ public class DBCapsHelper extends SQLiteOpenHelper {
         values.put(KEY_LINE, capsModel.getLine());
         values.put(KEY_PRICE, capsModel.getPrice());
         values.put(KEY_URI, capsModel.getBaseImage());
-        Log.i("image", capsModel.getBaseImage());
+        values.put(KEY_STATUS, capsModel.getStatus());
+
+        db.insert(TB_NAME, null, values);
+        db.close();
+    }
+
+    public void addCapSync(CapsModel capsModel) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_ID, capsModel.getId());
+        values.put(KEY_TEXT, capsModel.getText());
+        values.put(KEY_URI, capsModel.getBaseImage());
         values.put(KEY_STATUS, capsModel.getStatus());
 
         db.insert(TB_NAME, null, values);
@@ -155,6 +166,23 @@ public class DBCapsHelper extends SQLiteOpenHelper {
         return data;
     }
 
+    public List<Integer> fetchingIDRack() {
+        List<Integer> data = new ArrayList<>();
+
+        String query = "SELECT id FROM " + TB_NAME + " WHERE status='rack'";
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                data.add(cursor.getInt(0));
+            } while (cursor.moveToNext());
+        }
+        db.close();
+        cursor.close();
+        return data;
+    }
+
     public CapsModel getRack(int id) {
         String query = "SELECT * FROM " + TB_NAME + " WHERE id= " + id;
 
@@ -188,7 +216,6 @@ public class DBCapsHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                Log.i("image", cursor.getString(0));
                 modelAdapterCart = new ModelAdapterCart();
                 modelAdapterCart.setId(cursor.getInt(0));
                 modelAdapterCart.setImage(cursor.getString(1));

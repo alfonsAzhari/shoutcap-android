@@ -97,10 +97,10 @@
         <activity
             android:name=".OrderConfirmation"
             android:label="@string/title_activity_order_confirmation"
-            android:parentActivityName=".CartActivity"></activity>
+            android:parentActivityName=".CartActivity" />
         <activity
             android:name=".ActivityCheckout"
-            android:parentActivityName=".OrderConfirmation"></activity>
+            android:parentActivityName=".OrderConfirmation" />
         <activity
             android:name=".ActivityChangePassword"
             android:parentActivityName=".SettingsActivity"
@@ -132,7 +132,8 @@
             android:name=".HelpActivity"
             android:label="@string/action_help"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
+        <activity android:name=".ActivityCreate"></activity>
     </application>
 
 </manifest>
