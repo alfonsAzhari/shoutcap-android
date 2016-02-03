@@ -3,8 +3,14 @@ package co.shoutnet.shoutcap.utility;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 import co.shoutnet.shoutcap.SignActivity;
 
@@ -66,7 +72,11 @@ public class SessionManager {
         editor.commit();
     }
 
-    public void addProfile(String name, String email, String phone, String gender, String address, String kec, String city, String province, String postalCode, String dateBirth, String minat, String workStatus) {
+    public void addProfile(String name, String email, String phone, String gender, String address, String kec, String city, String province, String postalCode, String dateBirth, ArrayList<String> minat, String workStatus) {
+
+        Set<String> minatSet = new HashSet<>();
+        minatSet.addAll(minat);
+
         editor.putString(KEY_NAME, name);
         editor.putString(KEY_EMAIL, email);
         editor.putString(KEY_PHONE, phone);
@@ -77,7 +87,7 @@ public class SessionManager {
         editor.putString(KEY_PROVINCE, province);
         editor.putString(KEY_POSTAL_CODE, postalCode);
         editor.putString(KEY_DATE_BIRTH, dateBirth);
-        editor.putString(KEY_MINAT, minat);
+        editor.putStringSet(KEY_MINAT, minatSet);
         editor.putString(KEY_WORK_STATUS, workStatus);
 
         editor.commit();
@@ -98,6 +108,10 @@ public class SessionManager {
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             mContext.startActivity(i);
         }
+    }
+
+    public Set<String> getUserMinat() {
+        return new HashSet<>(pref.getStringSet(KEY_MINAT, new HashSet<String>()));
     }
 
     public HashMap<String, String> getUserDetails() {
@@ -122,7 +136,6 @@ public class SessionManager {
         user.put(KEY_PROVINCE, pref.getString(KEY_PROVINCE, null));
         user.put(KEY_POSTAL_CODE, pref.getString(KEY_POSTAL_CODE, null));
         user.put(KEY_DATE_BIRTH, pref.getString(KEY_DATE_BIRTH, null));
-        user.put(KEY_MINAT, pref.getString(KEY_MINAT, null));
         user.put(KEY_WORK_STATUS, pref.getString(KEY_WORK_STATUS, null));
 
         return user;

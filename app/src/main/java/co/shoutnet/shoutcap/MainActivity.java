@@ -289,7 +289,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    NavigationView.OnNavigationItemSelectedListener navItemSelect = new NavigationView.OnNavigationItemSelectedListener() {
+    private NavigationView.OnNavigationItemSelectedListener navItemSelect = new NavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(MenuItem menuItem) {
 
@@ -299,6 +299,9 @@ public class MainActivity extends AppCompatActivity {
             FragmentCreateShout fragmentCreateShout;
             FragmentRack fragmentRack;
             FragmentManager fragmentManager = getFragmentManager();
+            if (fragmentManager.getBackStackEntryCount() > 0) {
+                fragmentManager.popBackStack();
+            }
 
             imgProfileAva.setVisibility(View.GONE);
             txtProfileName.setVisibility(View.GONE);

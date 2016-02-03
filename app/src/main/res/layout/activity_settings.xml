@@ -12,7 +12,6 @@
         <include
             android:id="@+id/toolbar_settings"
             layout="@layout/toolbar" />
-
     </android.support.design.widget.AppBarLayout>
 
     <ListView

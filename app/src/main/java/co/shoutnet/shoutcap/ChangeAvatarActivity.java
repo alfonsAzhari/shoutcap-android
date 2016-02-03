@@ -1,5 +1,6 @@
 package co.shoutnet.shoutcap;
 
+
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.CursorLoader;
@@ -20,13 +21,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
-import com.google.gson.JsonObject;
-
+import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -35,7 +31,6 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import co.shoutnet.shoutcap.utility.ApiReferences;
-import co.shoutnet.shoutcap.utility.Loading;
 import co.shoutnet.shoutcap.utility.SessionManager;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -53,7 +48,6 @@ public class ChangeAvatarActivity extends AppCompatActivity {
 
     private Button btnChange;
     private ImageView imgPreview;
-    private ProgressDialog loading;
 
     private HashMap<String, String> user;
 
@@ -66,7 +60,6 @@ public class ChangeAvatarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_avatar);
-        loading = Loading.newInstance(this);
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -134,7 +127,7 @@ public class ChangeAvatarActivity extends AppCompatActivity {
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             uri = data.getData();
-//            Log.i("uri", getRealPathFromUriApiBelow19(this, uri));
+            Log.i("uri", getRealPathFromUriApiBelow19(this, uri));
 
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
@@ -152,13 +145,10 @@ public class ChangeAvatarActivity extends AppCompatActivity {
 
         } else {
 
-//            ProgressDialog dialog = new ProgressDialog(this);
-//            dialog.setIndeterminate(true);
-//            dialog.setMessage("Please Wait");
-//            dialog.show();
-
-            loading.setMessage("Please wait");
-            loading.show();
+            ProgressDialog dialog = new ProgressDialog(this);
+            dialog.setIndeterminate(true);
+            dialog.setMessage("Please Wait");
+            dialog.show();
 
             try {
 
@@ -187,28 +177,30 @@ public class ChangeAvatarActivity extends AppCompatActivity {
 
                 Response response = client.newCall(request).execute();
 
+                Log.i("Avatar Response", response.body().string());
+
                 if (!response.isSuccessful()) {
                     throw new IOException("Unexpected code " + response);
                 } else {
                     try {
                         JSONObject object = new JSONObject(response.body().string());
                         if (object.getString("result").equals("success")) {
-                            loading.dismiss();
+                            dialog.dismiss();
                             sessionManager.updateAvatar(object.getString("url_avatar"));
                             user = sessionManager.getUserDetails();
-                            Toast.makeText(this, "Avatar telah berubah", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, "Avatar Changed", Toast.LENGTH_SHORT).show();
                             //Log.i("url ava baru",user.get(SessionManager.KEY_URL_AVATAR));
                             this.finish();
                         }
                     } catch (JSONException e) {
-                        loading.dismiss();
-                        Toast.makeText(this, "Koneksi terputus, coba lagi", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                        Toast.makeText(this, "Connection failed, please try again later", Toast.LENGTH_SHORT).show();
                         //Log.e("Exception Response", e.toString());
                     }
                 }
 
             } catch (IOException e) {
-//                Log.e("Exception Change Avatar", e.toString());
+                Log.e("Exception Change Avatar", e.toString());
             }
         }
     }

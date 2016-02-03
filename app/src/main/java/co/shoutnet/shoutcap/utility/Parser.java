@@ -24,6 +24,7 @@ import co.shoutnet.shoutcap.model.ModelProvince;
 import co.shoutnet.shoutcap.model.ModelQty;
 import co.shoutnet.shoutcap.model.ModelRack;
 import co.shoutnet.shoutcap.model.ModelResponseCheckout;
+import co.shoutnet.shoutcap.model.ModelProfile;
 import co.shoutnet.shoutcap.model.ModelSignIn;
 import co.shoutnet.shoutcap.model.ModelSyncRack;
 import co.shoutnet.shoutcap.model.ModelVoucher;
@@ -60,6 +61,12 @@ public class Parser {
         gson = new Gson();
 
         return gson.fromJson(json, ModelSignIn.class);
+    }
+
+    public static ModelProfile getProfile(String json) throws IOException {
+        gson = new Gson();
+
+        return gson.fromJson(json, ModelProfile.class);
     }
 
     public static ModelInbox getInbox(String json) throws IOException {

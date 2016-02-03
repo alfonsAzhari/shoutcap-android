@@ -42,6 +42,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".CartActivity"
+            android:label="@string/action_cart" />
+        <activity
+            android:name=".ChangeAvatarActivity"
+            android:label="@string/change_ava"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ActivityChangePassword"
+            android:parentActivityName=".SettingsActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ActivityAbout"
+            android:parentActivityName=".SettingsActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ActivityEditProfile"
+            android:parentActivityName=".SettingsActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ActivityHowToOrder"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ActivityPaymentConfirmation"
+            android:theme="@style/AppTheme" />
 
         <receiver
             android:name="com.google.android.gms.gcm.GcmReceiver"
