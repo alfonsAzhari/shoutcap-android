@@ -1,5 +1,7 @@
 package co.shoutnet.shoutcap;
 
+
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
@@ -19,8 +21,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-
 import com.bumptech.glide.Glide;
+import android.widget.Toast;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
@@ -140,7 +144,14 @@ public class ChangeAvatarActivity extends AppCompatActivity {
         if (uri == null) {
 
         } else {
+
+            ProgressDialog dialog = new ProgressDialog(this);
+            dialog.setIndeterminate(true);
+            dialog.setMessage("Please Wait");
+            dialog.show();
+
             try {
+
                 client = new OkHttpClient();
 
                 String path;
@@ -168,8 +179,25 @@ public class ChangeAvatarActivity extends AppCompatActivity {
 
                 Log.i("Avatar Response", response.body().string());
 
-                if (!response.isSuccessful())
+                if (!response.isSuccessful()) {
                     throw new IOException("Unexpected code " + response);
+                } else {
+                    try {
+                        JSONObject object = new JSONObject(response.body().string());
+                        if (object.getString("result").equals("success")) {
+                            dialog.dismiss();
+                            sessionManager.updateAvatar(object.getString("url_avatar"));
+                            user = sessionManager.getUserDetails();
+                            Toast.makeText(this, "Avatar Changed", Toast.LENGTH_SHORT).show();
+                            //Log.i("url ava baru",user.get(SessionManager.KEY_URL_AVATAR));
+                            this.finish();
+                        }
+                    } catch (JSONException e) {
+                        dialog.dismiss();
+                        Toast.makeText(this, "Connection failed, please try again later", Toast.LENGTH_SHORT).show();
+                        //Log.e("Exception Response", e.toString());
+                    }
+                }
 
             } catch (IOException e) {
                 Log.e("Exception Change Avatar", e.toString());

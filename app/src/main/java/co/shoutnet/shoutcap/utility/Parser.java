@@ -9,10 +9,12 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import co.shoutnet.shoutcap.model.ModelCapModel;
 import co.shoutnet.shoutcap.model.ModelColor;
 import co.shoutnet.shoutcap.model.ModelHistoryReward;
 import co.shoutnet.shoutcap.model.ModelInbox;
 import co.shoutnet.shoutcap.model.ModelInboxDetail;
+import co.shoutnet.shoutcap.model.ModelProfile;
 import co.shoutnet.shoutcap.model.ModelSignIn;
 
 /**
@@ -31,10 +33,25 @@ public class Parser {
         return gson.fromJson(json, listType);
     }
 
+    public static ArrayList<ModelCapModel> getModelFromJson(String json) throws FileNotFoundException {
+        gson = new Gson();
+
+        Type listType = new TypeToken<List<ModelCapModel>>() {
+        }.getType();
+
+        return gson.fromJson(json, listType);
+    }
+
     public static ModelSignIn getReturnSignIn(String json) throws IOException {
         gson = new Gson();
 
         return gson.fromJson(json, ModelSignIn.class);
+    }
+
+    public static ModelProfile getProfile(String json) throws IOException {
+        gson = new Gson();
+
+        return gson.fromJson(json, ModelProfile.class);
     }
 
     public static ModelInbox getInbox(String json) throws IOException {

@@ -45,6 +45,8 @@ public class SettingsActivity extends AppCompatActivity {
                 Intent intent;
                 switch (i) {
                     case 0:
+                        Intent intentEdit = new Intent(SettingsActivity.this, ActivityEditProfile.class);
+                        startActivity(intentEdit);
                         break;
 
                     case 1:
@@ -53,9 +55,13 @@ public class SettingsActivity extends AppCompatActivity {
                         break;
 
                     case 2:
+                        Intent intentChange = new Intent(SettingsActivity.this, ActivityChangePassword.class);
+                        startActivity(intentChange);
                         break;
 
                     case 3:
+                        Intent intentAbout = new Intent(SettingsActivity.this, ActivityAbout.class);
+                        startActivity(intentAbout);
                         break;
 
                     case 4:

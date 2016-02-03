@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="160dp"
     android:background="@color/color_primary"
+    android:orientation="vertical"
     android:paddingLeft="32dp"
     android:paddingStart="32dp">
 
@@ -11,7 +12,7 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_centerVertical="true"
-        android:src="@drawable/download" />
+        android:scaleType="fitXY" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -33,7 +34,6 @@
             android:id="@+id/txt_drawer_shout_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="fluorescent"
             android:textColor="@color/white" />
     </LinearLayout>
 
@@ -62,7 +62,6 @@
                 android:layout_width="48dp"
                 android:layout_height="24dp"
                 android:layout_gravity="center_vertical"
-                android:text="10000"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -83,10 +82,8 @@
                 android:layout_width="48dp"
                 android:layout_height="24dp"
                 android:layout_gravity="center_vertical"
-                android:text="100000"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
         </LinearLayout>
-
     </LinearLayout>
 </RelativeLayout>

@@ -1,62 +1,46 @@
 package co.shoutnet.shoutcap;
 
 import android.app.Fragment;
-import android.content.Context;
-import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Environment;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import co.shoutnet.shoutcap.model.CapsModel;
+import co.shoutnet.shoutcap.utility.DBCapsHelper;
 
 /**
  * Created by Alfons on 29/8/2015.
  */
 public class FragmentPreviewShout extends Fragment {
 
-    private static String IMAGE_ID = "IMAGE_ID";
-    private static String FONT_COLOR = "FONT_COLOR";
-    private static String FONT_SIZE = "FONT_SIZE";
-    private static String TEXT = "TEXT";
-    private static String FONT_STYLE = "FONT_STYLE";
-    private static String EDITTEXT_WIDTH = "EDITTEXT_WIDTH";
-    private static String EDITTEXT_HEIGHT = "EDITTEXT_HEIGHT";
-    private static String TEXT_WIDTH = "TEXT_WIDTH";
-    private static String TEXT_HEIGHT = "TEXT_HEIGHT";
-    private static String IMAGEVIEW_WIDTH = "IMAGEVIEW_WIDTH";
-    private static String IMAGEVIEW_HEIGHT = "IMAGEVIEW_HEIGHT";
-
-    private Context context;
-
+    private static CapsModel capsModel;
     private ImageView imgPreview;
+    private DBCapsHelper dbCapsHelper;
+    private Button btnAddRack;
+    private Button btnAddCart;
+    private Uri uri;
 
     public FragmentPreviewShout() {
 
     }
 
-    public static FragmentPreviewShout newInstance(int imageId, int imageViewWidth, int imageViewHeight, int fontColor, float fontSize, String[] text, String fontStyle, float editTextWidth, float editTextHeight, int[] textWidth, int[] textHeight) {
+    public static FragmentPreviewShout newInstance(String name, int idModel, String size, String font, int color, int fontSize, String text, int line, String image) {
 
-        Bundle args = new Bundle();
-        args.putInt(IMAGE_ID, imageId);
-        args.putInt(FONT_COLOR, fontColor);
-        args.putFloat(FONT_SIZE, fontSize);
-        args.putStringArray(TEXT, text);
-        args.putString(FONT_STYLE, fontStyle);
-        args.putFloat(EDITTEXT_WIDTH, editTextWidth);
-        args.putFloat(EDITTEXT_HEIGHT, editTextHeight);
-        args.putIntArray(TEXT_WIDTH, textWidth);
-        args.putIntArray(TEXT_HEIGHT, textHeight);
-        args.putInt(IMAGEVIEW_WIDTH, imageViewWidth);
-        args.putInt(IMAGEVIEW_HEIGHT, imageViewHeight);
+        capsModel = new CapsModel(name, text, idModel, size, font, color, fontSize, line, 0, image, "rack");
         FragmentPreviewShout fragment = new FragmentPreviewShout();
-        fragment.setArguments(args);
 
         return fragment;
     }
@@ -64,66 +48,96 @@ public class FragmentPreviewShout extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_preview_shout, container, false);
-
-        getActivity().setTitle("Preview ShoutCap");
-        context = getActivity();
-
-        Bundle bundle = getArguments();
-        int imageId = bundle.getInt(IMAGE_ID);
-        String[] shout = bundle.getStringArray(TEXT);
-        String font = bundle.getString(FONT_STYLE);
-        int color = bundle.getInt(FONT_COLOR);
-        float size = bundle.getFloat(FONT_SIZE);
-        float edtWidth = bundle.getFloat(EDITTEXT_WIDTH);
-        float edtHeight = bundle.getFloat(EDITTEXT_HEIGHT);
-        int[] textWidth = bundle.getIntArray(TEXT_WIDTH);
-        int[] textHeight = bundle.getIntArray(TEXT_HEIGHT);
-        int imageWidth = bundle.getInt(IMAGEVIEW_WIDTH);
-        int imageHeight = bundle.getInt(IMAGEVIEW_HEIGHT);
-
-        Log.i("image_id", String.valueOf(imageId));
-        Log.i("shout", shout[0]);
-        Log.i("font", font);
-        Log.i("color", String.valueOf(color));
-        Log.i("size", String.valueOf(size));
-        Log.i("edt_width", String.valueOf(edtWidth));
-        Log.i("txt_width", String.valueOf(textWidth));
-
         initView(rootView);
+        getActivity().setTitle("Preview ShoutCap");
+        dbCapsHelper=new DBCapsHelper(getActivity());
 
-        imgPreview.setImageDrawable(writeOnDrawable(context, shout, size, imageId, imageWidth, imageHeight, color, font, edtWidth, edtHeight, textWidth, textHeight));
+        byte[] decodeImage = Base64.decode(capsModel.getBaseImage(), Base64.DEFAULT);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(decodeImage, 0, decodeImage.length);
+
+        try {
+            imgPreview.setImageBitmap(bitmap);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        btnAddRack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addToRack();
+                btnAddRack.setEnabled(false);
+            }
+        });
+        btnAddCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addToCart();
+                btnAddCart.setEnabled(false);
+            }
+        });
+
         return rootView;
+    }
+
+    private void addToCart() {
+        //check connection
+        //post data
+        //get price
+        //save price
+
+        if (uri == null) {
+            uri = saveImageToStorage(capsModel.getBaseImage(), capsModel.getName());
+        }
+        capsModel.setBaseImage(uri.toString());
+        capsModel.setStatus("cart");
+        capsModel.setPrice(10000);
+        dbCapsHelper.addCap(capsModel);
+    }
+
+    private void addToRack() {
+        //check connection
+        //post data
+        //get price
+        //save price
+        if (uri == null) {
+            uri = saveImageToStorage(capsModel.getBaseImage(), capsModel.getName());
+        }
+        capsModel.setBaseImage(uri.toString());
+        dbCapsHelper.addCap(capsModel);
+    }
+
+    private Uri saveImageToStorage(String image, String name) {
+
+        String fileName = "/" + name + ".png";
+        Uri uri = null;
+        byte[] decoded = Base64.decode(image, Base64.DEFAULT);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(decoded, 0, decoded.length);
+
+        if (bitmap != null) {
+            File file = new File(Environment.getExternalStorageDirectory() + "/shoutcap");
+            if (!file.isDirectory()) {
+                file.mkdir();
+            }
+            uri = Uri.parse(file.toURI() + fileName);
+            FileOutputStream out;
+            try {
+                out = new FileOutputStream(file.getAbsolutePath() + fileName.toString());
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+                out.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+//        dbCapsHelper.updateUri(id,uri.toString());
+        return uri;
     }
 
     private void initView(View v) {
         imgPreview = (ImageView) v.findViewById(R.id.img_preview_hat);
+        btnAddCart = (Button) v.findViewById(R.id.btn_addcart_preview);
+        btnAddRack = (Button) v.findViewById(R.id.btn_addrack_preview);
     }
 
-    private BitmapDrawable writeOnDrawable(Context context, String[] shout, float textSize, int imageId, int imageViewWidth, int imageViewHeight, int fontColor, String fontStyle, float editTextWidth, float editTextHeight, int[] textWidth, int[] textHeight) {
-
-        Bitmap bm = BitmapFactory.decodeResource(context.getResources(), imageId).copy(Bitmap.Config.ARGB_8888, true);
-
-        AssetManager assetManager = context.getAssets();
-        Typeface style = Typeface.createFromAsset(assetManager, fontStyle);
-
-        Paint paint = new Paint();
-        paint.setStyle(Paint.Style.FILL);
-        paint.setColor(fontColor);
-        paint.setTypeface(style);
-        paint.setTextSize(textSize);
-        paint.setTextAlign(Paint.Align.CENTER);
-
-        Canvas canvas = new Canvas(bm);
-        float startY = ((bm.getHeight() - editTextHeight) / 2) + ((editTextHeight - textHeight[0]) / 2);
-        for (int i = 0; i < shout.length; i++) {
-            Log.i("Width", String.valueOf(imgPreview.getHeight()));
-            Log.i("Width", String.valueOf(editTextWidth));
-            float startX = ((imageViewWidth - editTextWidth) / 2) + ((editTextWidth - textWidth[i]) / 2);
-
-            canvas.drawText(shout[i], startX, startY, paint);
-            startY += textHeight[i] + textSize / 4;
-        }
-
-        return new BitmapDrawable(context.getResources(), bm);
-    }
 }

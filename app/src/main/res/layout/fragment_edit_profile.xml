@@ -25,9 +25,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:inputType="textPersonName"
                     android:layout_span="2"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:inputType="textPersonName" />
             </TableRow>
 
             <TableRow>
@@ -97,12 +97,12 @@
                     android:text="Provinsi" />
 
                 <Spinner
+                    android:id="@+id/spinner_provinsi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:id="@+id/spinner_provinsi"
-                    android:layout_weight="1"
-                    android:layout_span="2"/>
+                    android:layout_span="2"
+                    android:layout_weight="1" />
 
             </TableRow>
 
@@ -114,12 +114,12 @@
                     android:text="Kota" />
 
                 <Spinner
+                    android:id="@+id/spinner_kota"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:id="@+id/spinner_kota"
-                    android:layout_weight="1"
-                    android:layout_span="2"/>
+                    android:layout_span="2"
+                    android:layout_weight="1" />
             </TableRow>
 
             <TableRow>
@@ -130,12 +130,12 @@
                     android:text="Kecamatan" />
 
                 <Spinner
+                    android:id="@+id/spinner_kecamatan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:id="@+id/spinner_kecamatan"
-                    android:layout_weight="1"
-                    android:layout_span="2"/>
+                    android:layout_span="2"
+                    android:layout_weight="1" />
             </TableRow>
 
             <TableRow>
@@ -149,10 +149,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:maxLength="5"
-                    android:inputType="number"
                     android:layout_span="2"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:inputType="number"
+                    android:maxLength="5" />
             </TableRow>
 
             <TableRow>
@@ -166,9 +166,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:inputType="phone"
                     android:layout_span="2"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:inputType="phone" />
             </TableRow>
 
             <TableRow>
@@ -182,9 +182,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:inputType="textEmailAddress"
                     android:layout_span="2"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:inputType="textEmailAddress" />
             </TableRow>
 
             <TableRow>
@@ -202,9 +202,9 @@
 
                 <EditText
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:singleLine="true"
-                    android:layout_height="wrap_content" />
+                    android:singleLine="true" />
             </TableRow>
 
             <TableRow>
@@ -220,26 +220,31 @@
                     android:layout_marginLeft="16dp"
                     android:layout_span="2"
                     android:layout_weight="1">
+
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sekolah"/>
+                        android:text="Sekolah" />
+
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Kuliah"/>
+                        android:text="Kuliah" />
+
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Kerja"/>
+                        android:text="Kerja" />
+
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Kuliah+Kerja"/>
+                        android:text="Kuliah+Kerja" />
+
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Other"/>
+                        android:text="Other" />
                 </RadioGroup>
             </TableRow>
 
@@ -249,6 +254,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Minat" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -256,62 +262,76 @@
                     android:layout_span="2"
                     android:layout_weight="1"
                     android:orientation="vertical">
+
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Art"/>
+                        android:text="Art" />
+
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Book"/>
+                        android:text="Book" />
+
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Culinary"/>
+                        android:text="Culinary" />
+
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Culture"/>
+                        android:text="Culture" />
+
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Fashion"/>
+                        android:text="Fashion" />
+
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Games"/>
+                        android:text="Games" />
+
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Movie"/>
+                        android:text="Movie" />
+
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Music"/>
+                        android:text="Music" />
+
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Photography"/>
+                        android:text="Photography" />
+
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sport"/>
+                        android:text="Sport" />
+
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Standup Comedy"/>
+                        android:text="Standup Comedy" />
+
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Technology"/>
+                        android:text="Technology" />
+
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Travel"/>
+                        android:text="Travel" />
+
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Other"/>
+                        android:text="Other" />
                 </LinearLayout>
             </TableRow>
         </TableLayout>

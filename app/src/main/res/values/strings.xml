@@ -34,6 +34,10 @@
     <string name="choose_font">Select Font</string>
     <string name="choose_font_color">Select Font Color</string>
 
+    <string name="choose_province">Pilih Provinsi</string>
+    <string name="choose_city">Pilih Kota</string>
+    <string name="choose_kec">Pilih Kecamatan</string>
+
     <string-array name="cap_model_list">
         <item>Trucker Cap</item>
         <item>Baseball Cap</item>
@@ -183,26 +187,6 @@
         <item>Flock White</item>
     </string-array>
 
-    <array name="cap_trucker_classic_collection">
-        <item>@drawable/trucker_classic_curved_black</item>
-        <item>@drawable/trucker_classic_curved_red</item>
-    </array>
-
-    <array name="cap_trucker_color_collection">
-        <item>@drawable/trucker_color_curved_black</item>
-        <item>@drawable/trucker_color_curved_red</item>
-    </array>
-
-    <array name="cap_trucker_mixed_collection">
-        <item>@drawable/trucker_mixed_curved_blue</item>
-        <item>@drawable/trucker_mixed_curved_green</item>
-    </array>
-
-    <array name="cap_baseball_collection">
-        <item>@drawable/baseball_curved_black</item>
-        <item>@drawable/baseball_curved_red</item>
-    </array>
-
     <array name="color_collection">
         <item>@color/black</item>
         <item>@color/red</item>
@@ -210,6 +194,38 @@
     <string name="title_activity_sign">SignActivity</string>
 
     <string name="hello_world">Hello world!</string>
+
+    <declare-styleable name="ViewPagerIndicator">
+        <!-- Style of the circle indicator. -->
+        <attr name="vpiCirclePageIndicatorStyle" format="reference" />
+    </declare-styleable>
+
+    <attr name="centered" format="boolean" />
+    <attr name="selectedColor" format="color" />
+    <attr name="strokeWidth" format="dimension" />
+    <attr name="unselectedColor" format="color" />
+
+    <declare-styleable name="CirclePageIndicator">
+        <!-- Whether or not the indicators should be centered. -->
+        <attr name="centered" />
+        <!-- Color of the filled circle that represents the current page. -->
+        <attr name="fillColor" format="color" />
+        <!-- Color of the filled circles that represents pages. -->
+        <attr name="pageColor" format="color" />
+        <!-- Orientation of the indicator. -->
+        <attr name="android:orientation" />
+        <!-- Radius of the circles. This is also the spacing between circles. -->
+        <attr name="radius" format="dimension" />
+        <!-- Whether or not the selected indicator snaps to the circles. -->
+        <attr name="snap" format="boolean" />
+        <!-- Color of the open circles. -->
+        <attr name="strokeColor" format="color" />
+        <!-- Width of the stroke used to draw the circles. -->
+        <attr name="strokeWidth" />
+        <!-- View background -->
+        <attr name="android:background" />
+    </declare-styleable>
+
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="title_activity_promo">PromoActivity</string>
     <string name="title_activity_get_started">GetStartedActivity</string>

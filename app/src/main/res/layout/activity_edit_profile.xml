@@ -1,0 +1,372 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/toolbar_edit_profile"
+            layout="@layout/toolbar" />
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_primary_dark"
+                android:padding="12dp"
+                android:text="Biodata"
+                android:textColor="@android:color/white" />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:paddingTop="8dp">
+
+                <EditText
+                    android:id="@+id/edt_edit_profile_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nama" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp">
+
+                <EditText
+                    android:id="@+id/edt_edit_profile_birth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Tanggal Lahir" />
+            </android.support.design.widget.TextInputLayout>
+
+            <RadioGroup
+                android:id="@+id/radio_group_edit_jk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="8dp"
+                android:paddingLeft="28dp"
+                android:paddingRight="28dp">
+
+                <RadioButton
+                    android:id="@+id/radio_edit_male"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_button_radio"
+                    android:button="@null"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:text="Pria"
+                    android:textColor="@android:color/white" />
+
+                <RadioButton
+                    android:id="@+id/radio_edit_female"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_button_radio"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="Wanita"
+                    android:textColor="@android:color/white" />
+            </RadioGroup>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp">
+
+                <EditText
+                    android:id="@+id/edt_edit_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nomor HP" />
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="8dp"
+                android:text="Status" />
+
+            <RadioGroup
+                android:id="@+id/radio_group_edit_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp">
+
+                <RadioButton
+                    android:id="@+id/radio_edit_school"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sekolah" />
+
+                <RadioButton
+                    android:id="@+id/radio_edit_college"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kuliah" />
+
+                <RadioButton
+                    android:id="@+id/radio_edit_work"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kerja" />
+
+                <RadioButton
+                    android:id="@+id/radio_edit_college_work"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kuliah + Kerja" />
+
+                <RadioButton
+                    android:id="@+id/radio_edit_other"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Other" />
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="8dp"
+                android:text="Minat" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:orientation="vertical">
+
+                <TableRow>
+
+                    <CheckBox
+                        android:id="@+id/checkbox_edit_art"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Art" />
+
+                    <CheckBox
+                        android:id="@+id/checkbox_edit_music"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Music" />
+
+                </TableRow>
+
+                <TableRow>
+
+                    <CheckBox
+                        android:id="@+id/checkbox_edit_book"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Book" />
+
+                    <CheckBox
+                        android:id="@+id/checkbox_edit_photography"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Photography" />
+
+                </TableRow>
+
+                <TableRow>
+
+                    <CheckBox
+                        android:id="@+id/checkbox_edit_culinary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Culinary" />
+
+                    <CheckBox
+                        android:id="@+id/checkbox_edit_sport"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sport" />
+
+                </TableRow>
+
+                <TableRow>
+
+                    <CheckBox
+                        android:id="@+id/checkbox_edit_culture"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Culture" />
+
+                    <CheckBox
+                        android:id="@+id/checkbox_edit_standup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Standup Comedy" />
+
+                </TableRow>
+
+                <TableRow>
+
+                    <CheckBox
+                        android:id="@+id/checkbox_edit_fashion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fashion" />
+
+                    <CheckBox
+                        android:id="@+id/checkbox_edit_technology"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Technology" />
+
+                </TableRow>
+
+                <TableRow>
+
+                    <CheckBox
+                        android:id="@+id/checkbox_edit_games"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Games" />
+
+                    <CheckBox
+                        android:id="@+id/checkbox_edit_travel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Travel" />
+
+                </TableRow>
+
+                <TableRow>
+
+                    <CheckBox
+                        android:id="@+id/checkbox_edit_movie"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Movie" />
+
+                    <CheckBox
+                        android:id="@+id/checkbox_edit_other"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Other" />
+                </TableRow>
+
+            </TableLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@color/color_primary_dark"
+                android:padding="12dp"
+                android:text="Alamat"
+                android:textColor="@android:color/white" />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:paddingTop="8dp">
+
+                <EditText
+                    android:id="@+id/edt_edit_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Alamat" />
+            </android.support.design.widget.TextInputLayout>
+
+            <Spinner
+                android:id="@+id/spinner_edit_province"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:prompt="@string/choose_province"
+                android:spinnerMode="dialog" />
+
+            <Spinner
+                android:id="@+id/spinner_edit_city"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:prompt="@string/choose_city"
+                android:spinnerMode="dialog" />
+
+            <Spinner
+                android:id="@+id/spinner_edit_kecamatan"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:prompt="@string/choose_kec"
+                android:spinnerMode="dialog" />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp">
+
+                <EditText
+                    android:id="@+id/edt_edit_postal_kode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Kode POS" />
+            </android.support.design.widget.TextInputLayout>
+
+            <!--<TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@color/color_primary_dark"
+                android:padding="12dp"
+                android:text="Jejaring Sosial"
+                android:textColor="@android:color/white" />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:paddingTop="8dp">
+
+                <EditText
+                    android:id="@+id/edt_edit_twitter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Twitter" />
+            </android.support.design.widget.TextInputLayout>-->
+
+            <Button
+                android:id="@+id/btn_edit_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="simpan" />
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>
