@@ -72,7 +72,7 @@ public class DBCapsHelper extends SQLiteOpenHelper {
         values.put(KEY_TEXT, capsModel.getText());
         values.put(KEY_MODEL, capsModel.getModel());
         values.put(KEY_SIZE, capsModel.getSize());
-        values.put(KEY_FONT, capsModel.getColor());
+        values.put(KEY_FONT, capsModel.getFont());
         values.put(KEY_COLOR, capsModel.getColor());
         values.put(KEY_FONT_SIZE, capsModel.getFontsize());
         values.put(KEY_LINE, capsModel.getLine());
@@ -178,6 +178,24 @@ public class DBCapsHelper extends SQLiteOpenHelper {
                 data.add(cursor.getInt(0));
             } while (cursor.moveToNext());
         }
+        db.close();
+        cursor.close();
+        return data;
+    }
+
+    public List<Integer> fetchIDCart() {
+        List<Integer> data = new ArrayList<>();
+
+        String query = "SELECT id FROM " + TB_NAME + " WHERE status='cart'";
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                data.add(cursor.getInt(0));
+            } while (cursor.moveToNext());
+        }
+
         db.close();
         cursor.close();
         return data;

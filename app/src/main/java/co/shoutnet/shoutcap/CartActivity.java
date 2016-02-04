@@ -3,12 +3,16 @@ package co.shoutnet.shoutcap;
 import android.app.DialogFragment;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,7 +30,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -36,9 +44,11 @@ import java.util.Locale;
 import java.util.Map;
 
 import co.shoutnet.shoutcap.adapter.CartAdapter;
+import co.shoutnet.shoutcap.model.CapsModel;
 import co.shoutnet.shoutcap.model.ModelAdapterCart;
 import co.shoutnet.shoutcap.model.ModelOnlyResult;
 import co.shoutnet.shoutcap.model.ModelQty;
+import co.shoutnet.shoutcap.model.ModelSyncCart;
 import co.shoutnet.shoutcap.model.ModelVoucherCart;
 import co.shoutnet.shoutcap.utility.DBCapsHelper;
 import co.shoutnet.shoutcap.utility.Loading;
@@ -66,6 +76,7 @@ public class CartActivity extends AppCompatActivity {
     private ProgressDialog loading;
     private HashMap<String, String> user;
     private SessionManager manager;
+    private List<Integer> idCart;
 
     public static long getTotal() {
         return total;
@@ -96,7 +107,9 @@ public class CartActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         modelAdapterCarts = new DBCapsHelper(getApplicationContext()).getCartData();
-        if (modelAdapterCarts.size() > 0) {
+        if (modelAdapterCarts.size() < 1) {
+//            syncCartData();
+        } else {
             btnTotal.setEnabled(true);
         }
         total = 0;
@@ -218,6 +231,93 @@ public class CartActivity extends AppCompatActivity {
 //        editor.putStringSet()
     }
 
+    private void syncCartData() {
+        String url = "https://api.shoutnet.co/shoutcap/get_cart.php";
+
+        Map<String, String> params = new HashMap<>();
+        params.put("shoutid", user.get("shoutId"));
+        params.put("sessionid", user.get("sessionId"));
+
+        new VolleyRequest().request(getApplicationContext(), Request.Method.POST, url, params, new VolleyRequest.RequestListener() {
+            @Override
+            public void OnSuccess(String response) {
+                ModelSyncCart syncCart = new ModelSyncCart();
+                try {
+                    syncCart = Parser.getSyncCart(response);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                ArrayList<ModelSyncCart.Item> items = syncCart.getItem();
+                if (items.size() > 0) {
+                    //loading
+
+                    ModelAdapterCart adapterCart;
+                    idCart = new DBCapsHelper(getApplicationContext()).fetchIDCart();
+//                    for (ModelSyncCart.Item item:items){
+//                        if (!idCart.contains(Integer.valueOf(item.getId()))){
+//                            String image=mappingImage(item.getImage());
+//                            adapterCart=new ModelAdapterCart();
+//                            adapterCart.setId(Integer.parseInt(item.getId()));
+//                            adapterCart.setPrice(Integer.parseInt(item.getPrice()));
+//                            adapterCart.setName(item.getShout());
+//                            adapterCart.setImage(image);
+//                            adapterCart.setSubTotal(Long.parseLong(item.getPrice()));
+//                            adapterCart.setQty(1);
+//                            modelAdapterCarts.add(adapterCart);
+//                            addToDatabase(item,image);
+//                        }
+//                    }
+                }
+            }
+
+            @Override
+            public void OnFailure() {
+
+            }
+        });
+    }
+
+    private void addToDatabase(ModelSyncCart.Item item, String image) {
+        CapsModel capsModel = new CapsModel();
+        capsModel.setBaseImage(image);
+        capsModel.setId(item.getId());
+        capsModel.setStatus("cart");
+        capsModel.setText(item.getShout());
+        capsModel.setColor(1);
+        capsModel.setFont(item.getFont_type());
+        capsModel.setSize(item.getSize());
+        capsModel.setPrice(Integer.parseInt(item.getPrice()));
+        new DBCapsHelper(getApplicationContext()).addCapSync(capsModel);
+    }
+
+    private String mappingImage(String url) {
+        Log.i("process", "mapping");
+        Bitmap bitmap = null;
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        try {
+            bitmap = BitmapFactory.decodeStream((InputStream) new URL(url).getContent());
+            if (bitmap != null) {
+                return convertBitmapToBase64(bitmap);
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    private String convertBitmapToBase64(Bitmap bitmap) {
+        Log.i("process", "converting");
+        ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArray);
+        byte[] byteBitmap = byteArray.toByteArray();
+        String bitmapEncode = Base64.encodeToString(byteBitmap, Base64.DEFAULT);
+        return bitmapEncode;
+    }
+
     private void dialogResult() {
         DialogFragment dialogFragment = VoucherDialog.newInstance(capName, new VoucherDialog.DialogListener() {
             @Override
@@ -262,8 +362,6 @@ public class CartActivity extends AppCompatActivity {
         Map<String, String> params = new HashMap<>();
         params.put("shoutid", user.get("shoutId"));
         params.put("sessionid", user.get("sessionId"));
-//        params.put("shoutid", "devtest");
-//        params.put("sessionid", "fab19834f4aac1c399b1273245d7b648");
         if (jsonQty != null) {
 //            Log.i("jsonQty", "not null");
             params.put("qty", jsonQty);
@@ -338,9 +436,13 @@ public class CartActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == android.R.id.home) {
             this.finish();
-
             return true;
         }
+//        else if (id==R.id.action_cart_sync){
+//            syncCartData();
+////            Intent intent=new Intent(CartActivity.this,ActivityCreate.class);
+////            startActivity(intent);
+//        }
 
         return super.onOptionsItemSelected(item);
     }

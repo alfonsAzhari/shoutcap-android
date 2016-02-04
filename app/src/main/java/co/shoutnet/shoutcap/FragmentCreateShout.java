@@ -35,6 +35,7 @@ import co.shoutnet.shoutcap.model.ModelCapModel;
 import co.shoutnet.shoutcap.model.ModelColor;
 import co.shoutnet.shoutcap.utility.CustomScrollView;
 import co.shoutnet.shoutcap.utility.Parser;
+import co.shoutnet.shoutcap.utility.SessionManager;
 import co.shoutnet.shoutcap.utility.WebAppInterface;
 
 /**
@@ -352,7 +353,13 @@ public class FragmentCreateShout extends Fragment {
                     capsModel.getSize(), capsModel.getFont(), capsModel.getColor(), capsModel.getFontsize(),
                     capsModel.getText(), capsModel.getLine(), capsModel.getBaseImage());
             FragmentManager fragmentManager = getActivity().getFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragment).commit();
+            SessionManager manager = new SessionManager(getActivity());
+            // TODO ulah poho dipindahkeun
+            if (manager.isLoggedIn()) {
+                fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragment).commit();
+            } else {
+                fragmentManager.beginTransaction().replace(R.id.frame_content_create, fragment).commit();
+            }
 
         } catch (JSONException e) {
             e.printStackTrace();

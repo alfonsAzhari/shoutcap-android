@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -41,6 +42,8 @@ public class FragmentPreviewShout extends Fragment {
     private DBCapsHelper dbCapsHelper;
     private Button btnAddRack;
     private Button btnAddCart;
+    private Button btnSignIn;
+    private LinearLayout layoutBtnAdd;
     private Uri uri;
     private boolean both=false;
     private Map<String, String> params;
@@ -71,6 +74,7 @@ public class FragmentPreviewShout extends Fragment {
         manager = new SessionManager(getActivity());
         user = manager.getUserDetails();
 
+        checkUserSign();
 
         byte[] decodeImage = Base64.decode(capsModel.getBaseImage(), Base64.DEFAULT);
         Bitmap bitmap = BitmapFactory.decodeByteArray(decodeImage, 0, decodeImage.length);
@@ -106,6 +110,15 @@ public class FragmentPreviewShout extends Fragment {
         });
 
         return rootView;
+    }
+
+    private void checkUserSign() {
+        if (manager.isLoggedIn()) {
+            btnSignIn.setVisibility(View.GONE);
+            layoutBtnAdd.setVisibility(View.VISIBLE);
+        } else {
+
+        }
     }
 
     private void addToCart() {
@@ -295,6 +308,8 @@ public class FragmentPreviewShout extends Fragment {
         imgPreview = (ImageView) v.findViewById(R.id.img_preview_hat);
         btnAddCart = (Button) v.findViewById(R.id.btn_addcart_preview);
         btnAddRack = (Button) v.findViewById(R.id.btn_addrack_preview);
+        btnSignIn = (Button) v.findViewById(R.id.btn_signin_preview);
+        layoutBtnAdd = (LinearLayout) v.findViewById(R.id.lin_btnadd_preview);
     }
 
 //    public interface CapsResult {

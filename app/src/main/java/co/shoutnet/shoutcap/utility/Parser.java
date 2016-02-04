@@ -26,6 +26,7 @@ import co.shoutnet.shoutcap.model.ModelRack;
 import co.shoutnet.shoutcap.model.ModelResponseCheckout;
 import co.shoutnet.shoutcap.model.ModelProfile;
 import co.shoutnet.shoutcap.model.ModelSignIn;
+import co.shoutnet.shoutcap.model.ModelSyncCart;
 import co.shoutnet.shoutcap.model.ModelSyncRack;
 import co.shoutnet.shoutcap.model.ModelVoucher;
 import co.shoutnet.shoutcap.model.ModelVoucherCart;
@@ -165,5 +166,10 @@ public class Parser {
     public static ModelRegisterError getRegisterError(String json) throws IOException {
         gson = new Gson();
         return gson.fromJson(json, ModelRegisterError.class);
+    }
+
+    public static ModelSyncCart getSyncCart(String json) throws IOException {
+        gson = new Gson();
+        return gson.fromJson(json, ModelSyncCart.class);
     }
 }
