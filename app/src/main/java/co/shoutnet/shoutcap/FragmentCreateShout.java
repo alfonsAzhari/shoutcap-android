@@ -35,6 +35,7 @@ import co.shoutnet.shoutcap.model.ModelCapModel;
 import co.shoutnet.shoutcap.model.ModelColor;
 import co.shoutnet.shoutcap.utility.CustomScrollView;
 import co.shoutnet.shoutcap.utility.Parser;
+import co.shoutnet.shoutcap.utility.SessionManager;
 import co.shoutnet.shoutcap.utility.WebAppInterface;
 
 /**
@@ -333,16 +334,6 @@ public class FragmentCreateShout extends Fragment {
             capsModel.setLine(jsonObject.optInt("line"));
             capsModel.setFontsize(jsonObject.optInt("fontsize"));
 
-            Log.i("name", capsModel.getName());
-            Log.i("id model", String.valueOf(capsModel.getModel()));
-            Log.i("size", capsModel.getSize());
-            Log.i("font", capsModel.getFont());
-            Log.i("font size", String.valueOf(capsModel.getFontsize()));
-            Log.i("font color", String.valueOf(capsModel.getColor()));
-            Log.i("text", capsModel.getText());
-            Log.i("line", String.valueOf(capsModel.getLine()));
-            Log.i("image", capsModel.getBaseImage());
-
 //            DBCapsHelper dbCapsHelper = new DBCapsHelper(context);
 //            dbCapsHelper.addCap(capsModel);
 //
@@ -352,7 +343,13 @@ public class FragmentCreateShout extends Fragment {
                     capsModel.getSize(), capsModel.getFont(), capsModel.getColor(), capsModel.getFontsize(),
                     capsModel.getText(), capsModel.getLine(), capsModel.getBaseImage());
             FragmentManager fragmentManager = getActivity().getFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragment).commit();
+            SessionManager manager = new SessionManager(getActivity());
+            // TODO ulah poho dipindahkeun
+            if (manager.isLoggedIn()) {
+                fragmentManager.beginTransaction().replace(R.id.frame_content_main, fragment).commit();
+            } else {
+                fragmentManager.beginTransaction().replace(R.id.frame_content_create, fragment).commit();
+            }
 
         } catch (JSONException e) {
             e.printStackTrace();

@@ -20,7 +20,6 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.android.volley.Request;
-import com.squareup.picasso.Target;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -52,7 +51,6 @@ public class FragmentRack extends Fragment {
 
     RecyclerView recyclerView;
     GridLayoutManager layoutManager;
-    Target target;
     List<Integer> idRack;
     List<Integer> idRackServer;
     private SessionManager manager;

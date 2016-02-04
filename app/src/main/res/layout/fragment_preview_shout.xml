@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -19,10 +19,22 @@
                 android:layout_height="match_parent"
                 android:scaleType="fitXY" />
 
-            <LinearLayout
+            <Button
+                android:id="@+id/btn_signin_preview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_below="@id/img_preview_hat"
+                android:background="@drawable/background_button_preview"
+                android:text="Sign in"
+                android:textColor="@android:color/white" />
+
+            <LinearLayout
+                android:id="@+id/lin_btnadd_preview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/img_preview_hat"
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <Button
                     android:id="@+id/btn_addrack_preview"
@@ -43,7 +55,7 @@
                     android:textColor="@android:color/white"/>
             </LinearLayout>
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </ScrollView>
 </RelativeLayout>
