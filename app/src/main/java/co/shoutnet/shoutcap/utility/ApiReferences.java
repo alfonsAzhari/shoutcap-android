@@ -17,7 +17,6 @@ public class ApiReferences {
     private static String MOD_INVOICE = "shoutcap/get_invoice.php";
     private static String MOD_CARA_BAYAR = "shoutcap/list_cara_bayar.php";
     private static String MOD_PAYMENT_CONFIRMATION = "shoutcap/konfirmasi_pembayaran.php";
-    private static String MOD_PROFILE = "shoutid/get_profile.php";
     private static String MOD_REGISTER = "shoutid/register.php";
 
     private static String MOD_CHANGE_AVA = "shoutid/change_avatar.php";

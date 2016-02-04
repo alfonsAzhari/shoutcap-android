@@ -13,16 +13,6 @@
 
     <string name="shout_id">ShoutID</string>
 
-    <string-array name="province">
-        <item>Province</item>
-    </string-array>
-    <string-array name="city">
-        <item>CITY</item>
-    </string-array>
-    <string-array name="district">
-        <item>District</item>
-    </string-array>
-
     //drawer item list
     <string name="drawer_item_news">News</string>
     <string name="drawer_item_promo">Promo</string>
@@ -252,37 +242,17 @@
         <item>Dayeuhkolot</item>
     </string-array>
     <string name="title_activity_preview">PreviewActivity</string>
-</resources>
-=======
-<resources>
-    <string name="app_name">ShoutCap</string>
+    <string name="title_activity_order_confirmation">Order Confirmation</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-    <string name="drawer_item_news">News</string>
-    <string name="drawer_item_create">Create</string>
-    <string name="drawer_item_profile">Profile</string>
-    <string name="drawer_item_inbox">Inbox</string>
-    <string name="drawer_item_rack">Rack</string>
-    <string name="drawer_item_order">Order</string>
-    <string name="drawer_item_reward">Reward</string>
-    <string name="shout_id">ShoutID</string>
-
-    <string-array name="provinsi">
-        <item>Banten</item>
-        <item>Jawa Barat</item>
-        <item>Jawa Tengah</item>
-        <item>Jawa Timur</item>
+    <string-array name="province">
+        <item>Province</item>
     </string-array>
-    <string-array name="kota">
-        <item>Banten</item>
-        <item>Bandung</item>
+    <string-array name="city">
+        <item>CITY</item>
     </string-array>
-    <string-array name="kecamatan">
-        <item>Regol</item>
-        <item>Dayeuhkolot</item>
+    <string-array name="district">
+        <item>District</item>
     </string-array>
-
 
     <declare-styleable name="ViewPagerIndicator">
         <!-- Style of the circle indicator. -->
@@ -315,30 +285,4 @@
         <attr name="android:background" />
     </declare-styleable>
 
-    <string name="title_activity_settings">SettingsActivity</string>
-    <string name="title_activity_promo">PromoActivity</string>
-    <string name="title_activity_get_started">GetStartedActivity</string>
-    <string name="title_activity_settings_content">SettingsContentActivity</string>
-    <string name="title_activity_cart">CartActivity</string>
-
-    <string-array name="provinsi">
-        <item>Banten</item>
-        <item>Jawa Barat</item>
-        <item>Jawa Tengah</item>
-        <item>Jawa Timur</item>
-    </string-array>
-    <string-array name="kota">
-        <item>Banten</item>
-        <item>Bandung</item>
-    </string-array>
-    <string-array name="kecamatan">
-        <item>Regol</item>
-        <item>Dayeuhkolot</item>
-    </string-array>
-    <string name="title_activity_preview">PreviewActivity</string>
-    <string name="title_activity_order_confirmation">Order Confirmation</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_activity_create">Create Cap</string>
 </resources>

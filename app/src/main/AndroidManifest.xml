@@ -48,7 +48,7 @@
         <activity
             android:name=".ChangeAvatarActivity"
             android:label="@string/change_ava"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ActivityChangePassword"
             android:parentActivityName=".SettingsActivity"
@@ -60,9 +60,6 @@
         <activity
             android:name=".ActivityEditProfile"
             android:parentActivityName=".SettingsActivity"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".ActivityHowToOrder"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".ActivityPaymentConfirmation"
@@ -102,16 +99,10 @@
             </intent-filter>
         </service>
 
-        <activity
-            android:name=".SettingsContentActivity"
-            android:parentActivityName=".SettingsActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".CartActivity"
-            android:label="@string/action_cart" />
-        <activity
-            android:name=".ChangeAvatarActivity"
-            android:screenOrientation="portrait" />
+        <!--<activity-->
+        <!--android:name=".SettingsContentActivity"-->
+        <!--android:parentActivityName=".SettingsActivity"-->
+        <!--android:screenOrientation="portrait" />-->
         <activity
             android:name=".ActivityInboxDetail"
             android:parentActivityName=".MainActivity" />
@@ -127,18 +118,6 @@
             android:name=".ActivityCheckout"
             android:parentActivityName=".OrderConfirmation" />
         <activity
-            android:name=".ActivityChangePassword"
-            android:parentActivityName=".SettingsActivity"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".ActivityAbout"
-            android:parentActivityName=".SettingsActivity"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".ActivityEditProfile"
-            android:parentActivityName=".SettingsActivity"
-            android:theme="@style/AppTheme" />
-        <activity
             android:name=".ActivityHowToOrder"
             android:parentActivityName=".HelpActivity"
             android:theme="@style/AppTheme" />
@@ -146,19 +125,15 @@
             android:name=".ActivityNewsDetail"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ActivityPaymentConfirmation"
-            android:theme="@style/AppTheme" />
-        <activity
             android:name=".ActivityFAQ"
             android:parentActivityName=".HelpActivity"
             android:theme="@style/AppTheme" />
-        <!-- <activity android:name=".FragmentInvoice"/> -->
         <activity
             android:name=".HelpActivity"
             android:label="@string/action_help"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ActivityCreate"></activity>
+        <activity android:name=".ActivityCreate"/>
     </application>
 
 </manifest>

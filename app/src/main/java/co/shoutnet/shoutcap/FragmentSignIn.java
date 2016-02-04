@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -37,6 +38,7 @@ import java.util.concurrent.Future;
 import co.shoutnet.shoutcap.model.ModelProfile;
 import co.shoutnet.shoutcap.model.ModelSignIn;
 import co.shoutnet.shoutcap.utility.ApiReferences;
+import co.shoutnet.shoutcap.utility.Loading;
 import co.shoutnet.shoutcap.utility.Parser;
 import co.shoutnet.shoutcap.utility.SessionManager;
 
@@ -50,10 +52,10 @@ public class FragmentSignIn extends Fragment {
     private EditText edtShoutId;
     private EditText edtpassword;
     private Button btnSignIn;
-
+    private TextView txtSignUp;
     private ModelSignIn modelSignIn = null;
     private ModelProfile modelProfile = null;
-    private ProgressDialog progressDialog;
+    private ProgressDialog loading;
 
     SharedPreferences sharedPreferences;
     SessionManager sessionManager;
@@ -85,17 +87,24 @@ public class FragmentSignIn extends Fragment {
             @Override
             public void onClick(View v) {
                 if (edtShoutId.getText().toString().equals("") && edtpassword.getText().toString().equals("")) {
-                    Toast.makeText(mContext, "ShoutID and Password are empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Shout ID dan Password belum diisi", Toast.LENGTH_SHORT).show();
                 } else if (edtShoutId.getText().toString().equals("")) {
-                    Toast.makeText(mContext, "ShoutID is empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Shout ID belum diisi", Toast.LENGTH_SHORT).show();
                 } else if (edtpassword.getText().toString().equals("")) {
-                    Toast.makeText(mContext, "Password is empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Password belum diisi", Toast.LENGTH_SHORT).show();
                 } else {
                     login();
                 }
             }
         });
 
+        txtSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentSignUp signUp = new FragmentSignUp();
+                getFragmentManager().beginTransaction().replace(R.id.frame_content_sign, signUp).addToBackStack(null).commit();
+            }
+        });
         return rootView;
     }
 
@@ -103,6 +112,7 @@ public class FragmentSignIn extends Fragment {
         edtShoutId = (EditText) v.findViewById(R.id.edt_signin_shoutid);
         edtpassword = (EditText) v.findViewById(R.id.edt_signin_pass);
         btnSignIn = (Button) v.findViewById(R.id.btn_signin_sign);
+        txtSignUp = (TextView)v.findViewById(R.id.txt_signin_signup);
     }
 
     private void fetchData(final String shoutid, final String password) {
@@ -111,7 +121,7 @@ public class FragmentSignIn extends Fragment {
         final StringRequest requestLogin = new StringRequest(Request.Method.POST, ApiReferences.getUrlLogin(), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.i("response sign in", response.toString());
+//                Log.i("response sign in", response.toString());
 
                 try {
                     modelSignIn = Parser.getReturnSignIn(response.toString());
@@ -123,15 +133,18 @@ public class FragmentSignIn extends Fragment {
                     sessionManager.createLoginSession(modelSignIn.getShoutId(), modelSignIn.getSessionId(), modelSignIn.getPoint(), modelSignIn.getCoin(), modelSignIn.getUrlAvatar(), modelSignIn.getShoutcapQuota(),
                             modelSignIn.getScreamShirtQuota(), modelSignIn.getPictocapQuota());
                 } else {
-                    Toast.makeText(mContext, "Your ShoutId or Password are wrong", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Shout ID atau Password salah", Toast.LENGTH_SHORT).show();
 
                     btnSignIn.setEnabled(true);
+                    loading.dismiss();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("error sign in", error.toString());
+//                Log.e("error sign in", error.toString());
+                btnSignIn.setEnabled(true);
+                loading.dismiss();
             }
         }) {
             @Override
@@ -157,7 +170,7 @@ public class FragmentSignIn extends Fragment {
         final StringRequest requestProfile = new StringRequest(Request.Method.POST, ApiReferences.getUrlProfile(), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.i("response profile", response.toString());
+//                Log.i("response profile", response.toString());
 
                 try {
                     modelProfile = Parser.getProfile(response.toString());
@@ -170,7 +183,7 @@ public class FragmentSignIn extends Fragment {
                             modelProfile.getItem().getGender(), modelProfile.getItem().getAlamat(), modelProfile.getItem().getKecamatan(), modelProfile.getItem().getKota(), modelProfile.getItem().getProvinsi(),
                             modelProfile.getItem().getKodePos(), modelProfile.getItem().getTglLahir(), modelProfile.getItem().getMinat(), modelProfile.getItem().getStatusKerja());
 
-                    progressDialog.dismiss();
+                    loading.dismiss();
 
                     Intent i = new Intent(mContext, MainActivity.class);
                     startActivity(i);
@@ -180,7 +193,8 @@ public class FragmentSignIn extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("error profile", error.toString());
+//                Log.e("error profile", error.toString());
+                btnSignIn.setEnabled(true);
             }
         }) {
             @Override
@@ -215,7 +229,7 @@ public class FragmentSignIn extends Fragment {
                 }
             }, (retryPolicy.getCurrentRetryCount() + 1) * retryPolicy.getCurrentTimeout());
         } catch (Exception e) {
-            Toast.makeText(mContext, "Connection failed, please try again later", Toast.LENGTH_LONG).show();
+            Toast.makeText(mContext, "Koneksi gagal, coba lagi", Toast.LENGTH_LONG).show();
             edtShoutId.setEnabled(true);
             edtpassword.setEnabled(true);
             btnSignIn.setEnabled(true);
@@ -226,14 +240,14 @@ public class FragmentSignIn extends Fragment {
         final String shoutid = edtShoutId.getText().toString();
         final String password = edtpassword.getText().toString();
 
-        Log.i("TAG", "Login Start");
+//        Log.i("TAG", "Login Start");
 
         btnSignIn.setEnabled(false);
 
-        progressDialog = new ProgressDialog(mContext);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Signing In");
-        progressDialog.show();
+        loading = Loading.newInstance(mContext);
+        loading.setMessage("Signing in");
+        loading.setIndeterminate(true);
+        loading.show();
         fetchData(shoutid, password);
     }
 }

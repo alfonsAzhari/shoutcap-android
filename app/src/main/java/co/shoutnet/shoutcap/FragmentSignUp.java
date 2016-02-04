@@ -233,6 +233,7 @@ public class FragmentSignUp extends Fragment {
     private boolean validateEmail() {
         if (edtEmail.getText().toString().trim().isEmpty()) {
             lytEmail.setError("Masukkan e-mail");
+            edtEmail.requestFocus();
             return false;
         } else {
             lytEmail.setErrorEnabled(false);
@@ -243,10 +244,12 @@ public class FragmentSignUp extends Fragment {
     private boolean validateConfirm() {
         if (edtConfirmPassword.getText().toString().trim().isEmpty()) {
             lytConfirm.setError("Masukkan password konfirmasi");
+            edtConfirmPassword.requestFocus();
             return false;
         } else {
             if (!edtPassword.getText().toString().equals(edtConfirmPassword.getText().toString())) {
                 lytConfirm.setError("Password tidak sama");
+                edtConfirmPassword.requestFocus();
                 return false;
             } else {
                 lytConfirm.setErrorEnabled(false);
@@ -258,8 +261,16 @@ public class FragmentSignUp extends Fragment {
     private boolean validatePass() {
         if (edtPassword.getText().toString().trim().isEmpty()) {
             lytPassword.setError("Masukkan password");
+            edtPassword.requestFocus();
             return false;
         } else {
+            if (!edtPassword.getText().toString().equals(edtConfirmPassword.getText().toString())) {
+                lytConfirm.setError("Password tidak sama");
+                edtConfirmPassword.requestFocus();
+                return false;
+            } else {
+                lytConfirm.setErrorEnabled(false);
+            }
             lytPassword.setErrorEnabled(false);
         }
         return true;
@@ -268,6 +279,7 @@ public class FragmentSignUp extends Fragment {
     private boolean validateShoutId() {
         if (edtShoutId.getText().toString().trim().isEmpty()) {
             lytShoutId.setError("Masukkan Shout ID");
+            edtShoutId.requestFocus();
             return false;
         } else {
             lytShoutId.setErrorEnabled(false);
