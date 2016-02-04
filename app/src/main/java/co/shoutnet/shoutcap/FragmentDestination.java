@@ -165,6 +165,7 @@ public class FragmentDestination extends Fragment {
     private boolean validateName() {
         if (edtName.getText().toString().trim().isEmpty()) {
             lyName.setError("Masukkan nama pemerima");
+            
             return false;
         } else {
             lyName.setErrorEnabled(false);
