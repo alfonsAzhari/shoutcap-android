@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -176,7 +175,7 @@ public class OrderConfirmation extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loading.show();
+//                loading.show();
                 edtValidate();
             }
         });
@@ -261,29 +260,31 @@ public class OrderConfirmation extends AppCompatActivity {
 
     private void edtValidate() {
         if (!validateName()) {
-            Toast.makeText(getApplicationContext(), "Name field is empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Nama belum diisi", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (!validatePhone()) {
-            Toast.makeText(getApplicationContext(), "Phone field is empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Nomor telepon belum diisi", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (!validateEmail()) {
-            Toast.makeText(getApplicationContext(), "E-Mail field is empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "E-Mail belum diisi", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (!validateAddress()) {
-            Toast.makeText(getApplicationContext(), "Address field is empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Alamat belum diisi", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (!validateZip()) {
-            Toast.makeText(getApplicationContext(), "Zip code field is empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Kode POS belum diisi", Toast.LENGTH_SHORT).show();
             return;
         }
+
+        loading.show();
 
         final Bundle bundle = new Bundle();
         bundle.putString("name", edtName.getText().toString().trim());
@@ -322,11 +323,12 @@ public class OrderConfirmation extends AppCompatActivity {
                     startActivity(intent);
 //                    startActivityForResult(intent,1);
                 }
+                loading.dismiss();
             }
 
             @Override
             public void OnFailure() {
-
+                loading.dismiss();
             }
         });
 //
@@ -334,7 +336,7 @@ public class OrderConfirmation extends AppCompatActivity {
 
     private boolean validateName() {
         if (edtName.getText().toString().trim().isEmpty()) {
-            lyName.setError("Please insert consignee name");
+            lyName.setError("Masukkan nama pemerima");
             return false;
         } else {
             lyName.setErrorEnabled(false);
@@ -344,7 +346,7 @@ public class OrderConfirmation extends AppCompatActivity {
 
     private boolean validatePhone() {
         if (edtPhone.getText().toString().trim().isEmpty()) {
-            lyPhone.setError("Please insert phone number");
+            lyPhone.setError("Masukkan nomor telepon");
             return false;
         } else {
             lyPhone.setErrorEnabled(false);
@@ -354,7 +356,7 @@ public class OrderConfirmation extends AppCompatActivity {
 
     private boolean validateEmail() {
         if (edtEmail.getText().toString().trim().isEmpty()) {
-            lyEmail.setError("Please insert e-email");
+            lyEmail.setError("Masukkan e-mail");
             return false;
         } else {
             lyEmail.setErrorEnabled(false);
@@ -364,7 +366,7 @@ public class OrderConfirmation extends AppCompatActivity {
 
     private boolean validateAddress() {
         if (edtAddress.getText().toString().trim().isEmpty()) {
-            lyAddrs.setError("Please insert destination address");
+            lyAddrs.setError("Masukkan alamat tujuan");
             return false;
         } else {
             lyAddrs.setErrorEnabled(false);
@@ -374,7 +376,7 @@ public class OrderConfirmation extends AppCompatActivity {
 
     private boolean validateZip() {
         if (edtZipCode.getText().toString().trim().isEmpty()) {
-            lyZip.setError("Please insert zip code");
+            lyZip.setError("Masukkan kode POS");
             return false;
         } else {
             lyZip.setErrorEnabled(false);

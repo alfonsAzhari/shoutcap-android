@@ -1,7 +1,6 @@
 package co.shoutnet.shoutcap;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -13,12 +12,10 @@ import co.shoutnet.shoutcap.utility.SessionManager;
 
 public class GetStartedActivity extends AppCompatActivity {
 
+    SessionManager sessionManager;
     private ViewPager viewPager;
     private GetStartedAdapter adapter;
-
     private Button btnGetStarted;
-
-    SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,5 +48,10 @@ public class GetStartedActivity extends AppCompatActivity {
     private void initView() {
         viewPager = (ViewPager) findViewById(R.id.pager_started);
         btnGetStarted = (Button) findViewById(R.id.btn_get_started);
+    }
+
+    public void btnCreate(View view) {
+        Intent intent = new Intent(GetStartedActivity.this, ActivityCreate.class);
+        startActivity(intent);
     }
 }

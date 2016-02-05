@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -107,8 +106,6 @@ public class ActivityCheckout extends AppCompatActivity {
                 Map<String, String> params = new HashMap<>();
                 params.put("shoutid", user.get("shoutId"));
                 params.put("sessionid", user.get("sessionId"));
-//                params.put("shoutid", "devtest");
-//                params.put("sessionid", "fab19834f4aac1c399b1273245d7b648");
                 params.put("from", "app");
                 params.put("id_checkout", checkout.getItem().getId_checkout());
 

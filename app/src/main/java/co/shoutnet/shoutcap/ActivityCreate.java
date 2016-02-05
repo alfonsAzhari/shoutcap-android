@@ -3,6 +3,7 @@ package co.shoutnet.shoutcap;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 public class ActivityCreate extends AppCompatActivity {
 
@@ -10,6 +11,9 @@ public class ActivityCreate extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activity_create);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_create_started);
+        setSupportActionBar(toolbar);
 
         setDefaultFragment();
     }
