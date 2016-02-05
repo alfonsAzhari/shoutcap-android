@@ -184,21 +184,31 @@ public class ChangeAvatarActivity extends AppCompatActivity {
                 if (!response.isSuccessful()) {
                     throw new IOException("Unexpected code " + response);
                 } else {
+                    String urlAva = "";
                     try {
                         JSONObject object = new JSONObject(response.body().string());
-                        if (object.getString("result").equals("success")) {
+                        if (object.getString("result").equalsIgnoreCase("success")) {
                             dialog.dismiss();
-                            sessionManager.updateAvatar(object.getString("url_avatar"));
-                            user = sessionManager.getUserDetails();
+                            urlAva = object.getString("url_avatar");
                             Toast.makeText(this, "Avatar Changed", Toast.LENGTH_SHORT).show();
                             //Log.i("url ava baru",user.get(SessionManager.KEY_URL_AVATAR));
+                            dialog.dismiss();
                             this.finish();
+                        } else {
+                            dialog.dismiss();
+                            Toast.makeText(this, "Connection failed, please try again later", Toast.LENGTH_SHORT).show();
                         }
                     } catch (JSONException e) {
                         dialog.dismiss();
-                        Toast.makeText(this, "Connection failed, please try again later", Toast.LENGTH_SHORT).show();
-                        //Log.e("Exception Response", e.toString());
+                        Toast.makeText(this, "Avatar Changed", Toast.LENGTH_SHORT).show();
+                        //Log.i("url ava baru",user.get(SessionManager.KEY_URL_AVATAR));
+                        dialog.dismiss();
+                        this.finish();
+                        Log.e("Exception Response", e.toString());
                     }
+
+                    sessionManager.updateAvatar(urlAva);
+                    user = sessionManager.getUserDetails();
                 }
 
             } catch (IOException e) {
