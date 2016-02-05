@@ -47,11 +47,12 @@
                 <LinearLayout
                     android:id="@+id/lin_profile"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:visibility="gone">
+                    android:visibility="gone"
+                    android:paddingBottom="8dp">
 
                     <RelativeLayout
                         android:layout_width="0dp"
@@ -59,15 +60,20 @@
                         android:layout_weight="1">
 
                         <TextView
+                            android:id="@+id/label_coin"
+                            android:layout_centerHorizontal="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:text="Coin"/>
+                        <TextView
                             android:id="@+id/txt_profile_coin"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
-                            android:drawableLeft="@drawable/abc_btn_check_to_on_mtrl_015"
-                            android:drawableStart="@drawable/abc_btn_check_to_on_mtrl_015"
+                            android:layout_below="@id/label_coin"
                             android:textColor="@color/white"
-                            android:textCursorDrawable="@drawable/abc_btn_check_to_on_mtrl_015"
-                            android:textSize="24sp" />
+                            android:textSize="24sp"/>
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -76,14 +82,20 @@
                         android:layout_weight="1">
 
                         <TextView
+                            android:id="@+id/label_point"
+                            android:layout_centerHorizontal="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:text="Ponit"/>
+                        <TextView
                             android:id="@+id/txt_profile_point"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_below="@id/label_point"
                             android:layout_centerInParent="true"
-                            android:drawableLeft="@drawable/abc_btn_check_to_on_mtrl_015"
-                            android:drawableStart="@drawable/abc_btn_check_to_on_mtrl_015"
                             android:textColor="@color/white"
-                            android:textSize="24sp" />
+                            android:textSize="24sp"/>
                     </RelativeLayout>
 
 

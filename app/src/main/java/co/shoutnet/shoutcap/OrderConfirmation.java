@@ -205,7 +205,7 @@ public class OrderConfirmation extends AppCompatActivity {
 
         btnSubmit = (Button) findViewById(R.id.btn_submit_destination);
         loading = Loading.newInstance(OrderConfirmation.this);
-        loading.setMessage("Sending consignee data");
+        loading.setMessage("Sending recipient data");
     }
 
     private void getData(Map<String, String> param, int method, String url, final Spinner spinner) {

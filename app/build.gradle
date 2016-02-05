@@ -55,6 +55,6 @@ dependencies {
         exclude module: "httpclient"
     }
 
-    compile 'com.squareup.okhttp3:okhttp:3.0.0-RC1'
+    compile 'com.squareup.okhttp3:okhttp:3.0.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
 }

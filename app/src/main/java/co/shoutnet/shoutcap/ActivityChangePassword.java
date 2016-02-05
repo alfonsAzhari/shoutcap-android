@@ -57,7 +57,7 @@ public class ActivityChangePassword extends AppCompatActivity {
         setContentView(R.layout.activity_change_password);
 
         mContext = getApplicationContext();
-        loading = Loading.newInstance(mContext);
+        loading = Loading.newInstance(this);
         sessionManager = new SessionManager(this);
         user = sessionManager.getUserDetails();
 

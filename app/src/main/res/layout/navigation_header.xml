@@ -50,11 +50,16 @@
             android:layout_marginRight="24dp"
             android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/abc_btn_rating_star_on_mtrl_alpha" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Coin "
+                android:textColor="@android:color/white"/>
+            <!--<ImageView-->
+                <!--android:layout_width="24dp"-->
+                <!--android:layout_height="24dp"-->
+                <!--android:scaleType="fitXY"-->
+                <!--android:src="@drawable/abc_btn_rating_star_on_mtrl_alpha" />-->
 
             <TextView
                 android:id="@+id/txt_drawer_coin"
@@ -70,11 +75,18 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/abc_btn_rating_star_on_mtrl_alpha" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Point "
+                android:textColor="@android:color/white"/>
+
+            <!--<ImageView-->
+                <!--android:layout_width="24dp"-->
+                <!--android:layout_height="24dp"-->
+                <!--android:scaleType="fitXY"-->
+                <!--android:src="@drawable/abc_btn_rating_star_on_mtrl_alpha" />-->
 
             <TextView
                 android:id="@+id/txt_drawer_poin"

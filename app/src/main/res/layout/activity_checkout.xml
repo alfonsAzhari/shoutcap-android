@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/color_primary_dark"
                 android:padding="12dp"
-                android:text="Consignee / Penerima"
+                android:text="Recipient / Penerima"
                 android:textColor="@android:color/white" />
 
             <LinearLayout

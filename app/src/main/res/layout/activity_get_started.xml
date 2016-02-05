@@ -23,7 +23,7 @@
             android:layout_gravity="bottom"
             android:layout_weight="1"
             android:background="@drawable/background_btn_started"
-            android:text="Get Started"
+            android:text="Sign In"
             android:textAllCaps="false"
             android:textColor="@android:color/white" />
 

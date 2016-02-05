@@ -2,6 +2,7 @@ package co.shoutnet.shoutcap;
 
 
 import android.app.ProgressDialog;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
@@ -127,7 +129,7 @@ public class ChangeAvatarActivity extends AppCompatActivity {
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             uri = data.getData();
-            Log.i("uri", getRealPathFromUriApiBelow19(this, uri));
+//            Log.i("uri", getRealPathFromUriApiBelow19(this, uri));
 
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
@@ -205,28 +207,6 @@ public class ChangeAvatarActivity extends AppCompatActivity {
         }
     }
 
-    private String getRealPathFromUriApi19(Context context, Uri uri) {
-        String filePath = "";
-        String wholeID = DocumentsContract.getDocumentId(uri);
-
-        String id = wholeID.split(":")[1];
-
-        String[] column = {MediaStore.Images.Media.DATA};
-
-        String sel = MediaStore.Images.Media._ID + "=?";
-
-        Cursor cursor = context.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, column, sel, new String[]{id}, null);
-
-        int columnIndex = cursor.getColumnIndex(column[0]);
-
-        if (cursor.moveToFirst()) {
-            filePath = cursor.getString(columnIndex);
-        }
-        cursor.close();
-
-        return filePath;
-    }
-
     private String getRealPathFromUriApiBelow19(Context context, Uri contentUri) {
         String[] proj = { MediaStore.Images.Media.DATA };
         String result = null;
@@ -243,5 +223,97 @@ public class ChangeAvatarActivity extends AppCompatActivity {
             result = cursor.getString(column_index);
         }
         return result;
+    }
+
+    private String getRealPathFromUriApi19(Context context, Uri contentUri) {
+        if (isExternalStorageDocument(contentUri)) {
+            final String docId = DocumentsContract.getDocumentId(contentUri);
+            final String[] split = docId.split(":");
+            final String type = split[0];
+
+            if ("primary".equalsIgnoreCase(type)) {
+                return Environment.getExternalStorageDirectory() + "/" + split[1];
+            }
+        } else if (isDownloadsDocument(contentUri)) {
+            final String id = DocumentsContract.getDocumentId(contentUri);
+            final Uri content = ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"), Long.valueOf(id));
+
+            return getDataColumn(context,content, null, null);
+        } else if (isMediaDocument(contentUri)) {
+            final String docId = DocumentsContract.getDocumentId(uri);
+            final String[] split = docId.split(":");
+            final String type = split[0];
+
+            Uri content = null;
+            if ("image".equals(type)) {
+                content = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+            } else if ("video".equals(type)) {
+                content = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+            } else if ("audio".equals(type)) {
+                content = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+            }
+
+            final String selection = "_id=?";
+            final String[] selectionArgs = new String[] {
+                    split[1]
+            };
+
+            return getDataColumn(context, content, selection, selectionArgs);
+        } else if ("content".equalsIgnoreCase(contentUri.getScheme())) {
+            if (isGooglePhotosUri(uri)) {
+                return uri.getLastPathSegment();
+            } else {
+                getDataColumn(context, uri, null, null);
+            }
+        } else if ("file".equalsIgnoreCase(contentUri.getScheme())) {
+            return contentUri.getPath();
+        }
+
+        return null;
+    }
+
+    /*private String getRealPathFromUriApiAbove19(Context context, Uri contentUri) {
+        Uri docUri = DocumentsContract.buildDocumentUriUsingTree(contentUri, DocumentsContract.getTreeDocumentId(contentUri));
+
+        String
+    }*/
+
+    public String getDataColumn(Context context, Uri uri, String selection,
+                                       String[] selectionArgs) {
+
+        Cursor cursor = null;
+        final String column = "_data";
+        final String[] projection = {
+                column
+        };
+
+        try {
+            cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs,
+                    null);
+            if (cursor != null && cursor.moveToFirst()) {
+                final int index = cursor.getColumnIndexOrThrow(column);
+                return cursor.getString(index);
+            }
+        } finally {
+            if (cursor != null)
+                cursor.close();
+        }
+        return null;
+    }
+
+    private boolean isExternalStorageDocument(Uri uri) {
+        return "com.android.externalstorage.documents".equals(uri.getAuthority());
+    }
+
+    private boolean isDownloadsDocument(Uri uri) {
+        return "com.android.providers.downloads.documents".equals(uri.getAuthority());
+    }
+
+    private boolean isMediaDocument(Uri uri) {
+        return "com.android.providers.media.documents".equals(uri.getAuthority());
+    }
+
+    private boolean isGooglePhotosUri(Uri uri) {
+        return "com.android.apps.photos.content".equals(uri.getAuthority());
     }
 }

@@ -16,19 +16,24 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <ImageView
-        android:id="@+id/img_change_ava_preview"
-        android:layout_width="192dp"
-        android:layout_height="192dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="64dp"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Button
-        android:layout_marginTop="48dp"
-        android:id="@+id/btn_change_ava"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Select Picture"/>
+        <ImageView
+            android:id="@+id/img_change_ava_preview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"/>
 
+        <Button
+            android:id="@+id/btn_change_ava"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/custom_button"
+            android:text="Select Picture"
+            android:textColor="@android:color/white" />
+    </RelativeLayout>
 </LinearLayout>
