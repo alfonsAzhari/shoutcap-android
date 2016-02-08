@@ -432,19 +432,28 @@ public class CartActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        Intent intent;
 
         //noinspection SimplifiableIfStatement
-        if (id == android.R.id.home) {
-            this.finish();
-            return true;
-        }
-//        else if (id==R.id.action_cart_sync){
-//            syncCartData();
-////            Intent intent=new Intent(CartActivity.this,ActivityCreate.class);
-////            startActivity(intent);
+//        if (id == android.R.id.home) {
+//            this.finish();
+//            return true;
 //        }
-
-        return super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+            case R.id.action_settings:
+                intent = new Intent(CartActivity.this, SettingsActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.action_help:
+                intent = new Intent(CartActivity.this, SettingsActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     public interface CartListenter {

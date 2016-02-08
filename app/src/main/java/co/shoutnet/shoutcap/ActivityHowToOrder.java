@@ -21,7 +21,7 @@ public class ActivityHowToOrder extends AppCompatActivity {
         setContentView(R.layout.activity_how_to_order);
 
         initView();
-        initToolbar();
+//        initToolbar();
 
         adapter = new HowToOrderAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
@@ -36,7 +36,7 @@ public class ActivityHowToOrder extends AppCompatActivity {
 
     private void initView() {
         viewPager = (ViewPager) findViewById(R.id.pager_how_to_order);
-        toolbar = (Toolbar)findViewById(R.id.toolbar_how_to_order);
+//        toolbar = (Toolbar)findViewById(R.id.toolbar_how_to_order);
         indicator = (CirclePageIndicator)findViewById(R.id.indicator);
     }
 }

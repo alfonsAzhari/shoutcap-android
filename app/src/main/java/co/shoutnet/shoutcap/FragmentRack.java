@@ -149,9 +149,9 @@ public class FragmentRack extends Fragment {
                 }
                 ArrayList<ModelSyncRack.Item> items = syncRack.getItem();
                 if (items.size() > 0) {
-                    loading.dismiss();
-                    loading.setMessage("Fetching data");
-                    loading.show();
+                    loading.hide();
+
+                    showLoading();
 
                     ModelAdapterRack adapterRack;
                     idRackServer = new ArrayList<>();
@@ -195,6 +195,12 @@ public class FragmentRack extends Fragment {
 
             }
         });
+    }
+
+    private void showLoading() {
+        loading = Loading.newInstance(getActivity());
+        loading.setMessage("Fetching data");
+        loading.show();
     }
 
     private void changeData(char a, int position) {

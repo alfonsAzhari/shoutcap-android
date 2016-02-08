@@ -20,16 +20,19 @@ public class HowToOrderAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return FragmentHowToOrder.newInstance(R.drawable.bg1);
+                return FragmentHowToOrder.newInstance(R.drawable.imgcreat);
 
             case 1:
-                return FragmentHowToOrder.newInstance(R.drawable.bg2);
+                return FragmentHowToOrder.newInstance(R.drawable.imgpreview);
 
             case 2:
-                return FragmentHowToOrder.newInstance(R.drawable.bg3);
+                return FragmentHowToOrder.newInstance(R.drawable.imgcart);
 
             case 3:
-                return FragmentHowToOrder.newInstance(R.drawable.bg4);
+                return FragmentHowToOrder.newInstance(R.drawable.imgrecipient);
+
+            case 4:
+                return FragmentHowToOrder.newInstance(R.drawable.imgcheckout);
         }
 
         return null;
@@ -37,7 +40,7 @@ public class HowToOrderAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 4;
+        return 5;
     }
 
 }

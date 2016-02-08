@@ -21,16 +21,13 @@ public class GetStartedAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-                return FragmentGetStarted.newInstance(R.drawable.bg1);
+                return FragmentGetStarted.newInstance(R.drawable.started1);
 
             case 1:
-                return FragmentGetStarted.newInstance(R.drawable.bg2);
+                return FragmentGetStarted.newInstance(R.drawable.started2);
 
             case 2:
-                return FragmentGetStarted.newInstance(R.drawable.bg3);
-
-            case 3:
-                return FragmentGetStarted.newInstance(R.drawable.bg4);
+                return FragmentGetStarted.newInstance(R.drawable.started3);
         }
 
         return null;
@@ -38,6 +35,6 @@ public class GetStartedAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 4;
+        return 3;
     }
 }
