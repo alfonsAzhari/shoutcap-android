@@ -11,16 +11,15 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import co.shoutnet.shoutcap.utility.DBCapsHelper;
 import co.shoutnet.shoutcap.utility.SessionManager;
 
 public class SettingsActivity extends AppCompatActivity {
 
+    SessionManager manager;
     private Toolbar toolbar;
-
     private ListView listView;
     private String[] items;
-
-    SessionManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +64,7 @@ public class SettingsActivity extends AppCompatActivity {
                         break;
 
                     case 4:
+
                         logout(3000);
                         break;
                 }
@@ -103,6 +103,8 @@ public class SettingsActivity extends AppCompatActivity {
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Signing Out");
         progressDialog.show();
+        DBCapsHelper dbCapsHelper = new DBCapsHelper(getApplicationContext());
+        dbCapsHelper.deleteAllData();
         new android.os.Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

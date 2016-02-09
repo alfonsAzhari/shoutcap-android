@@ -311,4 +311,10 @@ public class DBCapsHelper extends SQLiteOpenHelper {
         db.delete(TB_NAME, "status = 'cart'", null);
         db.close();
     }
+
+    public void deleteAllData() {
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(TB_NAME, "", null);
+        db.close();
+    }
 }
