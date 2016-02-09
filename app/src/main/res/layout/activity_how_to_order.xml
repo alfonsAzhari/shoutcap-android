@@ -15,22 +15,24 @@
 
     <!--</android.support.design.widget.AppBarLayout>-->
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <co.shoutnet.shoutcap.utility.CirclePageIndicator
+            android:id="@+id/indicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ff6e40"
+            android:padding="10dp" />
 
         <android.support.v4.view.ViewPager
             android:id="@+id/pager_how_to_order"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <co.shoutnet.shoutcap.utility.CirclePageIndicator
-            android:id="@+id/indicator"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:padding="10dp" />
-    </RelativeLayout>
+    </LinearLayout>
 
 
 </LinearLayout>

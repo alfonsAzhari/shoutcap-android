@@ -10,7 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+
     <LinearLayout
+        android:id="@+id/lin_button_get_started"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -39,4 +41,11 @@
             android:textAllCaps="false"
             android:textColor="@android:color/white" />
     </LinearLayout>
+
+    <co.shoutnet.shoutcap.utility.CirclePageIndicator
+        android:id="@+id/indicator_get_started"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/lin_button_get_started"
+        android:padding="10dp" />
 </RelativeLayout>

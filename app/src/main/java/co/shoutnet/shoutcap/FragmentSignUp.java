@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,11 +16,9 @@ import android.widget.Toast;
 import com.android.volley.Request;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.Map;
 
-import co.shoutnet.shoutcap.model.ModelOnlyResult;
 import co.shoutnet.shoutcap.model.ModelRegister;
 import co.shoutnet.shoutcap.model.ModelRegisterError;
 import co.shoutnet.shoutcap.utility.ApiReferences;
@@ -194,6 +191,62 @@ public class FragmentSignUp extends Fragment {
         btnSignUp = (Button) v.findViewById(R.id.btn_signup_sign);
     }
 
+    private boolean validateEmail() {
+        if (edtEmail.getText().toString().trim().isEmpty()) {
+            lytEmail.setError("Masukkan e-mail");
+            edtEmail.requestFocus();
+            return false;
+        } else {
+            lytEmail.setErrorEnabled(false);
+        }
+        return true;
+    }
+
+    private boolean validateConfirm() {
+        if (edtConfirmPassword.getText().toString().trim().isEmpty()) {
+            lytConfirm.setError("Masukkan password konfirmasi");
+            edtConfirmPassword.requestFocus();
+            return false;
+        } else {
+            if (!edtPassword.getText().toString().equals(edtConfirmPassword.getText().toString())) {
+                lytConfirm.setError("Password tidak sama");
+                return false;
+            } else {
+                lytConfirm.setErrorEnabled(false);
+            }
+            lytPassword.setErrorEnabled(false);
+        }
+        return true;
+    }
+
+    private boolean validatePass() {
+        if (edtPassword.getText().toString().trim().isEmpty()) {
+            lytPassword.setError("Masukkan password");
+            edtPassword.requestFocus();
+            return false;
+        } else {
+            if (!edtPassword.getText().toString().equals(edtConfirmPassword.getText().toString())) {
+                lytConfirm.setError("Password tidak sama");
+                return false;
+            } else {
+                lytConfirm.setErrorEnabled(false);
+            }
+            lytPassword.setErrorEnabled(false);
+        }
+        return true;
+    }
+
+    private boolean validateShoutId() {
+        if (edtShoutId.getText().toString().trim().isEmpty()) {
+            lytShoutId.setError("Masukkan Shout ID");
+            edtShoutId.requestFocus();
+            return false;
+        } else {
+            lytShoutId.setErrorEnabled(false);
+        }
+        return true;
+    }
+
     private class Watcher implements TextWatcher {
         private View view;
 
@@ -228,63 +281,6 @@ public class FragmentSignUp extends Fragment {
                     break;
             }
         }
-    }
-
-    private boolean validateEmail() {
-        if (edtEmail.getText().toString().trim().isEmpty()) {
-            lytEmail.setError("Masukkan e-mail");
-            edtEmail.requestFocus();
-            return false;
-        } else {
-            lytEmail.setErrorEnabled(false);
-        }
-        return true;
-    }
-
-    private boolean validateConfirm() {
-        if (edtConfirmPassword.getText().toString().trim().isEmpty()) {
-            lytConfirm.setError("Masukkan password konfirmasi");
-            edtConfirmPassword.requestFocus();
-            return false;
-        } else {
-            if (!edtPassword.getText().toString().equals(edtConfirmPassword.getText().toString())) {
-                lytConfirm.setError("Password tidak sama");
-                edtConfirmPassword.requestFocus();
-                return false;
-            } else {
-                lytConfirm.setErrorEnabled(false);
-            }
-        }
-        return true;
-    }
-
-    private boolean validatePass() {
-        if (edtPassword.getText().toString().trim().isEmpty()) {
-            lytPassword.setError("Masukkan password");
-            edtPassword.requestFocus();
-            return false;
-        } else {
-            if (!edtPassword.getText().toString().equals(edtConfirmPassword.getText().toString())) {
-                lytConfirm.setError("Password tidak sama");
-                edtConfirmPassword.requestFocus();
-                return false;
-            } else {
-                lytConfirm.setErrorEnabled(false);
-            }
-            lytPassword.setErrorEnabled(false);
-        }
-        return true;
-    }
-
-    private boolean validateShoutId() {
-        if (edtShoutId.getText().toString().trim().isEmpty()) {
-            lytShoutId.setError("Masukkan Shout ID");
-            edtShoutId.requestFocus();
-            return false;
-        } else {
-            lytShoutId.setErrorEnabled(false);
-        }
-        return true;
     }
 
 }
